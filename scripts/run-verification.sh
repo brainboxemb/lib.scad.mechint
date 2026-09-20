@@ -52,6 +52,8 @@ Printable fixtures:
 - sliding-dovetail-female-test-block.stl
 - sliding-dovetail-male-test-piece.stl
 
-Configured verification renders show assembled fit, side approach and a YZ
-section through the engaged interface.
+Configured verification renders show assembled fit, side approach, a YZ
+section through the engaged interface, and an XY section through the enabled
+lock showing the male recess, ramped female threshold, U-cut spring and
+back-clearance cavity.
 EOF
