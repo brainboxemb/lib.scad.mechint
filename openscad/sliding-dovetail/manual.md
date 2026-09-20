@@ -24,6 +24,7 @@ The male mouth lies at `Y=0`; the wider root lies toward `+Y`.
 | Profile height | 3.0 mm |
 | Flank angle | 20° |
 | Root land depth | 0 mm / disabled |
+| Mouth land depth | 0 mm / disabled |
 | Derived male mouth width | 7.82 mm |
 | Female clearance | 0.20 mm |
 | Axial clearance | 0.25 mm |
@@ -36,12 +37,15 @@ The male mouth lies at `Y=0`; the wider root lies toward `+Y`.
 `angle` directly describes the mechanical flank angle.
 
 `root_land_depth` optionally replaces the final part of each angled flank with
-a straight land at the wide/root end. A value of `0` preserves the original
-trapezoidal profile exactly. The mouth width is derived from `width`, the
-remaining sloped depth `height - root_land_depth`, and `angle`.
+a straight land at the wide/root end. `mouth_land_depth` does the same at the
+narrow/mouth end before the angled flank begins. Values of `0` preserve the
+original trapezoidal profile exactly.
 
-This is useful for side-printed parts where a fully angled profile would
-otherwise finish on a sharp first-layer edge.
+The mouth width is derived from `width`, the remaining sloped depth
+`height - root_land_depth - mouth_land_depth`, and `angle`.
+
+The two lands are useful for side-printed parts where a fully angled profile
+would otherwise begin or finish on a sharp first-layer edge.
 
 `clearance` and `axial_clearance` are fit dimensions.
 

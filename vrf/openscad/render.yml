@@ -26,3 +26,7 @@ profiles:
   12-sliding-dovetail-root-land-relief:
     files: [12-sliding-dovetail-root-land-relief.scad]
     image_size: [800, 600]
+
+  13-sliding-dovetail-mouth-root-land:
+    files: [13-sliding-dovetail-mouth-root-land.scad]
+    image_size: [800, 600]

@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- Add optional `mouth_land_depth` to create a straight segment at the
+  narrow/mouth end before the angled flank. The default remains 0, preserving
+  all existing profiles.
+- Derive male mouth width, female root width and relief geometry from the
+  remaining sloped depth after both mouth and root lands.
+
 ## v0.1.3
 
 ### Added
