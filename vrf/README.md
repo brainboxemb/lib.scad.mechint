@@ -63,10 +63,10 @@ Evidence includes:
 - a 0.20 mm YZ profile section through a 12 x 2 mm interface with 0.5 mm
   straight lands at both the narrow/mouth and wide/root ends;
 - a 0.20 mm XY lock section through a thick 3.3 mm female tongue with a
-  3.0 mm root-transition envelope and 0.8 mm minimum flex thickness; the fixed
-  side uses a short straight wall plus 45-degree shoulder, the middle stays
-  flat, the return ramp is derived from the remaining length, and the complete
-  1.5 mm threshold region is full-depth again;
+  2.5 mm root-transition envelope and 0.8 mm minimum flex thickness; the fixed
+  side uses a short straight wall plus 45-degree shoulder, the flat minimum
+  section is only about 0.4 mm long, the return ramp is about 40 degrees, and
+  the complete 1.5 mm threshold region is full-depth again;
 - an isometric full-female hinge overview showing the uninterrupted flat outer
   face;
 - an isometric female center cutaway showing the straight root wall,

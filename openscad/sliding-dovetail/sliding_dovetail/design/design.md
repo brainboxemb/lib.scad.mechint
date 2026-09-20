@@ -132,18 +132,20 @@ The threshold/lip end deliberately returns to **full host thickness** before the
 locking feature. From the fixed root toward the lip, the relief has a short
 straight root wall, a 45-degree shoulder, a flat minimum-thickness flex land,
 a calculated return ramp and finally a full-depth threshold land. The return
-angle is derived from the available spring length; it is 45 degrees in the
-3.3 / 0.8 / 3.0 mm verification example. This keeps the outer face flat and
+angle is derived from the available spring length and is constrained to a
+maximum of 45 degrees. In the 3.3 / 0.8 / 2.5 mm verification example it is
+about 40 degrees. This keeps the outer face flat and
 avoids both a sharp V notch and a thin strip apparently floating under the lip.
 A hinge length of 0 keeps the previous geometry exactly.
 
 ### Flat-back hinge-relief example
 
 The example below deliberately uses a **3.3 mm** thick female spring, a
-**3.0 mm** root-transition envelope and a **0.8 mm** minimum flex thickness.
+**2.5 mm** root-transition envelope and a **0.8 mm** minimum flex thickness.
 The locking threshold is **1.5 mm** long and remains full-depth. Back clearance
-is disabled. These dimensions make both transition ramps 45 degrees while still
-leaving a short flat flex land between them.
+is disabled. This leaves only about **0.4 mm** of flat minimum-thickness flex
+land; the fixed-root shoulder stays 45 degrees while the return ramp is about
+40 degrees.
 
 <!-- scad-render
 module: sliding_dovetail_hinge_design

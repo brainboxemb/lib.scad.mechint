@@ -132,13 +132,13 @@ hinge_lock_joint =
         locking = true,
         lock_spring_length = 7,
         lock_spring_thickness = 3.3,
-        lock_spring_hinge_length = 3.0,
+        lock_spring_hinge_length = 2.5,
         lock_spring_hinge_thickness = 0.8,
         lock_cut_back_clearance = false
     );
 
 assert(sliding_dovetail_locking_enabled(hinge_lock_joint));
-assert(abs(hinge_lock_joint.lock.spring.hinge_length - 3.0) < 0.0001);
+assert(abs(hinge_lock_joint.lock.spring.hinge_length - 2.5) < 0.0001);
 assert(abs(hinge_lock_joint.lock.spring.hinge_thickness - 0.8) < 0.0001);
 assert(!hinge_lock_joint.lock.spring.cut_back_clearance);
 

@@ -190,6 +190,15 @@ module _sliding_dovetail_lock_assert_valid(
         "sliding dovetail lock spring hinge relief must not overlap the threshold"
     );
     assert(
+        lock.spring.hinge_length == 0
+            || lock.spring.length
+                - lock.threshold_length
+                - lock.spring.hinge_length
+                >= lock.spring.thickness
+                    - lock.spring.hinge_thickness,
+        "sliding dovetail lock hinge return ramp must not exceed 45 degrees"
+    );
+    assert(
         lock.entry_offset
             + lock.threshold_length
             + axial_clearance
@@ -406,10 +415,11 @@ module _sliding_dovetail_lock_female_relief_cutter(
         //   4. a calculated ramp returns to full thickness;
         //   5. a full-depth land remains under the complete threshold.
         //
-        // hinge_length is the root-side transition envelope. With the current
-        // 3.3 / 0.8 / 3.0 verification values, the calculated return ramp is
-        // also 45 degrees. Other valid proportions may produce a different
-        // return angle while retaining the 45-degree fixed-root shoulder.
+        // hinge_length is the root-side transition envelope. The return ramp
+        // is derived from the remaining spring length and must stay at or below
+        // 45 degrees. The verification example uses a 2.5 mm envelope: the
+        // minimum-thickness flat land is about 0.4 mm long and the return ramp
+        // is about 40 degrees, while the fixed-root shoulder remains 45 degrees.
         // hinge_length = 0 preserves the legacy spring geometry exactly.
         if (spring.hinge_length > 0) {
             spring_x1 = spring_x0 + spring.length;

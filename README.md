@@ -121,9 +121,11 @@ For thick hosts the optional `lock_spring_hinge_length` and
 `lock_spring_hinge_thickness` parameters create a compact channel-side hinge
 relief while the outer surface stays continuous and flat. From the fixed root
 toward the locking lip, the relief uses a short straight wall, a 45-degree
-shoulder, a flat minimum-thickness flex land and a calculated return ramp. The
-complete threshold/lip region is full-depth again before the lock starts.
-A hinge length of 0 preserves the legacy spring geometry exactly.
+shoulder, a short flat minimum-thickness flex land and a calculated return ramp.
+The return ramp is constrained to **45° maximum** and is preferably shallower
+when the available spring length allows it. The complete threshold/lip region
+is full-depth again before the lock starts. A hinge length of 0 preserves the
+legacy spring geometry exactly.
 
 `lock_release_access = true` extends the male recess all the way to its -X
 entry edge. The access path has the same width as the recess, so there is no

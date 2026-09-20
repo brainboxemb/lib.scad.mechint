@@ -127,10 +127,12 @@ Reading from the **fixed spring root toward the locking lip**, the profile is:
 
 `lock_spring_hinge_length` controls the root-side transition envelope. The
 return-ramp angle is derived from the remaining spring length after reserving
-that envelope and the full-depth threshold land. For the verification example
-(3.3 mm total thickness, 0.8 mm flex thickness, 3.0 mm transition envelope and
-a 1.5 mm threshold), that return ramp is also 45 degrees. Other valid
-proportions may produce a different return angle. This keeps the locking lip
+that envelope and the full-depth threshold land, and the library rejects
+combinations that would make it steeper than 45 degrees. The verification
+example uses 3.3 mm total thickness, 0.8 mm flex thickness, a 2.5 mm root
+transition envelope and a 1.5 mm threshold. That leaves only about 0.4 mm of
+flat minimum-thickness land and gives a return ramp of about 40 degrees. This
+keeps the locking lip
 structurally supported instead of leaving it on a visually or mechanically
 floating thin strip. A hinge length of 0 keeps the previous geometry exactly.
 
