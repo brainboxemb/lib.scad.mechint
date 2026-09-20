@@ -34,6 +34,11 @@ function sliding_dovetail_hinge_fixture_reference() =
     );
 
 
+module sliding_dovetail_hinge_fixture_female(reference) {
+    sliding_dovetail_reference_female_build(reference);
+}
+
+
 module sliding_dovetail_hinge_fixture_female_cutaway(reference) {
     intersection() {
         sliding_dovetail_reference_female_build(reference);
