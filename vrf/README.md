@@ -1,7 +1,6 @@
 # Sliding dovetail verification
 
-The first verification isolates the mechanical interface from any consuming
-product.
+Verification isolates the mechanical interface from any consuming product.
 
 Default interface:
 
@@ -16,13 +15,22 @@ Default interface:
 | boolean extra | 0.01 mm |
 | male slide length | 16.0 mm |
 
+The normal fit/approach evidence uses the unlocked default interface. A focused
+lock-section render creates the same interface with `locking = true`,
+`lock_cut_back_clearance = true` and screwdriver access disabled.
+
 Evidence includes:
 
-- male public-API construction;
+- public top-level API construction with locking disabled and enabled;
 - female test block with open side entry and a solid end stop;
 - assembled male/female fit view;
 - side-approach view showing the X slide direction;
-- a 0.20 mm YZ section centered at X=8.0 mm.
+- a 0.20 mm YZ section through the normal engaged profile;
+- a 0.20 mm XY section through the center of the integral lock.
 
-`lib.scad.util` is used only in the section-view adapter. The core
+The lock section is intended to make these relationships visible together:
+male recess, ramped female threshold, locking face, flexible tongue and the
+optional cavity behind the tongue.
+
+`lib.scad.util` is used only in section/inspection adapters. The core
 `sliding_dovetail.scad` source remains independent.
