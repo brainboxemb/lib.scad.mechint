@@ -42,12 +42,9 @@ function _sliding_dovetail_lock_spring_create(
         release_depth = release_depth
     );
 
-// Function: sliding_dovetail_lock_create()
-// Synopsis: Creates the internal lock configuration owned by one dovetail.
-// Description:
-//   Normal callers use sliding_dovetail_create(). This constructor stays
-//   separate so lock geometry remains isolated from the base dovetail source.
-function sliding_dovetail_lock_create(
+// Private constructor: lower-level lock configuration owned by one dovetail.
+// Normal callers configure locking through sliding_dovetail_create().
+function _sliding_dovetail_lock_create(
     enabled = false,
     end_offset = 2.0,
     width = 4.0,
@@ -55,6 +52,7 @@ function sliding_dovetail_lock_create(
     recess_depth = 0.6,
     threshold_length = 1.5,
     threshold_height = 0.5,
+    ramp_length = 1.0,
     spring_length = 7.0,
     spring_thickness = 1.2,
     spring_relief = 0.8,
@@ -92,6 +90,8 @@ function sliding_dovetail_lock_create(
         "sliding dovetail lock threshold_length must be smaller than recess_length")
     assert(threshold_height > 0,
         "sliding dovetail lock threshold_height must be > 0")
+    assert(ramp_length > 0 && ramp_length < threshold_length,
+        "sliding dovetail lock ramp_length must be > 0 and < threshold_length")
     assert(spring.length > threshold_length,
         "sliding dovetail lock spring length must exceed threshold length")
     object(
@@ -102,22 +102,22 @@ function sliding_dovetail_lock_create(
         recess_depth = recess_depth,
         threshold_length = threshold_length,
         threshold_height = threshold_height,
+        ramp_length = ramp_length,
         spring = spring
     );
 
-// Function: sliding_dovetail_lock_enabled()
-// Synopsis: Returns whether the lock geometry is enabled.
-function sliding_dovetail_lock_enabled(lock) =
+// Private accessor: whether the lock geometry is enabled.
+function _sliding_dovetail_lock_enabled(lock) =
     lock.enabled;
 
-// Function: sliding_dovetail_lock_male_x()
+// Function: _sliding_dovetail_lock_male_x()
 // Synopsis: Returns the male recess center in native centered coordinates.
-function sliding_dovetail_lock_male_x(lock, slide) =
+function _sliding_dovetail_lock_male_x(lock, slide) =
     slide / 2 - lock.end_offset;
 
-// Function: sliding_dovetail_lock_female_x()
+// Function: _sliding_dovetail_lock_female_x()
 // Synopsis: Returns the female threshold center for the seated male position.
-function sliding_dovetail_lock_female_x(
+function _sliding_dovetail_lock_female_x(
     lock,
     slide,
     axial_clearance
@@ -126,15 +126,15 @@ function sliding_dovetail_lock_female_x(
     + slide
     - lock.end_offset;
 
-// Function: sliding_dovetail_lock_spring_width()
+// Function: _sliding_dovetail_lock_spring_width()
 // Synopsis: Returns the flexible tongue width across Z.
-function sliding_dovetail_lock_spring_width(lock) =
+function _sliding_dovetail_lock_spring_width(lock) =
     lock.width + 2 * lock.spring.relief;
 
-// Function: sliding_dovetail_lock_release_width()
+// Function: _sliding_dovetail_lock_release_width()
 // Synopsis: Returns the screwdriver access width across Z.
-function sliding_dovetail_lock_release_width(lock) =
-    sliding_dovetail_lock_spring_width(lock)
+function _sliding_dovetail_lock_release_width(lock) =
+    _sliding_dovetail_lock_spring_width(lock)
     + 2 * lock.spring.relief;
 
 // Internal validation that depends on the parent dovetail.
@@ -188,7 +188,7 @@ module _sliding_dovetail_lock_male_recess_cutter(
     extra = 0
 ) {
     center_x =
-        sliding_dovetail_lock_male_x(lock, slide);
+        _sliding_dovetail_lock_male_x(lock, slide);
     recess_width =
         lock.width + 2 * clearance;
 
@@ -214,13 +214,13 @@ module _sliding_dovetail_lock_female_threshold_keepout(
     female_height
 ) {
     center_x =
-        sliding_dovetail_lock_female_x(
+        _sliding_dovetail_lock_female_x(
             lock,
             slide,
             axial_clearance
         );
     x0 = center_x - lock.threshold_length / 2;
-    x1 = x0 + lock.threshold_length * 0.65;
+    x1 = x0 + lock.ramp_length;
     x2 = center_x + lock.threshold_length / 2;
 
     translate([0, 0, -lock.width / 2])
@@ -244,13 +244,13 @@ module _sliding_dovetail_lock_female_relief_cutter(
     extra = 0
 ) {
     center_x =
-        sliding_dovetail_lock_female_x(
+        _sliding_dovetail_lock_female_x(
             lock,
             slide,
             axial_clearance
         );
     spring_width =
-        sliding_dovetail_lock_spring_width(lock);
+        _sliding_dovetail_lock_spring_width(lock);
     spring = lock.spring;
 
     free_x =
@@ -322,12 +322,12 @@ module _sliding_dovetail_lock_female_relief_cutter(
             translate([
                 center_x - spring.release_length / 2,
                 female_height + spring.thickness,
-                -sliding_dovetail_lock_release_width(lock) / 2
+                -_sliding_dovetail_lock_release_width(lock) / 2
             ])
                 cube([
                     spring.release_length,
                     spring.release_depth - spring.thickness + extra,
-                    sliding_dovetail_lock_release_width(lock)
+                    _sliding_dovetail_lock_release_width(lock)
                 ]);
     }
 }
