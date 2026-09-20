@@ -1,0 +1,152 @@
+{
+  "backend_signature": "2c4943357828741994760cbcff0047065dce49715b62822537d0bb5e0c97c128",
+  "engine": "scons",
+  "kind": "build",
+  "manifest_schema_version": 1,
+  "outcome_counts": {
+    "BUILT": 8,
+    "CACHE_RESTORED": 0,
+    "CURRENT": 0,
+    "ERROR": 0
+  },
+  "provenance": {
+    "cache": {
+      "exact_hit": null,
+      "matched_key": "",
+      "namespace": "scad-selective-build-v2",
+      "primary_key": "scad-selective-build-v2-Linux-1378084197-v0.6.1-78e26949c6f2397ed90bb7888c1386d3dd423312-16de4eaa4fb43d8fbec9fe331d5551289d41397beb05ade6d939d424a6037b9c"
+    },
+    "source_commit_sha": "3557164c97f2852eff0ccca47cf5beb7f9fcde05",
+    "tool_commit_sha": "78e26949c6f2397ed90bb7888c1386d3dd423312",
+    "tool_version": "0.15.0",
+    "toolchain_image": "ghcr.io/brainboxemb/scad-toolchain-openscad:v0.6.1",
+    "toolchain_version": "v0.6.1",
+    "workflow_version": "v0.15.0"
+  },
+  "schema": "scad-project.build-decisions",
+  "schema_version": 1,
+  "target_count": 8,
+  "targets": [
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "bld/png/sliding-dovetail-assembled-section.png",
+      "sources": [
+        "openscad/sliding-dovetail/sliding_dovetail/render/sliding-dovetail-assembled-section.scad",
+        "ext/lib.scad.util/openscad/inspection.scad",
+        "openscad/sliding-dovetail/sliding_dovetail/sliding_dovetail_render.scad",
+        "openscad/sliding-dovetail/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"
+      ],
+      "target_spec_digest": "033cc3b2873dbdbe3fd5ad4fe87ecbc0e004cf03d9fe75db14a1455d80f020b4"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "bld/png/sliding-dovetail-assembled.png",
+      "sources": [
+        "openscad/sliding-dovetail/sliding_dovetail/render/sliding-dovetail-assembled.scad",
+        "openscad/sliding-dovetail/sliding_dovetail/sliding_dovetail_render.scad",
+        "openscad/sliding-dovetail/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"
+      ],
+      "target_spec_digest": "4699495adb350cbde386107fd99e3cff9c2a103e505001a1dd839deaec64e36c"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "bld/png/sliding-dovetail-female.png",
+      "sources": [
+        "openscad/sliding-dovetail/sliding_dovetail/render/sliding-dovetail-female.scad",
+        "openscad/sliding-dovetail/sliding_dovetail/sliding_dovetail_render.scad",
+        "openscad/sliding-dovetail/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"
+      ],
+      "target_spec_digest": "7a22a1d4b17b6d47cda5171f82f56bf1056e80c9b4158797c60aefdd0a54b0bb"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "bld/png/sliding-dovetail-lock-assembled.png",
+      "sources": [
+        "openscad/sliding-dovetail/sliding_dovetail/render/sliding-dovetail-lock-assembled.scad",
+        "openscad/sliding-dovetail/sliding_dovetail/sliding_dovetail_render.scad",
+        "openscad/sliding-dovetail/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"
+      ],
+      "target_spec_digest": "cbd8b935f04182291898093d05ecf32b9094ac8c2f4fcca4710d1cc596c0721e"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "bld/png/sliding-dovetail-lock-female.png",
+      "sources": [
+        "openscad/sliding-dovetail/sliding_dovetail/render/sliding-dovetail-lock-female.scad",
+        "openscad/sliding-dovetail/sliding_dovetail/sliding_dovetail_render.scad",
+        "openscad/sliding-dovetail/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"
+      ],
+      "target_spec_digest": "5738740bc92c2068809b99c49d7e1426fa7ae8acfa7a827f82de8199ab13b4ef"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "bld/png/sliding-dovetail-lock-male.png",
+      "sources": [
+        "openscad/sliding-dovetail/sliding_dovetail/render/sliding-dovetail-lock-male.scad",
+        "openscad/sliding-dovetail/sliding_dovetail/sliding_dovetail_render.scad",
+        "openscad/sliding-dovetail/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"
+      ],
+      "target_spec_digest": "e4c1e70170046ceab959108274ada1321b2473f833653a13f83a46f76004dcda"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "bld/png/sliding-dovetail-male.png",
+      "sources": [
+        "openscad/sliding-dovetail/sliding_dovetail/render/sliding-dovetail-male.scad",
+        "openscad/sliding-dovetail/sliding_dovetail/sliding_dovetail_render.scad",
+        "openscad/sliding-dovetail/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"
+      ],
+      "target_spec_digest": "702f957348479766b15e8cb64f56f2949d853324456e7e6b5a8d1f610e98fa56"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "bld/png/sliding-dovetail-pair.png",
+      "sources": [
+        "openscad/sliding-dovetail/sliding_dovetail/render/sliding-dovetail-pair.scad",
+        "openscad/sliding-dovetail/sliding_dovetail/sliding_dovetail_render.scad",
+        "openscad/sliding-dovetail/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"
+      ],
+      "target_spec_digest": "fdfc4174d62ec21ad32669ce72e0bdc6ad12ee8411c95a44f4d7872ba601ce0e"
+    }
+  ]
+}
