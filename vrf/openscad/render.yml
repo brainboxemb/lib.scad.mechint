@@ -10,3 +10,7 @@ profiles:
   sliding-dovetail-yz-section:
     files: [sliding-dovetail-test-block-yz-section.scad]
     image_size: [800, 600]
+
+  sliding-dovetail-lock-section:
+    files: [sliding-dovetail-lock-section.scad]
+    image_size: [800, 600]
