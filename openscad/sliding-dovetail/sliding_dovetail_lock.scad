@@ -1,24 +1,52 @@
 //////////////////////////////////////////////////////////////////////
 // LibFile: sliding_dovetail_lock.scad
-//   Optional integral locking geometry for a sliding-dovetail interface.
+//   Internal lock configuration and geometry for a sliding dovetail.
 //////////////////////////////////////////////////////////////////////
 
+// Private spring/flex configuration. Normal consumers configure these values
+// through sliding_dovetail_create(); they do not need to construct this object.
+function _sliding_dovetail_lock_spring_create(
+    length = 7.0,
+    thickness = 1.2,
+    relief = 0.8,
+    cut_back_clearance = true,
+    back_clearance = 0.8,
+    release_access = false,
+    release_length = 3.0,
+    release_depth = 5.0
+) =
+    assert(length > 0,
+        "sliding dovetail lock spring length must be > 0")
+    assert(thickness > 0,
+        "sliding dovetail lock spring thickness must be > 0")
+    assert(relief > 0,
+        "sliding dovetail lock spring relief must be > 0")
+    assert(is_bool(cut_back_clearance),
+        "sliding dovetail lock cut_back_clearance must be boolean")
+    assert(back_clearance >= 0,
+        "sliding dovetail lock back_clearance must be >= 0")
+    assert(is_bool(release_access),
+        "sliding dovetail lock release_access must be boolean")
+    assert(release_length > 0,
+        "sliding dovetail lock release_length must be > 0")
+    assert(release_depth > thickness,
+        "sliding dovetail lock release_depth must exceed spring thickness")
+    object(
+        length = length,
+        thickness = thickness,
+        relief = relief,
+        cut_back_clearance = cut_back_clearance,
+        back_clearance = back_clearance,
+        release_access = release_access,
+        release_length = release_length,
+        release_depth = release_depth
+    );
+
 // Function: sliding_dovetail_lock_create()
-// Synopsis: Creates optional locking configuration for a sliding dovetail.
-// Arguments:
-//   enabled = Whether locking geometry is enabled.
-//   end_offset = Recess center distance from the male +X / leading end.
-//   width = Width of the locking threshold across Z.
-//   recess_length = Male recess length along X.
-//   recess_depth = Male recess depth below the root surface.
-//   threshold_length = Female locking threshold length along X.
-//   threshold_height = Threshold protrusion from the female channel roof.
-//   spring_length = Female cantilever length from free end to anchor.
-//   spring_thickness = Remaining cantilever thickness above the channel.
-//   flex_clearance = Cavity height above the cantilever.
-//   relief = Width of spring isolation slots.
-//   release_length = Screwdriver access opening length along X.
-//   release_depth = Access depth measured outward from the channel roof.
+// Synopsis: Creates the internal lock configuration owned by one dovetail.
+// Description:
+//   Normal callers use sliding_dovetail_create(). This constructor stays
+//   separate so lock geometry remains isolated from the base dovetail source.
 function sliding_dovetail_lock_create(
     enabled = false,
     end_offset = 2.0,
@@ -29,15 +57,27 @@ function sliding_dovetail_lock_create(
     threshold_height = 0.5,
     spring_length = 7.0,
     spring_thickness = 1.2,
-    flex_clearance = 0.8,
-    relief = 0.8,
+    spring_relief = 0.8,
+    cut_back_clearance = true,
+    back_clearance = 0.8,
+    release_access = false,
     release_length = 3.0,
     release_depth = 5.0
 ) =
-    assert(
-        is_bool(enabled),
-        "sliding dovetail lock enabled must be boolean"
+    let(
+        spring = _sliding_dovetail_lock_spring_create(
+            length = spring_length,
+            thickness = spring_thickness,
+            relief = spring_relief,
+            cut_back_clearance = cut_back_clearance,
+            back_clearance = back_clearance,
+            release_access = release_access,
+            release_length = release_length,
+            release_depth = release_depth
+        )
     )
+    assert(is_bool(enabled),
+        "sliding dovetail lock enabled must be boolean")
     assert(end_offset > 0,
         "sliding dovetail lock end_offset must be > 0")
     assert(width > 0,
@@ -52,18 +92,8 @@ function sliding_dovetail_lock_create(
         "sliding dovetail lock threshold_length must be smaller than recess_length")
     assert(threshold_height > 0,
         "sliding dovetail lock threshold_height must be > 0")
-    assert(spring_length > threshold_length,
-        "sliding dovetail lock spring_length must exceed threshold_length")
-    assert(spring_thickness > 0,
-        "sliding dovetail lock spring_thickness must be > 0")
-    assert(flex_clearance > 0,
-        "sliding dovetail lock flex_clearance must be > 0")
-    assert(relief > 0,
-        "sliding dovetail lock relief must be > 0")
-    assert(release_length > 0,
-        "sliding dovetail lock release_length must be > 0")
-    assert(release_depth > spring_thickness,
-        "sliding dovetail lock release_depth must exceed spring_thickness")
+    assert(spring.length > threshold_length,
+        "sliding dovetail lock spring length must exceed threshold length")
     object(
         enabled = enabled,
         end_offset = end_offset,
@@ -72,12 +102,7 @@ function sliding_dovetail_lock_create(
         recess_depth = recess_depth,
         threshold_length = threshold_length,
         threshold_height = threshold_height,
-        spring_length = spring_length,
-        spring_thickness = spring_thickness,
-        flex_clearance = flex_clearance,
-        relief = relief,
-        release_length = release_length,
-        release_depth = release_depth
+        spring = spring
     );
 
 // Function: sliding_dovetail_lock_enabled()
@@ -91,7 +116,7 @@ function sliding_dovetail_lock_male_x(lock, slide) =
     slide / 2 - lock.end_offset;
 
 // Function: sliding_dovetail_lock_female_x()
-// Synopsis: Returns the female threshold center for the seated reference position.
+// Synopsis: Returns the female threshold center for the seated male position.
 function sliding_dovetail_lock_female_x(
     lock,
     slide,
@@ -104,13 +129,13 @@ function sliding_dovetail_lock_female_x(
 // Function: sliding_dovetail_lock_spring_width()
 // Synopsis: Returns the flexible tongue width across Z.
 function sliding_dovetail_lock_spring_width(lock) =
-    lock.width + 2 * lock.relief;
+    lock.width + 2 * lock.spring.relief;
 
 // Function: sliding_dovetail_lock_release_width()
 // Synopsis: Returns the screwdriver access width across Z.
 function sliding_dovetail_lock_release_width(lock) =
     sliding_dovetail_lock_spring_width(lock)
-    + 2 * lock.relief;
+    + 2 * lock.spring.relief;
 
 // Internal validation that depends on the parent dovetail.
 module _sliding_dovetail_lock_assert_valid(
@@ -144,6 +169,11 @@ module _sliding_dovetail_lock_assert_valid(
         lock.recess_depth < male_height,
         "sliding dovetail lock recess_depth must remain below male profile height"
     );
+    assert(
+        !lock.spring.cut_back_clearance
+            || lock.spring.back_clearance >= lock.threshold_height,
+        "sliding dovetail lock back clearance must allow the threshold to deflect"
+    );
 
     children();
 }
@@ -176,7 +206,7 @@ module _sliding_dovetail_lock_male_recess_cutter(
 
 // Female keepout removed from the normal channel cutter. Subtracting this
 // volume from the cutter leaves an integral threshold protruding into the
-// channel. The -X face is a ramp for insertion; the +X face is the stop.
+// channel. The -X face is the insertion ramp; the +X face is the locking stop.
 module _sliding_dovetail_lock_female_threshold_keepout(
     lock,
     slide,
@@ -203,9 +233,9 @@ module _sliding_dovetail_lock_female_threshold_keepout(
             ]);
 }
 
-// Female subtraction volumes around the threshold. These isolate a thin
-// cantilever tongue in the channel roof and add a larger screwdriver access
-// opening above its free end.
+// Female subtraction volumes around the threshold. The U-shaped cuts always
+// isolate the tongue. The cavity behind the tongue is optional because a
+// consumer may already provide free space in the host part.
 module _sliding_dovetail_lock_female_relief_cutter(
     lock,
     slide,
@@ -221,28 +251,32 @@ module _sliding_dovetail_lock_female_relief_cutter(
         );
     spring_width =
         sliding_dovetail_lock_spring_width(lock);
-    release_width =
-        sliding_dovetail_lock_release_width(lock);
+    spring = lock.spring;
 
     free_x =
         center_x
         - lock.threshold_length / 2
-        - lock.relief;
-    relief_height =
-        lock.spring_thickness
-        + lock.flex_clearance;
+        - spring.relief;
+
+    side_cut_height =
+        spring.thickness
+        + (spring.cut_back_clearance
+            ? spring.back_clearance
+            : 0)
+        + extra;
 
     union() {
-        // Side isolation slots.
+        // Two longitudinal cuts and one transverse cut create the U-shaped
+        // isolation around the free end of the cantilever tongue.
         translate([
             free_x,
             female_height,
-            -spring_width / 2 - lock.relief
+            -spring_width / 2 - spring.relief
         ])
             cube([
-                lock.spring_length,
-                relief_height,
-                lock.relief
+                spring.length,
+                side_cut_height,
+                spring.relief
             ]);
 
         translate([
@@ -251,45 +285,49 @@ module _sliding_dovetail_lock_female_relief_cutter(
             spring_width / 2
         ])
             cube([
-                lock.spring_length,
-                relief_height,
-                lock.relief
+                spring.length,
+                side_cut_height,
+                spring.relief
             ]);
 
-        // Free-end isolation slot.
         translate([
-            free_x - lock.relief,
+            free_x - spring.relief,
             female_height,
-            -spring_width / 2 - lock.relief
+            -spring_width / 2 - spring.relief
         ])
             cube([
-                lock.relief,
-                relief_height,
-                spring_width + 2 * lock.relief
+                spring.relief,
+                side_cut_height,
+                spring_width + 2 * spring.relief
             ]);
 
-        // Flex cavity above the tongue.
-        translate([
-            free_x,
-            female_height + lock.spring_thickness,
-            -spring_width / 2
-        ])
-            cube([
-                lock.spring_length,
-                lock.flex_clearance,
-                spring_width
-            ]);
+        // Optional cavity behind the tongue. When disabled, the consuming part
+        // must itself provide free space behind a spring of spring.thickness.
+        if (spring.cut_back_clearance)
+            translate([
+                free_x,
+                female_height + spring.thickness,
+                -spring_width / 2
+            ])
+                cube([
+                    spring.length,
+                    spring.back_clearance + extra,
+                    spring_width
+                ]);
 
-        // Larger access opening above the threshold/free end.
-        translate([
-            center_x - lock.release_length / 2,
-            female_height + lock.spring_thickness,
-            -release_width / 2
-        ])
-            cube([
-                lock.release_length,
-                lock.release_depth - lock.spring_thickness + extra,
-                release_width
-            ]);
+        // Optional service opening for a small screwdriver. This is separate
+        // from the mechanical flex cavity because it may intentionally break
+        // through a thin outer wall.
+        if (spring.release_access)
+            translate([
+                center_x - spring.release_length / 2,
+                female_height + spring.thickness,
+                -sliding_dovetail_lock_release_width(lock) / 2
+            ])
+                cube([
+                    spring.release_length,
+                    spring.release_depth - spring.thickness + extra,
+                    sliding_dovetail_lock_release_width(lock)
+                ]);
     }
 }
