@@ -11,13 +11,10 @@ project decides where an interface is placed and what it connects.
 The first interface is a compact sliding dovetail aimed at **FDM-printed
 mechanical parts**.
 
-```scad
-use <openscad/sliding-dovetail/sliding_dovetail_lock.scad>
-use <openscad/sliding-dovetail/sliding_dovetail.scad>
+The normal consumer API starts with one top-level interface object:
 
-lock = sliding_dovetail_lock_create(
-    enabled = false
-);
+```scad
+use <openscad/sliding-dovetail/sliding_dovetail.scad>
 
 joint = sliding_dovetail_create(
     width = 10,
@@ -26,7 +23,7 @@ joint = sliding_dovetail_create(
     clearance = 0.20,
     axial_clearance = 0.25,
     extra = 0.01,
-    lock = lock
+    locking = false
 );
 
 sliding_dovetail_male_build(joint, slide = 16);
@@ -53,22 +50,40 @@ Z = profile width
 coplanar union/difference boundaries. It does **not** change the nominal
 10 mm / 3 mm / 20° interface. Default: **0.01 mm**.
 
-## Optional locking
+## Optional integral locking
 
-Locking is a separate object:
+Locking is selected on the same top-level interface:
 
 ```scad
-lock = sliding_dovetail_lock_create(
-    enabled = false
+joint = sliding_dovetail_create(
+    locking = true,
+    lock_cut_back_clearance = true,
+    lock_release_access = false
 );
 ```
 
-The dovetail stores that lock object through `lock = lock`. Lock-specific
-dimensions can therefore evolve in `sliding_dovetail_lock.scad` without
-turning the base dovetail constructor into a long list of retention parameters.
+The library then creates the matching lower-level lock and spring
+configuration internally. Male and female therefore always use one shared
+interface definition.
 
-Enabled locking is currently rejected until the recess, flexible threshold and
-screwdriver-release geometry are implemented and verified.
+The lock consists of:
+
+- a recess near the male +X / leading end;
+- a threshold retained in the roof of the female channel;
+- a sloped threshold face toward the female opening so the male can push the
+  tongue out of the way while inserting;
+- a steeper rear face that engages the male recess;
+- U-shaped isolation cuts around the female threshold so that material becomes
+  an integral cantilever spring.
+
+`lock_cut_back_clearance = true` also removes a flex cavity behind that
+cantilever. With `false`, the U-shaped spring cuts and threshold are still
+created, but the consuming part is responsible for providing free space behind
+the configured spring thickness.
+
+A larger service opening for a small screwdriver is independent and opt-in
+through `lock_release_access`; it is not required merely to create a flexible
+tongue.
 
 ## Female test block
 
@@ -79,7 +94,8 @@ Verification includes a small female block with:
 - a solid end stop;
 - an assembled fit view;
 - an approach view showing the slide direction;
-- a YZ section through the engaged profile.
+- a YZ section through the normal engaged profile;
+- an XY lock section through the center of the threshold and spring.
 
 This lets the mechanical interface be developed independently from any one
 consumer such as the HUB75 frame.
@@ -89,9 +105,9 @@ consumer such as the HUB75 frame.
 The core `sliding_dovetail.scad` source has no dependency on
 `lib.scad.util`.
 
-The repository uses `lib.scad.util` only in verification for section
-inspection. Consumers therefore do not inherit utility geometry merely by using
-the dovetail source.
+The repository uses `lib.scad.util` only in verification and interactive
+inspection views. Consumers therefore do not inherit utility geometry merely by
+using the dovetail source.
 
 ## Development
 
@@ -99,14 +115,14 @@ Generated Build and Verification output is published separately from source.
 See the PR preview or production `bld` / `vrf` branches for generated
 images and evidence.
 
-
 ## Interactive workspace
 
 Open the repository-root `main.scad` directly in OpenSCAD. Its Customizer
-exposes the interface dimensions and these views:
+exposes the complete top-level dovetail/lock interface and these views:
 
 - male reference block;
 - female reference block;
 - approach along the X slide axis;
 - fully assembled pair;
-- assembled YZ section.
+- assembled YZ fit section;
+- XY lock section through the threshold, male recess and spring cavity.
