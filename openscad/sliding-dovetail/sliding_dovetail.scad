@@ -24,6 +24,7 @@ use <sliding_dovetail_lock.scad>
 //   lock_recess_depth = Male recess depth below the dovetail root surface.
 //   lock_threshold_length = Female threshold length along X.
 //   lock_threshold_height = Female threshold protrusion into the channel.
+//   lock_ramp_length = Length of the sloped insertion face along X.
 //   lock_spring_length = Flexible female tongue length along X.
 //   lock_spring_thickness = Material thickness of the flexible tongue.
 //   lock_spring_relief = Width of the U-shaped isolation cuts.
@@ -46,6 +47,7 @@ function sliding_dovetail_create(
     lock_recess_depth = 0.6,
     lock_threshold_length = 1.5,
     lock_threshold_height = 0.5,
+    lock_ramp_length = 1.0,
     lock_spring_length = 7.0,
     lock_spring_thickness = 1.2,
     lock_spring_relief = 0.8,
@@ -58,7 +60,7 @@ function sliding_dovetail_create(
     let(
         mouth_width =
             width - 2 * height * tan(angle),
-        lock = sliding_dovetail_lock_create(
+        lock = _sliding_dovetail_lock_create(
             enabled = locking,
             end_offset = lock_end_offset,
             width = lock_width,
@@ -66,6 +68,7 @@ function sliding_dovetail_create(
             recess_depth = lock_recess_depth,
             threshold_length = lock_threshold_length,
             threshold_height = lock_threshold_height,
+            ramp_length = lock_ramp_length,
             spring_length = lock_spring_length,
             spring_thickness = lock_spring_thickness,
             spring_relief = lock_spring_relief,
@@ -132,16 +135,14 @@ function sliding_dovetail_female_root_width(joint) =
 function sliding_dovetail_female_slide(joint, slide) =
     slide + joint.axial_clearance;
 
-// Function: sliding_dovetail_lock()
-// Synopsis: Returns the lock configuration owned by this interface.
-function sliding_dovetail_lock(joint) =
+function _sliding_dovetail_lock(joint) =
     joint.lock;
 
 // Function: sliding_dovetail_locking_enabled()
 // Synopsis: Returns whether optional locking geometry is requested.
 function sliding_dovetail_locking_enabled(joint) =
-    sliding_dovetail_lock_enabled(
-        sliding_dovetail_lock(joint)
+    _sliding_dovetail_lock_enabled(
+        _sliding_dovetail_lock(joint)
     );
 
 // Module: sliding_dovetail_male_build()
@@ -158,7 +159,7 @@ module sliding_dovetail_male_build(
 
     if (sliding_dovetail_locking_enabled(joint)) {
         _sliding_dovetail_lock_assert_valid(
-            sliding_dovetail_lock(joint),
+            _sliding_dovetail_lock(joint),
             slide,
             joint.width,
             joint.height,
@@ -171,7 +172,7 @@ module sliding_dovetail_male_build(
                 );
 
                 _sliding_dovetail_lock_male_recess_cutter(
-                    sliding_dovetail_lock(joint),
+                    _sliding_dovetail_lock(joint),
                     slide,
                     joint.height,
                     joint.clearance,
@@ -200,7 +201,7 @@ module sliding_dovetail_female_cutter(
 
     if (sliding_dovetail_locking_enabled(joint)) {
         _sliding_dovetail_lock_assert_valid(
-            sliding_dovetail_lock(joint),
+            _sliding_dovetail_lock(joint),
             slide,
             joint.width,
             joint.height,
@@ -216,7 +217,7 @@ module sliding_dovetail_female_cutter(
                     );
 
                     _sliding_dovetail_lock_female_threshold_keepout(
-                        sliding_dovetail_lock(joint),
+                        _sliding_dovetail_lock(joint),
                         slide,
                         joint.axial_clearance,
                         sliding_dovetail_female_height(joint)
@@ -226,7 +227,7 @@ module sliding_dovetail_female_cutter(
                 // Cut around and behind that threshold so the remaining roof
                 // material becomes an integral flexible tongue.
                 _sliding_dovetail_lock_female_relief_cutter(
-                    sliding_dovetail_lock(joint),
+                    _sliding_dovetail_lock(joint),
                     slide,
                     joint.axial_clearance,
                     sliding_dovetail_female_height(joint),
