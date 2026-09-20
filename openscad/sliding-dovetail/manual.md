@@ -23,6 +23,7 @@ The male mouth lies at `Y=0`; the wider root lies toward `+Y`.
 | Female clearance | 0.20 mm |
 | Axial clearance | 0.25 mm |
 | Boolean overlap (`extra`) | 0.01 mm |
+| Locking | disabled |
 
 ## Parameter meaning
 
@@ -36,10 +37,25 @@ boundaries. It is not part of the nominal mating dimensions.
 
 ## Locking
 
-Locking configuration is owned by a separate
-`sliding_dovetail_lock_create()` object and passed into
-`sliding_dovetail_create(lock = lock)`.
+Locking is configured on the same top-level interface object:
 
-The first version intentionally qualifies the plain sliding interface before
-adding a spring threshold/detent and screwdriver release. Until that feature is
-implemented, an enabled lock object is rejected explicitly.
+```scad
+joint = sliding_dovetail_create(
+    locking = true,
+    lock_cut_back_clearance = true,
+    lock_release_access = false
+);
+```
+
+The library creates the lower-level lock and spring configuration internally.
+
+The enabled lock combines a recess in the male with a ramped threshold in the
+female channel roof. U-shaped relief cuts isolate that threshold as part of an
+integral cantilever spring.
+
+`lock_cut_back_clearance = true` cuts the flex cavity behind the tongue.
+With it disabled, the consuming host part must provide that free space itself.
+
+The threshold insertion ramp is independently tunable with
+`lock_ramp_length`. Screwdriver/service access is independent and opt-in
+through `lock_release_access`.
