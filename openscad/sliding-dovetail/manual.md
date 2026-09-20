@@ -110,7 +110,15 @@ the open end of the U. If `lock_entry_offset > 0` or
 needed to free the tongue at its entry end.
 
 `lock_cut_back_clearance = true` cuts the flex cavity behind the tongue.
-With it disabled, the consuming host part must provide that free space itself.
+With it disabled, the spring can keep a flat outer/rear face.
+
+For a thick host, `lock_spring_hinge_length > 0` enables a tapered hinge relief
+at the fixed end of the tongue. The library cuts a triangular wedge from the
+female-channel side: the outer face remains flat, while
+`lock_spring_hinge_thickness` controls the minimum local flexure thickness.
+The relief grows gradually over `lock_spring_hinge_length`, avoiding the
+horizontal shelf produced by a full rear cavity. The default hinge length is
+0, so existing lock geometry is unchanged.
 
 The threshold insertion ramp is independently tunable with
 `lock_ramp_length`. With `lock_release_access = true`, the recess continues

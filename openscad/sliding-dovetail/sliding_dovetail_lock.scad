@@ -9,6 +9,8 @@ function _sliding_dovetail_lock_spring_create(
     length = 7.0,
     thickness = 1.2,
     relief = 0.8,
+    hinge_length = 0,
+    hinge_thickness = 0.8,
     cut_back_clearance = true,
     back_clearance = 0.8
 ) =
@@ -18,6 +20,18 @@ function _sliding_dovetail_lock_spring_create(
         "sliding dovetail lock spring thickness must be > 0")
     assert(relief > 0,
         "sliding dovetail lock spring relief must be > 0")
+    assert(hinge_length >= 0,
+        "sliding dovetail lock spring hinge_length must be >= 0")
+    assert(hinge_thickness > 0,
+        "sliding dovetail lock spring hinge_thickness must be > 0")
+    assert(
+        hinge_length == 0 || hinge_length < length,
+        "sliding dovetail lock spring hinge_length must be shorter than spring length"
+    )
+    assert(
+        hinge_length == 0 || hinge_thickness < thickness,
+        "sliding dovetail lock spring hinge_thickness must be less than spring thickness"
+    )
     assert(is_bool(cut_back_clearance),
         "sliding dovetail lock cut_back_clearance must be boolean")
     assert(back_clearance >= 0,
@@ -26,6 +40,8 @@ function _sliding_dovetail_lock_spring_create(
         length = length,
         thickness = thickness,
         relief = relief,
+        hinge_length = hinge_length,
+        hinge_thickness = hinge_thickness,
         cut_back_clearance = cut_back_clearance,
         back_clearance = back_clearance
     );
@@ -44,6 +60,8 @@ function _sliding_dovetail_lock_create(
     spring_length = 7.0,
     spring_thickness = 1.2,
     spring_relief = 0.8,
+    spring_hinge_length = 0,
+    spring_hinge_thickness = 0.8,
     cut_back_clearance = true,
     back_clearance = 0.8,
     release_access = true,
@@ -54,6 +72,8 @@ function _sliding_dovetail_lock_create(
             length = spring_length,
             thickness = spring_thickness,
             relief = spring_relief,
+            hinge_length = spring_hinge_length,
+            hinge_thickness = spring_hinge_thickness,
             cut_back_clearance = cut_back_clearance,
             back_clearance = back_clearance
         )
@@ -370,6 +390,28 @@ module _sliding_dovetail_lock_female_relief_cutter(
                     side_cut_height,
                     spring_width + 2 * spring.relief
                 ]);
+
+        // Optional print-friendly hinge relief. The tongue keeps its full
+        // outer/rear face, while a triangular cut from the channel side tapers
+        // the last part of the spring down to hinge_thickness at its fixed end.
+        // hinge_length = 0 preserves the legacy spring geometry exactly.
+        if (spring.hinge_length > 0) {
+            spring_x1 = spring_x0 + spring.length;
+            hinge_x0 = spring_x1 - spring.hinge_length;
+            hinge_relief_depth =
+                spring.thickness - spring.hinge_thickness;
+
+            translate([0, 0, -spring_width / 2])
+                linear_extrude(height = spring_width)
+                    polygon(points = [
+                        [hinge_x0, female_height],
+                        [spring_x1 + extra, female_height],
+                        [
+                            spring_x1 + extra,
+                            female_height + hinge_relief_depth
+                        ]
+                    ]);
+        }
 
         if (spring.cut_back_clearance)
             translate([

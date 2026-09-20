@@ -126,6 +126,22 @@ assert(
     < 0.0001
 );
 
+hinge_lock_joint =
+    sliding_dovetail_create(
+        entry_slot_length = 16,
+        locking = true,
+        lock_spring_length = 7,
+        lock_spring_thickness = 3.3,
+        lock_spring_hinge_length = 3.0,
+        lock_spring_hinge_thickness = 0.8,
+        lock_cut_back_clearance = false
+    );
+
+assert(sliding_dovetail_locking_enabled(hinge_lock_joint));
+assert(abs(hinge_lock_joint.lock.spring.hinge_length - 3.0) < 0.0001);
+assert(abs(hinge_lock_joint.lock.spring.hinge_thickness - 0.8) < 0.0001);
+assert(!hinge_lock_joint.lock.spring.cut_back_clearance);
+
 // Exercise the public builders with plain and locking interfaces.
 translate([-36, 0, 0])
     sliding_dovetail_male_build(
@@ -193,5 +209,11 @@ translate([180, 0, 0])
 translate([204, 0, 0])
     sliding_dovetail_female_cutter(
         both_land_joint,
+        slide = 16
+    );
+
+translate([228, 0, 0])
+    sliding_dovetail_female_cutter(
+        hinge_lock_joint,
         slide = 16
     );

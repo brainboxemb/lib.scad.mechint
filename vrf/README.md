@@ -56,7 +56,10 @@ Evidence includes:
 - a 0.20 mm YZ profile section through a side-print-friendly root land and a
   consumer body trimmed by the public male mating-relief cutter;
 - a 0.20 mm YZ profile section through a 12 x 2 mm interface with 0.5 mm
-  straight lands at both the narrow/mouth and wide/root ends.
+  straight lands at both the narrow/mouth and wide/root ends;
+- a 0.20 mm XY lock section through a thick 3.3 mm female tongue with a
+  3.0 mm tapered hinge zone that leaves 0.8 mm at the fixed end while keeping
+  the outer face flat.
 
 The lock section is intended to make these relationships visible together:
 continuous male release/recess opening, ramped female threshold, locking face,

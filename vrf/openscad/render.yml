@@ -30,3 +30,7 @@ profiles:
   13-sliding-dovetail-mouth-root-land:
     files: [13-sliding-dovetail-mouth-root-land.scad]
     image_size: [800, 600]
+
+  14-sliding-dovetail-lock-hinge-relief:
+    files: [14-sliding-dovetail-lock-hinge-relief.scad]
+    image_size: [800, 600]
