@@ -16,3 +16,9 @@ module sliding_dovetail_fixture_male_inspection(reference) {
         rotate([90, 0, 0])
             children();
 }
+
+module sliding_dovetail_fixture_assembly_inspection(reference) {
+    // Preserve true assembled coordinates and lay the female host flat.
+    sliding_dovetail_fixture_female_inspection(reference)
+        children();
+}

@@ -24,19 +24,21 @@ Verification files are numbered so they sort by purpose:
 - 01–09 — base sliding dovetail;
 - 10–19 — locking sliding dovetail.
 
-Printable fixtures include both plain and locking male/female pairs plus a
-half-width female cutaway STL. The female threshold starts at the fixed -X
-entry edge. The locking male has one continuous release opening from its entry
-edge to the locking wall; its access path uses the same width as the recess.
+Printable fixtures include plain and locking male/female pairs, a half-width
+female cutaway, a true assembled locking STL and an assembled center cutaway.
+The female threshold starts at the fixed -X entry edge. The locking male has
+one continuous release opening from its entry edge to the locking wall; its
+access path uses the same width as the recess.
 
 Fixture STLs use a neutral inspection orientation: each broad reference block
 lies flat and the mechanical interface faces upward. This is not a prescribed
 print orientation and does not encode how HUB75 or another consumer should
 place the interface.
 
-Male and female fixtures are oriented independently. Use the assembly/section
-PNG evidence for mating inspection, or reposition the two STL files manually
-in a viewer.
+Male and female fixtures remain available independently. Fixture 13 preserves
+the exact assembled position in the same neutral inspection orientation.
+Fixture 14 cuts that assembly at the native Z=0 center plane so the threshold,
+male recess, spring and release opening can be inspected together.
 
 Evidence includes:
 

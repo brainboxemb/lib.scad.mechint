@@ -49,6 +49,10 @@ render_stl   "$out/fixtures/11-sliding-dovetail-lock-female-test-block.stl"   "$
 
 render_stl   "$out/fixtures/12-sliding-dovetail-lock-female-cutaway.stl"   "$root/vrf/fixtures/export/12-sliding-dovetail-lock-female-cutaway.scad"
 
+render_stl   "$out/fixtures/13-sliding-dovetail-lock-assembled.stl"   "$root/vrf/fixtures/export/13-sliding-dovetail-lock-assembled.scad"
+
+render_stl   "$out/fixtures/14-sliding-dovetail-lock-assembled-cutaway.stl"   "$root/vrf/fixtures/export/14-sliding-dovetail-lock-assembled-cutaway.scad"
+
 cat > "$out/README.md" <<'EOF'
 # Verification
 
@@ -67,15 +71,17 @@ Printable / inspectable fixtures:
 - [10-sliding-dovetail-lock-male-test-piece.stl](fixtures/10-sliding-dovetail-lock-male-test-piece.stl)
 - [11-sliding-dovetail-lock-female-test-block.stl](fixtures/11-sliding-dovetail-lock-female-test-block.stl)
 - [12-sliding-dovetail-lock-female-cutaway.stl](fixtures/12-sliding-dovetail-lock-female-cutaway.stl)
+- [13-sliding-dovetail-lock-assembled.stl](fixtures/13-sliding-dovetail-lock-assembled.stl)
+- [14-sliding-dovetail-lock-assembled-cutaway.stl](fixtures/14-sliding-dovetail-lock-assembled-cutaway.stl)
 
 Fixture STLs use a neutral inspection orientation. Each reference block lies
 flat with its mechanical interface facing upward. This orientation belongs to
 verification only; it does not prescribe a print or consumer-product
 orientation.
 
-Male and female fixtures are oriented independently for inspection. Use the
-assembly/section PNG evidence for mating inspection, or reposition the two STL
-files manually in a viewer.
+Male and female fixtures remain available independently. The 13 assembled STL
+keeps the exact mating position, while 14 cuts that assembly on the center
+plane so the internal lock relationship is visible.
 
 Configured verification renders show assembled fit, side approach, a YZ
 section through the engaged interface, and a rotated XY lock section at the
