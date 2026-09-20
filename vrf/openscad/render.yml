@@ -1,9 +1,12 @@
 profiles:
   sliding-dovetail-fit:
     files: [sliding-dovetail-test-block-fit.scad]
+    image_size: [640, 480]
 
   sliding-dovetail-approach:
     files: [sliding-dovetail-test-block-approach.scad]
+    image_size: [640, 480]
 
   sliding-dovetail-yz-section:
     files: [sliding-dovetail-test-block-yz-section.scad]
+    image_size: [800, 600]
