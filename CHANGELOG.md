@@ -7,10 +7,12 @@
 - Add optional female spring hinge relief for thick hosts. A non-zero
   `lock_spring_hinge_length` creates a compact channel-side pocket near the
   fixed end while `lock_spring_hinge_thickness` sets the remaining local
-  flexure thickness. The pocket uses straight entry walls, 45-degree shoulders
-  and a short flat flex land instead of a sharp triangular wedge. The outer/rear
-  host face stays flat, and the default hinge length of 0 preserves existing
-  lock geometry.
+  flexure thickness. The minimum-thickness flex land now continues from the
+  locking threshold toward the fixed root; only the root transitions back to
+  full thickness through a 45-degree shoulder and, when needed, a short straight
+  wall. This avoids a sharp triangular wedge and an unnecessary second shoulder
+  near the clip. The outer/rear host face stays flat, and the default hinge
+  length of 0 preserves existing lock geometry.
 
 ## v0.1.4
 

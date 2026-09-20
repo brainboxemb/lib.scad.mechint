@@ -127,10 +127,13 @@ When it is disabled, the tongue can remain full-depth to a flat outer face.
 An optional hinge relief handles thick hosts without adding a rear cavity.
 `lock_spring_hinge_length` selects the local flex zone at the fixed spring end
 and `lock_spring_hinge_thickness` selects the minimum remaining material there.
-The channel-side pocket uses straight entry walls followed by 45-degree
-shoulders into a short flat flex land; the land length follows the configured
-hinge thickness. This keeps the outer face flat while avoiding a sharp V-like
-stress concentration. A hinge length of 0 keeps the previous geometry exactly.
+The channel-side relief keeps a constant minimum-thickness flex land from the
+locking threshold/free end toward the fixed spring root. Only the fixed end
+returns to full host thickness, through a 45-degree shoulder and, when needed,
+a short straight root wall. `lock_spring_hinge_length` controls that root
+transition envelope. This keeps the outer face flat while avoiding both a sharp
+V-like stress concentration and an unnecessary second shoulder near the clip.
+A hinge length of 0 keeps the previous geometry exactly.
 
 `lock_release_access` extends the male recess to the -X entry edge using the
 same width as the recess. This gives a small flat screwdriver a straight path
