@@ -27,7 +27,7 @@ externals:
 
 verification:
   render_root: vrf/openscad
-  image_size: [1280, 720]
+  image_size: [640, 480]
   commands:
     - [bash, scripts/run-verification.sh]
   output_root: vrf/out
