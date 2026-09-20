@@ -1,0 +1,2 @@
+defaults:
+  image_size: [480, 360]

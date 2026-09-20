@@ -1,0 +1,16 @@
+profiles:
+  01-sliding-dovetail-fit:
+    files: [01-sliding-dovetail-fit.scad]
+    image_size: [640, 480]
+
+  02-sliding-dovetail-approach:
+    files: [02-sliding-dovetail-approach.scad]
+    image_size: [640, 480]
+
+  03-sliding-dovetail-yz-section:
+    files: [03-sliding-dovetail-yz-section.scad]
+    image_size: [800, 600]
+
+  10-sliding-dovetail-lock-section:
+    files: [10-sliding-dovetail-lock-section.scad]
+    image_size: [800, 600]
