@@ -105,8 +105,96 @@ module sliding_dovetail_male_build(
 ) {
     assert(slide > 0,
         "sliding dovetail slide must be > 0");
-    _sliding_dovetail_assert_supported_features(joint);
 
+    if (sliding_dovetail_locking_enabled(joint)) {
+        _sliding_dovetail_lock_assert_valid(
+            sliding_dovetail_lock(joint),
+            slide,
+            joint.width,
+            joint.height,
+            joint.clearance
+        )
+            difference() {
+                _sliding_dovetail_male_base(
+                    joint,
+                    slide
+                );
+
+                _sliding_dovetail_lock_male_recess_cutter(
+                    sliding_dovetail_lock(joint),
+                    slide,
+                    joint.height,
+                    joint.clearance,
+                    joint.extra
+                );
+            }
+    } else {
+        _sliding_dovetail_male_base(
+            joint,
+            slide
+        );
+    }
+}
+
+// Module: sliding_dovetail_female_cutter()
+// Synopsis: Builds a centered female subtraction volume from the same object.
+// Arguments:
+//   joint = Sliding-dovetail interface object.
+//   slide = Nominal male length. Axial clearance is added symmetrically.
+module sliding_dovetail_female_cutter(
+    joint,
+    slide = 16
+) {
+    assert(slide > 0,
+        "sliding dovetail slide must be > 0");
+
+    if (sliding_dovetail_locking_enabled(joint)) {
+        _sliding_dovetail_lock_assert_valid(
+            sliding_dovetail_lock(joint),
+            slide,
+            joint.width,
+            joint.height,
+            joint.clearance
+        )
+            union() {
+                // Start from the normal female subtraction volume, but keep a
+                // small ramped threshold in the channel roof.
+                difference() {
+                    _sliding_dovetail_female_base_cutter(
+                        joint,
+                        slide
+                    );
+
+                    _sliding_dovetail_lock_female_threshold_keepout(
+                        sliding_dovetail_lock(joint),
+                        slide,
+                        joint.axial_clearance,
+                        sliding_dovetail_female_height(joint)
+                    );
+                }
+
+                // Cut around and behind that threshold so the remaining roof
+                // material becomes an integral flexible tongue.
+                _sliding_dovetail_lock_female_relief_cutter(
+                    sliding_dovetail_lock(joint),
+                    slide,
+                    joint.axial_clearance,
+                    sliding_dovetail_female_height(joint),
+                    joint.extra
+                );
+            }
+    } else {
+        _sliding_dovetail_female_base_cutter(
+            joint,
+            slide
+        );
+    }
+}
+
+module _sliding_dovetail_male_base(
+    joint,
+    slide
+) {
     union() {
         _sliding_dovetail_prism(
             x_min = -slide / 2 - joint.extra,
@@ -132,19 +220,10 @@ module sliding_dovetail_male_build(
     }
 }
 
-// Module: sliding_dovetail_female_cutter()
-// Synopsis: Builds a centered female subtraction volume from the same object.
-// Arguments:
-//   joint = Sliding-dovetail interface object.
-//   slide = Nominal male length. Axial clearance is added symmetrically.
-module sliding_dovetail_female_cutter(
+module _sliding_dovetail_female_base_cutter(
     joint,
-    slide = 16
+    slide
 ) {
-    assert(slide > 0,
-        "sliding dovetail slide must be > 0");
-    _sliding_dovetail_assert_supported_features(joint);
-
     female_slide =
         sliding_dovetail_female_slide(joint, slide);
     female_mouth =
@@ -174,13 +253,6 @@ module sliding_dovetail_female_cutter(
                     female_mouth
                 ]);
     }
-}
-
-module _sliding_dovetail_assert_supported_features(joint) {
-    assert(
-        !sliding_dovetail_locking_enabled(joint),
-        "sliding dovetail locking geometry is not implemented yet"
-    );
 }
 
 // Native profile is [Y,Z]; extrusion is transformed onto X.
