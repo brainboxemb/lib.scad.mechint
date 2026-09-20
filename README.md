@@ -10,13 +10,13 @@ project decides where an interface is placed and what it connects.
 
 <table>
   <tr>
-    <th align="center">Assembled dovetail</th>
+    <th align="center">Dovetail pair</th>
     <th align="center">Integral lock section</th>
   </tr>
   <tr>
     <td align="center">
-      <a href="../../blob/prod/bld/png/sliding-dovetail-assembled.png">
-        <img src="../../raw/prod/bld/png/sliding-dovetail-assembled.png" alt="Assembled sliding dovetail" width="100%">
+      <a href="../../blob/prod/bld/png/sliding-dovetail-pair.png">
+        <img src="../../raw/prod/bld/png/sliding-dovetail-pair.png" alt="Sliding dovetail male and female pair" width="100%">
       </a>
     </td>
     <td align="center">
