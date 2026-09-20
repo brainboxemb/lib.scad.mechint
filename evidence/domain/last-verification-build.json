@@ -1,0 +1,146 @@
+{
+  "backend_signature": "2c4943357828741994760cbcff0047065dce49715b62822537d0bb5e0c97c128",
+  "engine": "scons",
+  "kind": "verification",
+  "manifest_schema_version": 1,
+  "outcome_counts": {
+    "BUILT": 8,
+    "CACHE_RESTORED": 0,
+    "CURRENT": 0,
+    "ERROR": 0
+  },
+  "provenance": {
+    "cache": {
+      "exact_hit": null,
+      "matched_key": "",
+      "namespace": "scad-verification-v1",
+      "primary_key": "scad-verification-v1-Linux-1378084197-v0.6.1-78e26949c6f2397ed90bb7888c1386d3dd423312-8e1558ed9b95a0ad43d5ebcebb3e9e7cb57fee40977678eb8c1b4aaffcb9191a"
+    },
+    "source_commit_sha": "597823904c746efe0cde993cd940ac938d84a80b",
+    "tool_commit_sha": "78e26949c6f2397ed90bb7888c1386d3dd423312",
+    "tool_version": "0.15.0",
+    "toolchain_image": "ghcr.io/brainboxemb/scad-toolchain-openscad:v0.6.1",
+    "toolchain_version": "v0.6.1",
+    "workflow_version": "v0.15.0"
+  },
+  "schema": "scad-project.build-decisions",
+  "schema_version": 1,
+  "target_count": 8,
+  "targets": [
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "vrf/out/png/01-sliding-dovetail-fit.png",
+      "sources": [
+        "vrf/openscad/01-sliding-dovetail-fit.scad",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad",
+        "openscad/sliding-dovetail/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad"
+      ],
+      "target_spec_digest": "869b718f7e755965aad823c5768c5e42d81ef4b079c7916ee741e1a8777085e8"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "vrf/out/png/02-sliding-dovetail-approach.png",
+      "sources": [
+        "vrf/openscad/02-sliding-dovetail-approach.scad",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad",
+        "openscad/sliding-dovetail/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad"
+      ],
+      "target_spec_digest": "ecd34a5528eedfa133f7d14f93491483d166a3f0500ae0c63b683d201394514c"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "vrf/out/png/03-sliding-dovetail-yz-section.png",
+      "sources": [
+        "vrf/openscad/03-sliding-dovetail-yz-section.scad",
+        "ext/lib.scad.util/openscad/inspection.scad",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad",
+        "openscad/sliding-dovetail/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad"
+      ],
+      "target_spec_digest": "500336dbd9f590b3b64d38bd135461e50abf7f9df7058eb2fd1e43a9fc6d808d"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "vrf/out/png/04-sliding-dovetail-entry-slot.png",
+      "sources": [
+        "vrf/openscad/04-sliding-dovetail-entry-slot.scad",
+        "openscad/sliding-dovetail/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"
+      ],
+      "target_spec_digest": "e3b87aeee1c28dc321c5fdb364ec97c684407464dec39974f85ca904ada80f8b"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "vrf/out/png/10-sliding-dovetail-lock-section.png",
+      "sources": [
+        "vrf/openscad/10-sliding-dovetail-lock-section.scad",
+        "ext/lib.scad.util/openscad/inspection.scad",
+        "openscad/sliding-dovetail/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"
+      ],
+      "target_spec_digest": "9d30241c546a63522afee5b53da35453b9a60e91d361a3f61ca738d053454ab1"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "vrf/out/png/11-sliding-dovetail-lock-entry-slot-spring.png",
+      "sources": [
+        "vrf/openscad/11-sliding-dovetail-lock-entry-slot-spring.scad",
+        "ext/lib.scad.util/openscad/inspection.scad",
+        "openscad/sliding-dovetail/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"
+      ],
+      "target_spec_digest": "c1db4ca7413346725a12a457185360249e56616620dbac00d4e99430dee8ada0"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "vrf/out/png/12-sliding-dovetail-root-land-relief.png",
+      "sources": [
+        "vrf/openscad/12-sliding-dovetail-root-land-relief.scad",
+        "ext/lib.scad.util/openscad/inspection.scad",
+        "openscad/sliding-dovetail/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad"
+      ],
+      "target_spec_digest": "f891c3ec43cacdf9db955275d6b4055589c2222cf20f0178eb4323393b20f017"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "vrf/out/png/13-sliding-dovetail-mouth-root-land.png",
+      "sources": [
+        "vrf/openscad/13-sliding-dovetail-mouth-root-land.scad",
+        "ext/lib.scad.util/openscad/inspection.scad",
+        "openscad/sliding-dovetail/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad"
+      ],
+      "target_spec_digest": "9111e2be581957557bfb42f144b0810f6d81ddec4bbaaa79979cd9cbc9272b82"
+    }
+  ]
+}
