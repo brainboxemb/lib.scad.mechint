@@ -6,6 +6,30 @@ detents and release features.
 The library is intentionally about the **interface between parts**. A consuming
 project decides where an interface is placed and what it connects.
 
+## Preview
+
+<table>
+  <tr>
+    <th align="center">Assembled dovetail</th>
+    <th align="center">Integral lock section</th>
+  </tr>
+  <tr>
+    <td align="center">
+      <a href="../../blob/prod/bld/png/sliding-dovetail-assembled.png">
+        <img src="../../raw/prod/bld/png/sliding-dovetail-assembled.png" alt="Assembled sliding dovetail" width="100%">
+      </a>
+    </td>
+    <td align="center">
+      <a href="../../blob/prod/vrf/png/10-sliding-dovetail-lock-section.png">
+        <img src="../../raw/prod/vrf/png/10-sliding-dovetail-lock-section.png" alt="Sliding dovetail integral lock section" width="100%">
+      </a>
+    </td>
+  </tr>
+</table>
+
+These images are generated from the current `prod/bld` and `prod/vrf`
+branches; generated PNGs are not stored on `main`.
+
 ## Sliding dovetail
 
 The first interface is a compact sliding dovetail aimed at **FDM-printed
