@@ -50,6 +50,10 @@ sit ahead of the channel before sliding in.
 The parameter is a length along X only. A value of `0` preserves the ordinary
 female cutter. The male builder ignores this setting.
 
+When locking is enabled, a non-zero entry slot also opens the short transverse
+relief at the female spring start. This keeps the lock tongue U-shaped even
+though material may continue ahead of the mating channel.
+
 For example, a 16 mm male can be given a 16 mm approach pocket:
 
 ```scad
@@ -87,8 +91,11 @@ edge. In the assembled interface the male recess is derived from that same
 entry-side definition.
 
 The lock combines a recess in the male with a ramped threshold in the female
-channel roof. With the default edge placement, two longitudinal relief cuts
-isolate the tongue while the female entry edge is already its free end.
+channel roof. Two longitudinal relief cuts form the sides of the U-shaped
+tongue. When the spring starts at a physical female edge, that edge is already
+the open end of the U. If `lock_entry_offset > 0` or
+`entry_slot_length > 0`, the library also cuts the short transverse relief
+needed to free the tongue at its entry end.
 
 `lock_cut_back_clearance = true` cuts the flex cavity behind the tongue.
 With it disabled, the consuming host part must provide that free space itself.

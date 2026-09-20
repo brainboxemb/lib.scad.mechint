@@ -256,7 +256,8 @@ module sliding_dovetail_female_cutter(
                     slide,
                     joint.axial_clearance,
                     sliding_dovetail_female_height(joint),
-                    joint.extra
+                    entry_slot_length = joint.entry_slot_length,
+                    extra = joint.extra
                 );
             }
     } else {

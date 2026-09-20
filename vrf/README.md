@@ -49,6 +49,8 @@ Evidence includes:
 - side-approach view showing the X slide direction;
 - a 0.20 mm YZ section through the normal engaged profile;
 - a 0.20 mm XY section through the center of the integral lock.
+- a 0.20 mm XZ section through a locking female with an entry slot, showing
+  the transverse relief that keeps the spring tongue U-shaped.
 
 The lock section is intended to make these relationships visible together:
 continuous male release/recess opening, ramped female threshold, locking face,
