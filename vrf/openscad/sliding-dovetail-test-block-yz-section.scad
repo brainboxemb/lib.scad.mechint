@@ -1,10 +1,10 @@
 use <../../ext/lib.scad.util/openscad/inspection.scad>
-use <../fixtures/sliding_dovetail_test_block.scad>
+use <../../openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad>
 
-fixture =
-    sliding_dovetail_test_block_create();
+reference =
+    sliding_dovetail_reference_create();
 
-$vpt = [8, 1.6, 0];
+$vpt = [8, 1.5, 0];
 $vpr = [0, 90, 0];
 $vpd = 55;
 
@@ -14,7 +14,7 @@ util_section_inspect(
     depth = 0.2,
     direction = "Positive"
 )
-    sliding_dovetail_test_pair_build(
-        fixture,
-        male_position = "inserted"
+    sliding_dovetail_reference_pair_build(
+        reference,
+        position = "assembled"
     );

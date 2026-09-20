@@ -1,9 +1,6 @@
-use <../../../openscad/sliding-dovetail/sliding_dovetail.scad>
+use <../../../openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad>
 
-joint =
-    sliding_dovetail_create();
+reference =
+    sliding_dovetail_reference_create();
 
-sliding_dovetail_male_build(
-    joint,
-    slide = 16
-);
+sliding_dovetail_reference_male_build(reference);

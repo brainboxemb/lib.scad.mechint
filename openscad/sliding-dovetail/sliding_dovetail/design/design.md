@@ -37,41 +37,53 @@ joint = sliding_dovetail_create(
 The nominal male root is 10 mm wide and 3 mm deep. A 20° flank angle gives a
 derived mouth width of about 7.82 mm.
 
-The angle is deliberately moderate: enough undercut for mechanical retention,
-without turning a shallow 3 mm printed interface into a 45° wedge.
-
-## Male profile
+## Male reference block
 
 <!-- scad-render
 view: male
 -->
 
-The example slide is 16 mm long along X.
+The red reference block represents a normal printed part with the male
+dovetail protruding from its Y=0 face.
 
-## Actual male and female parts
-
-<!-- scad-render
-view: pair
--->
-
-The blue part is now an **actual female example block**: solid material with the
-female dovetail subtracted from it, open at the X entry side and with a solid
-end stop. The red male is shown approaching along the same X slide axis.
-
-The public library still exposes the female side as a cutter because consumers
-subtract it from their own geometry. The cutter itself is only a debug view:
-
-```scad
-sliding_dovetail_female_cutter(joint, slide = 16);
-```
-
-## Female example block
+## Female reference block
 
 <!-- scad-render
 view: female
 -->
 
-This view shows the female geometry by itself without the male in front of it.
+The blue reference block is real solid geometry with the female channel cut
+into it. It has an open X entry and a solid end stop.
+
+## Approach
+
+<!-- scad-render
+view: approach
+-->
+
+The red male block approaches the blue female block from the side along +X.
+There is no tilt or angled presentation motion.
+
+## Assembled
+
+<!-- scad-render
+view: assembled
+-->
+
+The male is fully slid into the female channel. The two reference blocks meet
+at the Y=0 interface plane.
+
+## Female cutter
+
+The public API exposes the female side as a subtraction volume because
+consumers cut the interface into their own part:
+
+```scad
+sliding_dovetail_female_cutter(joint, slide = 16);
+```
+
+That cutter remains available as a technical debug view, but it is not the
+normal design representation of the female side.
 
 ## Boolean overlap is not fit clearance
 

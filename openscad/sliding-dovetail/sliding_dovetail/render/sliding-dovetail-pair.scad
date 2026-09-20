@@ -1,7 +1,7 @@
 use <../sliding_dovetail_render.scad>
 
-$vpt = [5, 2.5, 0];
+$vpt = [2, 1.5, 0];
 $vpr = [72, 0, 35];
-$vpd = 85;
+$vpd = 90;
 
-sliding_dovetail_design(view = "pair");
+sliding_dovetail_design(view = "approach");

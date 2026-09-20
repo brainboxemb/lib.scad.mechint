@@ -1,13 +1,13 @@
-use <../fixtures/sliding_dovetail_test_block.scad>
+use <../../openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad>
 
-fixture =
-    sliding_dovetail_test_block_create();
+reference =
+    sliding_dovetail_reference_create();
 
-$vpt = [2, 2.5, 0];
+$vpt = [2, 1.5, 0];
 $vpr = [72, 0, 35];
 $vpd = 90;
 
-sliding_dovetail_test_pair_build(
-    fixture,
-    male_position = "approach"
+sliding_dovetail_reference_pair_build(
+    reference,
+    position = "approach"
 );

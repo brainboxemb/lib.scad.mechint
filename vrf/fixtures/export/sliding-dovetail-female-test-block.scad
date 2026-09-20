@@ -1,6 +1,6 @@
-use <../sliding_dovetail_test_block.scad>
+use <../../../openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad>
 
-fixture =
-    sliding_dovetail_test_block_create();
+reference =
+    sliding_dovetail_reference_create();
 
-sliding_dovetail_test_block_build(fixture);
+sliding_dovetail_reference_female_build(reference);
