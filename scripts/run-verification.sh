@@ -41,6 +41,10 @@ render_stl   "$out/fixtures/sliding-dovetail-female-test-block.stl"   "$root/vrf
 
 render_stl   "$out/fixtures/sliding-dovetail-male-test-piece.stl"   "$root/vrf/fixtures/export/sliding-dovetail-male-test-piece.scad"
 
+render_stl   "$out/fixtures/sliding-dovetail-lock-female-test-block.stl"   "$root/vrf/fixtures/export/sliding-dovetail-lock-female-test-block.scad"
+
+render_stl   "$out/fixtures/sliding-dovetail-lock-male-test-piece.stl"   "$root/vrf/fixtures/export/sliding-dovetail-lock-male-test-piece.scad"
+
 cat > "$out/README.md" <<'EOF'
 # Verification
 
@@ -51,6 +55,8 @@ Printable fixtures:
 
 - sliding-dovetail-female-test-block.stl
 - sliding-dovetail-male-test-piece.stl
+- sliding-dovetail-lock-female-test-block.stl
+- sliding-dovetail-lock-male-test-piece.stl
 
 Configured verification renders show assembled fit, side approach, a YZ
 section through the engaged interface, and an XY section through the enabled
