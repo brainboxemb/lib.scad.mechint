@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+
+- Add a two-image root README preview backed by generated production output;
+  show the separate male/female dovetail pair alongside the integral-lock
+  section so the library interface is easier to understand at a glance.
+
 ## v0.1.0
 
 ### Added
