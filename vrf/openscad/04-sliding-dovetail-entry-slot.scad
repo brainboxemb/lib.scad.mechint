@@ -1,5 +1,6 @@
 // Female entry-slot verification: male parked in the straight approach pocket.
 
+use <../../openscad/sliding-dovetail/sliding_dovetail.scad>
 use <../../openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad>
 
 joint =
