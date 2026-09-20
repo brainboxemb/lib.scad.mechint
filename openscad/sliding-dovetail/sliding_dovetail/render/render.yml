@@ -1,15 +1,2 @@
 defaults:
-  image_size: [640, 480]
-
-profiles:
-  sliding-dovetail-male:
-    files: [sliding-dovetail-male.scad]
-    image_size: [480, 360]
-
-  sliding-dovetail-female:
-    files: [sliding-dovetail-female.scad]
-    image_size: [480, 360]
-
-  sliding-dovetail-section:
-    files: [sliding-dovetail-assembled-section.scad]
-    image_size: [800, 600]
+  image_size: [480, 360]
