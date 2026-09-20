@@ -415,12 +415,12 @@ module _sliding_dovetail_lock_female_relief_cutter(
         //   4. a calculated ramp returns to full thickness;
         //   5. a full-depth land remains under the complete threshold.
         //
-        // hinge_length is the root-side chamfer + flat-flex envelope. The
-        // fixed wall stays mostly vertical; only its lower corner receives a
-        // small 45-degree chamfer. The return ramp is derived from the remaining
-        // spring length and must stay at or below 45 degrees. The verification
-        // example uses a 1.2 mm envelope: 0.8 mm 45-degree chamfer + about
-        // 0.4 mm flat flex land, followed by an approximately 30-degree return.
+        // hinge_length is the combined root-side chamfer + flat-flex envelope.
+        // Split it equally: half becomes the 45-degree chamfer run/rise and
+        // half becomes the flat minimum-thickness flex land. For example,
+        // hinge_length = 2 mm gives a 1 x 1 mm 45-degree chamfer followed by
+        // 1 mm flat flex land. The return ramp uses the remaining spring length
+        // and must stay at or below 45 degrees.
         // hinge_length = 0 preserves the legacy spring geometry exactly.
         if (spring.hinge_length > 0) {
             spring_x1 = spring_x0 + spring.length;
@@ -432,27 +432,27 @@ module _sliding_dovetail_lock_female_relief_cutter(
                 spring.thickness - spring.hinge_thickness;
 
             // The 45-degree feature is deliberately only a local chamfer,
-            // not the whole fixed-root transition. Its run is derived from the
-            // configured minimum flex thickness. The remaining relief depth is
-            // a straight vertical wall.
+            // not the whole fixed-root transition. The configured hinge_length
+            // is split equally between that chamfer and the following flat
+            // flex land.
             root_chamfer_run =
-                min(
-                    spring.hinge_thickness,
-                    hinge_relief_depth
-                );
+                spring.hinge_length / 2;
+            flat_flex_length =
+                spring.hinge_length / 2;
             root_straight_depth =
                 hinge_relief_depth - root_chamfer_run;
             root_shoulder_x0 =
                 spring_x1 - root_chamfer_run;
-
-            flat_flex_length =
-                root_shoulder_x0 - hinge_x0;
             return_ramp_run =
                 hinge_x0 - threshold_land_x1;
 
             assert(
+                root_chamfer_run <= hinge_relief_depth,
+                "sliding dovetail lock root chamfer is deeper than the available hinge relief"
+            )
+            assert(
                 flat_flex_length > 0,
-                "sliding dovetail lock hinge_length must exceed the fixed-root chamfer run"
+                "sliding dovetail lock flat flex land must be positive"
             )
             assert(
                 return_ramp_run > 0,

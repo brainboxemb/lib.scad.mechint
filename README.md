@@ -120,9 +120,9 @@ cantilever. With `false`, the tongue may instead keep a flat outer/rear face.
 For thick hosts the optional `lock_spring_hinge_length` and
 `lock_spring_hinge_thickness` parameters create a compact channel-side hinge
 relief while the outer surface stays continuous and flat. From the fixed root
-toward the locking lip, the relief keeps a mostly straight wall, adds only a
-small 45-degree chamfer at its lower corner, then uses a very short flat
-minimum-thickness flex land and a calculated shallow return ramp.
+toward the locking lip, the relief keeps a mostly straight wall, adds a local
+45-degree chamfer, then a flat minimum-thickness flex land of the **same
+length** as the chamfer run, followed by a calculated shallow return ramp.
 The return ramp is constrained to **45° maximum** and is preferably shallower
 when the available spring length allows it. The complete threshold/lip region
 is full-depth again before the lock starts. A hinge length of 0 preserves the
