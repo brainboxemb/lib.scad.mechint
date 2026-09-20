@@ -15,7 +15,11 @@ openscad:
   render_flags:
     - --render
   image_size: [1600, 1000]
-  design_image_size: [640, 480]
+  design_image_size: [1200, 800]
+
+rendering:
+  watermark:
+    text: "© 2026 brainboxemb"
 
 externals:
   - name: lib.scad.util
