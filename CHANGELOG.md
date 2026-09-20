@@ -1,14 +1,15 @@
 # Changelog
 
-## Unreleased
+## v0.1.0
 
-- Add repository structure for reusable mechanical interfaces.
-- Add object-based FDM sliding-dovetail interface.
-- Add independent fit clearance, axial clearance and boolean overlap.
-- Add optional integral locking with a male recess and ramped female spring threshold.
-- Keep lock/spring implementation objects behind the top-level `sliding_dovetail_create()` interface.
-- Allow consumers to choose whether the female cutter creates the flex cavity behind the spring.
-- Start the default locking threshold directly at the female entry edge.
-- Add an optional straight male screwdriver-release opening from the entry edge to the lock recess, using the recess width throughout.
-- Number verification renders and fixtures by base/lock group and export STL fixtures in a neutral inspection orientation.
-- Add focused male/female verification fixtures, fit sections and lock-section evidence.
+### Added
+
+- Initial reusable mechanical-interface library structure.
+- Object-based FDM sliding-dovetail interface with derived mouth geometry.
+- Independent fit clearance, axial clearance and boolean overlap controls.
+- Optional integral locking with a male recess and ramped female spring threshold.
+- Top-level `sliding_dovetail_create()` facade that owns lower-level lock/spring configuration.
+- Optional automatic flex cavity behind the female spring tongue.
+- Entry-edge locking threshold with a straight male screwdriver-release opening.
+- Numbered verification renders and STL fixtures in a neutral inspection orientation.
+- Plain, locking, cutaway and assembled verification fixtures.
