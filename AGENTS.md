@@ -1,0 +1,83 @@
+# Repository agent guidance
+
+Persistent guidance for work in `lib.scad.mechint`.
+
+## Repository role
+
+This repository owns reusable mechanical interfaces between separately modelled
+or separately printed parts. Interfaces may include mating geometry, controlled
+clearance and optional retention/release features.
+
+Product-specific placement and load-path decisions stay in consuming projects.
+
+## Generic workflow policy
+
+Before SCAD branch, pull-request, publication or release work, read the pinned
+`tools/tool.scad-project/AGENTS.md`. Generic repository bootstrap and dependency
+handling belong to the pinned `tools/tool.git-project`.
+
+## OpenSCAD API
+
+OpenSCAD is the primary implementation direction. Public interface state uses
+`object()`:
+
+```scad
+joint = sliding_dovetail_create(...);
+sliding_dovetail_male_build(joint, slide = 16);
+sliding_dovetail_female_cutter(joint, slide = 16);
+```
+
+Derived dimensions come from the object through public accessors. The public
+design language is aimed at FDM printing; prefer direct geometric parameters
+such as an angle in degrees over woodworking conventions.
+
+Private helpers use a leading underscore. Global constants use a component
+prefix when needed.
+
+## Optional features
+
+Extra behaviours such as locking/detents are optional interface features and
+must be explicitly enabled on the interface object. The basic mating geometry
+must remain usable without them.
+
+Do not silently emit partly implemented feature geometry. If a feature is
+represented in the API before its geometry is qualified, builders must reject
+the enabled state explicitly.
+
+## Boolean overlap
+
+`extra` is a modeling/boolean overlap parameter, not a fit parameter. It may
+extend geometry beyond union/difference boundaries, but must not alter the
+nominal dovetail width, height, angle or clearance contract.
+
+## Dependency boundary
+
+Core mechanical-interface source uses plain OpenSCAD.
+
+`lib.scad.util` is allowed as a development/verification dependency for
+presentation, section views and evidence, but must not be imported by the core
+`sliding_dovetail.scad` source merely to construct the interface.
+
+BOSL2 may be consulted for general API ideas, but this library does not inherit
+woodworking-oriented defaults or require BOSL2.
+
+## Units and native coordinates
+
+Public dimensional parameters are millimetres.
+
+Sliding dovetail native coordinates:
+
+```text
+X = slide direction
+Y = profile depth, mouth at Y=0 and root toward +Y
+Z = profile width
+```
+
+## Verification
+
+Verification exercises the public API as a consumer and includes a small female
+test block plus assembled and approach views. Use section views where they make
+fit/clearance readable.
+
+Generated output belongs under configured Build/Verification output, not on
+`main`.

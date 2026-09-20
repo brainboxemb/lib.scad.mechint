@@ -1,0 +1,45 @@
+paths:
+  design_root: .
+  build_root: bld
+  render_root: openscad/sliding-dovetail/sliding_dovetail/render
+
+design:
+  include_externals: false
+
+build_engine:
+  engine: scons
+
+openscad:
+  common_flags:
+    - --enable=object-function
+  render_flags:
+    - --render
+  image_size: [1600, 1000]
+  design_image_size: [640, 480]
+
+externals:
+  - name: lib.scad.util
+    required_file: openscad/inspection.scad
+
+verification:
+  render_root: vrf/openscad
+  image_size: [1280, 720]
+  commands:
+    - [bash, scripts/run-verification.sh]
+  output_root: vrf/out
+
+publication:
+  production:
+    source_branch: main
+    build_branch: prod/bld
+    verification_branch: prod/vrf
+
+  development:
+    pr_branch_prefix: dev/pr
+
+  tags:
+    pattern: "v*"
+
+  release:
+    branch_prefix: rel
+    tag_pattern: "v*"

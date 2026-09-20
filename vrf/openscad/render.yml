@@ -1,0 +1,9 @@
+profiles:
+  sliding-dovetail-fit:
+    files: [sliding-dovetail-test-block-fit.scad]
+
+  sliding-dovetail-approach:
+    files: [sliding-dovetail-test-block-approach.scad]
+
+  sliding-dovetail-yz-section:
+    files: [sliding-dovetail-test-block-yz-section.scad]
