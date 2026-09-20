@@ -110,13 +110,11 @@ function _sliding_dovetail_lock_create(
 function _sliding_dovetail_lock_enabled(lock) =
     lock.enabled;
 
-// Function: _sliding_dovetail_lock_male_x()
-// Synopsis: Returns the male recess center in native centered coordinates.
+// Private helper: male recess center in native centered coordinates.
 function _sliding_dovetail_lock_male_x(lock, slide) =
     slide / 2 - lock.end_offset;
 
-// Function: _sliding_dovetail_lock_female_x()
-// Synopsis: Returns the female threshold center for the seated male position.
+// Private helper: female threshold center for the seated male position.
 function _sliding_dovetail_lock_female_x(
     lock,
     slide,
@@ -126,13 +124,11 @@ function _sliding_dovetail_lock_female_x(
     + slide
     - lock.end_offset;
 
-// Function: _sliding_dovetail_lock_spring_width()
-// Synopsis: Returns the flexible tongue width across Z.
+// Private helper: flexible tongue width across Z.
 function _sliding_dovetail_lock_spring_width(lock) =
     lock.width + 2 * lock.spring.relief;
 
-// Function: _sliding_dovetail_lock_release_width()
-// Synopsis: Returns the screwdriver access width across Z.
+// Private helper: screwdriver access width across Z.
 function _sliding_dovetail_lock_release_width(lock) =
     _sliding_dovetail_lock_spring_width(lock)
     + 2 * lock.spring.relief;
