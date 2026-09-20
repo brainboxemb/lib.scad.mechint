@@ -48,7 +48,7 @@ function _sliding_dovetail_lock_create(
     enabled = false,
     end_offset = 2.0,
     width = 4.0,
-    recess_length = 3.0,
+    recess_length = 2.0,
     recess_depth = 0.6,
     threshold_length = 1.5,
     threshold_height = 0.5,
