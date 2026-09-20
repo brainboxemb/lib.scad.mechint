@@ -1,0 +1,26 @@
+SCAD producer execution
+=======================
+
+Capability: scad.verify
+Action: verify
+Source revision: 082d0b3a87ea6b02c9ec3819c73cde209259233d
+Owner: brainboxemb/tool.scad-project
+Owner revision: 78e26949c6f2397ed90bb7888c1386d3dd423312
+tool.scad-project version: 0.15.0
+Status: success
+
+Domain evidence: ../../domain/last-verification-build.json
+
+Decision report kind: verification
+Build engine: scons
+Targets: 7
+Outcomes: BUILT=7, CACHE_RESTORED=0, CURRENT=0, ERROR=0
+
+Target decisions:
+- BUILT: vrf/out/png/01-sliding-dovetail-fit.png
+- BUILT: vrf/out/png/02-sliding-dovetail-approach.png
+- BUILT: vrf/out/png/03-sliding-dovetail-yz-section.png
+- BUILT: vrf/out/png/04-sliding-dovetail-entry-slot.png
+- BUILT: vrf/out/png/10-sliding-dovetail-lock-section.png
+- BUILT: vrf/out/png/11-sliding-dovetail-lock-entry-slot-spring.png
+- BUILT: vrf/out/png/12-sliding-dovetail-root-land-relief.png
