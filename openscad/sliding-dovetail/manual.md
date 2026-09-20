@@ -36,9 +36,10 @@ boundaries. It is not part of the nominal mating dimensions.
 
 ## Locking
 
-`locking=false` is the base mode.
+Locking configuration is owned by a separate
+`sliding_dovetail_lock_create()` object and passed into
+`sliding_dovetail_create(lock = lock)`.
 
-The object already records whether a locking feature is desired, but the first
-version intentionally qualifies the plain sliding interface before adding a
-spring threshold/detent and screwdriver release. Until that feature is
-implemented, `locking=true` is rejected explicitly.
+The first version intentionally qualifies the plain sliding interface before
+adding a spring threshold/detent and screwdriver release. Until that feature is
+implemented, an enabled lock object is rejected explicitly.

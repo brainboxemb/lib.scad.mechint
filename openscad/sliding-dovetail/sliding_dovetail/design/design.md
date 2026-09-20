@@ -23,6 +23,10 @@ Z = profile width
 ## One object owns male and female geometry
 
 ```scad
+lock = sliding_dovetail_lock_create(
+    enabled = false
+);
+
 joint = sliding_dovetail_create(
     width = 10,
     height = 3,
@@ -30,7 +34,7 @@ joint = sliding_dovetail_create(
     clearance = 0.20,
     axial_clearance = 0.25,
     extra = 0.01,
-    locking = false
+    lock = lock
 );
 ```
 
@@ -92,6 +96,7 @@ slightly beyond the slide ends. It does not change the nominal profile.
 
 ## Locking is optional
 
-The base interface uses `locking=false`. A future locking mode can add the
-male recess, a flexible female threshold and screwdriver-release access without
-changing the base interface API.
+The base interface receives a separate disabled
+`sliding_dovetail_lock_create()` object. A future enabled lock can add the
+male recess, flexible female threshold and screwdriver-release access without
+expanding the base dovetail constructor with lock-specific dimensions.

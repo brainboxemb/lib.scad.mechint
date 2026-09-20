@@ -3,6 +3,8 @@
 //   Compact FDM-oriented sliding dovetail mechanical interface.
 //////////////////////////////////////////////////////////////////////
 
+use <sliding_dovetail_lock.scad>
+
 // Function: sliding_dovetail_create()
 // Synopsis: Creates one male/female sliding-dovetail interface object.
 // Arguments:
@@ -12,7 +14,7 @@
 //   clearance = Female fit clearance in mm, applied per side and at the rear.
 //   axial_clearance = Additional female travel along the X slide axis.
 //   extra = Boolean overlap added at slide ends and the mouth/base plane.
-//   locking = Optional locking feature state. Currently only false is implemented.
+//   lock = Optional sliding-dovetail lock object.
 function sliding_dovetail_create(
     width = 10,
     height = 3,
@@ -20,7 +22,7 @@ function sliding_dovetail_create(
     clearance = 0.20,
     axial_clearance = 0.25,
     extra = 0.01,
-    locking = false
+    lock = sliding_dovetail_lock_create()
 ) =
     let(
         mouth_width =
@@ -40,8 +42,6 @@ function sliding_dovetail_create(
         "sliding dovetail axial_clearance must be >= 0")
     assert(extra >= 0,
         "sliding dovetail extra must be >= 0")
-    assert(is_bool(locking),
-        "sliding dovetail locking must be boolean")
     object(
         width = width,
         height = height,
@@ -49,7 +49,7 @@ function sliding_dovetail_create(
         clearance = clearance,
         axial_clearance = axial_clearance,
         extra = extra,
-        locking = locking
+        lock = lock
     );
 
 // Function: sliding_dovetail_mouth_width()
@@ -82,10 +82,17 @@ function sliding_dovetail_female_root_width(joint) =
 function sliding_dovetail_female_slide(joint, slide) =
     slide + joint.axial_clearance;
 
+// Function: sliding_dovetail_lock()
+// Synopsis: Returns the lock configuration owned by this interface.
+function sliding_dovetail_lock(joint) =
+    joint.lock;
+
 // Function: sliding_dovetail_locking_enabled()
 // Synopsis: Returns whether optional locking geometry is requested.
 function sliding_dovetail_locking_enabled(joint) =
-    joint.locking;
+    sliding_dovetail_lock_enabled(
+        sliding_dovetail_lock(joint)
+    );
 
 // Module: sliding_dovetail_male_build()
 // Synopsis: Builds the nominal male dovetail centered on X.
@@ -171,7 +178,7 @@ module sliding_dovetail_female_cutter(
 
 module _sliding_dovetail_assert_supported_features(joint) {
     assert(
-        !joint.locking,
+        !sliding_dovetail_locking_enabled(joint),
         "sliding dovetail locking geometry is not implemented yet"
     );
 }

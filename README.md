@@ -12,7 +12,12 @@ The first interface is a compact sliding dovetail aimed at **FDM-printed
 mechanical parts**.
 
 ```scad
+use <openscad/sliding-dovetail/sliding_dovetail_lock.scad>
 use <openscad/sliding-dovetail/sliding_dovetail.scad>
+
+lock = sliding_dovetail_lock_create(
+    enabled = false
+);
 
 joint = sliding_dovetail_create(
     width = 10,
@@ -21,7 +26,7 @@ joint = sliding_dovetail_create(
     clearance = 0.20,
     axial_clearance = 0.25,
     extra = 0.01,
-    locking = false
+    lock = lock
 );
 
 sliding_dovetail_male_build(joint, slide = 16);
@@ -50,12 +55,20 @@ coplanar union/difference boundaries. It does **not** change the nominal
 
 ## Optional locking
 
-Locking/detent behaviour is optional and defaults to `false`.
+Locking is a separate object:
 
-The object already records the feature state so a later spring threshold,
-detent recess and screwdriver-release feature can be added without inventing a
-second incompatible API. Enabling locking is currently rejected explicitly
-until that geometry is implemented and verified.
+```scad
+lock = sliding_dovetail_lock_create(
+    enabled = false
+);
+```
+
+The dovetail stores that lock object through `lock = lock`. Lock-specific
+dimensions can therefore evolve in `sliding_dovetail_lock.scad` without
+turning the base dovetail constructor into a long list of retention parameters.
+
+Enabled locking is currently rejected until the recess, flexible threshold and
+screwdriver-release geometry are implemented and verified.
 
 ## Female test block
 
@@ -85,3 +98,15 @@ the dovetail source.
 Generated Build and Verification output is published separately from source.
 See the PR preview or production `bld` / `vrf` branches for generated
 images and evidence.
+
+
+## Interactive workspace
+
+Open the repository-root `main.scad` directly in OpenSCAD. Its Customizer
+exposes the interface dimensions and these views:
+
+- male reference block;
+- female reference block;
+- approach along the X slide axis;
+- fully assembled pair;
+- assembled YZ section.
