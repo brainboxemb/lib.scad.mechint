@@ -19,6 +19,8 @@ The normal fit/approach evidence uses the unlocked default interface. A focused
 lock-section render creates the same interface with `locking = true`,
 `lock_cut_back_clearance = true` and screwdriver access disabled.
 
+Printable fixtures include both plain and locking male/female pairs.
+
 Evidence includes:
 
 - public top-level API construction with locking disabled and enabled;
