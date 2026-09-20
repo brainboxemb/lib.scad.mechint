@@ -9,6 +9,7 @@ Default interface:
 | male root width | 10.0 mm |
 | profile height | 3.0 mm |
 | flank angle | 20° |
+| root land depth | 0 mm / disabled |
 | derived male mouth | 7.82 mm |
 | female clearance | 0.20 mm |
 | axial clearance | 0.25 mm |
@@ -50,7 +51,9 @@ Evidence includes:
 - a 0.20 mm YZ section through the normal engaged profile;
 - a 0.20 mm XY section through the center of the integral lock.
 - a 0.20 mm XZ section through a locking female with an entry slot, showing
-  the transverse relief that keeps the spring tongue U-shaped.
+  the transverse relief that keeps the spring tongue U-shaped;
+- a 0.20 mm YZ profile section through a side-print-friendly root land and a
+  consumer body trimmed by the public male mating-relief cutter.
 
 The lock section is intended to make these relationships visible together:
 continuous male release/recess opening, ramped female threshold, locking face,

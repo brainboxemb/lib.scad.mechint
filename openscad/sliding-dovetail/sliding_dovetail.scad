@@ -14,6 +14,7 @@ use <sliding_dovetail_lock.scad>
 //   width = Maximum/root width of the nominal male dovetail.
 //   height = Profile depth from mouth plane to root plane.
 //   angle = Flank angle in degrees from the Y/profile-depth axis.
+//   root_land_depth = Optional straight land at the wide/root end of the profile.
 //   clearance = Female fit clearance in mm, applied per side and at the rear.
 //   axial_clearance = Additional female travel along the X slide axis.
 //   extra = Boolean overlap added at slide ends and the mouth/base plane.
@@ -37,6 +38,7 @@ function sliding_dovetail_create(
     width = 10,
     height = 3,
     angle = 20,
+    root_land_depth = 0,
     clearance = 0.20,
     axial_clearance = 0.25,
     extra = 0.01,
@@ -58,8 +60,9 @@ function sliding_dovetail_create(
     lock_release_depth = 0.6
 ) =
     let(
+        sloped_depth = height - root_land_depth,
         mouth_width =
-            width - 2 * height * tan(angle),
+            width - 2 * sloped_depth * tan(angle),
         lock = _sliding_dovetail_lock_create(
             enabled = locking,
             entry_offset = lock_entry_offset,
@@ -84,6 +87,10 @@ function sliding_dovetail_create(
         "sliding dovetail height must be > 0")
     assert(angle > 0 && angle < 90,
         "sliding dovetail angle must be between 0 and 90 degrees")
+    assert(root_land_depth >= 0,
+        "sliding dovetail root_land_depth must be >= 0")
+    assert(root_land_depth < height,
+        "sliding dovetail root_land_depth must be smaller than height")
     assert(mouth_width > 0,
         "sliding dovetail mouth width must remain positive")
     assert(clearance >= 0,
@@ -100,6 +107,7 @@ function sliding_dovetail_create(
         width = width,
         height = height,
         angle = angle,
+        root_land_depth = root_land_depth,
         clearance = clearance,
         axial_clearance = axial_clearance,
         extra = extra,
@@ -107,11 +115,18 @@ function sliding_dovetail_create(
         lock = lock
     );
 
+// Function: sliding_dovetail_root_land_depth()
+// Synopsis: Returns the optional straight depth at the wide/root end.
+function sliding_dovetail_root_land_depth(joint) =
+    joint.root_land_depth;
+
 // Function: sliding_dovetail_mouth_width()
 // Synopsis: Returns the nominal male mouth width.
 function sliding_dovetail_mouth_width(joint) =
     joint.width
-    - 2 * joint.height * tan(joint.angle);
+    - 2
+        * (joint.height - sliding_dovetail_root_land_depth(joint))
+        * tan(joint.angle);
 
 // Function: sliding_dovetail_female_mouth_width()
 // Synopsis: Returns the female mouth width including lateral fit clearance.
@@ -129,7 +144,10 @@ function sliding_dovetail_female_height(joint) =
 function sliding_dovetail_female_root_width(joint) =
     sliding_dovetail_female_mouth_width(joint)
     + 2
-        * sliding_dovetail_female_height(joint)
+        * (
+            sliding_dovetail_female_height(joint)
+            - sliding_dovetail_root_land_depth(joint)
+        )
         * tan(joint.angle);
 
 // Function: sliding_dovetail_female_slide()
@@ -211,6 +229,41 @@ module sliding_dovetail_male_build(
     }
 }
 
+// Module: sliding_dovetail_male_relief_cutter()
+// Synopsis: Trims consumer material back from the male dovetail flanks.
+// Arguments:
+//   joint = Sliding-dovetail interface object.
+//   slide = Nominal male length along X.
+//   relief_width = Total consumer envelope width across Z to trim.
+module sliding_dovetail_male_relief_cutter(
+    joint,
+    slide = 16,
+    relief_width = undef
+) {
+    assert(slide > 0,
+        "sliding dovetail slide must be > 0");
+    assert(!is_undef(relief_width) && relief_width > 0,
+        "sliding dovetail male relief_width must be > 0");
+
+    difference() {
+        translate([
+            -slide / 2 - joint.extra,
+            -joint.extra,
+            -relief_width / 2
+        ])
+            cube([
+                slide + 2 * joint.extra,
+                joint.height + 2 * joint.extra,
+                relief_width
+            ]);
+
+        _sliding_dovetail_male_base(
+            joint,
+            slide
+        );
+    }
+}
+
 // Module: sliding_dovetail_female_cutter()
 // Synopsis: Builds a centered female subtraction volume from the same object.
 // Arguments:
@@ -280,7 +333,9 @@ module _sliding_dovetail_male_base(
             y_max = joint.height,
             mouth_width =
                 sliding_dovetail_mouth_width(joint),
-            root_width = joint.width
+            root_width = joint.width,
+            root_land_depth =
+                sliding_dovetail_root_land_depth(joint)
         );
 
         if (joint.extra > 0)
@@ -315,7 +370,9 @@ module _sliding_dovetail_female_base_cutter(
                 sliding_dovetail_female_height(joint),
             mouth_width = female_mouth,
             root_width =
-                sliding_dovetail_female_root_width(joint)
+                sliding_dovetail_female_root_width(joint),
+            root_land_depth =
+                sliding_dovetail_root_land_depth(joint)
         );
 
         // Optional straight approach mask ahead of the fixed -X female entry.
@@ -358,12 +415,20 @@ module _sliding_dovetail_prism(
     y_min,
     y_max,
     mouth_width,
-    root_width
+    root_width,
+    root_land_depth = 0
 ) {
+    profile_depth = y_max - y_min;
+    land_start_y = y_max - root_land_depth;
+
     assert(x_max > x_min,
         "sliding dovetail X span must be positive");
-    assert(y_max > y_min,
+    assert(profile_depth > 0,
         "sliding dovetail profile depth must be positive");
+    assert(root_land_depth >= 0,
+        "sliding dovetail root land must be >= 0");
+    assert(root_land_depth < profile_depth,
+        "sliding dovetail root land must be smaller than profile depth");
     assert(root_width > mouth_width,
         "sliding dovetail root width must exceed mouth width");
 
@@ -374,10 +439,22 @@ module _sliding_dovetail_prism(
         [0, 0, 0, 1]
     ])
         linear_extrude(height = x_max - x_min)
-            polygon(points = [
-                [y_min, -mouth_width / 2],
-                [y_min,  mouth_width / 2],
-                [y_max,  root_width / 2],
-                [y_max, -root_width / 2]
-            ]);
+            polygon(
+                points =
+                    root_land_depth > 0
+                        ? [
+                            [y_min,        -mouth_width / 2],
+                            [y_min,         mouth_width / 2],
+                            [land_start_y,  root_width / 2],
+                            [y_max,         root_width / 2],
+                            [y_max,        -root_width / 2],
+                            [land_start_y, -root_width / 2]
+                        ]
+                        : [
+                            [y_min, -mouth_width / 2],
+                            [y_min,  mouth_width / 2],
+                            [y_max,  root_width / 2],
+                            [y_max, -root_width / 2]
+                        ]
+            );
 }

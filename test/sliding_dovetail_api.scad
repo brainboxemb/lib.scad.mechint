@@ -5,6 +5,7 @@ joint = sliding_dovetail_create();
 assert(abs(joint.width - 10) < 0.0001);
 assert(abs(joint.height - 3) < 0.0001);
 assert(abs(joint.angle - 20) < 0.0001);
+assert(abs(sliding_dovetail_root_land_depth(joint)) < 0.0001);
 assert(abs(joint.clearance - 0.20) < 0.0001);
 assert(abs(joint.axial_clearance - 0.25) < 0.0001);
 assert(abs(joint.extra - 0.01) < 0.0001);
@@ -29,6 +30,27 @@ assert(
 );
 assert(
     abs(sliding_dovetail_female_slide(joint, 16) - 16.25)
+    < 0.0001
+);
+
+root_land_joint =
+    sliding_dovetail_create(
+        width = 12,
+        height = 2,
+        angle = 30,
+        root_land_depth = 0.5
+    );
+
+assert(
+    abs(sliding_dovetail_root_land_depth(root_land_joint) - 0.5)
+    < 0.0001
+);
+assert(
+    abs(sliding_dovetail_mouth_width(root_land_joint) - 10.2679491924)
+    < 0.0001
+);
+assert(
+    abs(sliding_dovetail_female_root_width(root_land_joint) - 12.6309401077)
     < 0.0001
 );
 
@@ -122,4 +144,18 @@ translate([108, 0, 0])
     sliding_dovetail_female_cutter(
         entry_lock_joint,
         slide = 16
+    );
+
+
+translate([132, 0, 0])
+    sliding_dovetail_male_build(
+        root_land_joint,
+        slide = 16
+    );
+
+translate([156, 0, 0])
+    sliding_dovetail_male_relief_cutter(
+        root_land_joint,
+        slide = 16,
+        relief_width = 12
     );
