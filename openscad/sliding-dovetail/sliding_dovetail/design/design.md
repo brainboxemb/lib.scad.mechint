@@ -127,10 +127,13 @@ When it is disabled, the tongue can remain full-depth to a flat outer face.
 An optional hinge relief handles thick hosts without adding a rear cavity.
 `lock_spring_hinge_length` selects the local flex zone at the fixed spring end
 and `lock_spring_hinge_thickness` selects the minimum remaining material there.
-The channel-side pocket uses straight entry walls followed by 45-degree
-shoulders into a short flat flex land; the land length follows the configured
-hinge thickness. This keeps the outer face flat while avoiding a sharp V-like
-stress concentration. A hinge length of 0 keeps the previous geometry exactly.
+The channel-side relief keeps a constant minimum-thickness flex land from the
+locking threshold/free end toward the fixed spring root. Only the fixed end
+returns to full host thickness, through a 45-degree shoulder and, when needed,
+a short straight root wall. `lock_spring_hinge_length` controls that root
+transition envelope. This keeps the outer face flat while avoiding both a sharp
+V-like stress concentration and an unnecessary second shoulder near the clip.
+A hinge length of 0 keeps the previous geometry exactly.
 
 ### Flat-back hinge-relief example
 
@@ -152,9 +155,10 @@ module: sliding_dovetail_hinge_design
 view: cutaway
 -->
 
-The center cutaway exposes the compact channel-side pocket. Short straight
-walls retain material near the opening; two 45-degree shoulders lead into the
-flat minimum-thickness flex land.
+The center cutaway exposes the constant-thickness flex land running from the
+locking threshold toward the fixed root. At the root it returns to full host
+thickness through one 45-degree shoulder and, when needed, a short straight
+wall.
 
 <!-- scad-render
 module: sliding_dovetail_hinge_design

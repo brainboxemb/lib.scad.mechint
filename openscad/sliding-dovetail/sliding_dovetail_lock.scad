@@ -402,39 +402,35 @@ module _sliding_dovetail_lock_female_relief_cutter(
                 ]);
 
         // Optional print-friendly hinge relief. The tongue keeps its flat
-        // outer/rear face. The channel-side pocket enters with short straight
-        // walls, then uses 45-degree shoulders into a short flat flex land.
-        // The flat land length equals the configured hinge thickness, which
-        // keeps the local neck compact without adding another public parameter.
-        // If the relief is deeper than the available 45-degree run, the extra
-        // depth remains in the straight wall rather than steepening the flank.
-        // hinge_length = 0 preserves the legacy spring geometry exactly.
+        // outer/rear face. The minimum-thickness flex land runs from the
+        // threshold/free end toward the fixed spring root. Only the fixed end
+        // transitions back to full host thickness: first through a 45-degree
+        // shoulder and, when needed, a short straight wall. This avoids both a
+        // sharp V notch and an unnecessary second shoulder near the clip.
+        // hinge_length controls the root transition envelope; 0 preserves the
+        // legacy spring geometry exactly.
         if (spring.hinge_length > 0) {
             spring_x1 = spring_x0 + spring.length;
             hinge_x0 = spring_x1 - spring.hinge_length;
             hinge_relief_depth =
                 spring.thickness - spring.hinge_thickness;
-            hinge_flat_length =
-                spring.hinge_thickness;
             hinge_shoulder_run =
                 min(
                     hinge_relief_depth,
                     (
                         spring.hinge_length
-                        - hinge_flat_length
+                        - spring.hinge_thickness
                     ) / 2
                 );
             hinge_straight_depth =
                 hinge_relief_depth - hinge_shoulder_run;
-            hinge_flat_x0 =
-                hinge_x0 + hinge_shoulder_run;
             hinge_flat_x1 =
                 spring_x1 - hinge_shoulder_run;
 
             translate([0, 0, -spring_width / 2])
                 linear_extrude(height = spring_width)
                     polygon(points = [
-                        [hinge_x0, female_height],
+                        [spring_x0 - extra, female_height],
                         [spring_x1 + extra, female_height],
                         [
                             spring_x1 + extra,
@@ -445,12 +441,8 @@ module _sliding_dovetail_lock_female_relief_cutter(
                             female_height + hinge_relief_depth
                         ],
                         [
-                            hinge_flat_x0,
+                            spring_x0 - extra,
                             female_height + hinge_relief_depth
-                        ],
-                        [
-                            hinge_x0,
-                            female_height + hinge_straight_depth
                         ]
                     ]);
         }

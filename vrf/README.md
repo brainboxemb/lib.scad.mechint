@@ -62,13 +62,14 @@ Evidence includes:
   consumer body trimmed by the public male mating-relief cutter;
 - a 0.20 mm YZ profile section through a 12 x 2 mm interface with 0.5 mm
   straight lands at both the narrow/mouth and wide/root ends;
-- a 0.20 mm XY lock section through a thick 3.3 mm female tongue with a
-  3.0 mm hinge zone that leaves a 0.8 mm flat flex land at the fixed end,
-  reached through 45-degree shoulders while the outer face stays flat;
+- a 0.20 mm XY lock section through a thick 3.3 mm female tongue whose 0.8 mm
+  flex land continues from the locking threshold to a 3.0 mm root-transition
+  envelope, then returns to full thickness through a 45-degree shoulder while
+  the outer face stays flat;
 - an isometric full-female hinge overview showing the uninterrupted flat outer
   face;
-- an isometric female center cutaway exposing the straight-wall / 45-degree
-  shoulder hinge relief;
+- an isometric female center cutaway showing the constant-thickness flex land
+  and its single 45-degree root shoulder;
 - an assembled hinge cutaway relating the relief to the threshold and male
   recess.
 

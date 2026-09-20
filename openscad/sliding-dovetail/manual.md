@@ -115,13 +115,15 @@ With it disabled, the spring can keep a flat outer/rear face.
 For a thick host, `lock_spring_hinge_length > 0` enables a local hinge relief
 at the fixed end of the tongue. The outer face remains flat, while
 `lock_spring_hinge_thickness` controls the minimum local flexure thickness.
-The channel-side pocket enters with short straight walls and then transitions
-through 45-degree shoulders into a short flat flex land. The land length follows
-the configured hinge thickness. If the requested relief is deeper than the
-available 45-degree shoulder run, the additional depth stays in the straight
-wall rather than making a steeper flank. This avoids both the horizontal shelf
-of a full rear cavity and the sharp point of the earlier triangular wedge. The
-default hinge length is 0, so existing lock geometry is unchanged.
+The channel-side relief leaves a constant minimum-thickness flex land from the
+locking threshold/free end toward the fixed spring root. At the fixed end only,
+that land returns to full host thickness through a 45-degree shoulder; if the
+requested relief is deeper than the available 45-degree run, the remaining
+depth stays in a short straight root wall instead of making the flank steeper.
+`lock_spring_hinge_length` controls this root-transition envelope. This avoids
+the horizontal shelf of a rear cavity, a sharp V notch, and an unnecessary
+second shoulder near the clip. The default hinge length is 0, so existing lock
+geometry is unchanged.
 
 The threshold insertion ramp is independently tunable with
 `lock_ramp_length`. With `lock_release_access = true`, the recess continues
