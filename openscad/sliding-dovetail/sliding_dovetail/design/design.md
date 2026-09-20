@@ -125,10 +125,12 @@ cavity behind the tongue so it can deflect by at least the threshold height.
 When it is disabled, the tongue can remain full-depth to a flat outer face.
 
 An optional hinge relief handles thick hosts without adding a rear cavity.
-`lock_spring_hinge_length` selects a tapered flex zone at the fixed spring end
+`lock_spring_hinge_length` selects the local flex zone at the fixed spring end
 and `lock_spring_hinge_thickness` selects the minimum remaining material there.
-The relief is triangular and opens toward the female channel, so the outer face
-stays flat. A hinge length of 0 keeps the previous geometry exactly.
+The channel-side pocket uses straight entry walls followed by 45-degree
+shoulders into a short flat flex land; the land length follows the configured
+hinge thickness. This keeps the outer face flat while avoiding a sharp V-like
+stress concentration. A hinge length of 0 keeps the previous geometry exactly.
 
 ### Flat-back hinge-relief example
 
@@ -150,8 +152,9 @@ module: sliding_dovetail_hinge_design
 view: cutaway
 -->
 
-The center cutaway exposes the triangular channel-side relief. The tongue is
-full-depth away from the fixed end and tapers down only in the local hinge zone.
+The center cutaway exposes the compact channel-side pocket. Short straight
+walls retain material near the opening; two 45-degree shoulders lead into the
+flat minimum-thickness flex land.
 
 <!-- scad-render
 module: sliding_dovetail_hinge_design

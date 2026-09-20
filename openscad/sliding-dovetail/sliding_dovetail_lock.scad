@@ -32,6 +32,10 @@ function _sliding_dovetail_lock_spring_create(
         hinge_length == 0 || hinge_thickness < thickness,
         "sliding dovetail lock spring hinge_thickness must be less than spring thickness"
     )
+    assert(
+        hinge_length == 0 || hinge_length > hinge_thickness,
+        "sliding dovetail lock spring hinge_length must exceed hinge_thickness"
+    )
     assert(is_bool(cut_back_clearance),
         "sliding dovetail lock cut_back_clearance must be boolean")
     assert(back_clearance >= 0,
@@ -397,15 +401,35 @@ module _sliding_dovetail_lock_female_relief_cutter(
                     spring_width + 2 * spring.relief
                 ]);
 
-        // Optional print-friendly hinge relief. The tongue keeps its full
-        // outer/rear face, while a triangular cut from the channel side tapers
-        // the last part of the spring down to hinge_thickness at its fixed end.
+        // Optional print-friendly hinge relief. The tongue keeps its flat
+        // outer/rear face. The channel-side pocket enters with short straight
+        // walls, then uses 45-degree shoulders into a short flat flex land.
+        // The flat land length equals the configured hinge thickness, which
+        // keeps the local neck compact without adding another public parameter.
+        // If the relief is deeper than the available 45-degree run, the extra
+        // depth remains in the straight wall rather than steepening the flank.
         // hinge_length = 0 preserves the legacy spring geometry exactly.
         if (spring.hinge_length > 0) {
             spring_x1 = spring_x0 + spring.length;
             hinge_x0 = spring_x1 - spring.hinge_length;
             hinge_relief_depth =
                 spring.thickness - spring.hinge_thickness;
+            hinge_flat_length =
+                spring.hinge_thickness;
+            hinge_shoulder_run =
+                min(
+                    hinge_relief_depth,
+                    (
+                        spring.hinge_length
+                        - hinge_flat_length
+                    ) / 2
+                );
+            hinge_straight_depth =
+                hinge_relief_depth - hinge_shoulder_run;
+            hinge_flat_x0 =
+                hinge_x0 + hinge_shoulder_run;
+            hinge_flat_x1 =
+                spring_x1 - hinge_shoulder_run;
 
             translate([0, 0, -spring_width / 2])
                 linear_extrude(height = spring_width)
@@ -414,7 +438,19 @@ module _sliding_dovetail_lock_female_relief_cutter(
                         [spring_x1 + extra, female_height],
                         [
                             spring_x1 + extra,
+                            female_height + hinge_straight_depth
+                        ],
+                        [
+                            hinge_flat_x1,
                             female_height + hinge_relief_depth
+                        ],
+                        [
+                            hinge_flat_x0,
+                            female_height + hinge_relief_depth
+                        ],
+                        [
+                            hinge_x0,
+                            female_height + hinge_straight_depth
                         ]
                     ]);
         }
