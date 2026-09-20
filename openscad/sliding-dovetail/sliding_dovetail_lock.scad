@@ -190,6 +190,17 @@ module _sliding_dovetail_lock_assert_valid(
         "sliding dovetail lock spring hinge relief must not overlap the threshold"
     );
     assert(
+        lock.spring.hinge_length == 0
+            || lock.spring.length
+                - lock.threshold_length
+                - lock.spring.hinge_length
+                >= (
+                    lock.spring.thickness
+                    - lock.spring.hinge_thickness
+                ) / 2,
+        "sliding dovetail lock hinge return ramp must not exceed 45 degrees"
+    );
+    assert(
         lock.entry_offset
             + lock.threshold_length
             + axial_clearance
@@ -397,25 +408,104 @@ module _sliding_dovetail_lock_female_relief_cutter(
                     spring_width + 2 * spring.relief
                 ]);
 
-        // Optional print-friendly hinge relief. The tongue keeps its full
-        // outer/rear face, while a triangular cut from the channel side tapers
-        // the last part of the spring down to hinge_thickness at its fixed end.
+        // Optional two-sided hinge relief. Keep the threshold/lip and fixed
+        // root full-depth, but approach the flex problem from both faces so the
+        // remaining hinge becomes a short web near the middle of the material.
+        //
+        // Moving from the fixed root toward the lip, both opposing pockets use:
+        //   1. a mostly straight root wall;
+        //   2. a local 45-degree chamfer;
+        //   3. a flat central-web land;
+        //   4. a calculated return ramp;
+        //   5. a full-depth land under the complete threshold.
+        //
+        // hinge_length is the combined root-side chamfer + flat-web envelope.
+        // Split it equally: half becomes the 45-degree chamfer run/rise and
+        // half becomes the flat central-web land. hinge_thickness is the total
+        // thickness left between the two opposing pockets. The return ramps use
+        // the remaining spring length and must stay at or below 45 degrees.
         // hinge_length = 0 preserves the legacy spring geometry exactly.
         if (spring.hinge_length > 0) {
             spring_x1 = spring_x0 + spring.length;
-            hinge_x0 = spring_x1 - spring.hinge_length;
+            threshold_land_x1 =
+                spring_x0 + lock.threshold_length;
+            hinge_x0 =
+                spring_x1 - spring.hinge_length;
             hinge_relief_depth =
                 spring.thickness - spring.hinge_thickness;
+            relief_depth_each_side =
+                hinge_relief_depth / 2;
+            outer_face_y =
+                female_height + spring.thickness;
 
+            // The 45-degree feature stays local. The configured hinge_length
+            // is split equally between that chamfer and the following flat
+            // central-web land. The same profile is mirrored from both faces.
+            root_chamfer_run =
+                spring.hinge_length / 2;
+            flat_flex_length =
+                spring.hinge_length / 2;
+            root_straight_depth =
+                relief_depth_each_side - root_chamfer_run;
+            root_shoulder_x0 =
+                spring_x1 - root_chamfer_run;
+            return_ramp_run =
+                hinge_x0 - threshold_land_x1;
+
+            assert(
+                root_chamfer_run <= relief_depth_each_side,
+                "sliding dovetail lock root chamfer is deeper than one side of the centered hinge relief"
+            )
+            assert(
+                flat_flex_length > 0,
+                "sliding dovetail lock flat central-web land must be positive"
+            )
+            assert(
+                return_ramp_run > 0,
+                "sliding dovetail lock hinge_length leaves no return ramp before the threshold land"
+            )
+
+            // Channel-side pocket.
             translate([0, 0, -spring_width / 2])
                 linear_extrude(height = spring_width)
                     polygon(points = [
-                        [hinge_x0, female_height],
+                        [threshold_land_x1, female_height],
                         [spring_x1 + extra, female_height],
                         [
                             spring_x1 + extra,
-                            female_height + hinge_relief_depth
-                        ]
+                            female_height + root_straight_depth
+                        ],
+                        [
+                            root_shoulder_x0,
+                            female_height + relief_depth_each_side
+                        ],
+                        [
+                            hinge_x0,
+                            female_height + relief_depth_each_side
+                        ],
+                        [threshold_land_x1, female_height]
+                    ]);
+
+            // Opposing outer-face pocket. This mirrors the same relief profile
+            // so the remaining hinge_thickness is centered through the tongue.
+            translate([0, 0, -spring_width / 2])
+                linear_extrude(height = spring_width)
+                    polygon(points = [
+                        [threshold_land_x1, outer_face_y],
+                        [spring_x1 + extra, outer_face_y],
+                        [
+                            spring_x1 + extra,
+                            outer_face_y - root_straight_depth
+                        ],
+                        [
+                            root_shoulder_x0,
+                            outer_face_y - relief_depth_each_side
+                        ],
+                        [
+                            hinge_x0,
+                            outer_face_y - relief_depth_each_side
+                        ],
+                        [threshold_land_x1, outer_face_y]
                     ]);
         }
 

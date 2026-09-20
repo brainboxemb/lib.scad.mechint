@@ -112,13 +112,31 @@ needed to free the tongue at its entry end.
 `lock_cut_back_clearance = true` cuts the flex cavity behind the tongue.
 With it disabled, the spring can keep a flat outer/rear face.
 
-For a thick host, `lock_spring_hinge_length > 0` enables a tapered hinge relief
-at the fixed end of the tongue. The library cuts a triangular wedge from the
-female-channel side: the outer face remains flat, while
-`lock_spring_hinge_thickness` controls the minimum local flexure thickness.
-The relief grows gradually over `lock_spring_hinge_length`, avoiding the
-horizontal shelf produced by a full rear cavity. The default hinge length is
-0, so existing lock geometry is unchanged.
+For a thick host, `lock_spring_hinge_length > 0` enables a **two-sided**
+hinge relief. `lock_spring_hinge_thickness` is the total thickness of the
+short flex web that remains between the two opposing pockets.
+
+The complete locking-threshold region and the fixed root stay full-depth. From
+the fixed root toward the locking lip, both faces use the same profile:
+
+1. a mostly straight root wall;
+2. a local 45-degree chamfer;
+3. a short flat central-web land;
+4. a calculated return ramp;
+5. a full-depth flat land under the threshold/lip.
+
+`lock_spring_hinge_length` is split equally between the 45-degree chamfer run
+and the flat central-web land. The two pockets remove
+`(lock_spring_thickness - lock_spring_hinge_thickness) / 2` from each face,
+placing the remaining web around the middle of the tongue. The return-ramp angle
+is derived from the remaining spring length and is limited to 45 degrees.
+
+For a 4 mm tongue, `lock_spring_hinge_length = 2` gives the intended 1 x 1 mm
+45-degree chamfer followed by 1 mm flat land on each side. A centered web of
+about 1 mm would then leave about 1.5 mm relief depth per face. The verification
+model keeps the existing 3.3 mm tongue and 0.8 mm web so the same principle can
+be inspected at the current library test dimensions. A hinge length of 0 keeps
+the previous geometry exactly.
 
 The threshold insertion ramp is independently tunable with
 `lock_ramp_length`. With `lock_release_access = true`, the recess continues

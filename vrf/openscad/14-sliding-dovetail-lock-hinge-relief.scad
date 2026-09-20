@@ -1,6 +1,7 @@
 // Lock hinge-relief verification.
-// A thick female spring keeps a flat outer face while a triangular channel-side
-// relief tapers only the fixed end down to the configured hinge thickness.
+// Opposing local pockets approach the tongue from both faces, leaving a short
+// centered flex web. Root and threshold remain full-depth; each pocket uses a
+// local 45-degree chamfer, short flat land and calculated return ramp.
 
 use <../../ext/lib.scad.util/openscad/inspection.scad>
 use <../../openscad/sliding-dovetail/sliding_dovetail.scad>
@@ -8,7 +9,7 @@ use <../../openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad>
 
 spring_thickness = 3.3;
 hinge_thickness = 0.8;
-hinge_length = 3.0;
+hinge_length = 1.65;
 
 joint =
     sliding_dovetail_create(

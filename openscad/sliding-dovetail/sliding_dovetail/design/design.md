@@ -124,11 +124,56 @@ When `lock_cut_back_clearance` is enabled, the female cutter also removes a
 cavity behind the tongue so it can deflect by at least the threshold height.
 When it is disabled, the tongue can remain full-depth to a flat outer face.
 
-An optional hinge relief handles thick hosts without adding a rear cavity.
-`lock_spring_hinge_length` selects a tapered flex zone at the fixed spring end
-and `lock_spring_hinge_thickness` selects the minimum remaining material there.
-The relief is triangular and opens toward the female channel, so the outer face
-stays flat. A hinge length of 0 keeps the previous geometry exactly.
+An optional two-sided hinge relief handles thick hosts by moving the flex web
+toward the middle of the tongue instead of thinning from only one face.
+`lock_spring_hinge_length` controls the local chamfer + flat-web envelope and
+`lock_spring_hinge_thickness` controls the total thickness of the centered
+web left between the opposing pockets.
+
+The locking threshold and fixed root remain full-depth. Each face uses a mostly
+straight root wall, a local 45-degree chamfer, a short flat land and a calculated
+return ramp. The two flat lands face each other and leave the flex web centered
+through the material. The return ramps are constrained to 45 degrees maximum.
+A hinge length of 0 keeps the previous geometry exactly.
+
+### Centered hinge-relief example
+
+The example below deliberately uses a **3.3 mm** thick female spring, a
+**1.65 mm** chamfer/flat envelope and a **0.8 mm centered flex web**. The
+locking threshold is **1.5 mm** long and remains full-depth. Back clearance is
+disabled. Each face therefore approaches the central web from its own side,
+while the root and threshold remain substantial. For a 4 mm host, a 2 mm envelope yields the
+same proportion: **1 x 1 mm chamfer + 1 mm flat**.
+
+<!-- scad-render
+module: sliding_dovetail_hinge_design
+view: overview
+-->
+
+The overview shows the two local surface openings. They are intentional: the
+relief now approaches the hinge from both faces so the remaining flex web can
+sit near the middle of the tongue.
+
+<!-- scad-render
+module: sliding_dovetail_hinge_design
+view: cutaway
+-->
+
+The center cutaway should show the full sequence clearly on **both faces**:
+mostly straight root wall, local 45-degree chamfer, short flat land and shallow
+return ramp, leaving a centered web before the geometry returns to full
+thickness under the locking threshold.
+
+<!-- scad-render
+module: sliding_dovetail_hinge_design
+view: assembled-cutaway
+-->
+
+The assembled cutaway shows the same female together with the locking male, so
+the hinge relief can be read in relation to the threshold and male recess.
+
+Matching inspectable STL fixtures are published as verification fixtures
+15–17: full female, female cutaway and assembled cutaway.
 
 `lock_release_access` extends the male recess to the -X entry edge using the
 same width as the recess. This gives a small flat screwdriver a straight path
