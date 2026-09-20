@@ -6,7 +6,10 @@
 use <sliding_dovetail_lock.scad>
 
 // Function: sliding_dovetail_create()
-// Synopsis: Creates one male/female sliding-dovetail interface object.
+// Synopsis: Creates one complete male/female sliding-dovetail interface.
+// Description:
+//   This is the normal public constructor. Locking options are selected here;
+//   the library creates and owns the lower-level lock/spring objects internally.
 // Arguments:
 //   width = Maximum/root width of the nominal male dovetail.
 //   height = Profile depth from mouth plane to root plane.
@@ -14,7 +17,21 @@ use <sliding_dovetail_lock.scad>
 //   clearance = Female fit clearance in mm, applied per side and at the rear.
 //   axial_clearance = Additional female travel along the X slide axis.
 //   extra = Boolean overlap added at slide ends and the mouth/base plane.
-//   lock = Optional sliding-dovetail lock object.
+//   locking = Enable the integral male-recess / female-spring lock.
+//   lock_end_offset = Lock center distance from the male +X/leading end.
+//   lock_width = Width of threshold across Z.
+//   lock_recess_length = Male recess length along X.
+//   lock_recess_depth = Male recess depth below the dovetail root surface.
+//   lock_threshold_length = Female threshold length along X.
+//   lock_threshold_height = Female threshold protrusion into the channel.
+//   lock_spring_length = Flexible female tongue length along X.
+//   lock_spring_thickness = Material thickness of the flexible tongue.
+//   lock_spring_relief = Width of the U-shaped isolation cuts.
+//   lock_cut_back_clearance = Whether to cut a flex cavity behind the tongue.
+//   lock_back_clearance = Flex-cavity depth behind the tongue.
+//   lock_release_access = Whether to add a larger screwdriver access opening.
+//   lock_release_length = Screwdriver opening length along X.
+//   lock_release_depth = Screwdriver opening depth outward from the channel.
 function sliding_dovetail_create(
     width = 10,
     height = 3,
@@ -22,11 +39,42 @@ function sliding_dovetail_create(
     clearance = 0.20,
     axial_clearance = 0.25,
     extra = 0.01,
-    lock = sliding_dovetail_lock_create()
+    locking = false,
+    lock_end_offset = 2.0,
+    lock_width = 4.0,
+    lock_recess_length = 3.0,
+    lock_recess_depth = 0.6,
+    lock_threshold_length = 1.5,
+    lock_threshold_height = 0.5,
+    lock_spring_length = 7.0,
+    lock_spring_thickness = 1.2,
+    lock_spring_relief = 0.8,
+    lock_cut_back_clearance = true,
+    lock_back_clearance = 0.8,
+    lock_release_access = false,
+    lock_release_length = 3.0,
+    lock_release_depth = 5.0
 ) =
     let(
         mouth_width =
-            width - 2 * height * tan(angle)
+            width - 2 * height * tan(angle),
+        lock = sliding_dovetail_lock_create(
+            enabled = locking,
+            end_offset = lock_end_offset,
+            width = lock_width,
+            recess_length = lock_recess_length,
+            recess_depth = lock_recess_depth,
+            threshold_length = lock_threshold_length,
+            threshold_height = lock_threshold_height,
+            spring_length = lock_spring_length,
+            spring_thickness = lock_spring_thickness,
+            spring_relief = lock_spring_relief,
+            cut_back_clearance = lock_cut_back_clearance,
+            back_clearance = lock_back_clearance,
+            release_access = lock_release_access,
+            release_length = lock_release_length,
+            release_depth = lock_release_depth
+        )
     )
     assert(width > 0,
         "sliding dovetail width must be > 0")
@@ -42,6 +90,8 @@ function sliding_dovetail_create(
         "sliding dovetail axial_clearance must be >= 0")
     assert(extra >= 0,
         "sliding dovetail extra must be >= 0")
+    assert(is_bool(locking),
+        "sliding dovetail locking must be boolean")
     object(
         width = width,
         height = height,
