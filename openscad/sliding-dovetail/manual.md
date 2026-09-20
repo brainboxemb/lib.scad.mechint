@@ -119,8 +119,8 @@ while the outer/rear face remains flat.
 The relief deliberately keeps the complete locking-threshold region full-depth.
 Reading from the **fixed spring root toward the locking lip**, the profile is:
 
-1. a short straight root wall;
-2. a 45-degree shoulder down to the minimum flex thickness;
+1. a mostly straight root wall;
+2. a small 45-degree chamfer at its lower corner down to the minimum flex thickness;
 3. a flat minimum-thickness flex land;
 4. a return ramp back to full thickness;
 5. a full-depth flat land under the threshold/lip.
@@ -129,9 +129,11 @@ Reading from the **fixed spring root toward the locking lip**, the profile is:
 return-ramp angle is derived from the remaining spring length after reserving
 that envelope and the full-depth threshold land, and the library rejects
 combinations that would make it steeper than 45 degrees. The verification
-example uses 3.3 mm total thickness, 0.8 mm flex thickness, a 2.5 mm root
-transition envelope and a 1.5 mm threshold. That leaves only about 0.4 mm of
-flat minimum-thickness land and gives a return ramp of about 40 degrees. This
+example uses 3.3 mm total thickness, 0.8 mm flex thickness, a 1.2 mm root
+envelope and a 1.5 mm threshold. The fixed wall stays straight for most of the
+relief depth, followed by only a 0.8 mm x 0.8 mm 45-degree chamfer. That leaves
+about 0.4 mm of flat minimum-thickness land and gives a return ramp of about
+30 degrees. This
 keeps the locking lip
 structurally supported instead of leaving it on a visually or mechanically
 floating thin strip. A hinge length of 0 keeps the previous geometry exactly.

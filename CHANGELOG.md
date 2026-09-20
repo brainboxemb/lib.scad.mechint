@@ -8,8 +8,9 @@
   `lock_spring_hinge_length` creates a compact channel-side pocket near the
   fixed end while `lock_spring_hinge_thickness` sets the remaining local
   flexure thickness. From the fixed root toward the lip, the relief now uses a
-  short straight wall, a 45-degree shoulder, a short flat minimum-thickness
-  flex land and a calculated return ramp constrained to a maximum of 45 degrees.
+  mostly straight wall with only a small 45-degree lower-corner chamfer, a very
+  short flat minimum-thickness flex land and a calculated return ramp constrained
+  to a maximum of 45 degrees.
   The complete locking-threshold region returns
   to full host thickness before the lip, preventing the thin tongue from
   appearing or behaving as a floating strip. The outer/rear host face stays

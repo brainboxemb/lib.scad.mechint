@@ -9,7 +9,7 @@ use <../../openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad>
 
 spring_thickness = 3.3;
 hinge_thickness = 0.8;
-hinge_length = 2.5;
+hinge_length = 1.2;
 
 joint =
     sliding_dovetail_create(

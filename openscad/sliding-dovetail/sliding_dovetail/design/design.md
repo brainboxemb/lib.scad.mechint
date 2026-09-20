@@ -133,19 +133,20 @@ locking feature. From the fixed root toward the lip, the relief has a short
 straight root wall, a 45-degree shoulder, a flat minimum-thickness flex land,
 a calculated return ramp and finally a full-depth threshold land. The return
 angle is derived from the available spring length and is constrained to a
-maximum of 45 degrees. In the 3.3 / 0.8 / 2.5 mm verification example it is
-about 40 degrees. This keeps the outer face flat and
+maximum of 45 degrees. In the 3.3 / 0.8 / 1.2 mm verification example it is
+about 30 degrees. This keeps the outer face flat and
 avoids both a sharp V notch and a thin strip apparently floating under the lip.
 A hinge length of 0 keeps the previous geometry exactly.
 
 ### Flat-back hinge-relief example
 
 The example below deliberately uses a **3.3 mm** thick female spring, a
-**2.5 mm** root-transition envelope and a **0.8 mm** minimum flex thickness.
-The locking threshold is **1.5 mm** long and remains full-depth. Back clearance
-is disabled. This leaves only about **0.4 mm** of flat minimum-thickness flex
-land; the fixed-root shoulder stays 45 degrees while the return ramp is about
-40 degrees.
+**1.2 mm** root-side chamfer/flat envelope and a **0.8 mm** minimum flex
+thickness. The locking threshold is **1.5 mm** long and remains full-depth.
+Back clearance is disabled. The fixed wall stays vertical for most of the
+relief depth, followed by only a **0.8 x 0.8 mm** 45-degree chamfer. This leaves
+about **0.4 mm** of flat minimum-thickness flex land; the return ramp is about
+30 degrees.
 
 <!-- scad-render
 module: sliding_dovetail_hinge_design
@@ -160,9 +161,10 @@ module: sliding_dovetail_hinge_design
 view: cutaway
 -->
 
-The center cutaway should show the full sequence clearly: straight root wall,
-45-degree root shoulder, short flat flex land, return ramp, then a full-depth
-flat land immediately before and underneath the locking threshold.
+The center cutaway should show the full sequence clearly: mostly straight root
+wall, small 45-degree lower-corner chamfer, very short flat flex land, shallow
+return ramp, then a full-depth flat land immediately before and underneath the
+locking threshold.
 
 <!-- scad-render
 module: sliding_dovetail_hinge_design

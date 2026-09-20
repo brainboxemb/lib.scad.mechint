@@ -415,11 +415,12 @@ module _sliding_dovetail_lock_female_relief_cutter(
         //   4. a calculated ramp returns to full thickness;
         //   5. a full-depth land remains under the complete threshold.
         //
-        // hinge_length is the root-side transition envelope. The return ramp
-        // is derived from the remaining spring length and must stay at or below
-        // 45 degrees. The verification example uses a 2.5 mm envelope: the
-        // minimum-thickness flat land is about 0.4 mm long and the return ramp
-        // is about 40 degrees, while the fixed-root shoulder remains 45 degrees.
+        // hinge_length is the root-side chamfer + flat-flex envelope. The
+        // fixed wall stays mostly vertical; only its lower corner receives a
+        // small 45-degree chamfer. The return ramp is derived from the remaining
+        // spring length and must stay at or below 45 degrees. The verification
+        // example uses a 1.2 mm envelope: 0.8 mm 45-degree chamfer + about
+        // 0.4 mm flat flex land, followed by an approximately 30-degree return.
         // hinge_length = 0 preserves the legacy spring geometry exactly.
         if (spring.hinge_length > 0) {
             spring_x1 = spring_x0 + spring.length;
@@ -430,18 +431,19 @@ module _sliding_dovetail_lock_female_relief_cutter(
             hinge_relief_depth =
                 spring.thickness - spring.hinge_thickness;
 
-            // Leave a small straight wall at the fixed root before the 45°
-            // shoulder. Scale it from the requested flex thickness but never
-            // consume more than half of the relief depth.
-            root_straight_depth =
+            // The 45-degree feature is deliberately only a local chamfer,
+            // not the whole fixed-root transition. Its run is derived from the
+            // configured minimum flex thickness. The remaining relief depth is
+            // a straight vertical wall.
+            root_chamfer_run =
                 min(
-                    spring.hinge_thickness / 2,
-                    hinge_relief_depth / 2
+                    spring.hinge_thickness,
+                    hinge_relief_depth
                 );
-            root_shoulder_run =
-                hinge_relief_depth - root_straight_depth;
+            root_straight_depth =
+                hinge_relief_depth - root_chamfer_run;
             root_shoulder_x0 =
-                spring_x1 - root_shoulder_run;
+                spring_x1 - root_chamfer_run;
 
             flat_flex_length =
                 root_shoulder_x0 - hinge_x0;
@@ -450,7 +452,7 @@ module _sliding_dovetail_lock_female_relief_cutter(
 
             assert(
                 flat_flex_length > 0,
-                "sliding dovetail lock hinge_length is too short for the fixed-root 45-degree shoulder"
+                "sliding dovetail lock hinge_length must exceed the fixed-root chamfer run"
             )
             assert(
                 return_ramp_run > 0,
