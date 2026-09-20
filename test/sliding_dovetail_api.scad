@@ -8,6 +8,7 @@ assert(abs(joint.angle - 20) < 0.0001);
 assert(abs(joint.clearance - 0.20) < 0.0001);
 assert(abs(joint.axial_clearance - 0.25) < 0.0001);
 assert(abs(joint.extra - 0.01) < 0.0001);
+assert(abs(sliding_dovetail_entry_slot_length(joint)) < 0.0001);
 assert(!sliding_dovetail_locking_enabled(joint));
 
 assert(
@@ -28,6 +29,20 @@ assert(
 );
 assert(
     abs(sliding_dovetail_female_slide(joint, 16) - 16.25)
+    < 0.0001
+);
+
+entry_joint =
+    sliding_dovetail_create(
+        entry_slot_length = 16
+    );
+
+assert(
+    abs(sliding_dovetail_entry_slot_length(entry_joint) - 16)
+    < 0.0001
+);
+assert(
+    abs(sliding_dovetail_female_total_length(entry_joint, 16) - 32.25)
     < 0.0001
 );
 
@@ -79,5 +94,11 @@ translate([36, 0, 0])
 translate([60, 0, 0])
     sliding_dovetail_female_cutter(
         host_clearance_joint,
+        slide = 16
+    );
+
+translate([84, 0, 0])
+    sliding_dovetail_female_cutter(
+        entry_joint,
         slide = 16
     );

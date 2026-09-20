@@ -17,6 +17,11 @@ module sliding_dovetail_test_assembly_build(
             reference,
             position = "approach"
         );
+    } else if (view == "entry") {
+        sliding_dovetail_reference_pair_build(
+            reference,
+            position = "entry"
+        );
     } else if (view == "assembled") {
         sliding_dovetail_reference_pair_build(
             reference,

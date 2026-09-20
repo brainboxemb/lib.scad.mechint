@@ -17,6 +17,7 @@ use <sliding_dovetail_lock.scad>
 //   clearance = Female fit clearance in mm, applied per side and at the rear.
 //   axial_clearance = Additional female travel along the X slide axis.
 //   extra = Boolean overlap added at slide ends and the mouth/base plane.
+//   entry_slot_length = Female-only straight entry mask before the -X channel entrance.
 //   locking = Enable the integral male-recess / female-spring lock.
 //   lock_entry_offset = Threshold-ramp start distance from the fixed -X entry side.
 //   lock_width = Width of threshold across Z.
@@ -39,6 +40,7 @@ function sliding_dovetail_create(
     clearance = 0.20,
     axial_clearance = 0.25,
     extra = 0.01,
+    entry_slot_length = 0,
     locking = false,
     lock_entry_offset = 0,
     lock_width = 4.0,
@@ -90,6 +92,8 @@ function sliding_dovetail_create(
         "sliding dovetail axial_clearance must be >= 0")
     assert(extra >= 0,
         "sliding dovetail extra must be >= 0")
+    assert(entry_slot_length >= 0,
+        "sliding dovetail entry_slot_length must be >= 0")
     assert(is_bool(locking),
         "sliding dovetail locking must be boolean")
     object(
@@ -99,6 +103,7 @@ function sliding_dovetail_create(
         clearance = clearance,
         axial_clearance = axial_clearance,
         extra = extra,
+        entry_slot_length = entry_slot_length,
         lock = lock
     );
 
@@ -131,6 +136,17 @@ function sliding_dovetail_female_root_width(joint) =
 // Synopsis: Returns female channel length including axial clearance.
 function sliding_dovetail_female_slide(joint, slide) =
     slide + joint.axial_clearance;
+
+// Function: sliding_dovetail_entry_slot_length()
+// Synopsis: Returns the female-only straight entry-slot length.
+function sliding_dovetail_entry_slot_length(joint) =
+    joint.entry_slot_length;
+
+// Function: sliding_dovetail_female_total_length()
+// Synopsis: Returns channel length plus the optional -X entry slot.
+function sliding_dovetail_female_total_length(joint, slide) =
+    sliding_dovetail_female_slide(joint, slide)
+    + sliding_dovetail_entry_slot_length(joint);
 
 function _sliding_dovetail_lock(joint) =
     joint.lock;
@@ -300,6 +316,25 @@ module _sliding_dovetail_female_base_cutter(
             root_width =
                 sliding_dovetail_female_root_width(joint)
         );
+
+        // Optional straight approach mask ahead of the fixed -X female entry.
+        // Its cross-section uses the complete clearanced female root envelope,
+        // so a nominal male dovetail can sit in this space before sliding +X.
+        if (joint.entry_slot_length > 0)
+            translate([
+                -female_slide / 2
+                    - joint.entry_slot_length
+                    - joint.extra,
+                -joint.extra,
+                -sliding_dovetail_female_root_width(joint) / 2
+            ])
+                cube([
+                    joint.entry_slot_length
+                        + 2 * joint.extra,
+                    sliding_dovetail_female_height(joint)
+                        + 2 * joint.extra,
+                    sliding_dovetail_female_root_width(joint)
+                ]);
 
         if (joint.extra > 0)
             translate([

@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+### Added
+
+- Add optional female `entry_slot_length` support to the sliding-dovetail
+  interface, creating a straight -X approach mask sized from the clearanced
+  female root envelope so the male can sit ahead of the channel before insertion.
+
 ### Changed
 
 - Add a two-image root README preview backed by generated production output;

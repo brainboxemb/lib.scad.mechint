@@ -11,6 +11,10 @@ profiles:
     files: [03-sliding-dovetail-yz-section.scad]
     image_size: [800, 600]
 
+  04-sliding-dovetail-entry-slot:
+    files: [04-sliding-dovetail-entry-slot.scad]
+    image_size: [800, 600]
+
   10-sliding-dovetail-lock-section:
     files: [10-sliding-dovetail-lock-section.scad]
     image_size: [800, 600]
