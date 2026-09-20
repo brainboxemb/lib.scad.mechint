@@ -35,7 +35,6 @@ lock_spring_relief = 0.8;       // [0.4:0.1:2]
 lock_cut_back_clearance = true;
 lock_back_clearance = 0.8;      // [0:0.1:3]
 lock_release_access = true;
-lock_release_width = 2.5;       // [1:0.25:6]
 lock_release_depth = 0.6;       // [0.25:0.05:2]
 
 /* [Reference blocks] */
@@ -70,7 +69,6 @@ joint =
         lock_cut_back_clearance = lock_cut_back_clearance,
         lock_back_clearance = lock_back_clearance,
         lock_release_access = lock_release_access,
-        lock_release_width = lock_release_width,
         lock_release_depth = lock_release_depth
     );
 

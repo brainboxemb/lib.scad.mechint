@@ -47,7 +47,6 @@ function _sliding_dovetail_lock_create(
     cut_back_clearance = true,
     back_clearance = 0.8,
     release_access = true,
-    release_width = 2.5,
     release_depth = 0.6
 ) =
     let(
@@ -79,8 +78,6 @@ function _sliding_dovetail_lock_create(
         "sliding dovetail lock spring length must exceed threshold length")
     assert(is_bool(release_access),
         "sliding dovetail lock release_access must be boolean")
-    assert(release_width > 0,
-        "sliding dovetail lock release_width must be > 0")
     assert(release_depth > 0,
         "sliding dovetail lock release_depth must be > 0")
     object(
@@ -94,7 +91,6 @@ function _sliding_dovetail_lock_create(
         ramp_length = ramp_length,
         spring = spring,
         release_access = release_access,
-        release_width = release_width,
         release_depth = release_depth
     );
 
@@ -204,11 +200,6 @@ module _sliding_dovetail_lock_assert_valid(
     );
     assert(
         !lock.release_access
-            || lock.release_width <= lock.width + 2 * clearance,
-        "sliding dovetail lock release slot must fit inside the recess width"
-    );
-    assert(
-        !lock.release_access
             || lock.release_depth < male_height,
         "sliding dovetail lock release_depth must remain below male profile height"
     );
@@ -246,13 +237,15 @@ module _sliding_dovetail_lock_male_recess_cutter(
         ]);
 }
 
-// Optional narrow path from the male -X/trailing edge to the lock recess.
-// A small flat screwdriver can enter here and lift the female spring tongue.
+// Optional path from the male -X/trailing edge to the lock recess.
+// It uses the same Z width as the recess, so the release feature is one
+// continuous straight opening rather than a narrow slot widening into a pocket.
 module _sliding_dovetail_lock_male_release_cutter(
     lock,
     slide,
     axial_clearance,
     male_height,
+    clearance,
     extra = 0
 ) {
     recess_x0 =
@@ -266,16 +259,19 @@ module _sliding_dovetail_lock_male_release_cutter(
     slot_length =
         recess_x0 - entry_x + extra;
 
+    release_width =
+        lock.width + 2 * clearance;
+
     if (lock.release_access && slot_length > 0)
         translate([
             entry_x,
             male_height - lock.release_depth,
-            -lock.release_width / 2
+            -release_width / 2
         ])
             cube([
                 slot_length,
                 lock.release_depth + extra,
-                lock.release_width
+                release_width
             ]);
 }
 

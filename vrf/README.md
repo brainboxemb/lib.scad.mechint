@@ -16,17 +16,27 @@ Default interface:
 | male slide length | 16.0 mm |
 
 The normal fit/approach evidence uses the unlocked default interface. A focused
-lock-section render creates the same interface with `locking = true`,
-`lock_cut_back_clearance = true` and male screwdriver access enabled.
+lock-section render creates the same interface with locking enabled, back
+clearance enabled and male screwdriver access enabled.
+
+Verification files are numbered so they sort by purpose:
+
+- 01–09 — base sliding dovetail;
+- 10–19 — locking sliding dovetail.
 
 Printable fixtures include both plain and locking male/female pairs plus a
 half-width female cutaway STL. The female threshold starts at the fixed -X
-entry edge; the locking male includes the screwdriver-access slot.
+entry edge. The locking male has one continuous release opening from its entry
+edge to the locking wall; its access path uses the same width as the recess.
 
-For assembled STL inspection, import the locking male and locking female files
-together as two separate objects. A combined assembled STL is intentionally not
-published because STL does not retain part identity or colour and therefore
-makes the interface harder to inspect.
+Fixture STLs use a neutral inspection orientation: each broad reference block
+lies flat and the mechanical interface faces upward. This is not a prescribed
+print orientation and does not encode how HUB75 or another consumer should
+place the interface.
+
+Male and female fixtures are oriented independently. Use the assembly/section
+PNG evidence for mating inspection, or reposition the two STL files manually
+in a viewer.
 
 Evidence includes:
 
@@ -38,8 +48,10 @@ Evidence includes:
 - a 0.20 mm XY section through the center of the integral lock.
 
 The lock section is intended to make these relationships visible together:
-male recess, male screwdriver slot, ramped female threshold, locking face,
-flexible tongue and the optional cavity behind the tongue.
+continuous male release/recess opening, ramped female threshold, locking face,
+flexible tongue and the optional cavity behind the tongue. The lock-section PNG
+is rotated into the same intuitive upright reading direction as the other
+inspection views.
 
-`lib.scad.util` is used only in section/inspection adapters. The core
-`sliding_dovetail.scad` source remains independent.
+lib.scad.util is used only in section/inspection adapters. The core
+sliding_dovetail.scad source remains independent.

@@ -31,7 +31,6 @@ use <sliding_dovetail_lock.scad>
 //   lock_cut_back_clearance = Whether to cut a flex cavity behind the tongue.
 //   lock_back_clearance = Flex-cavity depth behind the tongue.
 //   lock_release_access = Whether to add a male screwdriver slot from the entry edge.
-//   lock_release_width = Screwdriver slot width across Z.
 //   lock_release_depth = Screwdriver slot depth into the male root surface.
 function sliding_dovetail_create(
     width = 10,
@@ -54,7 +53,6 @@ function sliding_dovetail_create(
     lock_cut_back_clearance = true,
     lock_back_clearance = 0.8,
     lock_release_access = true,
-    lock_release_width = 2.5,
     lock_release_depth = 0.6
 ) =
     let(
@@ -75,7 +73,6 @@ function sliding_dovetail_create(
             cut_back_clearance = lock_cut_back_clearance,
             back_clearance = lock_back_clearance,
             release_access = lock_release_access,
-            release_width = lock_release_width,
             release_depth = lock_release_depth
         )
     )
@@ -186,6 +183,7 @@ module sliding_dovetail_male_build(
                     slide,
                     joint.axial_clearance,
                     joint.height,
+                    joint.clearance,
                     joint.extra
                 );
             }

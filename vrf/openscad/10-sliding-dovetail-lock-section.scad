@@ -15,7 +15,7 @@ reference =
     );
 
 $vpt = [3.5, 3.5, 0];
-$vpr = [0, 0, 0];
+$vpr = [0, 0, 180];
 $vpd = 36;
 
 util_section_inspect(

@@ -1,16 +1,16 @@
 profiles:
-  sliding-dovetail-fit:
-    files: [sliding-dovetail-test-block-fit.scad]
+  01-sliding-dovetail-fit:
+    files: [01-sliding-dovetail-fit.scad]
     image_size: [640, 480]
 
-  sliding-dovetail-approach:
-    files: [sliding-dovetail-test-block-approach.scad]
+  02-sliding-dovetail-approach:
+    files: [02-sliding-dovetail-approach.scad]
     image_size: [640, 480]
 
-  sliding-dovetail-yz-section:
-    files: [sliding-dovetail-test-block-yz-section.scad]
+  03-sliding-dovetail-yz-section:
+    files: [03-sliding-dovetail-yz-section.scad]
     image_size: [800, 600]
 
-  sliding-dovetail-lock-section:
-    files: [sliding-dovetail-lock-section.scad]
+  10-sliding-dovetail-lock-section:
+    files: [10-sliding-dovetail-lock-section.scad]
     image_size: [800, 600]

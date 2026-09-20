@@ -90,10 +90,10 @@ cantilever. With `false`, the U-shaped spring cuts and threshold are still
 created, but the consuming part is responsible for providing free space behind
 the configured spring thickness.
 
-`lock_release_access = true` adds a narrower slot in the male from its -X
-entry edge to the lock recess. A small flat screwdriver can enter that slot and
-lift the female tongue out of the recess. The slot width and depth are controlled
-by `lock_release_width` and `lock_release_depth`.
+`lock_release_access = true` extends the male recess all the way to its -X
+entry edge. The access path has the same width as the recess, so there is no
+narrow-to-wide step. A small flat screwdriver can enter this opening and lift
+the female tongue. `lock_release_depth` controls the access depth.
 
 ## Female test block
 

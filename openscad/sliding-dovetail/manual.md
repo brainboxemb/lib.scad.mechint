@@ -66,6 +66,7 @@ isolate the tongue while the female entry edge is already its free end.
 With it disabled, the consuming host part must provide that free space itself.
 
 The threshold insertion ramp is independently tunable with
-`lock_ramp_length`. With `lock_release_access = true`, the male receives a
-narrow slot from its -X edge to the recess for a small flat screwdriver.
-`lock_release_width` and `lock_release_depth` control that slot.
+`lock_ramp_length`. With `lock_release_access = true`, the recess continues
+to the male -X edge with the same width as the recess itself. A small flat
+screwdriver can use that straight opening to lift the female tongue.
+`lock_release_depth` controls its depth.

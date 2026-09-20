@@ -125,9 +125,10 @@ cavity behind the tongue so it can deflect by at least the threshold height.
 When it is disabled, the interface still creates the threshold and U-cuts but
 leaves responsibility for the space behind the spring to the host part.
 
-`lock_release_access` adds a narrow male slot from the -X entry edge to the
-recess. This gives a small flat screwdriver a path to lift the female tongue.
-It remains independent from the female spring cavity.
+`lock_release_access` extends the male recess to the -X entry edge using the
+same width as the recess. This gives a small flat screwdriver a straight path
+to lift the female tongue without a narrow/wide transition. It remains
+independent from the female spring cavity.
 
 ## Locking female
 
