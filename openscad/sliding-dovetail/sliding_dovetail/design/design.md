@@ -125,22 +125,25 @@ cavity behind the tongue so it can deflect by at least the threshold height.
 When it is disabled, the tongue can remain full-depth to a flat outer face.
 
 An optional hinge relief handles thick hosts without adding a rear cavity.
-`lock_spring_hinge_length` selects the local flex zone at the fixed spring end
-and `lock_spring_hinge_thickness` selects the minimum remaining material there.
-The channel-side relief keeps a constant minimum-thickness flex land from the
-locking threshold/free end toward the fixed spring root. Only the fixed end
-returns to full host thickness, through a 45-degree shoulder and, when needed,
-a short straight root wall. `lock_spring_hinge_length` controls that root
-transition envelope. This keeps the outer face flat while avoiding both a sharp
-V-like stress concentration and an unnecessary second shoulder near the clip.
+`lock_spring_hinge_length` controls the root-side transition envelope and
+`lock_spring_hinge_thickness` controls the minimum flex-land thickness.
+
+The threshold/lip end deliberately returns to **full host thickness** before the
+locking feature. From the fixed root toward the lip, the relief has a short
+straight root wall, a 45-degree shoulder, a flat minimum-thickness flex land,
+a calculated return ramp and finally a full-depth threshold land. The return
+angle is derived from the available spring length; it is 45 degrees in the
+3.3 / 0.8 / 3.0 mm verification example. This keeps the outer face flat and
+avoids both a sharp V notch and a thin strip apparently floating under the lip.
 A hinge length of 0 keeps the previous geometry exactly.
 
 ### Flat-back hinge-relief example
 
 The example below deliberately uses a **3.3 mm** thick female spring, a
-**3.0 mm** tapered hinge zone and a **0.8 mm** remaining hinge thickness. Back
-clearance is disabled. This makes the difference between total host thickness
-and effective flexure thickness visually obvious.
+**3.0 mm** root-transition envelope and a **0.8 mm** minimum flex thickness.
+The locking threshold is **1.5 mm** long and remains full-depth. Back clearance
+is disabled. These dimensions make both transition ramps 45 degrees while still
+leaving a short flat flex land between them.
 
 <!-- scad-render
 module: sliding_dovetail_hinge_design
@@ -155,10 +158,9 @@ module: sliding_dovetail_hinge_design
 view: cutaway
 -->
 
-The center cutaway exposes the constant-thickness flex land running from the
-locking threshold toward the fixed root. At the root it returns to full host
-thickness through one 45-degree shoulder and, when needed, a short straight
-wall.
+The center cutaway should show the full sequence clearly: straight root wall,
+45-degree root shoulder, short flat flex land, return ramp, then a full-depth
+flat land immediately before and underneath the locking threshold.
 
 <!-- scad-render
 module: sliding_dovetail_hinge_design

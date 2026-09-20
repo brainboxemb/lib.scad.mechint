@@ -32,10 +32,6 @@ function _sliding_dovetail_lock_spring_create(
         hinge_length == 0 || hinge_thickness < thickness,
         "sliding dovetail lock spring hinge_thickness must be less than spring thickness"
     )
-    assert(
-        hinge_length == 0 || hinge_length > hinge_thickness,
-        "sliding dovetail lock spring hinge_length must exceed hinge_thickness"
-    )
     assert(is_bool(cut_back_clearance),
         "sliding dovetail lock cut_back_clearance must be boolean")
     assert(back_clearance >= 0,
@@ -401,49 +397,74 @@ module _sliding_dovetail_lock_female_relief_cutter(
                     spring_width + 2 * spring.relief
                 ]);
 
-        // Optional print-friendly hinge relief. The tongue keeps its flat
-        // outer/rear face. The minimum-thickness flex land runs from the
-        // threshold/free end toward the fixed spring root. Only the fixed end
-        // transitions back to full host thickness: first through a 45-degree
-        // shoulder and, when needed, a short straight wall. This avoids both a
-        // sharp V notch and an unnecessary second shoulder near the clip.
-        // hinge_length controls the root transition envelope; 0 preserves the
-        // legacy spring geometry exactly.
+        // Optional print-friendly hinge relief. Keep the threshold/lip end
+        // full-depth so the locking feature itself remains a solid tongue.
+        // Moving from the fixed root toward the lip:
+        //   1. a short straight root wall enters the relief;
+        //   2. a 45-degree shoulder reaches the minimum flex thickness;
+        //   3. a flat minimum-thickness flex land follows;
+        //   4. a calculated ramp returns to full thickness;
+        //   5. a full-depth land remains under the complete threshold.
+        //
+        // hinge_length is the root-side transition envelope. With the current
+        // 3.3 / 0.8 / 3.0 verification values, the calculated return ramp is
+        // also 45 degrees. Other valid proportions may produce a different
+        // return angle while retaining the 45-degree fixed-root shoulder.
+        // hinge_length = 0 preserves the legacy spring geometry exactly.
         if (spring.hinge_length > 0) {
             spring_x1 = spring_x0 + spring.length;
-            hinge_x0 = spring_x1 - spring.hinge_length;
+            threshold_land_x1 =
+                spring_x0 + lock.threshold_length;
+            hinge_x0 =
+                spring_x1 - spring.hinge_length;
             hinge_relief_depth =
                 spring.thickness - spring.hinge_thickness;
-            hinge_shoulder_run =
+
+            // Leave a small straight wall at the fixed root before the 45°
+            // shoulder. Scale it from the requested flex thickness but never
+            // consume more than half of the relief depth.
+            root_straight_depth =
                 min(
-                    hinge_relief_depth,
-                    (
-                        spring.hinge_length
-                        - spring.hinge_thickness
-                    ) / 2
+                    spring.hinge_thickness / 2,
+                    hinge_relief_depth / 2
                 );
-            hinge_straight_depth =
-                hinge_relief_depth - hinge_shoulder_run;
-            hinge_flat_x1 =
-                spring_x1 - hinge_shoulder_run;
+            root_shoulder_run =
+                hinge_relief_depth - root_straight_depth;
+            root_shoulder_x0 =
+                spring_x1 - root_shoulder_run;
+
+            flat_flex_length =
+                root_shoulder_x0 - hinge_x0;
+            return_ramp_run =
+                hinge_x0 - threshold_land_x1;
+
+            assert(
+                flat_flex_length > 0,
+                "sliding dovetail lock hinge_length is too short for the fixed-root 45-degree shoulder"
+            )
+            assert(
+                return_ramp_run > 0,
+                "sliding dovetail lock hinge_length leaves no return ramp before the threshold land"
+            )
 
             translate([0, 0, -spring_width / 2])
                 linear_extrude(height = spring_width)
                     polygon(points = [
-                        [spring_x0 - extra, female_height],
+                        [threshold_land_x1, female_height],
                         [spring_x1 + extra, female_height],
                         [
                             spring_x1 + extra,
-                            female_height + hinge_straight_depth
+                            female_height + root_straight_depth
                         ],
                         [
-                            hinge_flat_x1,
+                            root_shoulder_x0,
                             female_height + hinge_relief_depth
                         ],
                         [
-                            spring_x0 - extra,
+                            hinge_x0,
                             female_height + hinge_relief_depth
-                        ]
+                        ],
+                        [threshold_land_x1, female_height]
                     ]);
         }
 

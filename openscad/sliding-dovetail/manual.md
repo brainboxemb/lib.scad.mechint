@@ -113,17 +113,26 @@ needed to free the tongue at its entry end.
 With it disabled, the spring can keep a flat outer/rear face.
 
 For a thick host, `lock_spring_hinge_length > 0` enables a local hinge relief
-at the fixed end of the tongue. The outer face remains flat, while
-`lock_spring_hinge_thickness` controls the minimum local flexure thickness.
-The channel-side relief leaves a constant minimum-thickness flex land from the
-locking threshold/free end toward the fixed spring root. At the fixed end only,
-that land returns to full host thickness through a 45-degree shoulder; if the
-requested relief is deeper than the available 45-degree run, the remaining
-depth stays in a short straight root wall instead of making the flank steeper.
-`lock_spring_hinge_length` controls this root-transition envelope. This avoids
-the horizontal shelf of a rear cavity, a sharp V notch, and an unnecessary
-second shoulder near the clip. The default hinge length is 0, so existing lock
-geometry is unchanged.
+while the outer/rear face remains flat.
+`lock_spring_hinge_thickness` controls the minimum flex-land thickness.
+
+The relief deliberately keeps the complete locking-threshold region full-depth.
+Reading from the **fixed spring root toward the locking lip**, the profile is:
+
+1. a short straight root wall;
+2. a 45-degree shoulder down to the minimum flex thickness;
+3. a flat minimum-thickness flex land;
+4. a return ramp back to full thickness;
+5. a full-depth flat land under the threshold/lip.
+
+`lock_spring_hinge_length` controls the root-side transition envelope. The
+return-ramp angle is derived from the remaining spring length after reserving
+that envelope and the full-depth threshold land. For the verification example
+(3.3 mm total thickness, 0.8 mm flex thickness, 3.0 mm transition envelope and
+a 1.5 mm threshold), that return ramp is also 45 degrees. Other valid
+proportions may produce a different return angle. This keeps the locking lip
+structurally supported instead of leaving it on a visually or mechanically
+floating thin strip. A hinge length of 0 keeps the previous geometry exactly.
 
 The threshold insertion ramp is independently tunable with
 `lock_ramp_length`. With `lock_release_access = true`, the recess continues

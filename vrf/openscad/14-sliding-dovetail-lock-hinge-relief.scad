@@ -1,6 +1,7 @@
 // Lock hinge-relief verification.
-// A thick female spring keeps a flat outer face while a triangular channel-side
-// relief tapers only the fixed end down to the configured hinge thickness.
+// A thick female spring keeps a flat outer face. The root side enters through a
+// short straight wall and 45-degree shoulder, a thin flat flex land follows,
+// then a calculated ramp returns to full thickness before the locking threshold.
 
 use <../../ext/lib.scad.util/openscad/inspection.scad>
 use <../../openscad/sliding-dovetail/sliding_dovetail.scad>
