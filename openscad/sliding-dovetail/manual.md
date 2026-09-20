@@ -112,13 +112,16 @@ needed to free the tongue at its entry end.
 `lock_cut_back_clearance = true` cuts the flex cavity behind the tongue.
 With it disabled, the spring can keep a flat outer/rear face.
 
-For a thick host, `lock_spring_hinge_length > 0` enables a tapered hinge relief
-at the fixed end of the tongue. The library cuts a triangular wedge from the
-female-channel side: the outer face remains flat, while
+For a thick host, `lock_spring_hinge_length > 0` enables a local hinge relief
+at the fixed end of the tongue. The outer face remains flat, while
 `lock_spring_hinge_thickness` controls the minimum local flexure thickness.
-The relief grows gradually over `lock_spring_hinge_length`, avoiding the
-horizontal shelf produced by a full rear cavity. The default hinge length is
-0, so existing lock geometry is unchanged.
+The channel-side pocket enters with short straight walls and then transitions
+through 45-degree shoulders into a short flat flex land. The land length follows
+the configured hinge thickness. If the requested relief is deeper than the
+available 45-degree shoulder run, the additional depth stays in the straight
+wall rather than making a steeper flank. This avoids both the horizontal shelf
+of a full rear cavity and the sharp point of the earlier triangular wedge. The
+default hinge length is 0, so existing lock geometry is unchanged.
 
 The threshold insertion ramp is independently tunable with
 `lock_ramp_length`. With `lock_release_access = true`, the recess continues

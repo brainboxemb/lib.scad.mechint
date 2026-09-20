@@ -112,10 +112,11 @@ The lock consists of:
 `lock_cut_back_clearance = true` also removes a flex cavity behind that
 cantilever. With `false`, the tongue may instead keep a flat outer/rear face.
 For thick hosts the optional `lock_spring_hinge_length` and
-`lock_spring_hinge_thickness` parameters can cut a triangular relief from the
-channel side near the fixed spring end. This creates a local flexure without a
-horizontal cavity under the outer surface. A hinge length of 0 preserves the
-legacy spring geometry exactly.
+`lock_spring_hinge_thickness` parameters create a compact channel-side hinge
+relief near the fixed spring end. Short straight walls transition through
+45-degree shoulders into a flat minimum-thickness flex land, while the outer
+surface remains continuous and flat. A hinge length of 0 preserves the legacy
+spring geometry exactly.
 
 `lock_release_access = true` extends the male recess all the way to its -X
 entry edge. The access path has the same width as the recess, so there is no
