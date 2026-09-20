@@ -120,3 +120,24 @@ leaves responsibility for the space behind the spring to the host part.
 
 `lock_release_access` is a separate opt-in service opening and is not coupled
 to the basic spring cavity.
+
+## Locking female
+
+<!-- scad-render
+module: sliding_dovetail_lock_design
+view: female
+-->
+
+This view shows the female reference block with the ramped threshold, spring
+isolation cuts and optional cavity produced by the same top-level interface.
+
+## Lock assembled
+
+<!-- scad-render
+module: sliding_dovetail_lock_design
+view: assembled
+-->
+
+The assembled view checks the overall relationship between the locking male and
+female. The verification output adds a thin XY section through the centerline
+for inspecting the recess, threshold and spring cavity in detail.
