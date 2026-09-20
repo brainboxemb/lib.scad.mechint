@@ -45,8 +45,6 @@ render_stl   "$out/fixtures/sliding-dovetail-lock-female-test-block.stl"   "$roo
 
 render_stl   "$out/fixtures/sliding-dovetail-lock-male-test-piece.stl"   "$root/vrf/fixtures/export/sliding-dovetail-lock-male-test-piece.scad"
 
-render_stl   "$out/fixtures/sliding-dovetail-lock-assembled-inspection.stl"   "$root/vrf/fixtures/export/sliding-dovetail-lock-assembled-inspection.scad"
-
 render_stl   "$out/fixtures/sliding-dovetail-lock-female-cutaway.stl"   "$root/vrf/fixtures/export/sliding-dovetail-lock-female-cutaway.scad"
 
 cat > "$out/README.md" <<'EOF'
@@ -61,8 +59,12 @@ Printable fixtures:
 - [sliding-dovetail-male-test-piece.stl](fixtures/sliding-dovetail-male-test-piece.stl)
 - [sliding-dovetail-lock-female-test-block.stl](fixtures/sliding-dovetail-lock-female-test-block.stl)
 - [sliding-dovetail-lock-male-test-piece.stl](fixtures/sliding-dovetail-lock-male-test-piece.stl)
-- [sliding-dovetail-lock-assembled-inspection.stl](fixtures/sliding-dovetail-lock-assembled-inspection.stl)
 - [sliding-dovetail-lock-female-cutaway.stl](fixtures/sliding-dovetail-lock-female-cutaway.stl)
+
+For assembled STL inspection, load the locking male and locking female files
+together as two separate objects in the viewer. A combined assembled STL is
+intentionally not generated because STL does not preserve part identity or
+colour.
 
 Configured verification renders show assembled fit, side approach, a YZ
 section through the engaged interface, and an XY section through the enabled
