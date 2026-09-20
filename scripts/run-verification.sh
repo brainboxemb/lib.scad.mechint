@@ -66,6 +66,7 @@ Printable fixtures:
 
 Configured verification renders show assembled fit, side approach, a YZ
 section through the engaged interface, and an XY section through the enabled
-lock near the fixed -X entry side, showing the male recess, ramped female
-threshold, U-cut spring and back-clearance cavity.
+lock at the fixed -X entry side. The locking fixtures include the male
+screwdriver slot and recess, the edge-start ramped female threshold, the two
+spring side-relief cuts and the optional back-clearance cavity.
 EOF
