@@ -56,6 +56,19 @@ module sliding_dovetail_design(view = "approach") {
 }
 
 
+
+module sliding_dovetail_lock_design(view = "female") {
+    sliding_dovetail_render(
+        joint = sliding_dovetail_create(
+            locking = true,
+            lock_cut_back_clearance = true,
+            lock_release_access = false
+        ),
+        view = view,
+        slide = 16
+    );
+}
+
 /* [Design view] */
 view = "approach"; // [approach,assembled,male,female,female-cutter]
 
