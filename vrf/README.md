@@ -17,11 +17,12 @@ Default interface:
 
 The normal fit/approach evidence uses the unlocked default interface. A focused
 lock-section render creates the same interface with `locking = true`,
-`lock_cut_back_clearance = true` and screwdriver access disabled.
+`lock_cut_back_clearance = true` and male screwdriver access enabled.
 
 Printable fixtures include both plain and locking male/female pairs, plus an
-assembled locking inspection STL and a half-width female cutaway STL. The lock
-is positioned from the fixed -X entry side.
+assembled locking inspection STL and a half-width female cutaway STL. The
+female threshold starts at the fixed -X entry edge; the locking male includes
+the screwdriver-access slot.
 
 Evidence includes:
 
@@ -33,8 +34,8 @@ Evidence includes:
 - a 0.20 mm XY section through the center of the integral lock.
 
 The lock section is intended to make these relationships visible together:
-male recess, ramped female threshold, locking face, flexible tongue and the
-optional cavity behind the tongue.
+male recess, male screwdriver slot, ramped female threshold, locking face,
+flexible tongue and the optional cavity behind the tongue.
 
 `lib.scad.util` is used only in section/inspection adapters. The core
 `sliding_dovetail.scad` source remains independent.

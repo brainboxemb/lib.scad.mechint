@@ -47,24 +47,25 @@ Locking is configured on the same top-level interface object:
 joint = sliding_dovetail_create(
     locking = true,
     lock_cut_back_clearance = true,
-    lock_release_access = false
+    lock_release_access = true
 );
 ```
 
 The library creates the lower-level lock and spring configuration internally.
 
-The enabled lock is positioned from the fixed -X female entry side through
-`lock_entry_offset`. In the assembled interface, the matching male recess is
-measured from the male -X/trailing end, so both features align at the same X
-position.
+`lock_entry_offset` measures the start of the female threshold ramp from the
+fixed -X entry side. Its default is 0 mm, so the ramp starts directly at the
+edge. In the assembled interface the male recess is derived from that same
+entry-side definition.
 
 The lock combines a recess in the male with a ramped threshold in the female
-channel roof. U-shaped relief cuts isolate that threshold as part of an
-integral cantilever spring.
+channel roof. With the default edge placement, two longitudinal relief cuts
+isolate the tongue while the female entry edge is already its free end.
 
 `lock_cut_back_clearance = true` cuts the flex cavity behind the tongue.
 With it disabled, the consuming host part must provide that free space itself.
 
 The threshold insertion ramp is independently tunable with
-`lock_ramp_length`. Screwdriver/service access is independent and opt-in
-through `lock_release_access`.
+`lock_ramp_length`. With `lock_release_access = true`, the male receives a
+narrow slot from its -X edge to the recess for a small flat screwdriver.
+`lock_release_width` and `lock_release_depth` control that slot.

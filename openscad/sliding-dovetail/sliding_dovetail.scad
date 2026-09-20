@@ -18,7 +18,7 @@ use <sliding_dovetail_lock.scad>
 //   axial_clearance = Additional female travel along the X slide axis.
 //   extra = Boolean overlap added at slide ends and the mouth/base plane.
 //   locking = Enable the integral male-recess / female-spring lock.
-//   lock_entry_offset = Lock center distance from the fixed -X entry side.
+//   lock_entry_offset = Threshold-ramp start distance from the fixed -X entry side.
 //   lock_width = Width of threshold across Z.
 //   lock_recess_length = Male recess length along X.
 //   lock_recess_depth = Male recess depth below the dovetail root surface.
@@ -30,9 +30,9 @@ use <sliding_dovetail_lock.scad>
 //   lock_spring_relief = Width of the U-shaped isolation cuts.
 //   lock_cut_back_clearance = Whether to cut a flex cavity behind the tongue.
 //   lock_back_clearance = Flex-cavity depth behind the tongue.
-//   lock_release_access = Whether to add a larger screwdriver access opening.
-//   lock_release_length = Screwdriver opening length along X.
-//   lock_release_depth = Screwdriver opening depth outward from the channel.
+//   lock_release_access = Whether to add a male screwdriver slot from the entry edge.
+//   lock_release_width = Screwdriver slot width across Z.
+//   lock_release_depth = Screwdriver slot depth into the male root surface.
 function sliding_dovetail_create(
     width = 10,
     height = 3,
@@ -41,9 +41,9 @@ function sliding_dovetail_create(
     axial_clearance = 0.25,
     extra = 0.01,
     locking = false,
-    lock_entry_offset = 2.5,
+    lock_entry_offset = 0,
     lock_width = 4.0,
-    lock_recess_length = 2.0,
+    lock_recess_length = 1.0,
     lock_recess_depth = 0.6,
     lock_threshold_length = 1.5,
     lock_threshold_height = 0.5,
@@ -53,9 +53,9 @@ function sliding_dovetail_create(
     lock_spring_relief = 0.8,
     lock_cut_back_clearance = true,
     lock_back_clearance = 0.8,
-    lock_release_access = false,
-    lock_release_length = 3.0,
-    lock_release_depth = 5.0
+    lock_release_access = true,
+    lock_release_width = 2.5,
+    lock_release_depth = 0.6
 ) =
     let(
         mouth_width =
@@ -75,7 +75,7 @@ function sliding_dovetail_create(
             cut_back_clearance = lock_cut_back_clearance,
             back_clearance = lock_back_clearance,
             release_access = lock_release_access,
-            release_length = lock_release_length,
+            release_width = lock_release_width,
             release_depth = lock_release_depth
         )
     )
@@ -163,7 +163,8 @@ module sliding_dovetail_male_build(
             slide,
             joint.width,
             joint.height,
-            joint.clearance
+            joint.clearance,
+            joint.axial_clearance
         )
             difference() {
                 _sliding_dovetail_male_base(
@@ -174,8 +175,17 @@ module sliding_dovetail_male_build(
                 _sliding_dovetail_lock_male_recess_cutter(
                     _sliding_dovetail_lock(joint),
                     slide,
+                    joint.axial_clearance,
                     joint.height,
                     joint.clearance,
+                    joint.extra
+                );
+
+                _sliding_dovetail_lock_male_release_cutter(
+                    _sliding_dovetail_lock(joint),
+                    slide,
+                    joint.axial_clearance,
+                    joint.height,
                     joint.extra
                 );
             }
@@ -205,7 +215,8 @@ module sliding_dovetail_female_cutter(
             slide,
             joint.width,
             joint.height,
-            joint.clearance
+            joint.clearance,
+            joint.axial_clearance
         )
             union() {
                 // Start from the normal female subtraction volume, but keep a

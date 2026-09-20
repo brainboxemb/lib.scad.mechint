@@ -5,7 +5,7 @@ joint =
     sliding_dovetail_create(
         locking = true,
         lock_cut_back_clearance = true,
-        lock_release_access = false
+        lock_release_access = true
     );
 
 reference =

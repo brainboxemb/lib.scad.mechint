@@ -22,9 +22,9 @@ slide = 16;              // [6:1:40]
 
 /* [Lock] */
 locking = true;
-lock_entry_offset = 2.5;          // [1:0.25:8]
+lock_entry_offset = 0;            // [0:0.25:8]
 lock_width = 4.0;               // [2:0.25:8]
-lock_recess_length = 2.0;       // [1.5:0.25:6]
+lock_recess_length = 1.0;       // [0.5:0.25:4]
 lock_recess_depth = 0.6;        // [0.25:0.05:2]
 lock_threshold_length = 1.5;    // [0.5:0.25:4]
 lock_threshold_height = 0.5;    // [0.25:0.05:1.5]
@@ -34,9 +34,9 @@ lock_spring_thickness = 1.2;    // [0.6:0.1:3]
 lock_spring_relief = 0.8;       // [0.4:0.1:2]
 lock_cut_back_clearance = true;
 lock_back_clearance = 0.8;      // [0:0.1:3]
-lock_release_access = false;
-lock_release_length = 3.0;      // [1:0.25:8]
-lock_release_depth = 5.0;       // [2:0.5:10]
+lock_release_access = true;
+lock_release_width = 2.5;       // [1:0.25:6]
+lock_release_depth = 0.6;       // [0.25:0.05:2]
 
 /* [Reference blocks] */
 female_block_length = 24; // [12:1:50]
@@ -70,7 +70,7 @@ joint =
         lock_cut_back_clearance = lock_cut_back_clearance,
         lock_back_clearance = lock_back_clearance,
         lock_release_access = lock_release_access,
-        lock_release_length = lock_release_length,
+        lock_release_width = lock_release_width,
         lock_release_depth = lock_release_depth
     );
 
@@ -89,8 +89,6 @@ is_fit_section = view == "assembled-section";
 is_lock_section = view == "lock-section";
 lock_section_center_x =
     lock_entry_offset
-    - lock_threshold_length / 2
-    - lock_spring_relief
     + lock_spring_length / 2;
 
 $vpt = is_fit_section

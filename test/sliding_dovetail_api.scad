@@ -35,17 +35,19 @@ lock_joint =
     sliding_dovetail_create(
         locking = true,
         lock_cut_back_clearance = true,
-        lock_release_access = false
+        lock_release_access = true
     );
 
 assert(sliding_dovetail_locking_enabled(lock_joint));
-assert(abs(lock_joint.lock.entry_offset - 2.5) < 0.0001);
+assert(abs(lock_joint.lock.entry_offset) < 0.0001);
+assert(lock_joint.lock.release_access);
+assert(abs(lock_joint.lock.release_width - 2.5) < 0.0001);
 
 host_clearance_joint =
     sliding_dovetail_create(
         locking = true,
         lock_cut_back_clearance = false,
-        lock_release_access = false
+        lock_release_access = true
     );
 
 assert(sliding_dovetail_locking_enabled(host_clearance_joint));

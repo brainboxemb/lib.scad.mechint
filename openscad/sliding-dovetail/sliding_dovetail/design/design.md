@@ -106,25 +106,28 @@ slightly beyond the slide ends. It does not change the nominal profile.
 joint = sliding_dovetail_create(
     locking = true,
     lock_cut_back_clearance = true,
-    lock_release_access = false
+    lock_release_access = true
 );
 ```
 
-The lock center is measured from the fixed -X female entry side. The assembled
-male receives the matching recess at the same X position, measured from its
--X/trailing end. The female keeps a small threshold in the channel roof. Its -X/insertion face is ramped; the opposite face forms the
+`lock_entry_offset` measures the start of the threshold ramp from the fixed
+-X female entry side. At the default 0 mm the ramp starts directly at the edge.
+The assembled male receives the matching recess from the same entry-side
+definition. The threshold's -X face is ramped; the opposite face forms the
 locking stop.
 
-Two longitudinal relief cuts plus one transverse relief cut isolate a U-shaped
-cantilever around that threshold. The tongue remains anchored toward +X.
+Two longitudinal relief cuts run from the entry edge toward +X. Because the
+threshold starts at the edge, no transverse free-end cut is needed; the tongue
+remains anchored toward +X.
 
 When `lock_cut_back_clearance` is enabled, the female cutter also removes a
 cavity behind the tongue so it can deflect by at least the threshold height.
 When it is disabled, the interface still creates the threshold and U-cuts but
 leaves responsibility for the space behind the spring to the host part.
 
-`lock_release_access` is a separate opt-in service opening and is not coupled
-to the basic spring cavity.
+`lock_release_access` adds a narrow male slot from the -X entry edge to the
+recess. This gives a small flat screwdriver a path to lift the female tongue.
+It remains independent from the female spring cavity.
 
 ## Locking female
 

@@ -62,7 +62,7 @@ Locking is selected on the same top-level interface:
 joint = sliding_dovetail_create(
     locking = true,
     lock_cut_back_clearance = true,
-    lock_release_access = false
+    lock_release_access = true
 );
 ```
 
@@ -71,27 +71,29 @@ configuration internally. Male and female therefore always use one shared
 interface definition.
 
 The entry side is fixed by the interface contract: the female opens at -X and
-the male inserts toward +X. `lock_entry_offset` measures the lock center from
-that -X entry side.
+the male inserts toward +X. `lock_entry_offset` measures the start of the
+threshold ramp from that -X entry side. The default is 0 mm, so the ramp starts
+directly at the edge.
 
 The lock consists of:
 
-- a recess near the male -X / trailing end, aligned with the female entry when assembled;
+- a recess near the male -X / trailing end, aligned with the female threshold when assembled;
 - a threshold retained in the roof of the female channel;
 - a sloped threshold face toward the female opening so the male can push the
   tongue out of the way while inserting;
 - a steeper rear face that engages the male recess;
-- U-shaped isolation cuts around the female threshold so that material becomes
-  an integral cantilever spring.
+- two longitudinal isolation cuts from the female entry toward +X, leaving the
+  entry edge itself as the free end of the cantilever spring.
 
 `lock_cut_back_clearance = true` also removes a flex cavity behind that
 cantilever. With `false`, the U-shaped spring cuts and threshold are still
 created, but the consuming part is responsible for providing free space behind
 the configured spring thickness.
 
-A larger service opening for a small screwdriver is independent and opt-in
-through `lock_release_access`; it is not required merely to create a flexible
-tongue.
+`lock_release_access = true` adds a narrower slot in the male from its -X
+entry edge to the lock recess. A small flat screwdriver can enter that slot and
+lift the female tongue out of the recess. The slot width and depth are controlled
+by `lock_release_width` and `lock_release_depth`.
 
 ## Female test block
 
