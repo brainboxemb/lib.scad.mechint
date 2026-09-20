@@ -34,3 +34,15 @@ profiles:
   14-sliding-dovetail-lock-hinge-relief:
     files: [14-sliding-dovetail-lock-hinge-relief.scad]
     image_size: [800, 600]
+
+  15-sliding-dovetail-lock-hinge-overview:
+    files: [15-sliding-dovetail-lock-hinge-overview.scad]
+    image_size: [900, 650]
+
+  16-sliding-dovetail-lock-hinge-cutaway:
+    files: [16-sliding-dovetail-lock-hinge-cutaway.scad]
+    image_size: [900, 650]
+
+  17-sliding-dovetail-lock-hinge-assembled-cutaway:
+    files: [17-sliding-dovetail-lock-hinge-assembled-cutaway.scad]
+    image_size: [900, 650]

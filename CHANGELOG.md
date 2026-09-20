@@ -9,6 +9,13 @@
   fixed end while `lock_spring_hinge_thickness` sets the remaining local
   flexure thickness. The outer/rear host face stays flat, and the default hinge
   length of 0 preserves existing lock geometry.
+- Add dedicated full-female, cutaway and assembled-cutaway hinge-relief renders
+  plus matching inspectable STL fixtures.
+
+### Changed
+
+- Keep the aggregate API geometry as a temporary verification smoke test instead
+  of publishing `sliding-dovetail-api.stl` alongside intentional fixtures.
 
 ## v0.1.4
 

@@ -12,6 +12,7 @@ project decides where an interface is placed and what it connects.
   <tr>
     <th align="center">Dovetail pair</th>
     <th align="center">Integral lock section</th>
+    <th align="center">Flat-back hinge relief</th>
   </tr>
   <tr>
     <td align="center">
@@ -22,6 +23,11 @@ project decides where an interface is placed and what it connects.
     <td align="center">
       <a href="../../blob/prod/vrf/png/10-sliding-dovetail-lock-section.png">
         <img src="../../raw/prod/vrf/png/10-sliding-dovetail-lock-section.png" alt="Sliding dovetail integral lock section" width="100%">
+      </a>
+    </td>
+    <td align="center">
+      <a href="../../blob/prod/vrf/png/16-sliding-dovetail-lock-hinge-cutaway.png">
+        <img src="../../raw/prod/vrf/png/16-sliding-dovetail-lock-hinge-cutaway.png" alt="Flat-back spring hinge relief cutaway" width="100%">
       </a>
     </td>
   </tr>
@@ -136,6 +142,12 @@ Verification includes a small female block with:
 
 This lets the mechanical interface be developed independently from any one
 consumer such as the HUB75 frame.
+
+For the flat-back hinge-relief variant, verification also publishes deliberately
+named inspection STLs: complete female, female center cutaway and assembled
+center cutaway. The aggregate API smoke test is not a reference model; it mixes
+many unrelated builder calls only to prove that the public API compiles and
+renders, so that STL is not published.
 
 ## Dependency boundary
 

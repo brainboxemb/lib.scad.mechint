@@ -130,6 +130,40 @@ and `lock_spring_hinge_thickness` selects the minimum remaining material there.
 The relief is triangular and opens toward the female channel, so the outer face
 stays flat. A hinge length of 0 keeps the previous geometry exactly.
 
+### Flat-back hinge-relief example
+
+The example below deliberately uses a **3.3 mm** thick female spring, a
+**3.0 mm** tapered hinge zone and a **0.8 mm** remaining hinge thickness. Back
+clearance is disabled. This makes the difference between total host thickness
+and effective flexure thickness visually obvious.
+
+<!-- scad-render
+module: sliding_dovetail_hinge_design
+view: overview
+-->
+
+The outside/back face remains one flat supported surface. There is no horizontal
+cavity under it.
+
+<!-- scad-render
+module: sliding_dovetail_hinge_design
+view: cutaway
+-->
+
+The center cutaway exposes the triangular channel-side relief. The tongue is
+full-depth away from the fixed end and tapers down only in the local hinge zone.
+
+<!-- scad-render
+module: sliding_dovetail_hinge_design
+view: assembled-cutaway
+-->
+
+The assembled cutaway shows the same female together with the locking male, so
+the hinge relief can be read in relation to the threshold and male recess.
+
+Matching inspectable STL fixtures are published as verification fixtures
+15–17: full female, female cutaway and assembled cutaway.
+
 `lock_release_access` extends the male recess to the -X entry edge using the
 same width as the recess. This gives a small flat screwdriver a straight path
 to lift the female tongue without a narrow/wide transition. It remains
