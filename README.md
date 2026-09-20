@@ -110,9 +110,12 @@ The lock consists of:
   entry edge itself as the free end of the cantilever spring.
 
 `lock_cut_back_clearance = true` also removes a flex cavity behind that
-cantilever. With `false`, the U-shaped spring cuts and threshold are still
-created, but the consuming part is responsible for providing free space behind
-the configured spring thickness.
+cantilever. With `false`, the tongue may instead keep a flat outer/rear face.
+For thick hosts the optional `lock_spring_hinge_length` and
+`lock_spring_hinge_thickness` parameters can cut a triangular relief from the
+channel side near the fixed spring end. This creates a local flexure without a
+horizontal cavity under the outer surface. A hinge length of 0 preserves the
+legacy spring geometry exactly.
 
 `lock_release_access = true` extends the male recess all the way to its -X
 entry edge. The access path has the same width as the recess, so there is no

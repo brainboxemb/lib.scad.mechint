@@ -31,6 +31,8 @@ use <sliding_dovetail_lock.scad>
 //   lock_spring_length = Flexible female tongue length along X.
 //   lock_spring_thickness = Material thickness of the flexible tongue.
 //   lock_spring_relief = Width of the U-shaped isolation cuts.
+//   lock_spring_hinge_length = Length of an optional tapered flex zone at the fixed spring end; 0 disables it.
+//   lock_spring_hinge_thickness = Minimum tongue thickness left at that fixed end when hinge relief is enabled.
 //   lock_cut_back_clearance = Whether to cut a flex cavity behind the tongue.
 //   lock_back_clearance = Flex-cavity depth behind the tongue.
 //   lock_release_access = Whether to add a male screwdriver slot from the entry edge.
@@ -56,6 +58,8 @@ function sliding_dovetail_create(
     lock_spring_length = 7.0,
     lock_spring_thickness = 1.2,
     lock_spring_relief = 0.8,
+    lock_spring_hinge_length = 0,
+    lock_spring_hinge_thickness = 0.8,
     lock_cut_back_clearance = true,
     lock_back_clearance = 0.8,
     lock_release_access = true,
@@ -80,6 +84,8 @@ function sliding_dovetail_create(
             spring_length = lock_spring_length,
             spring_thickness = lock_spring_thickness,
             spring_relief = lock_spring_relief,
+            spring_hinge_length = lock_spring_hinge_length,
+            spring_hinge_thickness = lock_spring_hinge_thickness,
             cut_back_clearance = lock_cut_back_clearance,
             back_clearance = lock_back_clearance,
             release_access = lock_release_access,

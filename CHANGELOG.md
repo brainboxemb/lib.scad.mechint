@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- Add optional tapered female spring hinge relief for thick hosts. A non-zero
+  `lock_spring_hinge_length` cuts a triangular channel-side relief near the
+  fixed end while `lock_spring_hinge_thickness` sets the remaining local
+  flexure thickness. The outer/rear host face stays flat, and the default hinge
+  length of 0 preserves existing lock geometry.
+
 ## v0.1.4
 
 ### Added
