@@ -27,6 +27,7 @@ The male mouth lies at `Y=0`; the wider root lies toward `+Y`.
 | Female clearance | 0.20 mm |
 | Axial clearance | 0.25 mm |
 | Boolean overlap (`extra`) | 0.01 mm |
+| Female entry slot | 0 mm / disabled |
 | Locking | disabled |
 
 ## Parameter meaning
@@ -38,6 +39,33 @@ derived from `width`, `height` and `angle`.
 
 `extra` exists only to make OpenSCAD unions and differences robust at shared
 boundaries. It is not part of the nominal mating dimensions.
+
+### Female entry slot
+
+`entry_slot_length` optionally adds a straight rectangular subtraction volume
+ahead of the female channel on the fixed `-X` entry side. Its width and depth
+come from the complete clearanced female root envelope, so a male dovetail can
+sit ahead of the channel before sliding in.
+
+The parameter is a length along X only. A value of `0` preserves the ordinary
+female cutter. The male builder ignores this setting.
+
+For example, a 16 mm male can be given a 16 mm approach pocket:
+
+```scad
+joint = sliding_dovetail_create(
+    entry_slot_length = 16
+);
+
+sliding_dovetail_female_cutter(
+    joint,
+    slide = 16
+);
+```
+
+`sliding_dovetail_female_slide()` continues to return only the mating channel
+length. Use `sliding_dovetail_female_total_length()` when host geometry must
+include both channel and entry slot.
 
 ## Locking
 

@@ -23,8 +23,8 @@ function sliding_dovetail_reference_create(
 ) =
     assert(
         female_block_length
-            > sliding_dovetail_female_slide(joint, slide),
-        "female reference block must leave material for an end stop"
+            > sliding_dovetail_female_total_length(joint, slide),
+        "female reference block must contain entry slot, channel and end stop"
     )
     assert(
         female_block_depth
@@ -60,15 +60,28 @@ function sliding_dovetail_reference_female_channel_length(reference) =
         reference.slide
     );
 
+function sliding_dovetail_reference_entry_slot_length(reference) =
+    sliding_dovetail_entry_slot_length(reference.joint);
+
+function sliding_dovetail_reference_female_total_length(reference) =
+    sliding_dovetail_female_total_length(
+        reference.joint,
+        reference.slide
+    );
+
 function sliding_dovetail_reference_male_x(
     reference,
     position = "assembled"
 ) =
     position == "assembled"
-        ? reference.slide / 2
-        : position == "approach"
-            ? -reference.slide / 2 - reference.approach_gap
-            : assert(
+        ? sliding_dovetail_reference_entry_slot_length(reference)
+            + reference.slide / 2
+        : position == "entry"
+            ? sliding_dovetail_reference_entry_slot_length(reference)
+                - reference.slide / 2
+            : position == "approach"
+                ? -reference.slide / 2 - reference.approach_gap
+                : assert(
                 false,
                 str(
                     "Unknown sliding-dovetail reference position: ",
@@ -79,6 +92,8 @@ function sliding_dovetail_reference_male_x(
 module sliding_dovetail_reference_female_build(reference) {
     channel_length =
         sliding_dovetail_reference_female_channel_length(reference);
+    entry_slot_length =
+        sliding_dovetail_reference_entry_slot_length(reference);
 
     difference() {
         translate([
@@ -95,7 +110,7 @@ module sliding_dovetail_reference_female_build(reference) {
         // The public cutter is centered on X. Shift it so the female channel
         // opens through the block's X=0 side and leaves a solid +X end stop.
         translate([
-            channel_length / 2,
+            channel_length / 2 + entry_slot_length,
             0,
             0
         ])
