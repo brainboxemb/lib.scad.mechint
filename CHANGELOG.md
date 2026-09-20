@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+### Fixed
+
+- Keep the integral female lock tongue U-shaped when `entry_slot_length > 0`
+  by adding the transverse spring relief at the mating-channel entry. The
+  existing no-entry-slot lock geometry remains unchanged.
+
 ## v0.1.1
 
 ### Added

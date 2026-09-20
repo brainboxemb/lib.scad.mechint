@@ -18,3 +18,7 @@ profiles:
   10-sliding-dovetail-lock-section:
     files: [10-sliding-dovetail-lock-section.scad]
     image_size: [800, 600]
+
+  11-sliding-dovetail-lock-entry-slot-spring:
+    files: [11-sliding-dovetail-lock-entry-slot-spring.scad]
+    image_size: [800, 600]

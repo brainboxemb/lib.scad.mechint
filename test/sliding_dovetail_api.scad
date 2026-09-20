@@ -66,6 +66,21 @@ host_clearance_joint =
 
 assert(sliding_dovetail_locking_enabled(host_clearance_joint));
 
+entry_lock_joint =
+    sliding_dovetail_create(
+        entry_slot_length = 16,
+        locking = true,
+        lock_spring_length = 5.5,
+        lock_cut_back_clearance = true,
+        lock_release_access = true
+    );
+
+assert(sliding_dovetail_locking_enabled(entry_lock_joint));
+assert(
+    abs(sliding_dovetail_entry_slot_length(entry_lock_joint) - 16)
+    < 0.0001
+);
+
 // Exercise the public builders with plain and locking interfaces.
 translate([-36, 0, 0])
     sliding_dovetail_male_build(
@@ -100,5 +115,11 @@ translate([60, 0, 0])
 translate([84, 0, 0])
     sliding_dovetail_female_cutter(
         entry_joint,
+        slide = 16
+    );
+
+translate([108, 0, 0])
+    sliding_dovetail_female_cutter(
+        entry_lock_joint,
         slide = 16
     );

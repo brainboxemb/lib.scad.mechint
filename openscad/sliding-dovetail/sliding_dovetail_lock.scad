@@ -303,15 +303,17 @@ module _sliding_dovetail_lock_female_threshold_keepout(
             ]);
 }
 
-// Female subtraction volumes around the threshold. With entry_offset=0 the
-// female block edge itself is the free end, so only the two side cuts are
-// needed. A transverse cut is added only when the spring starts away from the
-// entry edge. The back cavity remains optional.
+// Female subtraction volumes around the threshold. The two longitudinal side
+// cuts form the sides of the U-shaped tongue. A transverse cut is also needed
+// whenever material continues ahead of the spring start: either because the
+// threshold has a non-zero entry offset or because the parent female interface
+// has a straight entry slot. The back cavity remains optional.
 module _sliding_dovetail_lock_female_relief_cutter(
     lock,
     slide,
     axial_clearance,
     female_height,
+    entry_slot_length = 0,
     extra = 0
 ) {
     spring_x0 =
@@ -354,7 +356,10 @@ module _sliding_dovetail_lock_female_relief_cutter(
                 spring.relief
             ]);
 
-        if (lock.entry_offset > 0)
+        if (
+            lock.entry_offset > 0
+            || entry_slot_length > 0
+        )
             translate([
                 spring_x0 - spring.relief,
                 female_height,
