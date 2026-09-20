@@ -43,7 +43,7 @@ function sliding_dovetail_create(
     locking = false,
     lock_end_offset = 2.0,
     lock_width = 4.0,
-    lock_recess_length = 3.0,
+    lock_recess_length = 2.0,
     lock_recess_depth = 0.6,
     lock_threshold_length = 1.5,
     lock_threshold_height = 0.5,
