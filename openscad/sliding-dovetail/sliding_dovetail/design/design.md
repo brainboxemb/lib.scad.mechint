@@ -2,7 +2,7 @@
 
 <!-- scad-render-defaults
 engine: openscad
-source: ../sliding_dovetail_render.scad
+source: sliding_dovetail_render.scad
 module: sliding_dovetail_design
 vpr: [72, 0, 35]
 -->
