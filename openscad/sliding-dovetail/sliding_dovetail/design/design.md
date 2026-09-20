@@ -20,13 +20,11 @@ Y = profile depth
 Z = profile width
 ```
 
-## One object owns male and female geometry
+## One object owns the complete interface
+
+Normal consumers configure the male/female interface once:
 
 ```scad
-lock = sliding_dovetail_lock_create(
-    enabled = false
-);
-
 joint = sliding_dovetail_create(
     width = 10,
     height = 3,
@@ -34,9 +32,13 @@ joint = sliding_dovetail_create(
     clearance = 0.20,
     axial_clearance = 0.25,
     extra = 0.01,
-    lock = lock
+    locking = false
 );
 ```
+
+When locking is enabled, this same constructor also initializes the lower-level
+lock and spring configuration. Consumers do not need to construct those objects
+separately.
 
 The nominal male root is 10 mm wide and 3 mm deep. A 20° flank angle gives a
 derived mouth width of about 7.82 mm.
@@ -94,9 +96,27 @@ normal design representation of the female side.
 `extra=0.01` extends geometry only across union/difference boundaries and
 slightly beyond the slide ends. It does not change the nominal profile.
 
-## Locking is optional
+## Optional lock
 
-The base interface receives a separate disabled
-`sliding_dovetail_lock_create()` object. A future enabled lock can add the
-male recess, flexible female threshold and screwdriver-release access without
-expanding the base dovetail constructor with lock-specific dimensions.
+```scad
+joint = sliding_dovetail_create(
+    locking = true,
+    lock_cut_back_clearance = true,
+    lock_release_access = false
+);
+```
+
+The male receives a local recess. The female keeps a small threshold in the
+channel roof. Its -X/insertion face is ramped; the opposite face forms the
+locking stop.
+
+Two longitudinal relief cuts plus one transverse relief cut isolate a U-shaped
+cantilever around that threshold. The tongue remains anchored toward +X.
+
+When `lock_cut_back_clearance` is enabled, the female cutter also removes a
+cavity behind the tongue so it can deflect by at least the threshold height.
+When it is disabled, the interface still creates the threshold and U-cuts but
+leaves responsibility for the space behind the spring to the host part.
+
+`lock_release_access` is a separate opt-in service opening and is not coupled
+to the basic spring cavity.
