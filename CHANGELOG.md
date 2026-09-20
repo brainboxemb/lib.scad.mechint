@@ -1,5 +1,16 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- Add optional `root_land_depth` to replace the final part of each dovetail
+  flank with a straight root land while preserving the legacy profile exactly
+  at the default value of 0.
+- Add `sliding_dovetail_male_relief_cutter()` so consumers can trim local body
+  overlap away from male flanks using the same interface object instead of
+  duplicating profile geometry.
+
 ## v0.1.2
 
 ### Fixed

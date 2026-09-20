@@ -23,6 +23,7 @@ The male mouth lies at `Y=0`; the wider root lies toward `+Y`.
 | Root / maximum male width | 10.0 mm |
 | Profile height | 3.0 mm |
 | Flank angle | 20° |
+| Root land depth | 0 mm / disabled |
 | Derived male mouth width | 7.82 mm |
 | Female clearance | 0.20 mm |
 | Axial clearance | 0.25 mm |
@@ -32,8 +33,15 @@ The male mouth lies at `Y=0`; the wider root lies toward `+Y`.
 
 ## Parameter meaning
 
-`angle` directly describes the mechanical flank angle. The mouth width is
-derived from `width`, `height` and `angle`.
+`angle` directly describes the mechanical flank angle.
+
+`root_land_depth` optionally replaces the final part of each angled flank with
+a straight land at the wide/root end. A value of `0` preserves the original
+trapezoidal profile exactly. The mouth width is derived from `width`, the
+remaining sloped depth `height - root_land_depth`, and `angle`.
+
+This is useful for side-printed parts where a fully angled profile would
+otherwise finish on a sharp first-layer edge.
 
 `clearance` and `axial_clearance` are fit dimensions.
 
@@ -105,3 +113,29 @@ The threshold insertion ramp is independently tunable with
 to the male -X edge with the same width as the recess itself. A small flat
 screwdriver can use that straight opening to lift the female tongue.
 `lock_release_depth` controls its depth.
+
+
+## Male mating relief
+
+A consuming body may overlap the male interface for a robust union while its
+flanks still need to remain exposed. Use the profile-derived cutter instead of
+duplicating dovetail math:
+
+```scad
+difference() {
+    consumer_body();
+
+    sliding_dovetail_male_relief_cutter(
+        joint,
+        slide = 16,
+        relief_width = 12
+    );
+}
+
+sliding_dovetail_male_build(joint, slide = 16);
+```
+
+`relief_width` is the total consumer envelope across native Z that should be
+trimmed. The cutter follows the same male profile, including
+`root_land_depth` and `extra`; product-specific body placement stays in the
+consumer.
