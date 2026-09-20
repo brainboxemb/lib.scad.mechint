@@ -184,6 +184,12 @@ module _sliding_dovetail_lock_assert_valid(
         "sliding dovetail lock spring must fit inside the female channel"
     );
     assert(
+        lock.spring.hinge_length == 0
+            || lock.spring.hinge_length
+                <= lock.spring.length - lock.threshold_length,
+        "sliding dovetail lock spring hinge relief must not overlap the threshold"
+    );
+    assert(
         lock.entry_offset
             + lock.threshold_length
             + axial_clearance
