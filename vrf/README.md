@@ -15,9 +15,10 @@ Default interface:
 | boolean extra | 0.01 mm |
 | male slide length | 16.0 mm |
 
-The normal fit/approach evidence uses the unlocked default interface. A focused
-lock-section render creates the same interface with locking enabled, back
-clearance enabled and male screwdriver access enabled.
+The normal fit/approach evidence uses the unlocked default interface. Locking
+examples intentionally use a slightly shorter 5.5 mm spring tongue (about 80%
+of the 7.0 mm library default), with back clearance and male screwdriver access
+enabled.
 
 Verification files are numbered so they sort by purpose:
 

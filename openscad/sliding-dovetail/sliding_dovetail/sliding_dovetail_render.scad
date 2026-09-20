@@ -61,6 +61,7 @@ module sliding_dovetail_lock_design(view = "female") {
     sliding_dovetail_render(
         joint = sliding_dovetail_create(
             locking = true,
+        lock_spring_length = 5.5,
             lock_cut_back_clearance = true,
             lock_release_access = true
         ),
