@@ -48,14 +48,30 @@ view: male
 
 The example slide is 16 mm long along X.
 
-## Female geometry comes from the same object
+## Actual male and female parts
 
 <!-- scad-render
 view: pair
 -->
 
-The blue geometry is the female cutter shown separately from the red male.
-Clearance expands the female cavity while preserving the same flank angle.
+The blue part is now an **actual female example block**: solid material with the
+female dovetail subtracted from it, open at the X entry side and with a solid
+end stop. The red male is shown approaching along the same X slide axis.
+
+The public library still exposes the female side as a cutter because consumers
+subtract it from their own geometry. The cutter itself is only a debug view:
+
+```scad
+sliding_dovetail_female_cutter(joint, slide = 16);
+```
+
+## Female example block
+
+<!-- scad-render
+view: female
+-->
+
+This view shows the female geometry by itself without the male in front of it.
 
 ## Boolean overlap is not fit clearance
 
