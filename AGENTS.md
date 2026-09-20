@@ -10,11 +10,21 @@ clearance and optional retention/release features.
 
 Product-specific placement and load-path decisions stay in consuming projects.
 
-## Generic workflow policy
+## Cross-project and workflow policy
 
-Before SCAD branch, pull-request, publication or release work, read the pinned
+Before repository work, read `brainboxemb/brainboxemb.meta/AGENTS.md` as the
+cross-project coordination policy. In particular, follow its repository/CI
+discipline: group related edits into coherent commits and branch updates, do
+not create per-file micro-commits merely because a Git API makes that
+convenient, and inspect the resulting CI/evidence before the next corrective
+push.
+
+For SCAD branch, pull-request, publication or release work, also read the pinned
 `tools/tool.scad-project/AGENTS.md`. Generic repository bootstrap and dependency
 handling belong to the pinned `tools/tool.git-project`.
+
+Repository-specific guidance in this file supplements those shared policies; it
+does not replace them.
 
 ## OpenSCAD API
 
