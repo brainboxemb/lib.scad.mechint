@@ -1,2 +1,2 @@
 defaults:
-  image_size: [1200, 800]
+  image_size: [640, 480]
