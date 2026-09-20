@@ -1,7 +1,7 @@
 // Lock hinge-relief verification.
-// A thick female spring keeps a flat outer face. The root side enters through a
-// short straight wall and 45-degree shoulder, a thin flat flex land follows,
-// then a calculated ramp returns to full thickness before the locking threshold.
+// Opposing local pockets approach the tongue from both faces, leaving a short
+// centered flex web. Root and threshold remain full-depth; each pocket uses a
+// local 45-degree chamfer, short flat land and calculated return ramp.
 
 use <../../ext/lib.scad.util/openscad/inspection.scad>
 use <../../openscad/sliding-dovetail/sliding_dovetail.scad>

@@ -7,14 +7,13 @@
 - Add optional female spring hinge relief for thick hosts. A non-zero
   `lock_spring_hinge_length` creates a compact channel-side pocket near the
   fixed end while `lock_spring_hinge_thickness` sets the remaining local
-  flexure thickness. From the fixed root toward the lip, the relief now uses a
-  mostly straight wall with a local 45-degree lower-corner chamfer, a flat
-  minimum-thickness flex land of the same length as that chamfer run, and a
-  calculated return ramp constrained to a maximum of 45 degrees.
-  The complete locking-threshold region returns
-  to full host thickness before the lip, preventing the thin tongue from
-  appearing or behaving as a floating strip. The outer/rear host face stays
-  flat, and the default hinge length of 0 preserves existing lock geometry.
+  flexure thickness. The relief is now approached from **both faces**, leaving
+  a short centered flex web instead of thinning the tongue from only one side.
+  Each opposing pocket uses a mostly straight root wall, a local 45-degree
+  chamfer, a short flat land and a calculated return ramp constrained to a
+  maximum of 45 degrees. The fixed root and complete locking-threshold region
+  stay full-depth. The default hinge length of 0 preserves existing lock
+  geometry.
 - Add dedicated full-female, cutaway and assembled-cutaway hinge-relief renders
   plus matching inspectable STL fixtures.
 

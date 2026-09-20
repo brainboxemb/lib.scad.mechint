@@ -115,6 +115,7 @@ module _sliding_dovetail_hinge_male_cutaway(reference, position = "assembled") {
 
 
 module sliding_dovetail_hinge_design(view = "overview") {
+    // 3.3 mm total tongue, 0.8 mm centered flex web.
     spring_thickness = 3.3;
 
     joint =

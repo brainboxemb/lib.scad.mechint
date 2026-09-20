@@ -112,32 +112,31 @@ needed to free the tongue at its entry end.
 `lock_cut_back_clearance = true` cuts the flex cavity behind the tongue.
 With it disabled, the spring can keep a flat outer/rear face.
 
-For a thick host, `lock_spring_hinge_length > 0` enables a local hinge relief
-while the outer/rear face remains flat.
-`lock_spring_hinge_thickness` controls the minimum flex-land thickness.
+For a thick host, `lock_spring_hinge_length > 0` enables a **two-sided**
+hinge relief. `lock_spring_hinge_thickness` is the total thickness of the
+short flex web that remains between the two opposing pockets.
 
-The relief deliberately keeps the complete locking-threshold region full-depth.
-Reading from the **fixed spring root toward the locking lip**, the profile is:
+The complete locking-threshold region and the fixed root stay full-depth. From
+the fixed root toward the locking lip, both faces use the same profile:
 
 1. a mostly straight root wall;
-2. a small 45-degree chamfer at its lower corner;
-3. a flat minimum-thickness flex land of the same length as the chamfer run;
-4. a return ramp back to full thickness;
+2. a local 45-degree chamfer;
+3. a short flat central-web land;
+4. a calculated return ramp;
 5. a full-depth flat land under the threshold/lip.
 
-`lock_spring_hinge_length` controls the root-side transition envelope. The
-return-ramp angle is derived from the remaining spring length after reserving
-that envelope and the full-depth threshold land, and the library rejects
-combinations that would make it steeper than 45 degrees. The verification
-example uses 3.3 mm total thickness, 0.8 mm flex thickness, a 1.65 mm root
-envelope and a 1.5 mm threshold. The envelope is split equally: a 0.825 x
-0.825 mm 45-degree chamfer followed by 0.825 mm of flat minimum-thickness land.
-The return ramp is then derived from the remaining length and is about
-33 degrees. For a 4 mm host, a 2 mm envelope gives exactly the intended
-1 x 1 mm chamfer plus 1 mm flat land. This
-keeps the locking lip
-structurally supported instead of leaving it on a visually or mechanically
-floating thin strip. A hinge length of 0 keeps the previous geometry exactly.
+`lock_spring_hinge_length` is split equally between the 45-degree chamfer run
+and the flat central-web land. The two pockets remove
+`(lock_spring_thickness - lock_spring_hinge_thickness) / 2` from each face,
+placing the remaining web around the middle of the tongue. The return-ramp angle
+is derived from the remaining spring length and is limited to 45 degrees.
+
+For a 4 mm tongue, `lock_spring_hinge_length = 2` gives the intended 1 x 1 mm
+45-degree chamfer followed by 1 mm flat land on each side. A centered web of
+about 1 mm would then leave about 1.5 mm relief depth per face. The verification
+model keeps the existing 3.3 mm tongue and 0.8 mm web so the same principle can
+be inspected at the current library test dimensions. A hinge length of 0 keeps
+the previous geometry exactly.
 
 The threshold insertion ramp is independently tunable with
 `lock_ramp_length`. With `lock_release_access = true`, the recess continues

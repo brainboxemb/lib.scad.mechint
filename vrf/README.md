@@ -43,7 +43,7 @@ the exact assembled position in the same neutral inspection orientation.
 Fixture 14 cuts that assembly at the native Z=0 center plane so the threshold,
 male recess, spring and release opening can be inspected together.
 
-Fixtures 15–17 focus on the flat-back hinge-relief variant: complete female,
+Fixtures 15–17 focus on the centered two-sided hinge-relief variant: complete female,
 female center cutaway and assembled center cutaway. The aggregate API source in
 `test/sliding_dovetail_api.scad` remains a compile/render smoke test, but its
 mixed geometry is temporary and is no longer published as a fixture STL.
@@ -63,15 +63,13 @@ Evidence includes:
 - a 0.20 mm YZ profile section through a 12 x 2 mm interface with 0.5 mm
   straight lands at both the narrow/mouth and wide/root ends;
 - a 0.20 mm XY lock section through a thick 3.3 mm female tongue with a
-  1.65 mm root-side envelope and 0.8 mm minimum flex thickness; the envelope is
-  split equally into a 0.825 x 0.825 mm 45-degree chamfer and 0.825 mm flat
-  minimum-thickness land, the return ramp is about 33 degrees, and the complete
-  1.5 mm threshold region is full-depth again;
-- an isometric full-female hinge overview showing the uninterrupted flat outer
-  face;
-- an isometric female center cutaway showing the mostly straight root wall,
-  small 45-degree lower-corner chamfer, short flex land, shallow return ramp and
-  full-depth threshold land;
+  centered 0.8 mm flex web; opposing relief pockets approach from both faces,
+  each using a local 45-degree chamfer, short flat land and calculated return
+  ramp while the fixed root and complete 1.5 mm threshold remain full-depth;
+- an isometric full-female hinge overview showing the two local surface
+  openings that create the centered web;
+- an isometric female center cutaway showing the opposing relief profiles and
+  the centered web between them;
 - an assembled hinge cutaway relating the relief to the threshold and male
   recess.
 

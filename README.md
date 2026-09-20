@@ -12,7 +12,7 @@ project decides where an interface is placed and what it connects.
   <tr>
     <th align="center">Dovetail pair</th>
     <th align="center">Integral lock section</th>
-    <th align="center">Flat-back hinge relief</th>
+    <th align="center">Centered hinge relief</th>
   </tr>
   <tr>
     <td align="center">
@@ -27,7 +27,7 @@ project decides where an interface is placed and what it connects.
     </td>
     <td align="center">
       <a href="../../blob/prod/vrf/png/16-sliding-dovetail-lock-hinge-cutaway.png">
-        <img src="../../raw/prod/vrf/png/16-sliding-dovetail-lock-hinge-cutaway.png" alt="Flat-back spring hinge relief cutaway" width="100%">
+        <img src="../../raw/prod/vrf/png/16-sliding-dovetail-lock-hinge-cutaway.png" alt="Centered spring hinge relief cutaway" width="100%">
       </a>
     </td>
   </tr>
@@ -118,15 +118,12 @@ The lock consists of:
 `lock_cut_back_clearance = true` also removes a flex cavity behind that
 cantilever. With `false`, the tongue may instead keep a flat outer/rear face.
 For thick hosts the optional `lock_spring_hinge_length` and
-`lock_spring_hinge_thickness` parameters create a compact channel-side hinge
-relief while the outer surface stays continuous and flat. From the fixed root
-toward the locking lip, the relief keeps a mostly straight wall, adds a local
-45-degree chamfer, then a flat minimum-thickness flex land of the **same
-length** as the chamfer run, followed by a calculated shallow return ramp.
-The return ramp is constrained to **45° maximum** and is preferably shallower
-when the available spring length allows it. The complete threshold/lip region
-is full-depth again before the lock starts. A hinge length of 0 preserves the
-legacy spring geometry exactly.
+`lock_spring_hinge_thickness` parameters create a **two-sided** local hinge
+relief. Matching pockets approach from both faces, leaving
+`lock_spring_hinge_thickness` as a short centered flex web. Each pocket uses a
+mostly straight wall, a local 45-degree chamfer, a short flat land and a
+calculated return ramp; the threshold/lip and fixed root remain full-depth.
+A hinge length of 0 preserves the legacy spring geometry exactly.
 
 `lock_release_access = true` extends the male recess all the way to its -X
 entry edge. The access path has the same width as the recess, so there is no
@@ -148,7 +145,7 @@ Verification includes a small female block with:
 This lets the mechanical interface be developed independently from any one
 consumer such as the HUB75 frame.
 
-For the flat-back hinge-relief variant, verification also publishes deliberately
+For the centered hinge-relief variant, verification also publishes deliberately
 named inspection STLs: complete female, female center cutaway and assembled
 center cutaway. The aggregate API smoke test is not a reference model; it mixes
 many unrelated builder calls only to prove that the public API compiles and

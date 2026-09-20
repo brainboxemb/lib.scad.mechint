@@ -31,8 +31,8 @@ use <sliding_dovetail_lock.scad>
 //   lock_spring_length = Flexible female tongue length along X.
 //   lock_spring_thickness = Material thickness of the flexible tongue.
 //   lock_spring_relief = Width of the U-shaped isolation cuts.
-//   lock_spring_hinge_length = Root-side hinge transition envelope; 0 disables the relief.
-//   lock_spring_hinge_thickness = Minimum tongue thickness in the flat flex land.
+//   lock_spring_hinge_length = Root-side chamfer + central-web envelope; 0 disables the relief.
+//   lock_spring_hinge_thickness = Total thickness of the centered flex web left between opposing relief pockets.
 //   lock_cut_back_clearance = Whether to cut a flex cavity behind the tongue.
 //   lock_back_clearance = Flex-cavity depth behind the tongue.
 //   lock_release_access = Whether to add a male screwdriver slot from the entry edge.

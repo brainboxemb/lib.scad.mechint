@@ -194,8 +194,10 @@ module _sliding_dovetail_lock_assert_valid(
             || lock.spring.length
                 - lock.threshold_length
                 - lock.spring.hinge_length
-                >= lock.spring.thickness
-                    - lock.spring.hinge_thickness,
+                >= (
+                    lock.spring.thickness
+                    - lock.spring.hinge_thickness
+                ) / 2,
         "sliding dovetail lock hinge return ramp must not exceed 45 degrees"
     );
     assert(
@@ -406,21 +408,22 @@ module _sliding_dovetail_lock_female_relief_cutter(
                     spring_width + 2 * spring.relief
                 ]);
 
-        // Optional print-friendly hinge relief. Keep the threshold/lip end
-        // full-depth so the locking feature itself remains a solid tongue.
-        // Moving from the fixed root toward the lip:
-        //   1. a short straight root wall enters the relief;
-        //   2. a 45-degree shoulder reaches the minimum flex thickness;
-        //   3. a flat minimum-thickness flex land follows;
-        //   4. a calculated ramp returns to full thickness;
-        //   5. a full-depth land remains under the complete threshold.
+        // Optional two-sided hinge relief. Keep the threshold/lip and fixed
+        // root full-depth, but approach the flex problem from both faces so the
+        // remaining hinge becomes a short web near the middle of the material.
         //
-        // hinge_length is the combined root-side chamfer + flat-flex envelope.
+        // Moving from the fixed root toward the lip, both opposing pockets use:
+        //   1. a mostly straight root wall;
+        //   2. a local 45-degree chamfer;
+        //   3. a flat central-web land;
+        //   4. a calculated return ramp;
+        //   5. a full-depth land under the complete threshold.
+        //
+        // hinge_length is the combined root-side chamfer + flat-web envelope.
         // Split it equally: half becomes the 45-degree chamfer run/rise and
-        // half becomes the flat minimum-thickness flex land. For example,
-        // hinge_length = 2 mm gives a 1 x 1 mm 45-degree chamfer followed by
-        // 1 mm flat flex land. The return ramp uses the remaining spring length
-        // and must stay at or below 45 degrees.
+        // half becomes the flat central-web land. hinge_thickness is the total
+        // thickness left between the two opposing pockets. The return ramps use
+        // the remaining spring length and must stay at or below 45 degrees.
         // hinge_length = 0 preserves the legacy spring geometry exactly.
         if (spring.hinge_length > 0) {
             spring_x1 = spring_x0 + spring.length;
@@ -430,35 +433,39 @@ module _sliding_dovetail_lock_female_relief_cutter(
                 spring_x1 - spring.hinge_length;
             hinge_relief_depth =
                 spring.thickness - spring.hinge_thickness;
+            relief_depth_each_side =
+                hinge_relief_depth / 2;
+            outer_face_y =
+                female_height + spring.thickness;
 
-            // The 45-degree feature is deliberately only a local chamfer,
-            // not the whole fixed-root transition. The configured hinge_length
+            // The 45-degree feature stays local. The configured hinge_length
             // is split equally between that chamfer and the following flat
-            // flex land.
+            // central-web land. The same profile is mirrored from both faces.
             root_chamfer_run =
                 spring.hinge_length / 2;
             flat_flex_length =
                 spring.hinge_length / 2;
             root_straight_depth =
-                hinge_relief_depth - root_chamfer_run;
+                relief_depth_each_side - root_chamfer_run;
             root_shoulder_x0 =
                 spring_x1 - root_chamfer_run;
             return_ramp_run =
                 hinge_x0 - threshold_land_x1;
 
             assert(
-                root_chamfer_run <= hinge_relief_depth,
-                "sliding dovetail lock root chamfer is deeper than the available hinge relief"
+                root_chamfer_run <= relief_depth_each_side,
+                "sliding dovetail lock root chamfer is deeper than one side of the centered hinge relief"
             )
             assert(
                 flat_flex_length > 0,
-                "sliding dovetail lock flat flex land must be positive"
+                "sliding dovetail lock flat central-web land must be positive"
             )
             assert(
                 return_ramp_run > 0,
                 "sliding dovetail lock hinge_length leaves no return ramp before the threshold land"
             )
 
+            // Channel-side pocket.
             translate([0, 0, -spring_width / 2])
                 linear_extrude(height = spring_width)
                     polygon(points = [
@@ -470,13 +477,35 @@ module _sliding_dovetail_lock_female_relief_cutter(
                         ],
                         [
                             root_shoulder_x0,
-                            female_height + hinge_relief_depth
+                            female_height + relief_depth_each_side
                         ],
                         [
                             hinge_x0,
-                            female_height + hinge_relief_depth
+                            female_height + relief_depth_each_side
                         ],
                         [threshold_land_x1, female_height]
+                    ]);
+
+            // Opposing outer-face pocket. This mirrors the same relief profile
+            // so the remaining hinge_thickness is centered through the tongue.
+            translate([0, 0, -spring_width / 2])
+                linear_extrude(height = spring_width)
+                    polygon(points = [
+                        [threshold_land_x1, outer_face_y],
+                        [spring_x1 + extra, outer_face_y],
+                        [
+                            spring_x1 + extra,
+                            outer_face_y - root_straight_depth
+                        ],
+                        [
+                            root_shoulder_x0,
+                            outer_face_y - relief_depth_each_side
+                        ],
+                        [
+                            hinge_x0,
+                            outer_face_y - relief_depth_each_side
+                        ],
+                        [threshold_land_x1, outer_face_y]
                     ]);
         }
 
