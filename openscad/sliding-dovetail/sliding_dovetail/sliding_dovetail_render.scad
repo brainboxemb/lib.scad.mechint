@@ -51,3 +51,9 @@ module sliding_dovetail_design(view = "pair") {
         slide = 16
     );
 }
+
+
+/* [Design view] */
+view = "pair"; // [pair,male,female-cutter]
+
+sliding_dovetail_design(view = view);
