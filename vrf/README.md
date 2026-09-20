@@ -19,7 +19,9 @@ The normal fit/approach evidence uses the unlocked default interface. A focused
 lock-section render creates the same interface with `locking = true`,
 `lock_cut_back_clearance = true` and screwdriver access disabled.
 
-Printable fixtures include both plain and locking male/female pairs.
+Printable fixtures include both plain and locking male/female pairs, plus an
+assembled locking inspection STL and a half-width female cutaway STL. The lock
+is positioned from the fixed -X entry side.
 
 Evidence includes:
 

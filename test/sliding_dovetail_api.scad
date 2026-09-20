@@ -39,6 +39,7 @@ lock_joint =
     );
 
 assert(sliding_dovetail_locking_enabled(lock_joint));
+assert(abs(lock_joint.lock.entry_offset - 2.5) < 0.0001);
 
 host_clearance_joint =
     sliding_dovetail_create(

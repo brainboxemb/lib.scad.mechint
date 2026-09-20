@@ -45,6 +45,10 @@ render_stl   "$out/fixtures/sliding-dovetail-lock-female-test-block.stl"   "$roo
 
 render_stl   "$out/fixtures/sliding-dovetail-lock-male-test-piece.stl"   "$root/vrf/fixtures/export/sliding-dovetail-lock-male-test-piece.scad"
 
+render_stl   "$out/fixtures/sliding-dovetail-lock-assembled-inspection.stl"   "$root/vrf/fixtures/export/sliding-dovetail-lock-assembled-inspection.scad"
+
+render_stl   "$out/fixtures/sliding-dovetail-lock-female-cutaway.stl"   "$root/vrf/fixtures/export/sliding-dovetail-lock-female-cutaway.scad"
+
 cat > "$out/README.md" <<'EOF'
 # Verification
 
@@ -53,13 +57,15 @@ enabled.
 
 Printable fixtures:
 
-- sliding-dovetail-female-test-block.stl
-- sliding-dovetail-male-test-piece.stl
-- sliding-dovetail-lock-female-test-block.stl
-- sliding-dovetail-lock-male-test-piece.stl
+- [sliding-dovetail-female-test-block.stl](fixtures/sliding-dovetail-female-test-block.stl)
+- [sliding-dovetail-male-test-piece.stl](fixtures/sliding-dovetail-male-test-piece.stl)
+- [sliding-dovetail-lock-female-test-block.stl](fixtures/sliding-dovetail-lock-female-test-block.stl)
+- [sliding-dovetail-lock-male-test-piece.stl](fixtures/sliding-dovetail-lock-male-test-piece.stl)
+- [sliding-dovetail-lock-assembled-inspection.stl](fixtures/sliding-dovetail-lock-assembled-inspection.stl)
+- [sliding-dovetail-lock-female-cutaway.stl](fixtures/sliding-dovetail-lock-female-cutaway.stl)
 
 Configured verification renders show assembled fit, side approach, a YZ
 section through the engaged interface, and an XY section through the enabled
-lock showing the male recess, ramped female threshold, U-cut spring and
-back-clearance cavity.
+lock near the fixed -X entry side, showing the male recess, ramped female
+threshold, U-cut spring and back-clearance cavity.
 EOF

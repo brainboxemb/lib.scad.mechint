@@ -22,7 +22,7 @@ slide = 16;              // [6:1:40]
 
 /* [Lock] */
 locking = true;
-lock_end_offset = 2.0;          // [1:0.25:8]
+lock_entry_offset = 2.5;          // [1:0.25:8]
 lock_width = 4.0;               // [2:0.25:8]
 lock_recess_length = 2.0;       // [1.5:0.25:6]
 lock_recess_depth = 0.6;        // [0.25:0.05:2]
@@ -57,7 +57,7 @@ joint =
         axial_clearance = axial_clearance,
         extra = extra,
         locking = locking,
-        lock_end_offset = lock_end_offset,
+        lock_entry_offset = lock_entry_offset,
         lock_width = lock_width,
         lock_recess_length = lock_recess_length,
         lock_recess_depth = lock_recess_depth,
@@ -87,11 +87,16 @@ reference =
 
 is_fit_section = view == "assembled-section";
 is_lock_section = view == "lock-section";
+lock_section_center_x =
+    lock_entry_offset
+    - lock_threshold_length / 2
+    - lock_spring_relief
+    + lock_spring_length / 2;
 
 $vpt = is_fit_section
     ? [slide / 2, 1.5, 0]
     : is_lock_section
-        ? [female_block_length * 0.58, 2.5, 0]
+        ? [lock_section_center_x, 3.5, 0]
         : [female_block_length / 3, 1.5, 0];
 
 $vpr = is_fit_section
@@ -103,7 +108,7 @@ $vpr = is_fit_section
 $vpd = is_fit_section
     ? 55
     : is_lock_section
-        ? 42
+        ? 36
         : 90;
 
 if (is_fit_section) {

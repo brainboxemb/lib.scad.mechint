@@ -29,8 +29,8 @@ function _sliding_dovetail_lock_spring_create(
         "sliding dovetail lock release_access must be boolean")
     assert(release_length > 0,
         "sliding dovetail lock release_length must be > 0")
-    assert(release_depth > thickness,
-        "sliding dovetail lock release_depth must exceed spring thickness")
+    assert(!release_access || release_depth > thickness,
+        "sliding dovetail lock release_depth must exceed spring thickness when release access is enabled")
     object(
         length = length,
         thickness = thickness,
@@ -46,7 +46,7 @@ function _sliding_dovetail_lock_spring_create(
 // Normal callers configure locking through sliding_dovetail_create().
 function _sliding_dovetail_lock_create(
     enabled = false,
-    end_offset = 2.0,
+    entry_offset = 2.5,
     width = 4.0,
     recess_length = 2.0,
     recess_depth = 0.6,
@@ -76,8 +76,8 @@ function _sliding_dovetail_lock_create(
     )
     assert(is_bool(enabled),
         "sliding dovetail lock enabled must be boolean")
-    assert(end_offset > 0,
-        "sliding dovetail lock end_offset must be > 0")
+    assert(entry_offset > 0,
+        "sliding dovetail lock entry_offset must be > 0")
     assert(width > 0,
         "sliding dovetail lock width must be > 0")
     assert(recess_length > 0,
@@ -96,7 +96,7 @@ function _sliding_dovetail_lock_create(
         "sliding dovetail lock spring length must exceed threshold length")
     object(
         enabled = enabled,
-        end_offset = end_offset,
+        entry_offset = entry_offset,
         width = width,
         recess_length = recess_length,
         recess_depth = recess_depth,
@@ -110,19 +110,19 @@ function _sliding_dovetail_lock_create(
 function _sliding_dovetail_lock_enabled(lock) =
     lock.enabled;
 
-// Private helper: male recess center in native centered coordinates.
+// Private helper: male recess center measured from the -X/trailing end.
+// In the assembled reference this end coincides with the female -X entry.
 function _sliding_dovetail_lock_male_x(lock, slide) =
-    slide / 2 - lock.end_offset;
+    -slide / 2 + lock.entry_offset;
 
-// Private helper: female threshold center for the seated male position.
+// Private helper: female threshold center measured from the -X entry side.
 function _sliding_dovetail_lock_female_x(
     lock,
     slide,
     axial_clearance
 ) =
     -(slide + axial_clearance) / 2
-    + slide
-    - lock.end_offset;
+    + lock.entry_offset;
 
 // Private helper: flexible tongue width across Z.
 function _sliding_dovetail_lock_spring_width(lock) =
@@ -142,11 +142,11 @@ module _sliding_dovetail_lock_assert_valid(
     clearance
 ) {
     assert(
-        lock.end_offset >= lock.recess_length / 2,
-        "sliding dovetail lock recess must stay inside the male +X end"
+        lock.entry_offset >= lock.recess_length / 2,
+        "sliding dovetail lock recess must stay inside the male -X/trailing end"
     );
     assert(
-        lock.end_offset + lock.recess_length / 2 < slide,
+        lock.entry_offset + lock.recess_length / 2 < slide,
         "sliding dovetail lock recess must stay inside the male slide length"
     );
     assert(

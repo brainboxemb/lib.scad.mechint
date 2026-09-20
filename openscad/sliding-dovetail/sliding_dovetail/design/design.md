@@ -18,6 +18,10 @@ Native coordinates are:
 X = slide direction
 Y = profile depth
 Z = profile width
+
+female entry = -X
+insertion = +X
+end stop = +X
 ```
 
 ## One object owns the complete interface
@@ -106,8 +110,9 @@ joint = sliding_dovetail_create(
 );
 ```
 
-The male receives a local recess. The female keeps a small threshold in the
-channel roof. Its -X/insertion face is ramped; the opposite face forms the
+The lock center is measured from the fixed -X female entry side. The assembled
+male receives the matching recess at the same X position, measured from its
+-X/trailing end. The female keeps a small threshold in the channel roof. Its -X/insertion face is ramped; the opposite face forms the
 locking stop.
 
 Two longitudinal relief cuts plus one transverse relief cut isolate a U-shaped

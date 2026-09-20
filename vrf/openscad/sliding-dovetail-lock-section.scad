@@ -14,9 +14,9 @@ reference =
         joint = joint
     );
 
-$vpt = [14, 2.5, 0];
+$vpt = [4.5, 3.5, 0];
 $vpr = [0, 0, 0];
-$vpd = 42;
+$vpd = 36;
 
 util_section_inspect(
     axis = "Z",

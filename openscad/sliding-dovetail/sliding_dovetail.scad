@@ -18,7 +18,7 @@ use <sliding_dovetail_lock.scad>
 //   axial_clearance = Additional female travel along the X slide axis.
 //   extra = Boolean overlap added at slide ends and the mouth/base plane.
 //   locking = Enable the integral male-recess / female-spring lock.
-//   lock_end_offset = Lock center distance from the male +X/leading end.
+//   lock_entry_offset = Lock center distance from the fixed -X entry side.
 //   lock_width = Width of threshold across Z.
 //   lock_recess_length = Male recess length along X.
 //   lock_recess_depth = Male recess depth below the dovetail root surface.
@@ -41,7 +41,7 @@ function sliding_dovetail_create(
     axial_clearance = 0.25,
     extra = 0.01,
     locking = false,
-    lock_end_offset = 2.0,
+    lock_entry_offset = 2.5,
     lock_width = 4.0,
     lock_recess_length = 2.0,
     lock_recess_depth = 0.6,
@@ -62,7 +62,7 @@ function sliding_dovetail_create(
             width - 2 * height * tan(angle),
         lock = _sliding_dovetail_lock_create(
             enabled = locking,
-            end_offset = lock_end_offset,
+            entry_offset = lock_entry_offset,
             width = lock_width,
             recess_length = lock_recess_length,
             recess_depth = lock_recess_depth,

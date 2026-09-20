@@ -40,6 +40,10 @@ Native coordinates are:
 X = slide / insertion direction
 Y = profile depth
 Z = profile width
+
+female entry side = -X
+insertion motion = +X
+female end-stop side = +X
 ```
 
 ## Fit versus boolean overlap
@@ -66,9 +70,13 @@ The library then creates the matching lower-level lock and spring
 configuration internally. Male and female therefore always use one shared
 interface definition.
 
+The entry side is fixed by the interface contract: the female opens at -X and
+the male inserts toward +X. `lock_entry_offset` measures the lock center from
+that -X entry side.
+
 The lock consists of:
 
-- a recess near the male +X / leading end;
+- a recess near the male -X / trailing end, aligned with the female entry when assembled;
 - a threshold retained in the roof of the female channel;
 - a sloped threshold face toward the female opening so the male can push the
   tongue out of the way while inserting;

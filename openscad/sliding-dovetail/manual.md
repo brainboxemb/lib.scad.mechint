@@ -8,6 +8,10 @@ The interface is aimed at compact **FDM-printed mechanical parts**.
 X = slide / insertion direction
 Y = profile depth
 Z = profile width
+
+female entry side = -X
+insertion motion = +X
+female end-stop side = +X
 ```
 
 The male mouth lies at `Y=0`; the wider root lies toward `+Y`.
@@ -49,8 +53,13 @@ joint = sliding_dovetail_create(
 
 The library creates the lower-level lock and spring configuration internally.
 
-The enabled lock combines a recess in the male with a ramped threshold in the
-female channel roof. U-shaped relief cuts isolate that threshold as part of an
+The enabled lock is positioned from the fixed -X female entry side through
+`lock_entry_offset`. In the assembled interface, the matching male recess is
+measured from the male -X/trailing end, so both features align at the same X
+position.
+
+The lock combines a recess in the male with a ramped threshold in the female
+channel roof. U-shaped relief cuts isolate that threshold as part of an
 integral cantilever spring.
 
 `lock_cut_back_clearance = true` cuts the flex cavity behind the tongue.
