@@ -158,12 +158,12 @@ joint = sliding_dovetail_create(
     lock_release_access = true,
     lock_release_depth = 0.6,
     lock_release_shape = "trapezoid",
-    lock_release_taper_angle = 45
+    lock_release_taper_angle_deg = 45
 );
 ```
 
 The opening keeps its full width at the male root face and narrows symmetrically
-toward the release-depth floor. `lock_release_taper_angle` is measured from
+toward the release-depth floor. `lock_release_taper_angle_deg` is measured from
 native Y; 45 degrees gives the same inset per side as the release depth.
 
 Native X remains the unchanged straight path to the lock recess. In the HUB75

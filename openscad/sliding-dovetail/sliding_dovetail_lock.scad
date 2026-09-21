@@ -67,7 +67,7 @@ function _sliding_dovetail_lock_create(
     release_access = true,
     release_depth = 0.6,
     release_shape = "rectangular",
-    release_taper_angle = 45
+    release_taper_angle_deg = 45
 ) =
     let(
         spring = _sliding_dovetail_lock_spring_create(
@@ -108,9 +108,9 @@ function _sliding_dovetail_lock_create(
         "sliding dovetail lock release_shape must be rectangular or trapezoid"
     )
     assert(
-        release_taper_angle > 0
-            && release_taper_angle < 90,
-        "sliding dovetail lock release_taper_angle must be between 0 and 90 degrees"
+        release_taper_angle_deg > 0
+            && release_taper_angle_deg < 90,
+        "sliding dovetail lock release_taper_angle_deg must be between 0 and 90 degrees"
     )
     object(
         enabled = enabled,
@@ -125,7 +125,7 @@ function _sliding_dovetail_lock_create(
         release_access = release_access,
         release_depth = release_depth,
         release_shape = release_shape,
-        release_taper_angle = release_taper_angle
+        release_taper_angle_deg = release_taper_angle_deg
     );
 
 // Private accessor: whether the lock geometry is enabled.
@@ -309,70 +309,70 @@ module _sliding_dovetail_lock_male_release_cutter(
     clearance,
     extra = 0
 ) {
-    recess_x0 =
+    _recess_x0_mm =
         _sliding_dovetail_lock_male_recess_start_x(
             lock,
             slide,
             axial_clearance
         );
-    entry_x =
+    _entry_x_mm =
         -slide / 2 - extra;
-    slot_length =
-        recess_x0 - entry_x + extra;
+    _slot_length_mm =
+        _recess_x0_mm - _entry_x_mm + extra;
 
-    release_width =
+    _release_width_mm =
         lock.width + 2 * clearance;
 
-    if (lock.release_access && slot_length > 0) {
+    if (lock.release_access && _slot_length_mm > 0) {
         if (lock.release_shape == "rectangular") {
             translate([
-                entry_x,
+                _entry_x_mm,
                 male_height - lock.release_depth,
-                -release_width / 2
+                -_release_width_mm / 2
             ])
                 cube([
-                    slot_length,
+                    _slot_length_mm,
                     lock.release_depth + extra,
-                    release_width
+                    _release_width_mm
                 ]);
         } else {
-            side_inset =
+            _side_inset_mm =
                 lock.release_depth
-                * tan(lock.release_taper_angle);
-            inner_half_width =
-                release_width / 2
-                - side_inset;
+                * tan(lock.release_taper_angle_deg);
+            _inner_half_width_mm =
+                _release_width_mm / 2
+                - _side_inset_mm;
 
             assert(
-                inner_half_width > 0,
+                _inner_half_width_mm > 0,
                 "sliding dovetail lock trapezoid release closes before reaching release_depth"
             )
 
             // Native Y/Z profile extruded along native X.
             // Wide at the male root face, narrower at the release-depth floor.
             multmatrix([
-                [0, 0, 1, entry_x],
+                [0, 0, 1, _entry_x_mm],
                 [1, 0, 0, 0],
                 [0, 1, 0, 0],
                 [0, 0, 0, 1]
             ])
-                linear_extrude(height = slot_length)
+                linear_extrude(height = _slot_length_mm)
                     polygon(points = [
                         [
                             male_height - lock.release_depth,
-                            -inner_half_width
+                            -_inner_half_width_mm
                         ],
                         [
                             male_height + extra,
-                            -release_width / 2
+                            -_release_width_mm / 2
                         ],
                         [
                             male_height + extra,
-                            release_width / 2
+                            _release_width_mm / 2
                         ],
                         [
                             male_height - lock.release_depth,
-                            inner_half_width
+                            _inner_half_width_mm
                         ]
                     ]);
         }

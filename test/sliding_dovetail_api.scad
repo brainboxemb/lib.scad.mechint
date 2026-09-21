@@ -114,13 +114,13 @@ trapezoid_release_joint =
         lock_release_access = true,
         lock_release_depth = 0.6,
         lock_release_shape = "trapezoid",
-        lock_release_taper_angle = 45
+        lock_release_taper_angle_deg = 45
     );
 
 assert(sliding_dovetail_locking_enabled(trapezoid_release_joint));
 assert(trapezoid_release_joint.lock.release_shape == "trapezoid");
 assert(
-    abs(trapezoid_release_joint.lock.release_taper_angle - 45)
+    abs(trapezoid_release_joint.lock.release_taper_angle_deg - 45)
         < 0.0001
 );
 

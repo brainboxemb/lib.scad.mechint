@@ -8,7 +8,7 @@
   opening. `lock_release_shape="rectangular"` preserves the released geometry;
   `"trapezoid"` keeps full width at the male root face and narrows
   symmetrically toward the release-depth floor using
-  `lock_release_taper_angle`.
+  `lock_release_taper_angle_deg`.
 
 ## v0.1.5
 
