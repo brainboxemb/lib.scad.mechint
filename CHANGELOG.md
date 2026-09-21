@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+
+- Adopt the released Migration 008 dependency stack with `tool.git-project v0.2.9`
+  and `tool.scad-project v0.15.2` while retaining the existing
+  `lib.scad.util v0.1.0` external dependency. Qualification now asserts that
+  the root bootstrap initializes that external library without recursively
+  initializing the library's own tooling gitlinks.
+
 ## v0.1.6
 
 ### Added
