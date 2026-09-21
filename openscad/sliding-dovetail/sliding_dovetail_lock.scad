@@ -317,8 +317,10 @@ module _sliding_dovetail_lock_male_release_cutter(
         );
     _entry_x_mm =
         -slide / 2 - extra;
+    _inner_x_mm =
+        _recess_x0_mm + extra;
     _slot_length_mm =
-        _recess_x0_mm - _entry_x_mm + extra;
+        _inner_x_mm - _entry_x_mm;
 
     _release_width_mm =
         lock.width + 2 * clearance;
@@ -337,7 +339,7 @@ module _sliding_dovetail_lock_male_release_cutter(
                 ]);
         } else {
             _side_inset_mm =
-                lock.release_depth
+                _slot_length_mm
                 * tan(lock.release_taper_angle_deg);
             _inner_half_width_mm =
                 _release_width_mm / 2
@@ -345,36 +347,52 @@ module _sliding_dovetail_lock_male_release_cutter(
 
             assert(
                 _inner_half_width_mm > 0,
-                "sliding dovetail lock trapezoid release closes before reaching release_depth"
+                "sliding dovetail lock trapezoid release closes before reaching the lock recess"
             )
 
-            // Native Y/Z profile extruded along native X.
-            // Wide at the male root face, narrower at the release-depth floor.
-            multmatrix([
-                [0, 0, 1, _entry_x_mm],
-                [1, 0, 0, 0],
-                [0, 1, 0, 0],
-                [0, 0, 0, 1]
+            // Trapezoid in native X/Z, extruded through the unchanged native-Y
+            // release depth:
+            //
+            //   native -X / trailing edge : full release width
+            //   native +X / lock recess   : narrower centered width
+            //
+            // In the HUB75 design orientation native X maps to design Y and
+            // native Z maps to design X. The opening therefore becomes wider
+            // in design X toward the outer edge, symmetrically on both sides.
+            translate([
+                0,
+                male_height - lock.release_depth,
+                0
             ])
-                linear_extrude(height = _slot_length_mm)
-                    polygon(points = [
-                        [
-                            male_height - lock.release_depth,
-                            -_inner_half_width_mm
-                        ],
-                        [
-                            male_height + extra,
-                            -_release_width_mm / 2
-                        ],
-                        [
-                            male_height + extra,
-                            _release_width_mm / 2
-                        ],
-                        [
-                            male_height - lock.release_depth,
-                            _inner_half_width_mm
-                        ]
-                    ]);
+                multmatrix([
+                    [1, 0, 0, 0],
+                    [0, 0, 1, 0],
+                    [0, 1, 0, 0],
+                    [0, 0, 0, 1]
+                ])
+                    linear_extrude(
+                        height =
+                            lock.release_depth
+                            + extra
+                    )
+                        polygon(points = [
+                            [
+                                _entry_x_mm,
+                                -_release_width_mm / 2
+                            ],
+                            [
+                                _entry_x_mm,
+                                _release_width_mm / 2
+                            ],
+                            [
+                                _inner_x_mm,
+                                _inner_half_width_mm
+                            ],
+                            [
+                                _inner_x_mm,
+                                -_inner_half_width_mm
+                            ]
+                        ]);
         }
     }
 }

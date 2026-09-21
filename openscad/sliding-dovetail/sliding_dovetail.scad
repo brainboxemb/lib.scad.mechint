@@ -38,7 +38,7 @@ use <sliding_dovetail_lock.scad>
 //   lock_release_access = Whether to add a male release opening from the entry edge.
 //   lock_release_depth = Release-opening depth into the male root surface.
 //   lock_release_shape = Male release-opening profile: "rectangular" or "trapezoid".
-//   lock_release_taper_angle_deg = Symmetric trapezoid side-wall angle from Y; 45 gives equal depth/inset.
+//   lock_release_taper_angle_deg = Symmetric release side-wall angle in the native X/Z profile; 45 gives equal run/inset.
 function sliding_dovetail_create(
     width = 10,
     height = 3,

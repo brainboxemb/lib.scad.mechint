@@ -149,8 +149,8 @@ The released/default opening is rectangular:
 lock_release_shape = "rectangular"
 ```
 
-For a side-printed male part the opening can instead use a centered trapezoidal
-Y/Z profile:
+For the side-printed male part the opening can instead use a centered
+trapezoidal X/Z profile:
 
 ```scad
 joint = sliding_dovetail_create(
@@ -162,13 +162,15 @@ joint = sliding_dovetail_create(
 );
 ```
 
-The opening keeps its full width at the male root face and narrows symmetrically
-toward the release-depth floor. `lock_release_taper_angle_deg` is measured from
-native Y; 45 degrees gives the same inset per side as the release depth.
+The opening keeps its full width at the male -X/trailing edge and narrows
+symmetrically toward the lock recess. `lock_release_taper_angle_deg` is
+measured in the native X/Z profile; 45 degrees gives the same lateral inset per
+side as the X run of the release path.
 
-Native X remains the unchanged straight path to the lock recess. In the HUB75
-project mapping this corresponds to a taper in project Y, symmetric on both
-project-X sides, with project Z remaining straight.
+The native-Y release depth remains constant across the complete opening. In the
+HUB75 design orientation native X maps to design Y and native Z maps to design
+X, so the opening becomes wider in design X toward the outer edge, equally on
+both sides.
 
 
 ## Male mating relief
