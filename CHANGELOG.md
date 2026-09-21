@@ -4,10 +4,11 @@
 
 ### Added
 
-- Add an optional trapezoidal profile for the male lock-release opening.
-  `lock_release_shape="rectangular"` preserves the released geometry;
-  `"trapezoid"` keeps the full release depth at native -Z and narrows to
-  `lock_release_top_depth` at native +Z for side-print-friendly geometry.
+- Add an optional centered trapezoidal Y/Z profile for the male lock-release
+  opening. `lock_release_shape="rectangular"` preserves the released geometry;
+  `"trapezoid"` keeps full width at the male root face and narrows
+  symmetrically toward the release-depth floor using
+  `lock_release_taper_angle`.
 
 ## v0.1.5
 

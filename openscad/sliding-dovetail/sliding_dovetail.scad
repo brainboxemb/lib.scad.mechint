@@ -36,9 +36,9 @@ use <sliding_dovetail_lock.scad>
 //   lock_cut_back_clearance = Whether to cut a flex cavity behind the tongue.
 //   lock_back_clearance = Flex-cavity depth behind the tongue.
 //   lock_release_access = Whether to add a male release opening from the entry edge.
-//   lock_release_depth = Maximum release-opening depth into the male root surface.
+//   lock_release_depth = Release-opening depth into the male root surface.
 //   lock_release_shape = Male release-opening profile: "rectangular" or "trapezoid".
-//   lock_release_top_depth = Trapezoid depth at native +Z; undef uses half lock_release_depth.
+//   lock_release_taper_angle = Symmetric trapezoid side-wall angle from Y; 45 gives equal depth/inset.
 function sliding_dovetail_create(
     width = 10,
     height = 3,
@@ -67,7 +67,7 @@ function sliding_dovetail_create(
     lock_release_access = true,
     lock_release_depth = 0.6,
     lock_release_shape = "rectangular",
-    lock_release_top_depth = undef
+    lock_release_taper_angle = 45
 ) =
     let(
         sloped_depth =
@@ -95,7 +95,7 @@ function sliding_dovetail_create(
             release_access = lock_release_access,
             release_depth = lock_release_depth,
             release_shape = lock_release_shape,
-            release_top_depth = lock_release_top_depth
+            release_taper_angle = lock_release_taper_angle
         )
     )
     assert(width > 0,

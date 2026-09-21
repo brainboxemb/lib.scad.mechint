@@ -149,8 +149,8 @@ The released/default opening is rectangular:
 lock_release_shape = "rectangular"
 ```
 
-For a male part printed with native Z as build direction, the opening can
-instead use a trapezoidal Y/Z profile:
+For a side-printed male part the opening can instead use a centered trapezoidal
+Y/Z profile:
 
 ```scad
 joint = sliding_dovetail_create(
@@ -158,17 +158,17 @@ joint = sliding_dovetail_create(
     lock_release_access = true,
     lock_release_depth = 0.6,
     lock_release_shape = "trapezoid",
-    lock_release_top_depth = 0.3
+    lock_release_taper_angle = 45
 );
 ```
 
-At native -Z the opening keeps the full `lock_release_depth`. Toward native
-+Z it becomes shallower, so the visible male release opening goes from broader
-to narrower in the build direction. `lock_release_top_depth = undef` uses
-half of `lock_release_depth`.
+The opening keeps its full width at the male root face and narrows symmetrically
+toward the release-depth floor. `lock_release_taper_angle` is measured from
+native Y; 45 degrees gives the same inset per side as the release depth.
 
-The cutter still reaches the same lock recess along X; only the Y/Z opening
-profile changes.
+Native X remains the unchanged straight path to the lock recess. In the HUB75
+project mapping this corresponds to a taper in project Y, symmetric on both
+project-X sides, with project Z remaining straight.
 
 
 ## Male mating relief

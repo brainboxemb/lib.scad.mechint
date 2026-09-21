@@ -67,7 +67,7 @@ function _sliding_dovetail_lock_create(
     release_access = true,
     release_depth = 0.6,
     release_shape = "rectangular",
-    release_top_depth = undef
+    release_taper_angle = 45
 ) =
     let(
         spring = _sliding_dovetail_lock_spring_create(
@@ -108,12 +108,9 @@ function _sliding_dovetail_lock_create(
         "sliding dovetail lock release_shape must be rectangular or trapezoid"
     )
     assert(
-        is_undef(release_top_depth)
-            || (
-                release_top_depth > 0
-                && release_top_depth <= release_depth
-            ),
-        "sliding dovetail lock release_top_depth must be > 0 and <= release_depth"
+        release_taper_angle > 0
+            && release_taper_angle < 90,
+        "sliding dovetail lock release_taper_angle must be between 0 and 90 degrees"
     )
     object(
         enabled = enabled,
@@ -128,10 +125,7 @@ function _sliding_dovetail_lock_create(
         release_access = release_access,
         release_depth = release_depth,
         release_shape = release_shape,
-        release_top_depth =
-            is_undef(release_top_depth)
-                ? release_depth / 2
-                : release_top_depth
+        release_taper_angle = release_taper_angle
     );
 
 // Private accessor: whether the lock geometry is enabled.
@@ -296,12 +290,17 @@ module _sliding_dovetail_lock_male_recess_cutter(
 
 // Optional path from the male -X/trailing edge to the lock recess.
 //
-// Rectangular preserves the released geometry exactly. Trapezoid changes only
-// the entry-opening Y/Z profile for side printing:
-//   native -Z = full configured release_depth
-//   native +Z = narrower release_top_depth
+// Rectangular preserves the released geometry exactly.
 //
-// The cutter still spans the complete X distance to the lock recess.
+// Trapezoid changes only the Y/Z opening profile and stays symmetric around
+// native Z=0:
+//
+//   Y = male root face       -> full release width
+//   Y = release-depth floor  -> narrower centered width
+//
+// Native X remains the straight path to the lock recess. In the HUB75 project
+// mapping this means the taper runs in project Y and is symmetric on both
+// project-X sides; project Z remains the straight release path.
 module _sliding_dovetail_lock_male_release_cutter(
     lock,
     slide,
@@ -337,12 +336,20 @@ module _sliding_dovetail_lock_male_release_cutter(
                     release_width
                 ]);
         } else {
-            bottom_depth =
-                lock.release_depth;
-            top_depth =
-                lock.release_top_depth;
+            side_inset =
+                lock.release_depth
+                * tan(lock.release_taper_angle);
+            inner_half_width =
+                release_width / 2
+                - side_inset;
 
-            // Native Y/Z opening profile, extruded along native X.
+            assert(
+                inner_half_width > 0,
+                "sliding dovetail lock trapezoid release closes before reaching release_depth"
+            )
+
+            // Native Y/Z profile extruded along native X.
+            // Wide at the male root face, narrower at the release-depth floor.
             multmatrix([
                 [0, 0, 1, entry_x],
                 [1, 0, 0, 0],
@@ -352,8 +359,8 @@ module _sliding_dovetail_lock_male_release_cutter(
                 linear_extrude(height = slot_length)
                     polygon(points = [
                         [
-                            male_height - bottom_depth,
-                            -release_width / 2
+                            male_height - lock.release_depth,
+                            -inner_half_width
                         ],
                         [
                             male_height + extra,
@@ -364,8 +371,8 @@ module _sliding_dovetail_lock_male_release_cutter(
                             release_width / 2
                         ],
                         [
-                            male_height - top_depth,
-                            release_width / 2
+                            male_height - lock.release_depth,
+                            inner_half_width
                         ]
                     ]);
         }
