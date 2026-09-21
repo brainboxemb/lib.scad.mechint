@@ -47,17 +47,17 @@ The normal consumer API starts with one top-level interface object:
 use <openscad/sliding-dovetail/sliding_dovetail.scad>
 
 joint = sliding_dovetail_create(
-    width = 10,
-    height = 3,
-    angle = 20,
-    clearance = 0.20,
-    axial_clearance = 0.25,
-    extra = 0.01,
-    locking = false
+    width_mm = 10,
+    height_mm = 3,
+    angle_deg = 20,
+    clearance_mm = 0.20,
+    axial_clearance_mm = 0.25,
+    extra_mm = 0.01,
+    is_locking_enabled = false
 );
 
-sliding_dovetail_male_build(joint, slide = 16);
-sliding_dovetail_female_cutter(joint, slide = 16);
+sliding_dovetail_male_build(joint, slide_len_mm = 16);
+sliding_dovetail_female_cutter(joint, slide_len_mm = 16);
 ```
 
 The default 10 mm root width, 3 mm profile height and 20° flank angle give a
@@ -67,9 +67,9 @@ stored independently, so the profile stays internally consistent.
 Native coordinates are:
 
 ```text
-X = slide / insertion direction
+X = slide_len_mm / insertion direction
 Y = profile depth
-Z = profile width
+Z = profile width_mm
 
 female entry side = -X
 insertion motion = +X
@@ -78,9 +78,9 @@ female end-stop side = +X
 
 ## Fit versus boolean overlap
 
-`clearance` and `axial_clearance` belong to the mechanical fit contract.
+`clearance_mm` and `axial_clearance_mm` belong to the mechanical fit contract.
 
-`extra` is different: it is a tiny OpenSCAD boolean overlap used to avoid
+`extra_mm` is different: it is a tiny OpenSCAD boolean overlap used to avoid
 coplanar union/difference boundaries. It does **not** change the nominal
 10 mm / 3 mm / 20° interface. Default: **0.01 mm**.
 
@@ -90,9 +90,9 @@ Locking is selected on the same top-level interface:
 
 ```scad
 joint = sliding_dovetail_create(
-    locking = true,
-    lock_cut_back_clearance = true,
-    lock_release_access = true
+    is_locking_enabled = true,
+    lock_has_back_clearance = true,
+    lock_has_release_access = true
 );
 ```
 
@@ -101,7 +101,7 @@ configuration internally. Male and female therefore always use one shared
 interface definition.
 
 The entry side is fixed by the interface contract: the female opens at -X and
-the male inserts toward +X. `lock_entry_offset` measures the start of the
+the male inserts toward +X. `lock_entry_offset_mm` measures the start of the
 threshold ramp from that -X entry side. The default is 0 mm, so the ramp starts
 directly at the edge.
 
@@ -115,20 +115,20 @@ The lock consists of:
 - two longitudinal isolation cuts from the female entry toward +X, leaving the
   entry edge itself as the free end of the cantilever spring.
 
-`lock_cut_back_clearance = true` also removes a flex cavity behind that
+`lock_has_back_clearance = true` also removes a flex cavity behind that
 cantilever. With `false`, the tongue may instead keep a flat outer/rear face.
-For thick hosts the optional `lock_spring_hinge_length` and
-`lock_spring_hinge_thickness` parameters create a **two-sided** local hinge
+For thick hosts the optional `lock_spring_hinge_len_mm` and
+`lock_spring_hinge_thickness_mm` parameters create a **two-sided** local hinge
 relief. Matching pockets approach from both faces, leaving
-`lock_spring_hinge_thickness` as a short centered flex web. Each pocket uses a
+`lock_spring_hinge_thickness_mm` as a short centered flex web. Each pocket uses a
 mostly straight wall, a local 45-degree chamfer, a short flat land and a
 calculated return ramp; the threshold/lip and fixed root remain full-depth.
 A hinge length of 0 preserves the legacy spring geometry exactly.
 
-`lock_release_access = true` extends the male recess all the way to its -X
+`lock_has_release_access = true` extends the male recess all the way to its -X
 entry edge. The access path has the same width as the recess, so there is no
 narrow-to-wide step. A small flat screwdriver can enter this opening and lift
-the female tongue. `lock_release_depth` controls the access depth.
+the female tongue. `lock_release_depth_mm` controls the access depth.
 
 ## Female test block
 

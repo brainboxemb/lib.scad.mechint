@@ -4,15 +4,15 @@ use <00-sliding-dovetail-fixture-orientation.scad>
 
 joint =
     sliding_dovetail_create(
-        locking = true,
-        lock_spring_length = 5.5,
-        lock_cut_back_clearance = true,
-        lock_release_access = true
+        is_locking_enabled = true,
+        lock_spring_len_mm = 5.5,
+        lock_has_back_clearance = true,
+        lock_has_release_access = true
     );
 
 reference =
     sliding_dovetail_reference_create(
-        joint = joint
+        obj = joint
     );
 
 // Cut in native coordinates first so the Z=0 center plane exposes the complete
@@ -26,14 +26,14 @@ sliding_dovetail_fixture_assembly_inspection(reference)
 
         translate([
             -1,
-            -reference.male_block_depth - 1,
+            -reference.male_block_depth_mm - 1,
             0
         ])
             cube([
-                reference.female_block_length + 2,
-                reference.female_block_depth
-                    + reference.male_block_depth
+                reference.female_block_len_mm + 2,
+                reference.female_block_depth_mm
+                    + reference.male_block_depth_mm
                     + 2,
-                reference.block_width / 2 + 1
+                reference.block_width_mm / 2 + 1
             ]);
     }

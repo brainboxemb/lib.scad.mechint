@@ -13,74 +13,74 @@
 use <../sliding_dovetail.scad>
 
 function sliding_dovetail_reference_create(
-    joint = sliding_dovetail_create(),
-    slide = 16,
-    female_block_length = 24,
-    female_block_depth = 7,
-    block_width = 16,
-    male_block_depth = 4,
-    approach_gap = 4
+    obj = sliding_dovetail_create(),
+    slide_len_mm = 16,
+    female_block_len_mm = 24,
+    female_block_depth_mm = 7,
+    block_width_mm = 16,
+    male_block_depth_mm = 4,
+    approach_gap_mm = 4
 ) =
     assert(
-        female_block_length
-            > sliding_dovetail_female_total_length(joint, slide),
+        female_block_len_mm
+            > sliding_dovetail_female_total_len_mm(obj, slide_len_mm),
         "female reference block must contain entry slot, channel and end stop"
     )
     assert(
-        female_block_depth
-            > sliding_dovetail_female_height(joint),
+        female_block_depth_mm
+            > sliding_dovetail_female_height_mm(obj),
         "female reference block must leave a rear wall"
     )
     assert(
-        block_width
-            > sliding_dovetail_female_root_width(joint),
+        block_width_mm
+            > sliding_dovetail_female_root_width_mm(obj),
         "reference blocks must leave side walls around the interface"
     )
     assert(
-        male_block_depth > 0,
+        male_block_depth_mm > 0,
         "male reference block depth must be > 0"
     )
     assert(
-        approach_gap >= 0,
+        approach_gap_mm >= 0,
         "reference approach gap must be >= 0"
     )
     object(
-        joint = joint,
-        slide = slide,
-        female_block_length = female_block_length,
-        female_block_depth = female_block_depth,
-        block_width = block_width,
-        male_block_depth = male_block_depth,
-        approach_gap = approach_gap
+        joint = obj,
+        slide_len_mm = slide_len_mm,
+        female_block_len_mm = female_block_len_mm,
+        female_block_depth_mm = female_block_depth_mm,
+        block_width_mm = block_width_mm,
+        male_block_depth_mm = male_block_depth_mm,
+        approach_gap_mm = approach_gap_mm
     );
 
-function sliding_dovetail_reference_female_channel_length(reference) =
-    sliding_dovetail_female_slide(
-        reference.joint,
-        reference.slide
+function sliding_dovetail_reference_female_channel_len_mm(obj) =
+    sliding_dovetail_female_slide_len_mm(
+        obj.joint,
+        obj.slide_len_mm
     );
 
-function sliding_dovetail_reference_entry_slot_length(reference) =
-    sliding_dovetail_entry_slot_length(reference.joint);
+function sliding_dovetail_reference_entry_slot_len_mm(obj) =
+    sliding_dovetail_entry_slot_len_mm(obj.joint);
 
-function sliding_dovetail_reference_female_total_length(reference) =
-    sliding_dovetail_female_total_length(
-        reference.joint,
-        reference.slide
+function sliding_dovetail_reference_female_total_len_mm(obj) =
+    sliding_dovetail_female_total_len_mm(
+        obj.joint,
+        obj.slide_len_mm
     );
 
-function sliding_dovetail_reference_male_x(
-    reference,
+function sliding_dovetail_reference_male_x_mm(
+    obj,
     position = "assembled"
 ) =
     position == "assembled"
-        ? sliding_dovetail_reference_entry_slot_length(reference)
-            + reference.slide / 2
+        ? sliding_dovetail_reference_entry_slot_len_mm(obj)
+            + obj.slide_len_mm / 2
         : position == "entry"
-            ? sliding_dovetail_reference_entry_slot_length(reference)
-                - reference.slide / 2
+            ? sliding_dovetail_reference_entry_slot_len_mm(obj)
+                - obj.slide_len_mm / 2
             : position == "approach"
-                ? -reference.slide / 2 - reference.approach_gap
+                ? -obj.slide_len_mm / 2 - obj.approach_gap_mm
                 : assert(
                 false,
                 str(
@@ -89,75 +89,75 @@ function sliding_dovetail_reference_male_x(
                 )
             ) 0;
 
-module sliding_dovetail_reference_female_build(reference) {
-    channel_length =
-        sliding_dovetail_reference_female_channel_length(reference);
-    entry_slot_length =
-        sliding_dovetail_reference_entry_slot_length(reference);
+module sliding_dovetail_reference_female_build(obj) {
+    channel_len_mm =
+        sliding_dovetail_reference_female_channel_len_mm(obj);
+    entry_slot_len_mm =
+        sliding_dovetail_reference_entry_slot_len_mm(obj);
 
     difference() {
         translate([
             0,
             0,
-            -reference.block_width / 2
+            -obj.block_width_mm / 2
         ])
             cube([
-                reference.female_block_length,
-                reference.female_block_depth,
-                reference.block_width
+                obj.female_block_len_mm,
+                obj.female_block_depth_mm,
+                obj.block_width_mm
             ]);
 
         // The public cutter is centered on X. Shift it so the female channel
         // opens through the block's X=0 side and leaves a solid +X end stop.
         translate([
-            channel_length / 2 + entry_slot_length,
+            channel_len_mm / 2 + entry_slot_len_mm,
             0,
             0
         ])
             sliding_dovetail_female_cutter(
-                reference.joint,
-                slide = reference.slide
+                obj.joint,
+                slide_len_mm = obj.slide_len_mm
             );
     }
 }
 
-module sliding_dovetail_reference_male_build(reference) {
+module sliding_dovetail_reference_male_build(obj) {
     union() {
         translate([
-            -reference.slide / 2,
-            -reference.male_block_depth,
-            -reference.block_width / 2
+            -obj.slide_len_mm / 2,
+            -obj.male_block_depth_mm,
+            -obj.block_width_mm / 2
         ])
             cube([
-                reference.slide,
-                reference.male_block_depth,
-                reference.block_width
+                obj.slide_len_mm,
+                obj.male_block_depth_mm,
+                obj.block_width_mm
             ]);
 
         sliding_dovetail_male_build(
-            reference.joint,
-            slide = reference.slide
+            obj.joint,
+            slide_len_mm = obj.slide_len_mm
         );
     }
 }
 
 module sliding_dovetail_reference_pair_build(
-    reference,
+    obj,
     position = "assembled",
     male_color = [0.88, 0.10, 0.06, 1],
     female_color = [0.28, 0.50, 0.82, 1]
 ) {
     color(female_color)
-        sliding_dovetail_reference_female_build(reference);
+        sliding_dovetail_reference_female_build(obj);
 
     translate([
-        sliding_dovetail_reference_male_x(
-            reference,
+        sliding_dovetail_reference_male_x_mm(
+            obj,
             position
         ),
         0,
         0
     ])
         color(male_color)
-            sliding_dovetail_reference_male_build(reference);
+            sliding_dovetail_reference_male_build(obj);
 }

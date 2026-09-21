@@ -4,13 +4,13 @@ use <00-sliding-dovetail-fixture-orientation.scad>
 
 joint =
     sliding_dovetail_create(
-        locking = true,
-        lock_spring_length = 5.5
+        is_locking_enabled = true,
+        lock_spring_len_mm = 5.5
     );
 
 reference =
     sliding_dovetail_reference_create(
-        joint = joint
+        obj = joint
     );
 
 sliding_dovetail_fixture_male_inspection(reference)

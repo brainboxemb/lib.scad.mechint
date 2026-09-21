@@ -9,133 +9,133 @@ use <openscad/sliding-dovetail/assemblies/sliding_dovetail_test_assembly.scad>
 use <ext/lib.scad.util/openscad/inspection.scad>
 
 /* [View] */
-view = "lock-section"; // [male,female,approach,assembled,assembled-section,lock-section]
+c_view = "lock-section"; // [male,female,approach,assembled,assembled-section,lock-section]
 
 /* [Sliding dovetail] */
-width = 10;              // [4:0.25:30]
-height = 3;              // [1:0.25:10]
-angle = 20;              // [5:1:45]
-clearance = 0.20;        // [0:0.05:1]
-axial_clearance = 0.25;  // [0:0.05:2]
-extra = 0.01;            // [0:0.01:0.10]
-slide = 16;              // [6:1:40]
+d_width_mm = 10;              // [4:0.25:30]
+d_height_mm = 3;              // [1:0.25:10]
+d_angle_deg = 20;              // [5:1:45]
+d_clearance_mm = 0.20;        // [0:0.05:1]
+d_axial_clearance_mm = 0.25;  // [0:0.05:2]
+d_extra_mm = 0.01;            // [0:0.01:0.10]
+d_slide_len_mm = 16;              // [6:1:40]
 
 /* [Lock] */
-locking = true;
-lock_entry_offset = 0;            // [0:0.25:8]
-lock_width = 4.0;               // [2:0.25:8]
-lock_recess_length = 1.0;       // [0.5:0.25:4]
-lock_recess_depth = 0.6;        // [0.25:0.05:2]
-lock_threshold_length = 1.5;    // [0.5:0.25:4]
-lock_threshold_height = 0.5;    // [0.25:0.05:1.5]
-lock_ramp_length = 1.0;         // [0.25:0.25:3]
-lock_spring_length = 5.5;       // [3:0.5:14]
-lock_spring_thickness = 1.2;    // [0.6:0.1:4]
-lock_spring_relief = 0.8;       // [0.4:0.1:2]
-lock_spring_hinge_length = 0;   // [0:0.25:6]
-lock_spring_hinge_thickness = 0.8; // [0.4:0.1:3]
-lock_cut_back_clearance = true;
-lock_back_clearance = 0.8;      // [0:0.1:3]
-lock_release_access = true;
-lock_release_depth = 0.6;       // [0.25:0.05:2]
+d_is_locking_enabled = true;
+d_lock_entry_offset_mm = 0;            // [0:0.25:8]
+d_lock_width_mm = 4.0;               // [2:0.25:8]
+d_lock_recess_len_mm = 1.0;       // [0.5:0.25:4]
+d_lock_recess_depth_mm = 0.6;        // [0.25:0.05:2]
+d_lock_threshold_len_mm = 1.5;    // [0.5:0.25:4]
+d_lock_threshold_height_mm = 0.5;    // [0.25:0.05:1.5]
+d_lock_ramp_len_mm = 1.0;         // [0.25:0.25:3]
+d_lock_spring_len_mm = 5.5;       // [3:0.5:14]
+d_lock_spring_thickness_mm = 1.2;    // [0.6:0.1:4]
+d_lock_spring_relief_mm = 0.8;       // [0.4:0.1:2]
+d_lock_spring_hinge_len_mm = 0;   // [0:0.25:6]
+d_lock_spring_hinge_thickness_mm = 0.8; // [0.4:0.1:3]
+d_lock_has_back_clearance = true;
+d_lock_back_clearance_mm = 0.8;      // [0:0.1:3]
+d_lock_has_release_access = true;
+d_lock_release_depth_mm = 0.6;       // [0.25:0.05:2]
 
 /* [Reference blocks] */
-female_block_length = 24; // [12:1:50]
-female_block_depth = 7;   // [4:0.5:20]
-block_width = 16;         // [12:1:40]
-male_block_depth = 4;     // [2:0.5:12]
-approach_gap = 4;         // [0:0.5:15]
+c_female_block_len_mm = 24; // [12:1:50]
+c_female_block_depth_mm = 7;   // [4:0.5:20]
+c_block_width_mm = 16;         // [12:1:40]
+c_male_block_depth_mm = 4;     // [2:0.5:12]
+c_approach_gap_mm = 4;         // [0:0.5:15]
 
 /* [Section] */
-section_depth = 0.20;     // [0.1:0.05:2]
+c_section_depth_mm = 0.20;     // [0.1:0.05:2]
 
-joint =
+_joint =
     sliding_dovetail_create(
-        width = width,
-        height = height,
-        angle = angle,
-        clearance = clearance,
-        axial_clearance = axial_clearance,
-        extra = extra,
-        locking = locking,
-        lock_entry_offset = lock_entry_offset,
-        lock_width = lock_width,
-        lock_recess_length = lock_recess_length,
-        lock_recess_depth = lock_recess_depth,
-        lock_threshold_length = lock_threshold_length,
-        lock_threshold_height = lock_threshold_height,
-        lock_ramp_length = lock_ramp_length,
-        lock_spring_length = lock_spring_length,
-        lock_spring_thickness = lock_spring_thickness,
-        lock_spring_relief = lock_spring_relief,
-        lock_spring_hinge_length = lock_spring_hinge_length,
-        lock_spring_hinge_thickness = lock_spring_hinge_thickness,
-        lock_cut_back_clearance = lock_cut_back_clearance,
-        lock_back_clearance = lock_back_clearance,
-        lock_release_access = lock_release_access,
-        lock_release_depth = lock_release_depth
+        width_mm = d_width_mm,
+        height_mm = d_height_mm,
+        angle_deg = d_angle_deg,
+        clearance_mm = d_clearance_mm,
+        axial_clearance_mm = d_axial_clearance_mm,
+        extra_mm = d_extra_mm,
+        is_locking_enabled = d_is_locking_enabled,
+        lock_entry_offset_mm = d_lock_entry_offset_mm,
+        lock_width_mm = d_lock_width_mm,
+        lock_recess_len_mm = d_lock_recess_len_mm,
+        lock_recess_depth_mm = d_lock_recess_depth_mm,
+        lock_threshold_len_mm = d_lock_threshold_len_mm,
+        lock_threshold_height_mm = d_lock_threshold_height_mm,
+        lock_ramp_len_mm = d_lock_ramp_len_mm,
+        lock_spring_len_mm = d_lock_spring_len_mm,
+        lock_spring_thickness_mm = d_lock_spring_thickness_mm,
+        lock_spring_relief_mm = d_lock_spring_relief_mm,
+        lock_spring_hinge_len_mm = d_lock_spring_hinge_len_mm,
+        lock_spring_hinge_thickness_mm = d_lock_spring_hinge_thickness_mm,
+        lock_has_back_clearance = d_lock_has_back_clearance,
+        lock_back_clearance_mm = d_lock_back_clearance_mm,
+        lock_has_release_access = d_lock_has_release_access,
+        lock_release_depth_mm = d_lock_release_depth_mm
     );
 
-reference =
+_reference =
     sliding_dovetail_reference_create(
-        joint = joint,
-        slide = slide,
-        female_block_length = female_block_length,
-        female_block_depth = female_block_depth,
-        block_width = block_width,
-        male_block_depth = male_block_depth,
-        approach_gap = approach_gap
+        obj = _joint,
+        slide_len_mm = d_slide_len_mm,
+        female_block_len_mm = c_female_block_len_mm,
+        female_block_depth_mm = c_female_block_depth_mm,
+        block_width_mm = c_block_width_mm,
+        male_block_depth_mm = c_male_block_depth_mm,
+        approach_gap_mm = c_approach_gap_mm
     );
 
-is_fit_section = view == "assembled-section";
-is_lock_section = view == "lock-section";
-lock_section_center_x =
-    lock_entry_offset
-    + lock_spring_length / 2;
+_is_fit_section = c_view == "assembled-section";
+_is_lock_section = c_view == "lock-section";
+_lock_section_center_x_mm =
+    d_lock_entry_offset_mm
+    + d_lock_spring_len_mm / 2;
 
-$vpt = is_fit_section
-    ? [slide / 2, 1.5, 0]
-    : is_lock_section
-        ? [lock_section_center_x, 3.5, 0]
-        : [female_block_length / 3, 1.5, 0];
+$vpt = _is_fit_section
+    ? [d_slide_len_mm / 2, 1.5, 0]
+    : _is_lock_section
+        ? [_lock_section_center_x_mm, 3.5, 0]
+        : [c_female_block_len_mm / 3, 1.5, 0];
 
-$vpr = is_fit_section
+$vpr = _is_fit_section
     ? [0, 90, 0]
-    : is_lock_section
+    : _is_lock_section
         ? [0, 0, 0]
         : [72, 0, 35];
 
-$vpd = is_fit_section
+$vpd = _is_fit_section
     ? 55
-    : is_lock_section
+    : _is_lock_section
         ? 36
         : 90;
 
-if (is_fit_section) {
+if (_is_fit_section) {
     util_section_inspect(
         axis = "X",
-        position = slide / 2 - section_depth / 2,
-        depth = section_depth,
+        position = d_slide_len_mm / 2 - c_section_depth_mm / 2,
+        depth = c_section_depth_mm,
         direction = "Positive"
     )
         sliding_dovetail_test_assembly_build(
-            reference,
+            _reference,
             view = "assembled"
         );
-} else if (is_lock_section) {
+} else if (_is_lock_section) {
     util_section_inspect(
         axis = "Z",
-        position = -section_depth / 2,
-        depth = section_depth,
+        position = -c_section_depth_mm / 2,
+        depth = c_section_depth_mm,
         direction = "Positive"
     )
         sliding_dovetail_test_assembly_build(
-            reference,
+            _reference,
             view = "assembled"
         );
 } else {
     sliding_dovetail_test_assembly_build(
-        reference,
-        view = view
+        _reference,
+        view = c_view
     );
 }
