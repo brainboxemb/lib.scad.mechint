@@ -66,14 +66,21 @@ nominal dovetail width, height, angle or clearance contract.
 
 ## Dependency boundary
 
-Core mechanical-interface source uses plain OpenSCAD.
+Core mechanical-interface geometry remains owned by this repository.
 
-`lib.scad.util` is allowed as a development/verification dependency for
-presentation, section views and evidence, but must not be imported by the core
-`sliding_dovetail.scad` source merely to construct the interface.
+`lib.scad.util` is a runtime external dependency for domain-independent
+modeling primitives such as Forge tagged booleans, cutter overlap and transform
+objects, and may be imported by core source. Mechanical dimensions, fit,
+locking behavior and profile semantics must remain in `lib.scad.mechint`.
 
-BOSL2 may be consulted for general API ideas, but this library does not inherit
-woodworking-oriented defaults or require BOSL2.
+BOSL2 and Relativity.scad may be consulted for general modeling/API ideas, but
+this library does not require either framework or inherit their attachment,
+selector or primitive systems.
+
+Prefer the `xf_` helpers for simple position/rotation transforms. Use
+`xf_frame()` for orthogonal axis remapping and the axis-specific `xf_*flip()`
+helpers when a reflected frame is intended. Keep native `multmatrix()` only for
+general affine transforms that the shared transform API cannot express clearly.
 
 ## Units and native coordinates
 

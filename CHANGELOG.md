@@ -4,13 +4,22 @@
 
 ### Changed
 
+- Adopt the `lib.scad.util` Forge modeling layer for core sliding-dovetail
+  construction. High-level lock booleans now use explicit body/remove/keep
+  roles, while lock recess/release box cutters use centralized overlap-aware
+  Forge cutters instead of repeated translate/cube overlap arithmetic. Public
+  mechint geometry/API semantics remain unchanged. Simple core placement now
+  uses the shared `xf_` transform helpers instead of direct `translate()` calls.
+  Raw axis-remapping matrices are replaced by `xf_frame()` plus an explicit
+  `xf_zflip()` where the printable wedge intentionally uses a reflected frame.
+
 - Breaking OpenSCAD API cleanup to the shared coding standard: physical scalar parameters, object fields and accessors now carry explicit unit suffixes; length names use the shared `len` abbreviation where applicable; object receiver parameters use `obj`; and booleans use positive state names. No compatibility aliases are retained because the current consumer is migrated together.
 
 - Adopt the released Migration 008 dependency stack with `tool.git-project v0.2.9`
-  and `tool.scad-project v0.15.2` while retaining the existing
-  `lib.scad.util v0.1.0` external dependency. Qualification now asserts that
-  the root bootstrap initializes that external library without recursively
-  initializing the library's own tooling gitlinks.
+  and `tool.scad-project v0.15.2`, and upgrade the runtime utility dependency
+  to released `lib.scad.util v0.3.0`. Qualification asserts that the root
+  bootstrap initializes that external library without recursively initializing
+  the library's own tooling gitlinks.
 
 ## v0.1.6
 

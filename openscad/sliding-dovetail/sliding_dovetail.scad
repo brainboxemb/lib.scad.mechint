@@ -4,6 +4,8 @@
 //////////////////////////////////////////////////////////////////////
 
 use <sliding_dovetail_lock.scad>
+use <../../ext/lib.scad.util/openscad/forge.scad>
+use <../../ext/lib.scad.util/openscad/transform.scad>
 
 // Function: sliding_dovetail_create()
 // Synopsis: Creates one complete male/female sliding-dovetail interface.
@@ -229,29 +231,32 @@ module sliding_dovetail_male_build(
             obj.clearance_mm,
             obj.axial_clearance_mm
         )
-            difference() {
-                _sliding_dovetail_male_base(
-                    obj,
-                    slide_len_mm
-                );
+            fg_diff() {
+                fg_body()
+                    _sliding_dovetail_male_base(
+                        obj,
+                        slide_len_mm
+                    );
 
-                _sliding_dovetail_lock_male_recess_cutter(
-                    _sliding_dovetail_lock(obj),
-                    slide_len_mm,
-                    obj.axial_clearance_mm,
-                    obj.height_mm,
-                    obj.clearance_mm,
-                    obj.extra_mm
-                );
+                fg_remove() {
+                    _sliding_dovetail_lock_male_recess_cutter(
+                        _sliding_dovetail_lock(obj),
+                        slide_len_mm,
+                        obj.axial_clearance_mm,
+                        obj.height_mm,
+                        obj.clearance_mm,
+                        obj.extra_mm
+                    );
 
-                _sliding_dovetail_lock_male_release_cutter(
-                    _sliding_dovetail_lock(obj),
-                    slide_len_mm,
-                    obj.axial_clearance_mm,
-                    obj.height_mm,
-                    obj.clearance_mm,
-                    obj.extra_mm
-                );
+                    _sliding_dovetail_lock_male_release_cutter(
+                        _sliding_dovetail_lock(obj),
+                        slide_len_mm,
+                        obj.axial_clearance_mm,
+                        obj.height_mm,
+                        obj.clearance_mm,
+                        obj.extra_mm
+                    );
+                }
             }
     } else {
         _sliding_dovetail_male_base(
@@ -277,22 +282,24 @@ module sliding_dovetail_male_relief_cutter(
     assert(!is_undef(relief_width_mm) && relief_width_mm > 0,
         "sliding dovetail male relief_width must be > 0");
 
-    difference() {
-        translate([
-            -slide_len_mm / 2 - obj.extra_mm,
-            -obj.extra_mm,
-            -relief_width_mm / 2
-        ])
-            cube([
-                slide_len_mm + 2 * obj.extra_mm,
-                obj.height_mm + 2 * obj.extra_mm,
-                relief_width_mm
-            ]);
+    fg_diff() {
+        fg_body()
+            xf_move([
+                -slide_len_mm / 2 - obj.extra_mm,
+                -obj.extra_mm,
+                -relief_width_mm / 2
+            ])
+                cube([
+                    slide_len_mm + 2 * obj.extra_mm,
+                    obj.height_mm + 2 * obj.extra_mm,
+                    relief_width_mm
+                ]);
 
-        _sliding_dovetail_male_base(
-            obj,
-            slide_len_mm
-        );
+        fg_remove()
+            _sliding_dovetail_male_base(
+                obj,
+                slide_len_mm
+            );
     }
 }
 
@@ -317,33 +324,30 @@ module sliding_dovetail_female_cutter(
             obj.clearance_mm,
             obj.axial_clearance_mm
         )
-            union() {
-                // Start from the normal female subtraction volume, but keep a
-                // small ramped threshold in the channel roof.
-                difference() {
+            fg_diff() {
+                fg_body()
                     _sliding_dovetail_female_base_cutter(
                         obj,
                         slide_len_mm
                     );
 
+                fg_remove()
                     _sliding_dovetail_lock_female_threshold_keepout(
                         _sliding_dovetail_lock(obj),
                         slide_len_mm,
                         obj.axial_clearance_mm,
                         sliding_dovetail_female_height_mm(obj)
                     );
-                }
 
-                // Cut around and behind that threshold so the remaining roof
-                // material becomes an integral flexible tongue.
-                _sliding_dovetail_lock_female_relief_cutter(
-                    _sliding_dovetail_lock(obj),
-                    slide_len_mm,
-                    obj.axial_clearance_mm,
-                    sliding_dovetail_female_height_mm(obj),
-                    entry_slot_len_mm = obj.entry_slot_len_mm,
-                    extra_mm = obj.extra_mm
-                );
+                fg_keep()
+                    _sliding_dovetail_lock_female_relief_cutter(
+                        _sliding_dovetail_lock(obj),
+                        slide_len_mm,
+                        obj.axial_clearance_mm,
+                        sliding_dovetail_female_height_mm(obj),
+                        entry_slot_len_mm = obj.entry_slot_len_mm,
+                        extra_mm = obj.extra_mm
+                    );
             }
     } else {
         _sliding_dovetail_female_base_cutter(
@@ -373,7 +377,7 @@ module _sliding_dovetail_male_base(
         );
 
         if (obj.extra_mm > 0)
-            translate([
+            xf_move([
                 -slide_len_mm / 2 - obj.extra_mm,
                 -obj.extra_mm,
                 -sliding_dovetail_mouth_width_mm(obj) / 2
@@ -415,7 +419,7 @@ module _sliding_dovetail_female_base_cutter(
         // Its cross-section uses the complete clearanced female root envelope,
         // so a nominal male dovetail can sit in this space before sliding +X.
         if (obj.entry_slot_len_mm > 0)
-            translate([
+            xf_move([
                 -female_slide_len_mm / 2
                     - obj.entry_slot_len_mm
                     - obj.extra_mm,
@@ -431,7 +435,7 @@ module _sliding_dovetail_female_base_cutter(
                 ]);
 
         if (obj.extra_mm > 0)
-            translate([
+            xf_move([
                 -female_slide_len_mm / 2 - obj.extra_mm,
                 -obj.extra_mm,
                 -female_mouth_width_mm / 2
@@ -474,12 +478,11 @@ module _sliding_dovetail_prism(
     assert(root_width_mm > mouth_width_mm,
         "sliding dovetail root width must exceed mouth width");
 
-    multmatrix([
-        [0, 0, 1, x_min_mm],
-        [1, 0, 0, 0],
-        [0, 1, 0, 0],
-        [0, 0, 0, 1]
-    ])
+    xf_frame(
+        pos_mm = [x_min_mm, 0, 0],
+        x_axis = [0, 1, 0],
+        y_axis = [0, 0, 1]
+    )
         linear_extrude(height = x_max_mm - x_min_mm)
             polygon(
                 points =

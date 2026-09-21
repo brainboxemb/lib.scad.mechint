@@ -23,7 +23,7 @@ rendering:
 
 externals:
   - name: lib.scad.util
-    required_file: openscad/inspection.scad
+    required_file: openscad/forge.scad
 
 verification:
   render_root: vrf/openscad
