@@ -301,6 +301,69 @@ module _sliding_dovetail_lock_male_recess_cutter(
 // Native X remains the straight path to the lock recess. In the HUB75 project
 // mapping this means the taper runs in project Y and is symmetric on both
 // project-X sides; project Z remains the straight release path.
+module _sliding_dovetail_lock_male_release_print_wedges(
+    lock,
+    entry_x,
+    inner_x,
+    male_height,
+    release_width,
+    extra = 0
+) {
+    _slot_length_mm =
+        inner_x - entry_x;
+    _half_width_mm =
+        release_width / 2;
+    _outer_extension_mm =
+        _slot_length_mm
+        * tan(lock.release_taper_angle_deg);
+
+    assert(
+        _outer_extension_mm >= 0,
+        "sliding dovetail lock print wedge extension must be >= 0"
+    )
+
+    // The baseline rectangular release remains untouched. These two triangles
+    // only remove additional material toward the male trailing/outer edge.
+    //
+    // 2D coordinates here are native X/Z. linear_extrude adds the unchanged
+    // native-Y release depth.
+    for (side = [-1, 1])
+        translate([
+            0,
+            male_height - lock.release_depth,
+            0
+        ])
+            multmatrix([
+                [1, 0, 0, 0],
+                [0, 0, 1, 0],
+                [0, 1, 0, 0],
+                [0, 0, 0, 1]
+            ])
+                linear_extrude(
+                    height =
+                        lock.release_depth
+                        + extra
+                )
+                    polygon(points = [
+                        [
+                            entry_x,
+                            side * _half_width_mm
+                        ],
+                        [
+                            entry_x,
+                            side * (
+                                _half_width_mm
+                                + _outer_extension_mm
+                            )
+                        ],
+                        [
+                            inner_x,
+                            side * _half_width_mm
+                        ]
+                    ]);
+}
+
+
 module _sliding_dovetail_lock_male_release_cutter(
     lock,
     slide,
@@ -322,77 +385,32 @@ module _sliding_dovetail_lock_male_release_cutter(
     _slot_length_mm =
         _inner_x_mm - _entry_x_mm;
 
-    // Functional baseline width. Trapezoid mode must never become narrower
-    // than this at the lock-recess end.
+    // Functional baseline width. This rectangular opening is always cut in
+    // full, regardless of the optional printable wedge shape.
     _release_width_mm =
         lock.width + 2 * clearance;
 
     if (lock.release_access && _slot_length_mm > 0) {
-        if (lock.release_shape == "rectangular") {
-            translate([
-                _entry_x_mm,
-                male_height - lock.release_depth,
-                -_release_width_mm / 2
-            ])
-                cube([
-                    _slot_length_mm,
-                    lock.release_depth + extra,
-                    _release_width_mm
-                ]);
-        } else {
-            _outer_extension_mm =
-                _slot_length_mm
-                * tan(lock.release_taper_angle_deg);
-            _inner_half_width_mm =
-                _release_width_mm / 2;
-            _outer_half_width_mm =
-                _inner_half_width_mm
-                + _outer_extension_mm;
+        translate([
+            _entry_x_mm,
+            male_height - lock.release_depth,
+            -_release_width_mm / 2
+        ])
+            cube([
+                _slot_length_mm,
+                lock.release_depth + extra,
+                _release_width_mm
+            ]);
 
-            // Trapezoid in native X/Z, extruded through unchanged native-Y
-            // release depth:
-            //
-            //   native +X / lock recess   : baseline functional width
-            //   native -X / trailing edge : wider by the configured angle
-            //
-            // In the HUB75 print orientation this produces the two symmetric
-            // printable wedges at the outer edge while preserving the complete
-            // baseline release opening at the lock recess.
-            translate([
-                0,
-                male_height - lock.release_depth,
-                0
-            ])
-                multmatrix([
-                    [1, 0, 0, 0],
-                    [0, 0, 1, 0],
-                    [0, 1, 0, 0],
-                    [0, 0, 0, 1]
-                ])
-                    linear_extrude(
-                        height =
-                            lock.release_depth
-                            + extra
-                    )
-                        polygon(points = [
-                            [
-                                _entry_x_mm,
-                                -_outer_half_width_mm
-                            ],
-                            [
-                                _entry_x_mm,
-                                _outer_half_width_mm
-                            ],
-                            [
-                                _inner_x_mm,
-                                _inner_half_width_mm
-                            ],
-                            [
-                                _inner_x_mm,
-                                -_inner_half_width_mm
-                            ]
-                        ]);
-        }
+        if (lock.release_shape == "trapezoid")
+            _sliding_dovetail_lock_male_release_print_wedges(
+                lock,
+                entry_x = _entry_x_mm,
+                inner_x = _inner_x_mm,
+                male_height = male_height,
+                release_width = _release_width_mm,
+                extra = extra
+            );
     }
 }
 

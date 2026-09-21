@@ -4,10 +4,10 @@
 
 ### Added
 
-- Add an optional centered printable X/Z profile for the male lock-release
-  opening. `lock_release_shape="rectangular"` preserves the released geometry;
-  `"trapezoid"` preserves the full functional width at the lock recess and
-  widens symmetrically toward the male trailing edge according to
+- Add optional symmetric printable wedges to the male lock-release opening.
+  `lock_release_shape="rectangular"` preserves the released cutter exactly;
+  `"trapezoid"` keeps that full rectangular cutter and removes two additional
+  X/Z wedges toward the male trailing edge according to
   `lock_release_taper_angle_deg`, while release depth stays constant.
 
 ## v0.1.5
