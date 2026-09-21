@@ -77,6 +77,10 @@ BOSL2 and Relativity.scad may be consulted for general modeling/API ideas, but
 this library does not require either framework or inherit their attachment,
 selector or primitive systems.
 
+Prefer the `xf_` helpers for simple position/rotation transforms when they make
+core geometry easier to read; keep native matrix operations where they express
+axis remapping more directly.
+
 ## Units and native coordinates
 
 Public dimensional parameters are millimetres.

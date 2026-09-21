@@ -6,6 +6,7 @@
 // Private spring/flex configuration. Normal consumers configure these values
 // through sliding_dovetail_create(); they do not need to construct this object.
 use <../../ext/lib.scad.util/openscad/forge.scad>
+use <../../ext/lib.scad.util/openscad/transform.scad>
 
 function _sliding_dovetail_lock_spring_create(
     len_mm = 7.0,
@@ -361,13 +362,11 @@ module _sliding_dovetail_lock_male_release_print_wedges(
     // male outer X face (-slide/2-extra), avoiding a coplanar/sliver wall at
     // the exposed end.
     for (side = [-1, 1])
-        translate([
-            0,
+        xf_ymove(
             male_height_mm
-                - obj.release_depth_mm
-                - _overlap_mm,
-            0
-        ])
+            - obj.release_depth_mm
+            - _overlap_mm
+        )
             multmatrix([
                 [1, 0, 0, 0],
                 [0, 0, 1, 0],
@@ -482,7 +481,7 @@ module _sliding_dovetail_lock_female_threshold_keepout(
     x1_mm = x0_mm + obj.ramp_len_mm;
     x2_mm = x0_mm + obj.threshold_len_mm;
 
-    translate([0, 0, -obj.width_mm / 2])
+    xf_zmove(-obj.width_mm / 2)
         linear_extrude(height = obj.width_mm)
             polygon(points = [
                 [x0_mm, female_height_mm],
@@ -523,7 +522,7 @@ module _sliding_dovetail_lock_female_relief_cutter(
         + extra_mm;
 
     union() {
-        translate([
+        xf_move([
             spring_x0_mm - extra_mm,
             female_height_mm,
             -spring_width_mm / 2 - spring.relief_mm
@@ -534,7 +533,7 @@ module _sliding_dovetail_lock_female_relief_cutter(
                 spring.relief_mm
             ]);
 
-        translate([
+        xf_move([
             spring_x0_mm - extra_mm,
             female_height_mm,
             spring_width_mm / 2
@@ -549,7 +548,7 @@ module _sliding_dovetail_lock_female_relief_cutter(
             obj.entry_offset_mm > 0
             || entry_slot_len_mm > 0
         )
-            translate([
+            xf_move([
                 spring_x0_mm - spring.relief_mm,
                 female_height_mm,
                 -spring_width_mm / 2 - spring.relief_mm
@@ -618,7 +617,7 @@ module _sliding_dovetail_lock_female_relief_cutter(
             )
 
             // Channel-side pocket.
-            translate([0, 0, -spring_width_mm / 2])
+            xf_zmove(-spring_width_mm / 2)
                 linear_extrude(height = spring_width_mm)
                     polygon(points = [
                         [threshold_land_x1_mm, female_height_mm],
@@ -640,7 +639,7 @@ module _sliding_dovetail_lock_female_relief_cutter(
 
             // Opposing outer-face pocket. This mirrors the same relief profile
             // so the remaining hinge_thickness is centered through the tongue.
-            translate([0, 0, -spring_width_mm / 2])
+            xf_zmove(-spring_width_mm / 2)
                 linear_extrude(height = spring_width_mm)
                     polygon(points = [
                         [threshold_land_x1_mm, outer_face_y_mm],
@@ -662,7 +661,7 @@ module _sliding_dovetail_lock_female_relief_cutter(
         }
 
         if (spring.has_back_clearance)
-            translate([
+            xf_move([
                 spring_x0_mm - extra_mm,
                 female_height_mm + spring.thickness_mm,
                 -spring_width_mm / 2

@@ -5,6 +5,7 @@
 
 use <sliding_dovetail_lock.scad>
 use <../../ext/lib.scad.util/openscad/forge.scad>
+use <../../ext/lib.scad.util/openscad/transform.scad>
 
 // Function: sliding_dovetail_create()
 // Synopsis: Creates one complete male/female sliding-dovetail interface.
@@ -283,7 +284,7 @@ module sliding_dovetail_male_relief_cutter(
 
     fg_diff() {
         fg_body()
-            translate([
+            xf_move([
                 -slide_len_mm / 2 - obj.extra_mm,
                 -obj.extra_mm,
                 -relief_width_mm / 2
@@ -376,7 +377,7 @@ module _sliding_dovetail_male_base(
         );
 
         if (obj.extra_mm > 0)
-            translate([
+            xf_move([
                 -slide_len_mm / 2 - obj.extra_mm,
                 -obj.extra_mm,
                 -sliding_dovetail_mouth_width_mm(obj) / 2
@@ -418,7 +419,7 @@ module _sliding_dovetail_female_base_cutter(
         // Its cross-section uses the complete clearanced female root envelope,
         // so a nominal male dovetail can sit in this space before sliding +X.
         if (obj.entry_slot_len_mm > 0)
-            translate([
+            xf_move([
                 -female_slide_len_mm / 2
                     - obj.entry_slot_len_mm
                     - obj.extra_mm,
@@ -434,7 +435,7 @@ module _sliding_dovetail_female_base_cutter(
                 ]);
 
         if (obj.extra_mm > 0)
-            translate([
+            xf_move([
                 -female_slide_len_mm / 2 - obj.extra_mm,
                 -obj.extra_mm,
                 -female_mouth_width_mm / 2
