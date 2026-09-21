@@ -5,6 +5,8 @@
 
 // Private spring/flex configuration. Normal consumers configure these values
 // through sliding_dovetail_create(); they do not need to construct this object.
+use <../../ext/lib.scad.util/openscad/forge.scad>
+
 function _sliding_dovetail_lock_spring_create(
     len_mm = 7.0,
     thickness_mm = 1.2,
@@ -276,16 +278,24 @@ module _sliding_dovetail_lock_male_recess_cutter(
     recess_width_mm =
         obj.width_mm + 2 * clearance_mm;
 
-    translate([
-        x0_mm,
-        male_height_mm - obj.recess_depth_mm,
-        -recess_width_mm / 2
-    ])
-        cube([
-            obj.recess_len_mm + extra_mm,
-            obj.recess_depth_mm + extra_mm,
-            recess_width_mm
-        ]);
+    _recess_cutter =
+        fg_box_cutter_create(
+            size_mm = [
+                obj.recess_len_mm,
+                obj.recess_depth_mm,
+                recess_width_mm
+            ],
+            pos_mm = [
+                x0_mm,
+                male_height_mm - obj.recess_depth_mm,
+                -recess_width_mm / 2
+            ],
+            overlap_min = [false, false, false],
+            overlap_max = [true, true, false],
+            overlap_mm = max(extra_mm, fg_overlap_mm())
+        );
+
+    fg_cutter_build(_recess_cutter);
 }
 
 // Optional path from the male -X/trailing edge to the lock recess.
@@ -335,7 +345,7 @@ module _sliding_dovetail_lock_male_release_print_wedges(
     // Boolean overlap only. It must not participate in the nominal taper
     // calculation.
     _overlap_mm =
-        max(extra_mm, 0.01);
+        max(extra_mm, fg_overlap_mm());
 
     assert(
         _release_length_mm > 0,
@@ -414,26 +424,33 @@ module _sliding_dovetail_lock_male_release_cutter(
             axial_clearance_mm
         );
     _entry_x_mm =
-        -slide_len_mm / 2 - extra_mm;
-    _access_length_mm =
+        -slide_len_mm / 2;
+    _access_len_mm =
         _recess_x0_mm - _entry_x_mm;
+    _overlap_mm =
+        max(extra_mm, fg_overlap_mm());
 
     // Functional baseline width. This rectangular access opening is always cut
     // in full. The adjacent recess cutter completes the visible release zone.
     _release_width_mm =
         obj.width_mm + 2 * clearance_mm;
 
-    if (obj.has_release_access && _access_length_mm > 0) {
-        translate([
-            _entry_x_mm,
-            male_height_mm - obj.release_depth_mm,
-            -_release_width_mm / 2
-        ])
-            cube([
-                _access_length_mm + extra_mm,
-                obj.release_depth_mm + extra_mm,
+    if (obj.has_release_access && _access_len_mm > 0) {
+        fg_cut_box(
+            size_mm = [
+                _access_len_mm,
+                obj.release_depth_mm,
                 _release_width_mm
-            ]);
+            ],
+            pos_mm = [
+                _entry_x_mm,
+                male_height_mm - obj.release_depth_mm,
+                -_release_width_mm / 2
+            ],
+            overlap_min = [true, false, false],
+            overlap_max = [true, true, false],
+            overlap_mm = _overlap_mm
+        );
 
         if (obj.release_shape == "trapezoid")
             _sliding_dovetail_lock_male_release_print_wedges(

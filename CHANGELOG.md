@@ -4,6 +4,12 @@
 
 ### Changed
 
+- Adopt the `lib.scad.util` Forge modeling layer for core sliding-dovetail
+  construction. High-level lock booleans now use explicit body/remove/keep
+  roles, while lock recess/release box cutters use centralized overlap-aware
+  Forge cutters instead of repeated translate/cube overlap arithmetic. Public
+  mechint geometry/API semantics remain unchanged.
+
 - Breaking OpenSCAD API cleanup to the shared coding standard: physical scalar parameters, object fields and accessors now carry explicit unit suffixes; length names use the shared `len` abbreviation where applicable; object receiver parameters use `obj`; and booleans use positive state names. No compatibility aliases are retained because the current consumer is migrated together.
 
 - Adopt the released Migration 008 dependency stack with `tool.git-project v0.2.9`
