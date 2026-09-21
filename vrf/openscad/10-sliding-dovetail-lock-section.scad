@@ -12,7 +12,7 @@ joint =
 
 reference =
     sliding_dovetail_reference_create(
-        joint = joint
+        obj = joint
     );
 
 $vpt = [3.5, 3.5, 0];

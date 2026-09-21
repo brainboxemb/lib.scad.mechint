@@ -8,8 +8,8 @@ use <../../openscad/sliding-dovetail/sliding_dovetail.scad>
 use <../../openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad>
 
 spring_thickness_mm = 3.3;
-hinge_thickness = 0.8;
-hinge_length = 1.65;
+hinge_thickness_mm = 0.8;
+hinge_len_mm = 1.65;
 
 joint =
     sliding_dovetail_create(
@@ -22,18 +22,18 @@ joint =
         is_locking_enabled = true,
         lock_spring_len_mm = 7,
         lock_spring_thickness_mm = spring_thickness_mm,
-        lock_spring_hinge_len_mm = hinge_length,
-        lock_spring_hinge_thickness_mm = hinge_thickness,
+        lock_spring_hinge_len_mm = hinge_len_mm,
+        lock_spring_hinge_thickness_mm = hinge_thickness_mm,
         lock_has_back_clearance = false,
         lock_has_release_access = true
     );
 
 reference =
     sliding_dovetail_reference_create(
-        joint = joint,
+        obj = joint,
         slide_len_mm = 16,
-        female_block_length = 42,
-        female_block_depth =
+        female_block_len_mm = 42,
+        female_block_depth_mm_mm =
             sliding_dovetail_female_height_mm(joint)
             + spring_thickness_mm
     );

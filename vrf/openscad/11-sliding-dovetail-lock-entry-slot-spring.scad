@@ -17,22 +17,22 @@ joint =
 
 reference =
     sliding_dovetail_reference_create(
-        joint = joint,
+        obj = joint,
         slide_len_mm = 16,
-        female_block_length = 42
+        female_block_len_mm = 42
     );
 
-section_y =
+section_y_mm =
     sliding_dovetail_female_height_mm(joint)
     + 0.6;
 
-$vpt = [19, section_y, 0];
+$vpt = [19, section_y_mm, 0];
 $vpr = [90, 0, 0];
 $vpd = 58;
 
 util_section_inspect(
     axis = "Y",
-    position = section_y - 0.1,
+    position = section_y_mm - 0.1,
     depth = 0.2,
     direction = "Positive"
 )

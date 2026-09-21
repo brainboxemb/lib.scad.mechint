@@ -12,7 +12,7 @@ joint =
 
 reference =
     sliding_dovetail_reference_create(
-        joint = joint
+        obj = joint
     );
 
 sliding_dovetail_fixture_assembly_inspection(reference)

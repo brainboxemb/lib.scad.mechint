@@ -1,7 +1,7 @@
 // Shared centered two-sided hinge-relief verification geometry.
 
 use <../../../openscad/sliding-dovetail/sliding_dovetail.scad>
-use <../../../openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad>
+use <../../../openscad/sliding-dovetail/reference/sliding_dovetail_obj.scad>
 
 function sliding_dovetail_hinge_fixture_reference() =
     let(
@@ -24,63 +24,63 @@ function sliding_dovetail_hinge_fixture_reference() =
             )
     )
     sliding_dovetail_reference_create(
-        joint = joint,
+        obj = joint,
         slide_len_mm = 16,
-        female_block_length = 42,
-        female_block_depth =
+        female_block_len_mm = 42,
+        female_block_depth_mm_mm =
             sliding_dovetail_female_height_mm(joint)
             + spring_thickness_mm,
-        block_width = 16
+        block_width_mm = 16
     );
 
 
-module sliding_dovetail_hinge_fixture_female(reference) {
-    sliding_dovetail_reference_female_build(reference);
+module sliding_dovetail_hinge_fixture_female(obj) {
+    sliding_dovetail_reference_female_build(obj);
 }
 
 
-module sliding_dovetail_hinge_fixture_female_cutaway(reference) {
+module sliding_dovetail_hinge_fixture_female_cutaway(obj) {
     intersection() {
-        sliding_dovetail_reference_female_build(reference);
+        sliding_dovetail_reference_female_build(obj);
 
         translate([-1, -1, 0])
             cube([
-                reference.female_block_length + 2,
-                reference.female_block_depth + 2,
-                reference.block_width / 2 + 1
+                obj.female_block_len_mm + 2,
+                obj.female_block_depth_mm_mm + 2,
+                obj.block_width_mm / 2 + 1
             ]);
     }
 }
 
 
-module sliding_dovetail_hinge_fixture_assembled_cutaway(reference) {
-    male_x =
-        sliding_dovetail_reference_male_x(
-            reference,
+module sliding_dovetail_hinge_fixture_assembled_cutaway(obj) {
+    male_x_mm =
+        sliding_dovetail_reference_male_x_mm(
+            obj,
             "assembled"
         );
 
     intersection() {
         union() {
-            sliding_dovetail_reference_female_build(reference);
+            sliding_dovetail_reference_female_build(obj);
 
-            translate([male_x, 0, 0])
-                sliding_dovetail_reference_male_build(reference);
+            translate([male_x_mm, 0, 0])
+                sliding_dovetail_reference_male_build(obj);
         }
 
         translate([
-            -reference.slide_len_mm - 2,
-            -reference.male_block_depth - 1,
+            -obj.slide_len_mm - 2,
+            -obj.male_block_depth_mm - 1,
             0
         ])
             cube([
-                reference.female_block_length
-                    + 2 * reference.slide_len_mm
+                obj.female_block_len_mm
+                    + 2 * obj.slide_len_mm
                     + 4,
-                reference.female_block_depth
-                    + reference.male_block_depth
+                obj.female_block_depth_mm_mm
+                    + obj.male_block_depth_mm
                     + 2,
-                reference.block_width / 2 + 1
+                obj.block_width_mm / 2 + 1
             ]);
     }
 }

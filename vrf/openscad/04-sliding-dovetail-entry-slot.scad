@@ -10,9 +10,9 @@ joint =
 
 reference =
     sliding_dovetail_reference_create(
-        joint = joint,
+        obj = joint,
         slide_len_mm = 16,
-        female_block_length = 42
+        female_block_len_mm = 42
     );
 
 $vpt = [16, 1.8, 0];
