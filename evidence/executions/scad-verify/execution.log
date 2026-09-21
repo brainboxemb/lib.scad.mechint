@@ -1,0 +1,31 @@
+SCAD producer execution
+=======================
+
+Capability: scad.verify
+Action: verify
+Source revision: bdd39925f2ad391b32fad7ba56770053d4d5e2bc
+Owner: brainboxemb/tool.scad-project
+Owner revision: 78e26949c6f2397ed90bb7888c1386d3dd423312
+tool.scad-project version: 0.15.0
+Status: success
+
+Domain evidence: ../../domain/last-verification-build.json
+
+Decision report kind: verification
+Build engine: scons
+Targets: 12
+Outcomes: BUILT=12, CACHE_RESTORED=0, CURRENT=0, ERROR=0
+
+Target decisions:
+- BUILT: vrf/out/png/01-sliding-dovetail-fit.png
+- BUILT: vrf/out/png/02-sliding-dovetail-approach.png
+- BUILT: vrf/out/png/03-sliding-dovetail-yz-section.png
+- BUILT: vrf/out/png/04-sliding-dovetail-entry-slot.png
+- BUILT: vrf/out/png/10-sliding-dovetail-lock-section.png
+- BUILT: vrf/out/png/11-sliding-dovetail-lock-entry-slot-spring.png
+- BUILT: vrf/out/png/12-sliding-dovetail-root-land-relief.png
+- BUILT: vrf/out/png/13-sliding-dovetail-mouth-root-land.png
+- BUILT: vrf/out/png/14-sliding-dovetail-lock-hinge-relief.png
+- BUILT: vrf/out/png/15-sliding-dovetail-lock-hinge-overview.png
+- BUILT: vrf/out/png/16-sliding-dovetail-lock-hinge-cutaway.png
+- BUILT: vrf/out/png/17-sliding-dovetail-lock-hinge-assembled-cutaway.png
