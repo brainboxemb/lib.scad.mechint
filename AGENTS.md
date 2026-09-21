@@ -77,9 +77,10 @@ BOSL2 and Relativity.scad may be consulted for general modeling/API ideas, but
 this library does not require either framework or inherit their attachment,
 selector or primitive systems.
 
-Prefer the `xf_` helpers for simple position/rotation transforms when they make
-core geometry easier to read; keep native matrix operations where they express
-axis remapping more directly.
+Prefer the `xf_` helpers for simple position/rotation transforms. Use
+`xf_frame()` for orthogonal axis remapping and the axis-specific `xf_*flip()`
+helpers when a reflected frame is intended. Keep native `multmatrix()` only for
+general affine transforms that the shared transform API cannot express clearly.
 
 ## Units and native coordinates
 

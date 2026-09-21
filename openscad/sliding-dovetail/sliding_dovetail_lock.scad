@@ -367,13 +367,12 @@ module _sliding_dovetail_lock_male_release_print_wedges(
             - obj.release_depth_mm
             - _overlap_mm
         )
-            multmatrix([
-                [1, 0, 0, 0],
-                [0, 0, 1, 0],
-                [0, 1, 0, 0],
-                [0, 0, 0, 1]
-            ])
-                linear_extrude(
+            xf_frame(
+                x_axis = [1, 0, 0],
+                y_axis = [0, 0, 1]
+            )
+                xf_zflip()
+                    linear_extrude(
                     height =
                         obj.release_depth_mm
                         + 2 * _overlap_mm

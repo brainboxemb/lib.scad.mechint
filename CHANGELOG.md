@@ -10,6 +10,8 @@
   Forge cutters instead of repeated translate/cube overlap arithmetic. Public
   mechint geometry/API semantics remain unchanged. Simple core placement now
   uses the shared `xf_` transform helpers instead of direct `translate()` calls.
+  Raw axis-remapping matrices are replaced by `xf_frame()` plus an explicit
+  `xf_zflip()` where the printable wedge intentionally uses a reflected frame.
 
 - Breaking OpenSCAD API cleanup to the shared coding standard: physical scalar parameters, object fields and accessors now carry explicit unit suffixes; length names use the shared `len` abbreviation where applicable; object receiver parameters use `obj`; and booleans use positive state names. No compatibility aliases are retained because the current consumer is migrated together.
 

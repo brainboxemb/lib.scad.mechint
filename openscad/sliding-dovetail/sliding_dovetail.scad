@@ -478,12 +478,11 @@ module _sliding_dovetail_prism(
     assert(root_width_mm > mouth_width_mm,
         "sliding dovetail root width must exceed mouth width");
 
-    multmatrix([
-        [0, 0, 1, x_min_mm],
-        [1, 0, 0, 0],
-        [0, 1, 0, 0],
-        [0, 0, 0, 1]
-    ])
+    xf_frame(
+        pos_mm = [x_min_mm, 0, 0],
+        x_axis = [0, 1, 0],
+        y_axis = [0, 0, 1]
+    )
         linear_extrude(height = x_max_mm - x_min_mm)
             polygon(
                 points =
