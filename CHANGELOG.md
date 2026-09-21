@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- Add an optional trapezoidal profile for the lock spring's short transverse
+  relief opening. The existing rectangular opening remains the default;
+  `lock_spring_transverse_relief_angle` controls the symmetric outer-face
+  taper for side-print-friendly geometry.
+
 ## v0.1.5
 
 ### Added

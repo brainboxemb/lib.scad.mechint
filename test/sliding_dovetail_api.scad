@@ -142,6 +142,34 @@ assert(abs(hinge_lock_joint.lock.spring.hinge_length - 1.65) < 0.0001);
 assert(abs(hinge_lock_joint.lock.spring.hinge_thickness - 0.8) < 0.0001);
 assert(!hinge_lock_joint.lock.spring.cut_back_clearance);
 
+trapezoid_lock_joint =
+    sliding_dovetail_create(
+        width = 12,
+        height = 2.5,
+        angle = 30,
+        root_land_depth = 0.5,
+        mouth_land_depth = 0.5,
+        entry_slot_length = 16,
+        locking = true,
+        lock_spring_thickness = 1.3,
+        lock_spring_transverse_relief_shape = "trapezoid",
+        lock_spring_transverse_relief_angle = 45,
+        lock_cut_back_clearance = false
+    );
+
+assert(sliding_dovetail_locking_enabled(trapezoid_lock_joint));
+assert(
+    trapezoid_lock_joint.lock.spring.transverse_relief_shape
+        == "trapezoid"
+);
+assert(
+    abs(
+        trapezoid_lock_joint.lock.spring.transverse_relief_angle
+            - 45
+    ) < 0.0001
+);
+
+
 // Exercise the public builders with plain and locking interfaces.
 translate([-36, 0, 0])
     sliding_dovetail_male_build(
@@ -215,5 +243,11 @@ translate([204, 0, 0])
 translate([228, 0, 0])
     sliding_dovetail_female_cutter(
         hinge_lock_joint,
+        slide = 16
+    );
+
+translate([252, 0, 0])
+    sliding_dovetail_female_cutter(
+        trapezoid_lock_joint,
         slide = 16
     );

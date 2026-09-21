@@ -109,6 +109,24 @@ the open end of the U. If `lock_entry_offset > 0` or
 `entry_slot_length > 0`, the library also cuts the short transverse relief
 needed to free the tongue at its entry end.
 
+That transverse opening is rectangular by default, preserving the released
+geometry. For a side-printed host it can instead use a trapezoidal Y/Z profile:
+
+```scad
+joint = sliding_dovetail_create(
+    entry_slot_length = 16,
+    locking = true,
+    lock_spring_transverse_relief_shape = "trapezoid",
+    lock_spring_transverse_relief_angle = 45
+);
+```
+
+The channel-side opening stays at the full required spring-relief height. Toward
+the outer host face the opening narrows symmetrically, giving the upper and lower
+faces a slope. The angle is measured in the native Y/Z profile from Y; 45
+degrees gives a 1:1 slope. This changes only the short transverse spring opening,
+not the longitudinal isolation cuts or locking threshold.
+
 `lock_cut_back_clearance = true` cuts the flex cavity behind the tongue.
 With it disabled, the spring can keep a flat outer/rear face.
 
