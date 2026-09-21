@@ -315,6 +315,8 @@ module _sliding_dovetail_lock_male_release_print_wedges(
     // This is deliberately longer than the screwdriver access path alone.
     _entry_x_mm =
         -slide / 2;
+    _male_outer_x_mm =
+        _entry_x_mm - extra;
     _release_end_x_mm =
         _sliding_dovetail_lock_male_recess_end_x(
             lock,
@@ -345,8 +347,9 @@ module _sliding_dovetail_lock_male_release_print_wedges(
     )
 
     // The baseline rectangular release and recess cutters remain intact.
-    // Each triangle overlaps their width boundary and both X ends by a tiny
-    // amount, avoiding coplanar/sliver remnants in OpenSCAD booleans.
+    // Each triangle overlaps the baseline width and extends past the actual
+    // male outer X face (-slide/2-extra), avoiding a coplanar/sliver wall at
+    // the exposed end.
     for (side = [-1, 1])
         translate([
             0,
@@ -368,14 +371,16 @@ module _sliding_dovetail_lock_male_release_print_wedges(
                 )
                     polygon(points = [
                         [
-                            _entry_x_mm - _overlap_mm,
+                            _male_outer_x_mm
+                                - _overlap_mm,
                             side * (
                                 _half_width_mm
                                 - _overlap_mm
                             )
                         ],
                         [
-                            _entry_x_mm - _overlap_mm,
+                            _male_outer_x_mm
+                                - _overlap_mm,
                             side * (
                                 _half_width_mm
                                 + _outer_extension_mm

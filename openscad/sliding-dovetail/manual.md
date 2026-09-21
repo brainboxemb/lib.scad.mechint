@@ -170,9 +170,9 @@ narrows or replaces the functional baseline opening.
 
 `lock_release_taper_angle_deg` is measured in the native X/Z profile. At 45
 degrees each wedge grows by 1 mm in Z for every 1 mm of nominal release-zone run
-in X. The native-Y release depth remains constant. The wedge cutters overlap the
-baseline opening slightly using the normal Boolean `extra` allowance so
-coplanar boundaries cannot leave a thin residual wall.
+in X. The native-Y release depth remains constant. The wedge cutters overlap the baseline opening and extend slightly past the
+actual male outer face (including the male body's normal Boolean `extra`)
+so coplanar boundaries cannot leave a thin residual wall.
 
 
 ## Male mating relief
