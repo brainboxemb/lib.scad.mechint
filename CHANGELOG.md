@@ -1,5 +1,16 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+
+- Upgrade the runtime utility dependency to released `lib.scad.util v0.4.0`.
+  Sliding-dovetail lock cutters now use Forge's named overlap token functions
+  (`fg_left()`, `fg_right()`, `fg_back()`) instead of the legacy
+  `overlap_min` / `overlap_max` boolean vectors. Cutter geometry and
+  overlap amounts remain unchanged.
+
+
 ## v0.2.0
 
 ### Changed
