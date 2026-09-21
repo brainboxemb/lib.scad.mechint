@@ -1,7 +1,7 @@
 // Shared centered two-sided hinge-relief verification geometry.
 
 use <../../../openscad/sliding-dovetail/sliding_dovetail.scad>
-use <../../../openscad/sliding-dovetail/reference/sliding_dovetail_obj.scad>
+use <../../../openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad>
 
 function sliding_dovetail_hinge_fixture_reference() =
     let(
@@ -27,7 +27,7 @@ function sliding_dovetail_hinge_fixture_reference() =
         obj = joint,
         slide_len_mm = 16,
         female_block_len_mm = 42,
-        female_block_depth_mm_mm =
+        female_block_depth_mm =
             sliding_dovetail_female_height_mm(joint)
             + spring_thickness_mm,
         block_width_mm = 16
@@ -46,7 +46,7 @@ module sliding_dovetail_hinge_fixture_female_cutaway(obj) {
         translate([-1, -1, 0])
             cube([
                 obj.female_block_len_mm + 2,
-                obj.female_block_depth_mm_mm + 2,
+                obj.female_block_depth_mm + 2,
                 obj.block_width_mm / 2 + 1
             ]);
     }
@@ -77,7 +77,7 @@ module sliding_dovetail_hinge_fixture_assembled_cutaway(obj) {
                 obj.female_block_len_mm
                     + 2 * obj.slide_len_mm
                     + 4,
-                obj.female_block_depth_mm_mm
+                obj.female_block_depth_mm
                     + obj.male_block_depth_mm
                     + 2,
                 obj.block_width_mm / 2 + 1

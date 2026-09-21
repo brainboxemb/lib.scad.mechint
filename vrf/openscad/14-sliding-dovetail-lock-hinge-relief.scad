@@ -33,7 +33,7 @@ reference =
         obj = joint,
         slide_len_mm = 16,
         female_block_len_mm = 42,
-        female_block_depth_mm_mm =
+        female_block_depth_mm =
             sliding_dovetail_female_height_mm(joint)
             + spring_thickness_mm
     );

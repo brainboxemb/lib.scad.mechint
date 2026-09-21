@@ -24,7 +24,7 @@ sliding_dovetail_fixture_female_inspection(reference)
         translate([-1, -1, 0])
             cube([
                 reference.female_block_len_mm + 2,
-                reference.female_block_depth_mm_mm + 2,
+                reference.female_block_depth_mm + 2,
                 reference.block_width_mm / 2 + 1
             ]);
     }

@@ -5,7 +5,7 @@
 
 module sliding_dovetail_fixture_female_inspection(obj) {
     // Female host body lies flat; channel/interface opens upward.
-    translate([0, 0, obj.female_block_depth_mm_mm])
+    translate([0, 0, obj.female_block_depth_mm])
         rotate([-90, 0, 0])
             children();
 }
