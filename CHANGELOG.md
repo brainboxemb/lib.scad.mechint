@@ -6,6 +6,12 @@
 
 - Breaking OpenSCAD API cleanup to the shared coding standard: physical scalar parameters, object fields and accessors now carry explicit unit suffixes; length names use the shared `len` abbreviation where applicable; object receiver parameters use `obj`; and booleans use positive state names. No compatibility aliases are retained because the current consumer is migrated together.
 
+- Adopt the released Migration 008 dependency stack with `tool.git-project v0.2.9`
+  and `tool.scad-project v0.15.2` while retaining the existing
+  `lib.scad.util v0.1.0` external dependency. Qualification now asserts that
+  the root bootstrap initializes that external library without recursively
+  initializing the library's own tooling gitlinks.
+
 ## v0.1.6
 
 ### Added
