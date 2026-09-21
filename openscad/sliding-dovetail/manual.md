@@ -109,28 +109,6 @@ the open end of the U. If `lock_entry_offset > 0` or
 `entry_slot_length > 0`, the library also cuts the short transverse relief
 needed to free the tongue at its entry end.
 
-That transverse opening is rectangular by default, preserving the released
-geometry. For a host printed with native Z as build direction it can instead
-use a trapezoidal X/Z profile:
-
-```scad
-joint = sliding_dovetail_create(
-    entry_slot_length = 16,
-    locking = true,
-    lock_spring_transverse_relief_shape = "trapezoid",
-    lock_spring_transverse_relief_top_length = 0.4
-);
-```
-
-At native -Z the opening keeps the full legacy transverse length
-(`lock_spring_relief`). Toward native +Z it becomes shorter. The
-`lock_spring_transverse_relief_top_length` value controls that upper length;
-when omitted, trapezoid mode uses half of `lock_spring_relief`.
-
-The cutter still passes through the complete required Y depth, so the tongue is
-fully separated as with the rectangular opening. Only the opening's X/Z side
-profile changes.
-
 `lock_cut_back_clearance = true` cuts the flex cavity behind the tongue.
 With it disabled, the spring can keep a flat outer/rear face.
 
@@ -163,8 +141,34 @@ the previous geometry exactly.
 The threshold insertion ramp is independently tunable with
 `lock_ramp_length`. With `lock_release_access = true`, the recess continues
 to the male -X edge with the same width as the recess itself. A small flat
-screwdriver can use that straight opening to lift the female tongue.
-`lock_release_depth` controls its depth.
+screwdriver can use that opening to lift the female tongue.
+
+The released/default opening is rectangular:
+
+```scad
+lock_release_shape = "rectangular"
+```
+
+For a male part printed with native Z as build direction, the opening can
+instead use a trapezoidal Y/Z profile:
+
+```scad
+joint = sliding_dovetail_create(
+    locking = true,
+    lock_release_access = true,
+    lock_release_depth = 0.6,
+    lock_release_shape = "trapezoid",
+    lock_release_top_depth = 0.3
+);
+```
+
+At native -Z the opening keeps the full `lock_release_depth`. Toward native
++Z it becomes shallower, so the visible male release opening goes from broader
+to narrower in the build direction. `lock_release_top_depth = undef` uses
+half of `lock_release_depth`.
+
+The cutter still reaches the same lock recess along X; only the Y/Z opening
+profile changes.
 
 
 ## Male mating relief

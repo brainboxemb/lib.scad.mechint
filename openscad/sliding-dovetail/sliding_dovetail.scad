@@ -31,14 +31,14 @@ use <sliding_dovetail_lock.scad>
 //   lock_spring_length = Flexible female tongue length along X.
 //   lock_spring_thickness = Material thickness of the flexible tongue.
 //   lock_spring_relief = Width of the U-shaped isolation cuts.
-//   lock_spring_transverse_relief_shape = Shape of the short transverse spring-opening cut: "rectangular" or "trapezoid".
-//   lock_spring_transverse_relief_top_length = Native-X length of the trapezoid at +Z; undef uses half spring_relief.
 //   lock_spring_hinge_length = Root-side chamfer + central-web envelope; 0 disables the relief.
 //   lock_spring_hinge_thickness = Total thickness of the centered flex web left between opposing relief pockets.
 //   lock_cut_back_clearance = Whether to cut a flex cavity behind the tongue.
 //   lock_back_clearance = Flex-cavity depth behind the tongue.
-//   lock_release_access = Whether to add a male screwdriver slot from the entry edge.
-//   lock_release_depth = Screwdriver slot depth into the male root surface.
+//   lock_release_access = Whether to add a male release opening from the entry edge.
+//   lock_release_depth = Maximum release-opening depth into the male root surface.
+//   lock_release_shape = Male release-opening profile: "rectangular" or "trapezoid".
+//   lock_release_top_depth = Trapezoid depth at native +Z; undef uses half lock_release_depth.
 function sliding_dovetail_create(
     width = 10,
     height = 3,
@@ -60,14 +60,14 @@ function sliding_dovetail_create(
     lock_spring_length = 7.0,
     lock_spring_thickness = 1.2,
     lock_spring_relief = 0.8,
-    lock_spring_transverse_relief_shape = "rectangular",
-    lock_spring_transverse_relief_top_length = undef,
     lock_spring_hinge_length = 0,
     lock_spring_hinge_thickness = 0.8,
     lock_cut_back_clearance = true,
     lock_back_clearance = 0.8,
     lock_release_access = true,
-    lock_release_depth = 0.6
+    lock_release_depth = 0.6,
+    lock_release_shape = "rectangular",
+    lock_release_top_depth = undef
 ) =
     let(
         sloped_depth =
@@ -88,16 +88,14 @@ function sliding_dovetail_create(
             spring_length = lock_spring_length,
             spring_thickness = lock_spring_thickness,
             spring_relief = lock_spring_relief,
-            spring_transverse_relief_shape =
-                lock_spring_transverse_relief_shape,
-            spring_transverse_relief_top_length =
-                lock_spring_transverse_relief_top_length,
             spring_hinge_length = lock_spring_hinge_length,
             spring_hinge_thickness = lock_spring_hinge_thickness,
             cut_back_clearance = lock_cut_back_clearance,
             back_clearance = lock_back_clearance,
             release_access = lock_release_access,
-            release_depth = lock_release_depth
+            release_depth = lock_release_depth,
+            release_shape = lock_release_shape,
+            release_top_depth = lock_release_top_depth
         )
     )
     assert(width > 0,

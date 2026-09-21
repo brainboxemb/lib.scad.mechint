@@ -9,8 +9,6 @@ function _sliding_dovetail_lock_spring_create(
     length = 7.0,
     thickness = 1.2,
     relief = 0.8,
-    transverse_relief_shape = "rectangular",
-    transverse_relief_top_length = undef,
     hinge_length = 0,
     hinge_thickness = 0.8,
     cut_back_clearance = true,
@@ -22,19 +20,6 @@ function _sliding_dovetail_lock_spring_create(
         "sliding dovetail lock spring thickness must be > 0")
     assert(relief > 0,
         "sliding dovetail lock spring relief must be > 0")
-    assert(
-        transverse_relief_shape == "rectangular"
-            || transverse_relief_shape == "trapezoid",
-        "sliding dovetail lock transverse relief shape must be rectangular or trapezoid"
-    )
-    assert(
-        is_undef(transverse_relief_top_length)
-            || (
-                transverse_relief_top_length > 0
-                && transverse_relief_top_length <= relief
-            ),
-        "sliding dovetail lock transverse relief top length must be > 0 and <= spring relief"
-    )
     assert(hinge_length >= 0,
         "sliding dovetail lock spring hinge_length must be >= 0")
     assert(hinge_thickness > 0,
@@ -55,11 +40,6 @@ function _sliding_dovetail_lock_spring_create(
         length = length,
         thickness = thickness,
         relief = relief,
-        transverse_relief_shape = transverse_relief_shape,
-        transverse_relief_top_length =
-            is_undef(transverse_relief_top_length)
-                ? relief / 2
-                : transverse_relief_top_length,
         hinge_length = hinge_length,
         hinge_thickness = hinge_thickness,
         cut_back_clearance = cut_back_clearance,
@@ -80,24 +60,20 @@ function _sliding_dovetail_lock_create(
     spring_length = 7.0,
     spring_thickness = 1.2,
     spring_relief = 0.8,
-    spring_transverse_relief_shape = "rectangular",
-    spring_transverse_relief_top_length = undef,
     spring_hinge_length = 0,
     spring_hinge_thickness = 0.8,
     cut_back_clearance = true,
     back_clearance = 0.8,
     release_access = true,
-    release_depth = 0.6
+    release_depth = 0.6,
+    release_shape = "rectangular",
+    release_top_depth = undef
 ) =
     let(
         spring = _sliding_dovetail_lock_spring_create(
             length = spring_length,
             thickness = spring_thickness,
             relief = spring_relief,
-            transverse_relief_shape =
-                spring_transverse_relief_shape,
-            transverse_relief_top_length =
-                spring_transverse_relief_top_length,
             hinge_length = spring_hinge_length,
             hinge_thickness = spring_hinge_thickness,
             cut_back_clearance = cut_back_clearance,
@@ -126,6 +102,19 @@ function _sliding_dovetail_lock_create(
         "sliding dovetail lock release_access must be boolean")
     assert(release_depth > 0,
         "sliding dovetail lock release_depth must be > 0")
+    assert(
+        release_shape == "rectangular"
+            || release_shape == "trapezoid",
+        "sliding dovetail lock release_shape must be rectangular or trapezoid"
+    )
+    assert(
+        is_undef(release_top_depth)
+            || (
+                release_top_depth > 0
+                && release_top_depth <= release_depth
+            ),
+        "sliding dovetail lock release_top_depth must be > 0 and <= release_depth"
+    )
     object(
         enabled = enabled,
         entry_offset = entry_offset,
@@ -137,7 +126,12 @@ function _sliding_dovetail_lock_create(
         ramp_length = ramp_length,
         spring = spring,
         release_access = release_access,
-        release_depth = release_depth
+        release_depth = release_depth,
+        release_shape = release_shape,
+        release_top_depth =
+            is_undef(release_top_depth)
+                ? release_depth / 2
+                : release_top_depth
     );
 
 // Private accessor: whether the lock geometry is enabled.
@@ -301,8 +295,13 @@ module _sliding_dovetail_lock_male_recess_cutter(
 }
 
 // Optional path from the male -X/trailing edge to the lock recess.
-// It uses the same Z width as the recess, so the release feature is one
-// continuous straight opening rather than a narrow slot widening into a pocket.
+//
+// Rectangular preserves the released geometry exactly. Trapezoid changes only
+// the entry-opening Y/Z profile for side printing:
+//   native -Z = full configured release_depth
+//   native +Z = narrower release_top_depth
+//
+// The cutter still spans the complete X distance to the lock recess.
 module _sliding_dovetail_lock_male_release_cutter(
     lock,
     slide,
@@ -325,17 +324,52 @@ module _sliding_dovetail_lock_male_release_cutter(
     release_width =
         lock.width + 2 * clearance;
 
-    if (lock.release_access && slot_length > 0)
-        translate([
-            entry_x,
-            male_height - lock.release_depth,
-            -release_width / 2
-        ])
-            cube([
-                slot_length,
-                lock.release_depth + extra,
-                release_width
-            ]);
+    if (lock.release_access && slot_length > 0) {
+        if (lock.release_shape == "rectangular") {
+            translate([
+                entry_x,
+                male_height - lock.release_depth,
+                -release_width / 2
+            ])
+                cube([
+                    slot_length,
+                    lock.release_depth + extra,
+                    release_width
+                ]);
+        } else {
+            bottom_depth =
+                lock.release_depth;
+            top_depth =
+                lock.release_top_depth;
+
+            // Native Y/Z opening profile, extruded along native X.
+            multmatrix([
+                [0, 0, 1, entry_x],
+                [1, 0, 0, 0],
+                [0, 1, 0, 0],
+                [0, 0, 0, 1]
+            ])
+                linear_extrude(height = slot_length)
+                    polygon(points = [
+                        [
+                            male_height - bottom_depth,
+                            -release_width / 2
+                        ],
+                        [
+                            male_height + extra,
+                            -release_width / 2
+                        ],
+                        [
+                            male_height + extra,
+                            release_width / 2
+                        ],
+                        [
+                            male_height - top_depth,
+                            release_width / 2
+                        ]
+                    ]);
+        }
+    }
 }
 
 // Female keepout removed from the normal channel cutter. Subtracting this
@@ -365,76 +399,6 @@ module _sliding_dovetail_lock_female_threshold_keepout(
                 [x2, female_height]
             ]);
 }
-
-// Short transverse opening that frees the entry end of the U-shaped spring.
-//
-// The legacy rectangular cutter is preserved exactly. The optional trapezoid
-// keeps the full opening at the channel-side face (Y=female_height) and narrows
-// it toward the outer host face. In native Y/Z section its top and bottom faces
-// are therefore sloped instead of horizontal. This is useful when native Z is
-// the print/build direction.
-module _sliding_dovetail_lock_female_transverse_relief_cutter(
-    lock,
-    spring_x0,
-    female_height,
-    side_cut_height,
-    spring_width,
-    extra = 0
-) {
-    spring = lock.spring;
-    z_half = spring_width / 2 + spring.relief;
-    spring_side_x = spring_x0 + extra;
-
-    if (spring.transverse_relief_shape == "rectangular") {
-        translate([
-            spring_x0 - spring.relief,
-            female_height,
-            -z_half
-        ])
-            cube([
-                spring.relief + extra,
-                side_cut_height,
-                2 * z_half
-            ]);
-    } else {
-        top_length =
-            spring.transverse_relief_top_length;
-
-        // Trapezoid is defined in native X/Z because native Z is the intended
-        // build direction in the HUB75 side-print orientation:
-        //
-        //   -Z : full legacy transverse-relief length
-        //   +Z : shorter configurable top length
-        //
-        // The cutter still passes through the complete Y depth, so the spring
-        // remains functionally separated exactly as before.
-        bottom_entry_x =
-            spring_x0 - spring.relief;
-        top_entry_x =
-            spring_x0 - top_length;
-
-        // 2D [X,Z] profile extruded through native +Y.
-        translate([
-            0,
-            female_height,
-            0
-        ])
-            multmatrix([
-                [1, 0, 0, 0],
-                [0, 0, 1, 0],
-                [0, 1, 0, 0],
-                [0, 0, 0, 1]
-            ])
-                linear_extrude(height = side_cut_height)
-                    polygon(points = [
-                        [bottom_entry_x, -z_half],
-                        [spring_side_x, -z_half],
-                        [spring_side_x,  z_half],
-                        [top_entry_x,    z_half]
-                    ]);
-    }
-}
-
 
 // Female subtraction volumes around the threshold. The two longitudinal side
 // cuts form the sides of the U-shaped tongue. A transverse cut is also needed
@@ -493,14 +457,16 @@ module _sliding_dovetail_lock_female_relief_cutter(
             lock.entry_offset > 0
             || entry_slot_length > 0
         )
-            _sliding_dovetail_lock_female_transverse_relief_cutter(
-                lock,
-                spring_x0,
+            translate([
+                spring_x0 - spring.relief,
                 female_height,
-                side_cut_height,
-                spring_width,
-                extra = extra
-            );
+                -spring_width / 2 - spring.relief
+            ])
+                cube([
+                    spring.relief + extra,
+                    side_cut_height,
+                    spring_width + 2 * spring.relief
+                ]);
 
         // Optional two-sided hinge relief. Keep the threshold/lip and fixed
         // root full-depth, but approach the flex problem from both faces so the
