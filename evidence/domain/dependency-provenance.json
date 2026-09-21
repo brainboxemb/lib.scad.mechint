@@ -1,0 +1,169 @@
+{
+  "build_manifest": ".cache/scad-project/state/build-manifest.json",
+  "schema": "brainboxemb.scad-build-dependency-provenance",
+  "schema_version": 1,
+  "source_revision": "ad32017da289cfcd399a53b742844c79e0abfdca",
+  "targets": [
+    {
+      "dependencies": [
+        {
+          "declared_ref": "v0.3.0",
+          "dependency_path": "ext/lib.scad.util",
+          "depth": 1,
+          "name": "lib.scad.util",
+          "owner_path": ".",
+          "repository": "https://github.com/brainboxemb/lib.scad.util",
+          "revision": "d789d468560d5a2f2b1563d4c957f30de51e58ff",
+          "used_sources": [
+            "ext/lib.scad.util/openscad/forge.scad",
+            "ext/lib.scad.util/openscad/inspection.scad",
+            "ext/lib.scad.util/openscad/transform.scad"
+          ],
+          "worktree_path": "ext/lib.scad.util"
+        }
+      ],
+      "output": "bld/png/sliding-dovetail-assembled-section.png",
+      "source": "openscad/sliding-dovetail/sliding_dovetail/render/sliding-dovetail-assembled-section.scad"
+    },
+    {
+      "dependencies": [
+        {
+          "declared_ref": "v0.3.0",
+          "dependency_path": "ext/lib.scad.util",
+          "depth": 1,
+          "name": "lib.scad.util",
+          "owner_path": ".",
+          "repository": "https://github.com/brainboxemb/lib.scad.util",
+          "revision": "d789d468560d5a2f2b1563d4c957f30de51e58ff",
+          "used_sources": [
+            "ext/lib.scad.util/openscad/forge.scad",
+            "ext/lib.scad.util/openscad/transform.scad"
+          ],
+          "worktree_path": "ext/lib.scad.util"
+        }
+      ],
+      "output": "bld/png/sliding-dovetail-assembled.png",
+      "source": "openscad/sliding-dovetail/sliding_dovetail/render/sliding-dovetail-assembled.scad"
+    },
+    {
+      "dependencies": [
+        {
+          "declared_ref": "v0.3.0",
+          "dependency_path": "ext/lib.scad.util",
+          "depth": 1,
+          "name": "lib.scad.util",
+          "owner_path": ".",
+          "repository": "https://github.com/brainboxemb/lib.scad.util",
+          "revision": "d789d468560d5a2f2b1563d4c957f30de51e58ff",
+          "used_sources": [
+            "ext/lib.scad.util/openscad/forge.scad",
+            "ext/lib.scad.util/openscad/transform.scad"
+          ],
+          "worktree_path": "ext/lib.scad.util"
+        }
+      ],
+      "output": "bld/png/sliding-dovetail-female.png",
+      "source": "openscad/sliding-dovetail/sliding_dovetail/render/sliding-dovetail-female.scad"
+    },
+    {
+      "dependencies": [
+        {
+          "declared_ref": "v0.3.0",
+          "dependency_path": "ext/lib.scad.util",
+          "depth": 1,
+          "name": "lib.scad.util",
+          "owner_path": ".",
+          "repository": "https://github.com/brainboxemb/lib.scad.util",
+          "revision": "d789d468560d5a2f2b1563d4c957f30de51e58ff",
+          "used_sources": [
+            "ext/lib.scad.util/openscad/forge.scad",
+            "ext/lib.scad.util/openscad/transform.scad"
+          ],
+          "worktree_path": "ext/lib.scad.util"
+        }
+      ],
+      "output": "bld/png/sliding-dovetail-lock-assembled.png",
+      "source": "openscad/sliding-dovetail/sliding_dovetail/render/sliding-dovetail-lock-assembled.scad"
+    },
+    {
+      "dependencies": [
+        {
+          "declared_ref": "v0.3.0",
+          "dependency_path": "ext/lib.scad.util",
+          "depth": 1,
+          "name": "lib.scad.util",
+          "owner_path": ".",
+          "repository": "https://github.com/brainboxemb/lib.scad.util",
+          "revision": "d789d468560d5a2f2b1563d4c957f30de51e58ff",
+          "used_sources": [
+            "ext/lib.scad.util/openscad/forge.scad",
+            "ext/lib.scad.util/openscad/transform.scad"
+          ],
+          "worktree_path": "ext/lib.scad.util"
+        }
+      ],
+      "output": "bld/png/sliding-dovetail-lock-female.png",
+      "source": "openscad/sliding-dovetail/sliding_dovetail/render/sliding-dovetail-lock-female.scad"
+    },
+    {
+      "dependencies": [
+        {
+          "declared_ref": "v0.3.0",
+          "dependency_path": "ext/lib.scad.util",
+          "depth": 1,
+          "name": "lib.scad.util",
+          "owner_path": ".",
+          "repository": "https://github.com/brainboxemb/lib.scad.util",
+          "revision": "d789d468560d5a2f2b1563d4c957f30de51e58ff",
+          "used_sources": [
+            "ext/lib.scad.util/openscad/forge.scad",
+            "ext/lib.scad.util/openscad/transform.scad"
+          ],
+          "worktree_path": "ext/lib.scad.util"
+        }
+      ],
+      "output": "bld/png/sliding-dovetail-lock-male.png",
+      "source": "openscad/sliding-dovetail/sliding_dovetail/render/sliding-dovetail-lock-male.scad"
+    },
+    {
+      "dependencies": [
+        {
+          "declared_ref": "v0.3.0",
+          "dependency_path": "ext/lib.scad.util",
+          "depth": 1,
+          "name": "lib.scad.util",
+          "owner_path": ".",
+          "repository": "https://github.com/brainboxemb/lib.scad.util",
+          "revision": "d789d468560d5a2f2b1563d4c957f30de51e58ff",
+          "used_sources": [
+            "ext/lib.scad.util/openscad/forge.scad",
+            "ext/lib.scad.util/openscad/transform.scad"
+          ],
+          "worktree_path": "ext/lib.scad.util"
+        }
+      ],
+      "output": "bld/png/sliding-dovetail-male.png",
+      "source": "openscad/sliding-dovetail/sliding_dovetail/render/sliding-dovetail-male.scad"
+    },
+    {
+      "dependencies": [
+        {
+          "declared_ref": "v0.3.0",
+          "dependency_path": "ext/lib.scad.util",
+          "depth": 1,
+          "name": "lib.scad.util",
+          "owner_path": ".",
+          "repository": "https://github.com/brainboxemb/lib.scad.util",
+          "revision": "d789d468560d5a2f2b1563d4c957f30de51e58ff",
+          "used_sources": [
+            "ext/lib.scad.util/openscad/forge.scad",
+            "ext/lib.scad.util/openscad/transform.scad"
+          ],
+          "worktree_path": "ext/lib.scad.util"
+        }
+      ],
+      "output": "bld/png/sliding-dovetail-pair.png",
+      "source": "openscad/sliding-dovetail/sliding_dovetail/render/sliding-dovetail-pair.scad"
+    }
+  ]
+}

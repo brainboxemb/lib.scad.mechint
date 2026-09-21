@@ -1,0 +1,168 @@
+{
+  "backend_signature": "90b2bf091c2be8cf46e891906ed73fd6790c6026d1ce67cbfac69813b2dcb863",
+  "engine": "scons",
+  "kind": "build",
+  "manifest_schema_version": 1,
+  "outcome_counts": {
+    "BUILT": 8,
+    "CACHE_RESTORED": 0,
+    "CURRENT": 0,
+    "ERROR": 0
+  },
+  "provenance": {
+    "cache": {
+      "exact_hit": null,
+      "matched_key": "",
+      "namespace": "scad-selective-build-v2",
+      "primary_key": "scad-selective-build-v2-Linux-1378084197-v0.6.1-70fd4162731484a949dc390e942dde8b8d811f10-33aa1dec0d51608187d76b97f01afbc5a46c4441d7cf1bd6f2987f685df26ad6"
+    },
+    "source_commit_sha": "ad32017da289cfcd399a53b742844c79e0abfdca",
+    "tool_commit_sha": "70fd4162731484a949dc390e942dde8b8d811f10",
+    "tool_version": "0.15.2",
+    "toolchain_image": "ghcr.io/brainboxemb/scad-toolchain-openscad:v0.6.1",
+    "toolchain_version": "v0.6.1",
+    "workflow_version": "v0.15.2"
+  },
+  "schema": "scad-project.build-decisions",
+  "schema_version": 1,
+  "target_count": 8,
+  "targets": [
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "bld/png/sliding-dovetail-assembled-section.png",
+      "sources": [
+        "openscad/sliding-dovetail/sliding_dovetail/render/sliding-dovetail-assembled-section.scad",
+        "ext/lib.scad.util/openscad/inspection.scad",
+        "openscad/sliding-dovetail/sliding_dovetail/sliding_dovetail_render.scad",
+        "openscad/sliding-dovetail/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "ext/lib.scad.util/openscad/forge.scad",
+        "ext/lib.scad.util/openscad/transform.scad",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"
+      ],
+      "target_spec_digest": "035a6907d55c4136ffb4f347c1345e0ad4bdb48a930b2acad64428a5edfd7c2e"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "bld/png/sliding-dovetail-assembled.png",
+      "sources": [
+        "openscad/sliding-dovetail/sliding_dovetail/render/sliding-dovetail-assembled.scad",
+        "openscad/sliding-dovetail/sliding_dovetail/sliding_dovetail_render.scad",
+        "openscad/sliding-dovetail/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "ext/lib.scad.util/openscad/forge.scad",
+        "ext/lib.scad.util/openscad/transform.scad",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"
+      ],
+      "target_spec_digest": "9d9405f7168e4c63882b2c2fe482dd4b5c33e2950a7725f59154b5766d158712"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "bld/png/sliding-dovetail-female.png",
+      "sources": [
+        "openscad/sliding-dovetail/sliding_dovetail/render/sliding-dovetail-female.scad",
+        "openscad/sliding-dovetail/sliding_dovetail/sliding_dovetail_render.scad",
+        "openscad/sliding-dovetail/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "ext/lib.scad.util/openscad/forge.scad",
+        "ext/lib.scad.util/openscad/transform.scad",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"
+      ],
+      "target_spec_digest": "583faaae1727835d0acae2fb2330b15a27ba8aa49320af97f4bfb6a7d386c313"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "bld/png/sliding-dovetail-lock-assembled.png",
+      "sources": [
+        "openscad/sliding-dovetail/sliding_dovetail/render/sliding-dovetail-lock-assembled.scad",
+        "openscad/sliding-dovetail/sliding_dovetail/sliding_dovetail_render.scad",
+        "openscad/sliding-dovetail/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "ext/lib.scad.util/openscad/forge.scad",
+        "ext/lib.scad.util/openscad/transform.scad",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"
+      ],
+      "target_spec_digest": "a42868ac78c97b126ce1a953e970b6eb6dea467a5991bb9c792db729a8d4c2ab"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "bld/png/sliding-dovetail-lock-female.png",
+      "sources": [
+        "openscad/sliding-dovetail/sliding_dovetail/render/sliding-dovetail-lock-female.scad",
+        "openscad/sliding-dovetail/sliding_dovetail/sliding_dovetail_render.scad",
+        "openscad/sliding-dovetail/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "ext/lib.scad.util/openscad/forge.scad",
+        "ext/lib.scad.util/openscad/transform.scad",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"
+      ],
+      "target_spec_digest": "997f61af0b30e054e1dadca3732429915aa7648655cb87b5dcc5e6952e0ab2aa"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "bld/png/sliding-dovetail-lock-male.png",
+      "sources": [
+        "openscad/sliding-dovetail/sliding_dovetail/render/sliding-dovetail-lock-male.scad",
+        "openscad/sliding-dovetail/sliding_dovetail/sliding_dovetail_render.scad",
+        "openscad/sliding-dovetail/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "ext/lib.scad.util/openscad/forge.scad",
+        "ext/lib.scad.util/openscad/transform.scad",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"
+      ],
+      "target_spec_digest": "3378d96832dc6613bba9bfe6cb60febfff255fb330298fecbbe3ae18e661f343"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "bld/png/sliding-dovetail-male.png",
+      "sources": [
+        "openscad/sliding-dovetail/sliding_dovetail/render/sliding-dovetail-male.scad",
+        "openscad/sliding-dovetail/sliding_dovetail/sliding_dovetail_render.scad",
+        "openscad/sliding-dovetail/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "ext/lib.scad.util/openscad/forge.scad",
+        "ext/lib.scad.util/openscad/transform.scad",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"
+      ],
+      "target_spec_digest": "43a812ed2e67cf12141e154aba213c5c91d2b7ab8a583f9e17abded7475aef02"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "bld/png/sliding-dovetail-pair.png",
+      "sources": [
+        "openscad/sliding-dovetail/sliding_dovetail/render/sliding-dovetail-pair.scad",
+        "openscad/sliding-dovetail/sliding_dovetail/sliding_dovetail_render.scad",
+        "openscad/sliding-dovetail/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "ext/lib.scad.util/openscad/forge.scad",
+        "ext/lib.scad.util/openscad/transform.scad",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"
+      ],
+      "target_spec_digest": "09ef3ea06e406db65d5ea021098a2eec756241750855df44e2cf29000ff247df"
+    }
+  ]
+}
