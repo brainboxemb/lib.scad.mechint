@@ -162,15 +162,17 @@ joint = sliding_dovetail_create(
 );
 ```
 
-The released rectangular opening is always cut in full. Trapezoid mode then
-removes two additional symmetric triangular wedges toward the male -X/trailing
-edge. It therefore only removes extra material; it never narrows or replaces the
-functional baseline opening.
+The released rectangular access opening and lock recess are always cut in full.
+Trapezoid mode then removes two additional symmetric triangular wedges across
+the complete visible release zone, from the male -X/trailing edge through the
+far end of the recess. It therefore only removes extra material; it never
+narrows or replaces the functional baseline opening.
 
 `lock_release_taper_angle_deg` is measured in the native X/Z profile. At 45
-degrees each wedge grows by 1 mm in Z for every 1 mm of release-path run in X.
-The native-Y release depth remains constant across both the baseline opening and
-the two added wedges.
+degrees each wedge grows by 1 mm in Z for every 1 mm of nominal release-zone run
+in X. The native-Y release depth remains constant. The wedge cutters overlap the
+baseline opening slightly using the normal Boolean `extra` allowance so
+coplanar boundaries cannot leave a thin residual wall.
 
 
 ## Male mating relief

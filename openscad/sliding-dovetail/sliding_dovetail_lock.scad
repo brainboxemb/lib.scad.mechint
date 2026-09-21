@@ -303,34 +303,56 @@ module _sliding_dovetail_lock_male_recess_cutter(
 // project-X sides; project Z remains the straight release path.
 module _sliding_dovetail_lock_male_release_print_wedges(
     lock,
-    entry_x,
-    inner_x,
+    slide,
+    axial_clearance,
     male_height,
     release_width,
     extra = 0
 ) {
-    _slot_length_mm =
-        inner_x - entry_x;
+    // The printable wedge covers the complete visible release zone:
+    // male trailing edge -> far end of the lock recess.
+    //
+    // This is deliberately longer than the screwdriver access path alone.
+    _entry_x_mm =
+        -slide / 2;
+    _release_end_x_mm =
+        _sliding_dovetail_lock_male_recess_end_x(
+            lock,
+            slide,
+            axial_clearance
+        );
+    _release_length_mm =
+        _release_end_x_mm - _entry_x_mm;
+
     _half_width_mm =
         release_width / 2;
     _outer_extension_mm =
-        _slot_length_mm
+        _release_length_mm
         * tan(lock.release_taper_angle_deg);
 
+    // Boolean overlap only. It must not participate in the nominal taper
+    // calculation.
+    _overlap_mm =
+        max(extra, 0.01);
+
+    assert(
+        _release_length_mm > 0,
+        "sliding dovetail lock printable release length must be > 0"
+    )
     assert(
         _outer_extension_mm >= 0,
         "sliding dovetail lock print wedge extension must be >= 0"
     )
 
-    // The baseline rectangular release remains untouched. These two triangles
-    // only remove additional material toward the male trailing/outer edge.
-    //
-    // 2D coordinates here are native X/Z. linear_extrude adds the unchanged
-    // native-Y release depth.
+    // The baseline rectangular release and recess cutters remain intact.
+    // Each triangle overlaps their width boundary and both X ends by a tiny
+    // amount, avoiding coplanar/sliver remnants in OpenSCAD booleans.
     for (side = [-1, 1])
         translate([
             0,
-            male_height - lock.release_depth,
+            male_height
+                - lock.release_depth
+                - _overlap_mm,
             0
         ])
             multmatrix([
@@ -342,23 +364,31 @@ module _sliding_dovetail_lock_male_release_print_wedges(
                 linear_extrude(
                     height =
                         lock.release_depth
-                        + extra
+                        + 2 * _overlap_mm
                 )
                     polygon(points = [
                         [
-                            entry_x,
-                            side * _half_width_mm
-                        ],
-                        [
-                            entry_x,
+                            _entry_x_mm - _overlap_mm,
                             side * (
                                 _half_width_mm
-                                + _outer_extension_mm
+                                - _overlap_mm
                             )
                         ],
                         [
-                            inner_x,
-                            side * _half_width_mm
+                            _entry_x_mm - _overlap_mm,
+                            side * (
+                                _half_width_mm
+                                + _outer_extension_mm
+                                + _overlap_mm
+                            )
+                        ],
+                        [
+                            _release_end_x_mm
+                                + _overlap_mm,
+                            side * (
+                                _half_width_mm
+                                - _overlap_mm
+                            )
                         ]
                     ]);
 }
@@ -380,24 +410,22 @@ module _sliding_dovetail_lock_male_release_cutter(
         );
     _entry_x_mm =
         -slide / 2 - extra;
-    _inner_x_mm =
-        _recess_x0_mm + extra;
-    _slot_length_mm =
-        _inner_x_mm - _entry_x_mm;
+    _access_length_mm =
+        _recess_x0_mm - _entry_x_mm;
 
-    // Functional baseline width. This rectangular opening is always cut in
-    // full, regardless of the optional printable wedge shape.
+    // Functional baseline width. This rectangular access opening is always cut
+    // in full. The adjacent recess cutter completes the visible release zone.
     _release_width_mm =
         lock.width + 2 * clearance;
 
-    if (lock.release_access && _slot_length_mm > 0) {
+    if (lock.release_access && _access_length_mm > 0) {
         translate([
             _entry_x_mm,
             male_height - lock.release_depth,
             -_release_width_mm / 2
         ])
             cube([
-                _slot_length_mm,
+                _access_length_mm + extra,
                 lock.release_depth + extra,
                 _release_width_mm
             ]);
@@ -405,8 +433,8 @@ module _sliding_dovetail_lock_male_release_cutter(
         if (lock.release_shape == "trapezoid")
             _sliding_dovetail_lock_male_release_print_wedges(
                 lock,
-                entry_x = _entry_x_mm,
-                inner_x = _inner_x_mm,
+                slide = slide,
+                axial_clearance = axial_clearance,
                 male_height = male_height,
                 release_width = _release_width_mm,
                 extra = extra
