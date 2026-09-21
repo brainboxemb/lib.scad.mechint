@@ -6,101 +6,101 @@
 // Private spring/flex configuration. Normal consumers configure these values
 // through sliding_dovetail_create(); they do not need to construct this object.
 function _sliding_dovetail_lock_spring_create(
-    length = 7.0,
-    thickness = 1.2,
-    relief = 0.8,
-    hinge_length = 0,
-    hinge_thickness = 0.8,
-    cut_back_clearance = true,
-    back_clearance = 0.8
+    len_mm = 7.0,
+    thickness_mm = 1.2,
+    relief_mm = 0.8,
+    hinge_len_mm = 0,
+    hinge_thickness_mm = 0.8,
+    has_back_clearance = true,
+    back_clearance_mm = 0.8
 ) =
-    assert(length > 0,
+    assert(len_mm > 0,
         "sliding dovetail lock spring length must be > 0")
-    assert(thickness > 0,
+    assert(thickness_mm > 0,
         "sliding dovetail lock spring thickness must be > 0")
-    assert(relief > 0,
+    assert(relief_mm > 0,
         "sliding dovetail lock spring relief must be > 0")
-    assert(hinge_length >= 0,
+    assert(hinge_len_mm >= 0,
         "sliding dovetail lock spring hinge_length must be >= 0")
-    assert(hinge_thickness > 0,
+    assert(hinge_thickness_mm > 0,
         "sliding dovetail lock spring hinge_thickness must be > 0")
     assert(
-        hinge_length == 0 || hinge_length < length,
+        hinge_len_mm == 0 || hinge_len_mm < len_mm,
         "sliding dovetail lock spring hinge_length must be shorter than spring length"
     )
     assert(
-        hinge_length == 0 || hinge_thickness < thickness,
+        hinge_len_mm == 0 || hinge_thickness_mm < thickness_mm,
         "sliding dovetail lock spring hinge_thickness must be less than spring thickness"
     )
-    assert(is_bool(cut_back_clearance),
+    assert(is_bool(has_back_clearance),
         "sliding dovetail lock cut_back_clearance must be boolean")
-    assert(back_clearance >= 0,
+    assert(back_clearance_mm >= 0,
         "sliding dovetail lock back_clearance must be >= 0")
     object(
-        length = length,
-        thickness = thickness,
-        relief = relief,
-        hinge_length = hinge_length,
-        hinge_thickness = hinge_thickness,
-        cut_back_clearance = cut_back_clearance,
-        back_clearance = back_clearance
+        len_mm = len_mm,
+        thickness_mm = thickness_mm,
+        relief_mm = relief_mm,
+        hinge_len_mm = hinge_len_mm,
+        hinge_thickness_mm = hinge_thickness_mm,
+        has_back_clearance = has_back_clearance,
+        back_clearance_mm = back_clearance_mm
     );
 
 // Private constructor: lower-level lock configuration owned by one dovetail.
 // Normal callers configure locking through sliding_dovetail_create().
 function _sliding_dovetail_lock_create(
-    enabled = false,
-    entry_offset = 0,
-    width = 4.0,
-    recess_length = 1.0,
-    recess_depth = 0.6,
-    threshold_length = 1.5,
-    threshold_height = 0.5,
-    ramp_length = 1.0,
-    spring_length = 7.0,
-    spring_thickness = 1.2,
-    spring_relief = 0.8,
-    spring_hinge_length = 0,
-    spring_hinge_thickness = 0.8,
-    cut_back_clearance = true,
-    back_clearance = 0.8,
-    release_access = true,
-    release_depth = 0.6,
+    is_enabled = false,
+    entry_offset_mm = 0,
+    width_mm = 4.0,
+    recess_len_mm = 1.0,
+    recess_depth_mm = 0.6,
+    threshold_len_mm = 1.5,
+    threshold_height_mm = 0.5,
+    ramp_len_mm = 1.0,
+    spring_len_mm = 7.0,
+    spring_thickness_mm = 1.2,
+    spring_relief_mm = 0.8,
+    spring_hinge_len_mm = 0,
+    spring_hinge_thickness_mm = 0.8,
+    has_back_clearance = true,
+    back_clearance_mm = 0.8,
+    has_release_access = true,
+    release_depth_mm = 0.6,
     release_shape = "rectangular",
     release_taper_angle_deg = 45
 ) =
     let(
         spring = _sliding_dovetail_lock_spring_create(
-            length = spring_length,
-            thickness = spring_thickness,
-            relief = spring_relief,
-            hinge_length = spring_hinge_length,
-            hinge_thickness = spring_hinge_thickness,
-            cut_back_clearance = cut_back_clearance,
-            back_clearance = back_clearance
+            len_mm = spring_len_mm,
+            thickness_mm = spring_thickness_mm,
+            relief_mm = spring_relief_mm,
+            hinge_len_mm = spring_hinge_len_mm,
+            hinge_thickness_mm = spring_hinge_thickness_mm,
+            has_back_clearance = has_back_clearance,
+            back_clearance_mm = back_clearance_mm
         )
     )
-    assert(is_bool(enabled),
+    assert(is_bool(is_enabled),
         "sliding dovetail lock enabled must be boolean")
-    assert(entry_offset >= 0,
+    assert(entry_offset_mm >= 0,
         "sliding dovetail lock entry_offset must be >= 0")
-    assert(width > 0,
+    assert(width_mm > 0,
         "sliding dovetail lock width must be > 0")
-    assert(recess_length > 0,
+    assert(recess_len_mm > 0,
         "sliding dovetail lock recess_length must be > 0")
-    assert(recess_depth > 0,
+    assert(recess_depth_mm > 0,
         "sliding dovetail lock recess_depth must be > 0")
-    assert(threshold_length > 0,
+    assert(threshold_len_mm > 0,
         "sliding dovetail lock threshold_length must be > 0")
-    assert(threshold_height > 0,
+    assert(threshold_height_mm > 0,
         "sliding dovetail lock threshold_height must be > 0")
-    assert(ramp_length > 0 && ramp_length < threshold_length,
+    assert(ramp_len_mm > 0 && ramp_len_mm < threshold_len_mm,
         "sliding dovetail lock ramp_length must be > 0 and < threshold_length")
-    assert(spring.length > threshold_length,
+    assert(spring.len_mm > threshold_len_mm,
         "sliding dovetail lock spring length must exceed threshold length")
-    assert(is_bool(release_access),
+    assert(is_bool(has_release_access),
         "sliding dovetail lock release_access must be boolean")
-    assert(release_depth > 0,
+    assert(release_depth_mm > 0,
         "sliding dovetail lock release_depth must be > 0")
     assert(
         release_shape == "rectangular"
@@ -113,145 +113,145 @@ function _sliding_dovetail_lock_create(
         "sliding dovetail lock release_taper_angle_deg must be between 0 and 90 degrees"
     )
     object(
-        enabled = enabled,
-        entry_offset = entry_offset,
-        width = width,
-        recess_length = recess_length,
-        recess_depth = recess_depth,
-        threshold_length = threshold_length,
-        threshold_height = threshold_height,
-        ramp_length = ramp_length,
+        is_enabled = is_enabled,
+        entry_offset_mm = entry_offset_mm,
+        width_mm = width_mm,
+        recess_len_mm = recess_len_mm,
+        recess_depth_mm = recess_depth_mm,
+        threshold_len_mm = threshold_len_mm,
+        threshold_height_mm = threshold_height_mm,
+        ramp_len_mm = ramp_len_mm,
         spring = spring,
-        release_access = release_access,
-        release_depth = release_depth,
+        has_release_access = has_release_access,
+        release_depth_mm = release_depth_mm,
         release_shape = release_shape,
         release_taper_angle_deg = release_taper_angle_deg
     );
 
 // Private accessor: whether the lock geometry is enabled.
-function _sliding_dovetail_lock_enabled(lock) =
-    lock.enabled;
+function _sliding_dovetail_lock_is_enabled(obj) =
+    obj.is_enabled;
 
 // Private helper: female threshold starts at entry_offset from the fixed -X
 // channel entry. With the default entry_offset=0, the ramp begins at the edge.
-function _sliding_dovetail_lock_female_threshold_start_x(
-    lock,
-    slide,
-    axial_clearance
+function _sliding_dovetail_lock_female_threshold_start_x_mm(
+    obj,
+    slide_len_mm,
+    axial_clearance_mm
 ) =
-    -(slide + axial_clearance) / 2
-    + lock.entry_offset;
+    -(slide_len_mm + axial_clearance_mm) / 2
+    + obj.entry_offset_mm;
 
-function _sliding_dovetail_lock_female_threshold_end_x(
-    lock,
-    slide,
-    axial_clearance
+function _sliding_dovetail_lock_female_threshold_end_x_mm(
+    obj,
+    slide_len_mm,
+    axial_clearance_mm
 ) =
-    _sliding_dovetail_lock_female_threshold_start_x(
-        lock,
-        slide,
-        axial_clearance
+    _sliding_dovetail_lock_female_threshold_start_x_mm(
+        obj,
+        slide_len_mm,
+        axial_clearance_mm
     )
-    + lock.threshold_length;
+    + obj.threshold_len_mm;
 
 // Private helper: in assembled coordinates the male -X/trailing end coincides
 // with the female entry. The +X recess wall sits just behind the female locking
 // face by axial_clearance.
-function _sliding_dovetail_lock_male_recess_end_x(
-    lock,
-    slide,
-    axial_clearance
+function _sliding_dovetail_lock_male_recess_end_x_mm(
+    obj,
+    slide_len_mm,
+    axial_clearance_mm
 ) =
-    -slide / 2
-    + lock.entry_offset
-    + lock.threshold_length
-    + axial_clearance;
+    -slide_len_mm / 2
+    + obj.entry_offset_mm
+    + obj.threshold_len_mm
+    + axial_clearance_mm;
 
-function _sliding_dovetail_lock_male_recess_start_x(
-    lock,
-    slide,
-    axial_clearance
+function _sliding_dovetail_lock_male_recess_start_x_mm(
+    obj,
+    slide_len_mm,
+    axial_clearance_mm
 ) =
-    _sliding_dovetail_lock_male_recess_end_x(
-        lock,
-        slide,
-        axial_clearance
+    _sliding_dovetail_lock_male_recess_end_x_mm(
+        obj,
+        slide_len_mm,
+        axial_clearance_mm
     )
-    - lock.recess_length;
+    - obj.recess_len_mm;
 
 // Private helper: flexible tongue width across Z.
-function _sliding_dovetail_lock_spring_width(lock) =
-    lock.width + 2 * lock.spring.relief;
+function _sliding_dovetail_lock_spring_width_mm(obj) =
+    obj.width_mm + 2 * obj.spring.relief_mm;
 
 // Internal validation that depends on the parent dovetail.
 module _sliding_dovetail_lock_assert_valid(
-    lock,
-    slide,
-    male_width,
-    male_height,
-    clearance,
-    axial_clearance
+    obj,
+    slide_len_mm,
+    male_width_mm,
+    male_height_mm,
+    clearance_mm,
+    axial_clearance_mm
 ) {
     assert(
-        lock.entry_offset + lock.spring.length
-            <= slide + axial_clearance,
+        obj.entry_offset_mm + obj.spring.len_mm
+            <= slide_len_mm + axial_clearance_mm,
         "sliding dovetail lock spring must fit inside the female channel"
     );
     assert(
-        lock.spring.hinge_length == 0
-            || lock.spring.hinge_length
-                <= lock.spring.length - lock.threshold_length,
+        obj.spring.hinge_len_mm == 0
+            || obj.spring.hinge_len_mm
+                <= obj.spring.len_mm - obj.threshold_len_mm,
         "sliding dovetail lock spring hinge relief must not overlap the threshold"
     );
     assert(
-        lock.spring.hinge_length == 0
-            || lock.spring.length
-                - lock.threshold_length
-                - lock.spring.hinge_length
+        obj.spring.hinge_len_mm == 0
+            || obj.spring.len_mm
+                - obj.threshold_len_mm
+                - obj.spring.hinge_len_mm
                 >= (
-                    lock.spring.thickness
-                    - lock.spring.hinge_thickness
+                    obj.spring.thickness_mm
+                    - obj.spring.hinge_thickness_mm
                 ) / 2,
         "sliding dovetail lock hinge return ramp must not exceed 45 degrees"
     );
     assert(
-        lock.entry_offset
-            + lock.threshold_length
-            + axial_clearance
-            < slide,
+        obj.entry_offset_mm
+            + obj.threshold_len_mm
+            + axial_clearance_mm
+            < slide_len_mm,
         "sliding dovetail lock recess must stay inside the male slide length"
     );
     assert(
-        lock.recess_length
-            >= lock.threshold_length
-                - lock.ramp_length
-                + axial_clearance,
+        obj.recess_len_mm
+            >= obj.threshold_len_mm
+                - obj.ramp_len_mm
+                + axial_clearance_mm,
         "sliding dovetail lock recess is too short for the locking face and axial clearance"
     );
     assert(
-        lock.width + 2 * clearance < male_width,
+        obj.width_mm + 2 * clearance_mm < male_width_mm,
         "sliding dovetail lock recess must fit inside the male root width"
     );
     assert(
-        lock.threshold_height > clearance,
+        obj.threshold_height_mm > clearance_mm,
         "sliding dovetail lock threshold must protrude beyond fit clearance"
     );
     assert(
-        lock.recess_depth + clearance > lock.threshold_height,
+        obj.recess_depth_mm + clearance_mm > obj.threshold_height_mm,
         "sliding dovetail lock recess is too shallow for the threshold"
     );
     assert(
-        lock.recess_depth < male_height,
+        obj.recess_depth_mm < male_height_mm,
         "sliding dovetail lock recess_depth must remain below male profile height"
     );
     assert(
-        !lock.spring.cut_back_clearance
-            || lock.spring.back_clearance >= lock.threshold_height,
+        !obj.spring.has_back_clearance
+            || obj.spring.back_clearance_mm >= obj.threshold_height_mm,
         "sliding dovetail lock back clearance must allow the threshold to deflect"
     );
     assert(
-        !lock.release_access
-            || lock.release_depth < male_height,
+        !obj.has_release_access
+            || obj.release_depth_mm < male_height_mm,
         "sliding dovetail lock release_depth must remain below male profile height"
     );
 
@@ -260,31 +260,31 @@ module _sliding_dovetail_lock_assert_valid(
 
 // Male recess: its +X wall is the actual locking wall.
 module _sliding_dovetail_lock_male_recess_cutter(
-    lock,
-    slide,
-    axial_clearance,
-    male_height,
-    clearance,
-    extra = 0
+    obj,
+    slide_len_mm,
+    axial_clearance_mm,
+    male_height_mm,
+    clearance_mm,
+    extra_mm = 0
 ) {
-    x0 =
-        _sliding_dovetail_lock_male_recess_start_x(
-            lock,
-            slide,
-            axial_clearance
+    x0_mm =
+        _sliding_dovetail_lock_male_recess_start_x_mm(
+            obj,
+            slide_len_mm,
+            axial_clearance_mm
         );
-    recess_width =
-        lock.width + 2 * clearance;
+    recess_width_mm =
+        obj.width_mm + 2 * clearance_mm;
 
     translate([
-        x0,
-        male_height - lock.recess_depth,
-        -recess_width / 2
+        x0_mm,
+        male_height_mm - obj.recess_depth_mm,
+        -recess_width_mm / 2
     ])
         cube([
-            lock.recess_length + extra,
-            lock.recess_depth + extra,
-            recess_width
+            obj.recess_len_mm + extra_mm,
+            obj.recess_depth_mm + extra_mm,
+            recess_width_mm
         ]);
 }
 
@@ -302,40 +302,40 @@ module _sliding_dovetail_lock_male_recess_cutter(
 // mapping this means the taper runs in project Y and is symmetric on both
 // project-X sides; project Z remains the straight release path.
 module _sliding_dovetail_lock_male_release_print_wedges(
-    lock,
-    slide,
-    axial_clearance,
-    male_height,
-    release_width,
-    extra = 0
+    obj,
+    slide_len_mm,
+    axial_clearance_mm,
+    male_height_mm,
+    release_width_mm,
+    extra_mm = 0
 ) {
     // The printable wedge covers the complete visible release zone:
     // male trailing edge -> far end of the lock recess.
     //
     // This is deliberately longer than the screwdriver access path alone.
     _entry_x_mm =
-        -slide / 2;
+        -slide_len_mm / 2;
     _male_outer_x_mm =
-        _entry_x_mm - extra;
+        _entry_x_mm - extra_mm;
     _release_end_x_mm =
-        _sliding_dovetail_lock_male_recess_end_x(
-            lock,
-            slide,
-            axial_clearance
+        _sliding_dovetail_lock_male_recess_end_x_mm(
+            obj,
+            slide_len_mm,
+            axial_clearance_mm
         );
     _release_length_mm =
         _release_end_x_mm - _entry_x_mm;
 
     _half_width_mm =
-        release_width / 2;
+        release_width_mm / 2;
     _outer_extension_mm =
         _release_length_mm
-        * tan(lock.release_taper_angle_deg);
+        * tan(obj.release_taper_angle_deg);
 
     // Boolean overlap only. It must not participate in the nominal taper
     // calculation.
     _overlap_mm =
-        max(extra, 0.01);
+        max(extra_mm, 0.01);
 
     assert(
         _release_length_mm > 0,
@@ -353,8 +353,8 @@ module _sliding_dovetail_lock_male_release_print_wedges(
     for (side = [-1, 1])
         translate([
             0,
-            male_height
-                - lock.release_depth
+            male_height_mm
+                - obj.release_depth_mm
                 - _overlap_mm,
             0
         ])
@@ -366,7 +366,7 @@ module _sliding_dovetail_lock_male_release_print_wedges(
             ])
                 linear_extrude(
                     height =
-                        lock.release_depth
+                        obj.release_depth_mm
                         + 2 * _overlap_mm
                 )
                     polygon(points = [
@@ -400,49 +400,49 @@ module _sliding_dovetail_lock_male_release_print_wedges(
 
 
 module _sliding_dovetail_lock_male_release_cutter(
-    lock,
-    slide,
-    axial_clearance,
-    male_height,
-    clearance,
-    extra = 0
+    obj,
+    slide_len_mm,
+    axial_clearance_mm,
+    male_height_mm,
+    clearance_mm,
+    extra_mm = 0
 ) {
     _recess_x0_mm =
-        _sliding_dovetail_lock_male_recess_start_x(
-            lock,
-            slide,
-            axial_clearance
+        _sliding_dovetail_lock_male_recess_start_x_mm(
+            obj,
+            slide_len_mm,
+            axial_clearance_mm
         );
     _entry_x_mm =
-        -slide / 2 - extra;
+        -slide_len_mm / 2 - extra_mm;
     _access_length_mm =
         _recess_x0_mm - _entry_x_mm;
 
     // Functional baseline width. This rectangular access opening is always cut
     // in full. The adjacent recess cutter completes the visible release zone.
     _release_width_mm =
-        lock.width + 2 * clearance;
+        obj.width_mm + 2 * clearance_mm;
 
-    if (lock.release_access && _access_length_mm > 0) {
+    if (obj.has_release_access && _access_length_mm > 0) {
         translate([
             _entry_x_mm,
-            male_height - lock.release_depth,
+            male_height_mm - obj.release_depth_mm,
             -_release_width_mm / 2
         ])
             cube([
-                _access_length_mm + extra,
-                lock.release_depth + extra,
+                _access_length_mm + extra_mm,
+                obj.release_depth_mm + extra_mm,
                 _release_width_mm
             ]);
 
-        if (lock.release_shape == "trapezoid")
+        if (obj.release_shape == "trapezoid")
             _sliding_dovetail_lock_male_release_print_wedges(
-                lock,
-                slide = slide,
-                axial_clearance = axial_clearance,
-                male_height = male_height,
-                release_width = _release_width_mm,
-                extra = extra
+                obj,
+                slide_len_mm = slide_len_mm,
+                axial_clearance_mm = axial_clearance_mm,
+                male_height_mm = male_height_mm,
+                release_width_mm = _release_width_mm,
+                extra_mm = extra_mm
             );
     }
 }
@@ -451,27 +451,27 @@ module _sliding_dovetail_lock_male_release_cutter(
 // volume from the cutter leaves an integral threshold protruding into the
 // channel. The -X face is the insertion ramp; the +X face is the locking stop.
 module _sliding_dovetail_lock_female_threshold_keepout(
-    lock,
-    slide,
-    axial_clearance,
-    female_height
+    obj,
+    slide_len_mm,
+    axial_clearance_mm,
+    female_height_mm
 ) {
-    x0 =
-        _sliding_dovetail_lock_female_threshold_start_x(
-            lock,
-            slide,
-            axial_clearance
+    x0_mm =
+        _sliding_dovetail_lock_female_threshold_start_x_mm(
+            obj,
+            slide_len_mm,
+            axial_clearance_mm
         );
-    x1 = x0 + lock.ramp_length;
-    x2 = x0 + lock.threshold_length;
+    x1_mm = x0_mm + obj.ramp_len_mm;
+    x2_mm = x0_mm + obj.threshold_len_mm;
 
-    translate([0, 0, -lock.width / 2])
-        linear_extrude(height = lock.width)
+    translate([0, 0, -obj.width_mm / 2])
+        linear_extrude(height = obj.width_mm)
             polygon(points = [
-                [x0, female_height],
-                [x1, female_height - lock.threshold_height],
-                [x2, female_height - lock.threshold_height],
-                [x2, female_height]
+                [x0_mm, female_height_mm],
+                [x1_mm, female_height_mm - obj.threshold_height_mm],
+                [x2_mm, female_height_mm - obj.threshold_height_mm],
+                [x2_mm, female_height_mm]
             ]);
 }
 
@@ -481,66 +481,66 @@ module _sliding_dovetail_lock_female_threshold_keepout(
 // threshold has a non-zero entry offset or because the parent female interface
 // has a straight entry slot. The back cavity remains optional.
 module _sliding_dovetail_lock_female_relief_cutter(
-    lock,
-    slide,
-    axial_clearance,
-    female_height,
-    entry_slot_length = 0,
-    extra = 0
+    obj,
+    slide_len_mm,
+    axial_clearance_mm,
+    female_height_mm,
+    entry_slot_len_mm = 0,
+    extra_mm = 0
 ) {
-    spring_x0 =
-        _sliding_dovetail_lock_female_threshold_start_x(
-            lock,
-            slide,
-            axial_clearance
+    spring_x0_mm =
+        _sliding_dovetail_lock_female_threshold_start_x_mm(
+            obj,
+            slide_len_mm,
+            axial_clearance_mm
         );
-    spring_width =
-        _sliding_dovetail_lock_spring_width(lock);
-    spring = lock.spring;
+    spring_width_mm =
+        _sliding_dovetail_lock_spring_width_mm(obj);
+    spring = obj.spring;
 
-    side_cut_height =
-        spring.thickness
-        + (spring.cut_back_clearance
-            ? spring.back_clearance
+    side_cut_height_mm =
+        spring.thickness_mm
+        + (spring.has_back_clearance
+            ? spring.back_clearance_mm
             : 0)
-        + extra;
+        + extra_mm;
 
     union() {
         translate([
-            spring_x0 - extra,
-            female_height,
-            -spring_width / 2 - spring.relief
+            spring_x0_mm - extra_mm,
+            female_height_mm,
+            -spring_width_mm / 2 - spring.relief_mm
         ])
             cube([
-                spring.length + extra,
-                side_cut_height,
-                spring.relief
+                spring.len_mm + extra_mm,
+                side_cut_height_mm,
+                spring.relief_mm
             ]);
 
         translate([
-            spring_x0 - extra,
-            female_height,
-            spring_width / 2
+            spring_x0_mm - extra_mm,
+            female_height_mm,
+            spring_width_mm / 2
         ])
             cube([
-                spring.length + extra,
-                side_cut_height,
-                spring.relief
+                spring.len_mm + extra_mm,
+                side_cut_height_mm,
+                spring.relief_mm
             ]);
 
         if (
-            lock.entry_offset > 0
-            || entry_slot_length > 0
+            obj.entry_offset_mm > 0
+            || entry_slot_len_mm > 0
         )
             translate([
-                spring_x0 - spring.relief,
-                female_height,
-                -spring_width / 2 - spring.relief
+                spring_x0_mm - spring.relief_mm,
+                female_height_mm,
+                -spring_width_mm / 2 - spring.relief_mm
             ])
                 cube([
-                    spring.relief + extra,
-                    side_cut_height,
-                    spring_width + 2 * spring.relief
+                    spring.relief_mm + extra_mm,
+                    side_cut_height_mm,
+                    spring_width_mm + 2 * spring.relief_mm
                 ]);
 
         // Optional two-sided hinge relief. Keep the threshold/lip and fixed
@@ -560,100 +560,100 @@ module _sliding_dovetail_lock_female_relief_cutter(
         // thickness left between the two opposing pockets. The return ramps use
         // the remaining spring length and must stay at or below 45 degrees.
         // hinge_length = 0 preserves the legacy spring geometry exactly.
-        if (spring.hinge_length > 0) {
-            spring_x1 = spring_x0 + spring.length;
-            threshold_land_x1 =
-                spring_x0 + lock.threshold_length;
-            hinge_x0 =
-                spring_x1 - spring.hinge_length;
-            hinge_relief_depth =
-                spring.thickness - spring.hinge_thickness;
-            relief_depth_each_side =
-                hinge_relief_depth / 2;
-            outer_face_y =
-                female_height + spring.thickness;
+        if (spring.hinge_len_mm > 0) {
+            spring_x1_mm = spring_x0_mm + spring.len_mm;
+            threshold_land_x1_mm =
+                spring_x0_mm + obj.threshold_len_mm;
+            hinge_x0_mm =
+                spring_x1_mm - spring.hinge_len_mm;
+            hinge_relief_depth_mm =
+                spring.thickness_mm - spring.hinge_thickness_mm;
+            relief_depth_each_side_mm =
+                hinge_relief_depth_mm / 2;
+            outer_face_y_mm =
+                female_height_mm + spring.thickness_mm;
 
             // The 45-degree feature stays local. The configured hinge_length
             // is split equally between that chamfer and the following flat
             // central-web land. The same profile is mirrored from both faces.
-            root_chamfer_run =
-                spring.hinge_length / 2;
-            flat_flex_length =
-                spring.hinge_length / 2;
-            root_straight_depth =
-                relief_depth_each_side - root_chamfer_run;
-            root_shoulder_x0 =
-                spring_x1 - root_chamfer_run;
-            return_ramp_run =
-                hinge_x0 - threshold_land_x1;
+            root_chamfer_run_mm =
+                spring.hinge_len_mm / 2;
+            flat_flex_len_mm =
+                spring.hinge_len_mm / 2;
+            root_straight_depth_mm =
+                relief_depth_each_side_mm - root_chamfer_run_mm;
+            root_shoulder_x0_mm =
+                spring_x1_mm - root_chamfer_run_mm;
+            return_ramp_run_mm =
+                hinge_x0_mm - threshold_land_x1_mm;
 
             assert(
-                root_chamfer_run <= relief_depth_each_side,
+                root_chamfer_run_mm <= relief_depth_each_side_mm,
                 "sliding dovetail lock root chamfer is deeper than one side of the centered hinge relief"
             )
             assert(
-                flat_flex_length > 0,
+                flat_flex_len_mm > 0,
                 "sliding dovetail lock flat central-web land must be positive"
             )
             assert(
-                return_ramp_run > 0,
+                return_ramp_run_mm > 0,
                 "sliding dovetail lock hinge_length leaves no return ramp before the threshold land"
             )
 
             // Channel-side pocket.
-            translate([0, 0, -spring_width / 2])
-                linear_extrude(height = spring_width)
+            translate([0, 0, -spring_width_mm / 2])
+                linear_extrude(height = spring_width_mm)
                     polygon(points = [
-                        [threshold_land_x1, female_height],
-                        [spring_x1 + extra, female_height],
+                        [threshold_land_x1_mm, female_height_mm],
+                        [spring_x1_mm + extra_mm, female_height_mm],
                         [
-                            spring_x1 + extra,
-                            female_height + root_straight_depth
+                            spring_x1_mm + extra_mm,
+                            female_height_mm + root_straight_depth_mm
                         ],
                         [
-                            root_shoulder_x0,
-                            female_height + relief_depth_each_side
+                            root_shoulder_x0_mm,
+                            female_height_mm + relief_depth_each_side_mm
                         ],
                         [
-                            hinge_x0,
-                            female_height + relief_depth_each_side
+                            hinge_x0_mm,
+                            female_height_mm + relief_depth_each_side_mm
                         ],
-                        [threshold_land_x1, female_height]
+                        [threshold_land_x1_mm, female_height_mm]
                     ]);
 
             // Opposing outer-face pocket. This mirrors the same relief profile
             // so the remaining hinge_thickness is centered through the tongue.
-            translate([0, 0, -spring_width / 2])
-                linear_extrude(height = spring_width)
+            translate([0, 0, -spring_width_mm / 2])
+                linear_extrude(height = spring_width_mm)
                     polygon(points = [
-                        [threshold_land_x1, outer_face_y],
-                        [spring_x1 + extra, outer_face_y],
+                        [threshold_land_x1_mm, outer_face_y_mm],
+                        [spring_x1_mm + extra_mm, outer_face_y_mm],
                         [
-                            spring_x1 + extra,
-                            outer_face_y - root_straight_depth
+                            spring_x1_mm + extra_mm,
+                            outer_face_y_mm - root_straight_depth_mm
                         ],
                         [
-                            root_shoulder_x0,
-                            outer_face_y - relief_depth_each_side
+                            root_shoulder_x0_mm,
+                            outer_face_y_mm - relief_depth_each_side_mm
                         ],
                         [
-                            hinge_x0,
-                            outer_face_y - relief_depth_each_side
+                            hinge_x0_mm,
+                            outer_face_y_mm - relief_depth_each_side_mm
                         ],
-                        [threshold_land_x1, outer_face_y]
+                        [threshold_land_x1_mm, outer_face_y_mm]
                     ]);
         }
 
-        if (spring.cut_back_clearance)
+        if (spring.has_back_clearance)
             translate([
-                spring_x0 - extra,
-                female_height + spring.thickness,
-                -spring_width / 2
+                spring_x0_mm - extra_mm,
+                female_height_mm + spring.thickness_mm,
+                -spring_width_mm / 2
             ])
                 cube([
-                    spring.length + extra,
-                    spring.back_clearance + extra,
-                    spring_width
+                    spring.len_mm + extra_mm,
+                    spring.back_clearance_mm + extra_mm,
+                    spring_width_mm
                 ]);
     }
 }

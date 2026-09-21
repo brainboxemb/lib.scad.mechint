@@ -15,9 +15,9 @@ on a woodworking dovetail standard.
 Native coordinates are:
 
 ```text
-X = slide direction
+X = slide_len_mm direction
 Y = profile depth
-Z = profile width
+Z = profile width_mm
 
 female entry = -X
 insertion = +X
@@ -30,13 +30,13 @@ Normal consumers configure the male/female interface once:
 
 ```scad
 joint = sliding_dovetail_create(
-    width = 10,
-    height = 3,
-    angle = 20,
-    clearance = 0.20,
-    axial_clearance = 0.25,
-    extra = 0.01,
-    locking = false
+    width_mm = 10,
+    height_mm = 3,
+    angle_deg = 20,
+    clearance_mm = 0.20,
+    axial_clearance_mm = 0.25,
+    extra_mm = 0.01,
+    is_locking_enabled = false
 );
 ```
 
@@ -89,7 +89,7 @@ The public API exposes the female side as a subtraction volume because
 consumers cut the interface into their own part:
 
 ```scad
-sliding_dovetail_female_cutter(joint, slide = 16);
+sliding_dovetail_female_cutter(joint, slide_len_mm = 16);
 ```
 
 That cutter remains available as a technical debug view, but it is not the
@@ -97,20 +97,20 @@ normal design representation of the female side.
 
 ## Boolean overlap is not fit clearance
 
-`extra=0.01` extends geometry only across union/difference boundaries and
+`extra_mm=0.01` extends geometry only across union/difference boundaries and
 slightly beyond the slide ends. It does not change the nominal profile.
 
 ## Optional lock
 
 ```scad
 joint = sliding_dovetail_create(
-    locking = true,
-    lock_cut_back_clearance = true,
-    lock_release_access = true
+    is_locking_enabled = true,
+    lock_has_back_clearance = true,
+    lock_has_release_access = true
 );
 ```
 
-`lock_entry_offset` measures the start of the threshold ramp from the fixed
+`lock_entry_offset_mm` measures the start of the threshold ramp from the fixed
 -X female entry side. At the default 0 mm the ramp starts directly at the edge.
 The assembled male receives the matching recess from the same entry-side
 definition. The threshold's -X face is ramped; the opposite face forms the
@@ -120,14 +120,14 @@ Two longitudinal relief cuts run from the entry edge toward +X. Because the
 threshold starts at the edge, no transverse free-end cut is needed; the tongue
 remains anchored toward +X.
 
-When `lock_cut_back_clearance` is enabled, the female cutter also removes a
+When `lock_has_back_clearance` is enabled, the female cutter also removes a
 cavity behind the tongue so it can deflect by at least the threshold height.
 When it is disabled, the tongue can remain full-depth to a flat outer face.
 
 An optional two-sided hinge relief handles thick hosts by moving the flex web
 toward the middle of the tongue instead of thinning from only one face.
-`lock_spring_hinge_length` controls the local chamfer + flat-web envelope and
-`lock_spring_hinge_thickness` controls the total thickness of the centered
+`lock_spring_hinge_len_mm` controls the local chamfer + flat-web envelope and
+`lock_spring_hinge_thickness_mm` controls the total thickness of the centered
 web left between the opposing pockets.
 
 The locking threshold and fixed root remain full-depth. Each face uses a mostly
@@ -175,7 +175,7 @@ the hinge relief can be read in relation to the threshold and male recess.
 Matching inspectable STL fixtures are published as verification fixtures
 15–17: full female, female cutaway and assembled cutaway.
 
-`lock_release_access` extends the male recess to the -X entry edge using the
+`lock_has_release_access` extends the male recess to the -X entry edge using the
 same width as the recess. This gives a small flat screwdriver a straight path
 to lift the female tongue without a narrow/wide transition. It remains
 independent from the female spring cavity.

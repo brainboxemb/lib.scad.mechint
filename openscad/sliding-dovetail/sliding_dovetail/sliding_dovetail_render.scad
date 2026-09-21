@@ -4,14 +4,14 @@ use <../sliding_dovetail.scad>
 use <../reference/sliding_dovetail_reference.scad>
 
 module sliding_dovetail_render(
-    joint = sliding_dovetail_create(),
+    obj = sliding_dovetail_create(),
     view = "approach",
-    slide = 16
+    slide_len_mm = 16
 ) {
     reference =
         sliding_dovetail_reference_create(
-            joint = joint,
-            slide = slide
+            obj = obj,
+            slide_len_mm = slide_len_mm
         );
 
     if (view == "male") {
@@ -33,8 +33,8 @@ module sliding_dovetail_render(
     } else if (view == "female-cutter") {
         color([0.10, 0.35, 0.85, 0.75])
             sliding_dovetail_female_cutter(
-                joint,
-                slide = slide
+                obj,
+                slide_len_mm = slide_len_mm
             );
     } else {
         assert(
@@ -49,9 +49,9 @@ module sliding_dovetail_render(
 
 module sliding_dovetail_design(view = "approach") {
     sliding_dovetail_render(
-        joint = sliding_dovetail_create(),
+        obj = sliding_dovetail_create(),
         view = view,
-        slide = 16
+        slide_len_mm = 16
     );
 }
 
@@ -59,56 +59,56 @@ module sliding_dovetail_design(view = "approach") {
 
 module sliding_dovetail_lock_design(view = "female") {
     sliding_dovetail_render(
-        joint = sliding_dovetail_create(
-            locking = true,
-            lock_spring_length = 5.5,
-            lock_cut_back_clearance = true,
-            lock_release_access = true
+        obj = sliding_dovetail_create(
+            is_locking_enabled = true,
+            lock_spring_len_mm = 5.5,
+            lock_has_back_clearance = true,
+            lock_has_release_access = true
         ),
         view = view,
-        slide = 16
+        slide_len_mm = 16
     );
 }
 
 
-module _sliding_dovetail_hinge_female_cutaway(reference) {
+module _sliding_dovetail_hinge_female_cutaway(obj) {
     intersection() {
-        sliding_dovetail_reference_female_build(reference);
+        sliding_dovetail_reference_female_build(obj);
 
         translate([-1, -1, 0])
             cube([
-                reference.female_block_length + 2,
-                reference.female_block_depth + 2,
-                reference.block_width / 2 + 1
+                obj.female_block_len_mm + 2,
+                obj.female_block_depth_mm + 2,
+                obj.block_width_mm / 2 + 1
             ]);
     }
 }
 
 
-module _sliding_dovetail_hinge_male_cutaway(reference, position = "assembled") {
-    male_x =
-        sliding_dovetail_reference_male_x(
-            reference,
+module _sliding_dovetail_hinge_male_cutaway(obj, position = "assembled") {
+    male_x_mm =
+        sliding_dovetail_reference_male_x_mm(
+            obj,
             position
         );
 
     intersection() {
-        translate([male_x, 0, 0])
-            sliding_dovetail_reference_male_build(reference);
+        translate([male_x_mm, 0, 0])
+            sliding_dovetail_reference_male_build(obj);
 
         translate([
-            -reference.slide - 2,
-            -reference.male_block_depth - 1,
+            -obj.slide_len_mm - 2,
+            -obj.male_block_depth_mm - 1,
             0
         ])
             cube([
-                reference.female_block_length
-                    + 2 * reference.slide
+                obj.female_block_len_mm
+                    + 2 * obj.slide_len_mm
                     + 4,
-                reference.female_block_depth
-                    + reference.male_block_depth
+                obj.female_block_depth_mm
+                    + obj.male_block_depth_mm
                     + 2,
-                reference.block_width / 2 + 1
+                obj.block_width_mm / 2 + 1
             ]);
     }
 }
@@ -116,34 +116,34 @@ module _sliding_dovetail_hinge_male_cutaway(reference, position = "assembled") {
 
 module sliding_dovetail_hinge_design(view = "overview") {
     // 3.3 mm total tongue, 0.8 mm centered flex web.
-    spring_thickness = 3.3;
+    spring_thickness_mm = 3.3;
 
     joint =
         sliding_dovetail_create(
-            width = 12,
-            height = 2,
-            angle = 30,
-            root_land_depth = 0.5,
-            mouth_land_depth = 0.5,
-            entry_slot_length = 16,
-            locking = true,
-            lock_spring_length = 7,
-            lock_spring_thickness = spring_thickness,
-            lock_spring_hinge_length = 1.65,
-            lock_spring_hinge_thickness = 0.8,
-            lock_cut_back_clearance = false,
-            lock_release_access = true
+            width_mm = 12,
+            height_mm = 2,
+            angle_deg = 30,
+            root_land_depth_mm = 0.5,
+            mouth_land_depth_mm = 0.5,
+            entry_slot_len_mm = 16,
+            is_locking_enabled = true,
+            lock_spring_len_mm = 7,
+            lock_spring_thickness_mm = spring_thickness_mm,
+            lock_spring_hinge_len_mm = 1.65,
+            lock_spring_hinge_thickness_mm = 0.8,
+            lock_has_back_clearance = false,
+            lock_has_release_access = true
         );
 
     reference =
         sliding_dovetail_reference_create(
-            joint = joint,
-            slide = 16,
-            female_block_length = 42,
-            female_block_depth =
-                sliding_dovetail_female_height(joint)
-                + spring_thickness,
-            block_width = 16
+            obj = joint,
+            slide_len_mm = 16,
+            female_block_len_mm = 42,
+            female_block_depth_mm =
+                sliding_dovetail_female_height_mm(joint)
+                + spring_thickness_mm,
+            block_width_mm = 16
         );
 
     if (view == "overview") {

@@ -8,22 +8,22 @@ use <../../openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad>
 
 joint =
     sliding_dovetail_create(
-        entry_slot_length = 16,
-        locking = true,
-        lock_spring_length = 5.5,
-        lock_cut_back_clearance = true,
-        lock_release_access = true
+        entry_slot_len_mm = 16,
+        is_locking_enabled = true,
+        lock_spring_len_mm = 5.5,
+        lock_has_back_clearance = true,
+        lock_has_release_access = true
     );
 
 reference =
     sliding_dovetail_reference_create(
         joint = joint,
-        slide = 16,
+        slide_len_mm = 16,
         female_block_length = 42
     );
 
 section_y =
-    sliding_dovetail_female_height(joint)
+    sliding_dovetail_female_height_mm(joint)
     + 0.6;
 
 $vpt = [19, section_y, 0];

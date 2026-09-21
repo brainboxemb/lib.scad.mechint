@@ -28,8 +28,9 @@ does not replace them.
 
 Shared SCAD naming conventions are owned by
 [brainboxemb.meta/domains/scad/coding-conventions.md](https://github.com/brainboxemb/brainboxemb.meta/blob/main/domains/scad/coding-conventions.md).
-Follow that page for `d_` / `c_` top-level controls, explicit unit suffixes,
-constants and leading-underscore private variables/functions/modules. Keep only
+Follow that page for shared snake_case naming, `obj` receiver parameters,
+standard abbreviations, explicit unit suffixes, positive booleans, constants and
+leading-underscore private variables/functions/modules. Keep only
 mechanical-interface-specific naming/API guidance here.
 
 ## OpenSCAD API
@@ -39,8 +40,8 @@ OpenSCAD is the primary implementation direction. Public interface state uses
 
 ```scad
 joint = sliding_dovetail_create(...);
-sliding_dovetail_male_build(joint, slide = 16);
-sliding_dovetail_female_cutter(joint, slide = 16);
+sliding_dovetail_male_build(joint, slide_len_mm = 16);
+sliding_dovetail_female_cutter(joint, slide_len_mm = 16);
 ```
 
 Derived dimensions come from the object through public accessors. The public
@@ -59,7 +60,7 @@ the enabled state explicitly.
 
 ## Boolean overlap
 
-`extra` is a modeling/boolean overlap parameter, not a fit parameter. It may
+`extra_mm` is a modeling/boolean overlap parameter, not a fit parameter. It may
 extend geometry beyond union/difference boundaries, but must not alter the
 nominal dovetail width, height, angle or clearance contract.
 
@@ -81,9 +82,9 @@ Public dimensional parameters are millimetres.
 Sliding dovetail native coordinates:
 
 ```text
-X = slide direction
+X = slide_len_mm direction
 Y = profile depth, mouth at Y=0 and root toward +Y
-Z = profile width
+Z = profile width_mm
 ```
 
 ## Verification

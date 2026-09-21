@@ -5,13 +5,13 @@ use <../../openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad>
 
 joint =
     sliding_dovetail_create(
-        entry_slot_length = 16
+        entry_slot_len_mm = 16
     );
 
 reference =
     sliding_dovetail_reference_create(
         joint = joint,
-        slide = 16,
+        slide_len_mm = 16,
         female_block_length = 42
     );
 

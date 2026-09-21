@@ -3,28 +3,28 @@
 use <../reference/sliding_dovetail_reference.scad>
 
 module sliding_dovetail_test_assembly_build(
-    reference,
+    obj,
     view = "approach"
 ) {
     if (view == "male") {
         color([0.88, 0.10, 0.06, 1])
-            sliding_dovetail_reference_male_build(reference);
+            sliding_dovetail_reference_male_build(obj);
     } else if (view == "female") {
         color([0.28, 0.50, 0.82, 1])
-            sliding_dovetail_reference_female_build(reference);
+            sliding_dovetail_reference_female_build(obj);
     } else if (view == "approach") {
         sliding_dovetail_reference_pair_build(
-            reference,
+            obj,
             position = "approach"
         );
     } else if (view == "entry") {
         sliding_dovetail_reference_pair_build(
-            reference,
+            obj,
             position = "entry"
         );
     } else if (view == "assembled") {
         sliding_dovetail_reference_pair_build(
-            reference,
+            obj,
             position = "assembled"
         );
     } else {

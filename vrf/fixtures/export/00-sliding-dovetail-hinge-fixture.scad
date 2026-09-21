@@ -5,31 +5,31 @@ use <../../../openscad/sliding-dovetail/reference/sliding_dovetail_reference.sca
 
 function sliding_dovetail_hinge_fixture_reference() =
     let(
-        spring_thickness = 3.3,
+        spring_thickness_mm = 3.3,
         joint =
             sliding_dovetail_create(
-                width = 12,
-                height = 2,
-                angle = 30,
-                root_land_depth = 0.5,
-                mouth_land_depth = 0.5,
-                entry_slot_length = 16,
-                locking = true,
-                lock_spring_length = 7,
-                lock_spring_thickness = spring_thickness,
-                lock_spring_hinge_length = 1.65,
-                lock_spring_hinge_thickness = 0.8,
-                lock_cut_back_clearance = false,
-                lock_release_access = true
+                width_mm = 12,
+                height_mm = 2,
+                angle_deg = 30,
+                root_land_depth_mm = 0.5,
+                mouth_land_depth_mm = 0.5,
+                entry_slot_len_mm = 16,
+                is_locking_enabled = true,
+                lock_spring_len_mm = 7,
+                lock_spring_thickness_mm = spring_thickness_mm,
+                lock_spring_hinge_len_mm = 1.65,
+                lock_spring_hinge_thickness_mm = 0.8,
+                lock_has_back_clearance = false,
+                lock_has_release_access = true
             )
     )
     sliding_dovetail_reference_create(
         joint = joint,
-        slide = 16,
+        slide_len_mm = 16,
         female_block_length = 42,
         female_block_depth =
-            sliding_dovetail_female_height(joint)
-            + spring_thickness,
+            sliding_dovetail_female_height_mm(joint)
+            + spring_thickness_mm,
         block_width = 16
     );
 
@@ -69,13 +69,13 @@ module sliding_dovetail_hinge_fixture_assembled_cutaway(reference) {
         }
 
         translate([
-            -reference.slide - 2,
+            -reference.slide_len_mm - 2,
             -reference.male_block_depth - 1,
             0
         ])
             cube([
                 reference.female_block_length
-                    + 2 * reference.slide
+                    + 2 * reference.slide_len_mm
                     + 4,
                 reference.female_block_depth
                     + reference.male_block_depth

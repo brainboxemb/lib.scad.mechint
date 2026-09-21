@@ -5,9 +5,9 @@ The interface is aimed at compact **FDM-printed mechanical parts**.
 ## Native orientation
 
 ```text
-X = slide / insertion direction
+X = slide_len_mm / insertion direction
 Y = profile depth
-Z = profile width
+Z = profile width_mm
 
 female entry side = -X
 insertion motion = +X
@@ -28,33 +28,33 @@ The male mouth lies at `Y=0`; the wider root lies toward `+Y`.
 | Derived male mouth width | 7.82 mm |
 | Female clearance | 0.20 mm |
 | Axial clearance | 0.25 mm |
-| Boolean overlap (`extra`) | 0.01 mm |
+| Boolean overlap (`extra_mm`) | 0.01 mm |
 | Female entry slot | 0 mm / disabled |
 | Locking | disabled |
 
 ## Parameter meaning
 
-`angle` directly describes the mechanical flank angle.
+`angle_deg` directly describes the mechanical flank angle.
 
-`root_land_depth` optionally replaces the final part of each angled flank with
-a straight land at the wide/root end. `mouth_land_depth` does the same at the
+`root_land_depth_mm` optionally replaces the final part of each angled flank with
+a straight land at the wide/root end. `mouth_land_depth_mm` does the same at the
 narrow/mouth end before the angled flank begins. Values of `0` preserve the
 original trapezoidal profile exactly.
 
-The mouth width is derived from `width`, the remaining sloped depth
-`height - root_land_depth - mouth_land_depth`, and `angle`.
+The mouth width is derived from `width_mm`, the remaining sloped depth
+`height_mm - root_land_depth_mm - mouth_land_depth_mm`, and `angle_deg`.
 
 The two lands are useful for side-printed parts where a fully angled profile
 would otherwise begin or finish on a sharp first-layer edge.
 
-`clearance` and `axial_clearance` are fit dimensions.
+`clearance_mm` and `axial_clearance_mm` are fit dimensions.
 
-`extra` exists only to make OpenSCAD unions and differences robust at shared
+`extra_mm` exists only to make OpenSCAD unions and differences robust at shared
 boundaries. It is not part of the nominal mating dimensions.
 
 ### Female entry slot
 
-`entry_slot_length` optionally adds a straight rectangular subtraction volume
+`entry_slot_len_mm` optionally adds a straight rectangular subtraction volume
 ahead of the female channel on the fixed `-X` entry side. Its width and depth
 come from the complete clearanced female root envelope, so a male dovetail can
 sit ahead of the channel before sliding in.
@@ -70,17 +70,17 @@ For example, a 16 mm male can be given a 16 mm approach pocket:
 
 ```scad
 joint = sliding_dovetail_create(
-    entry_slot_length = 16
+    entry_slot_len_mm = 16
 );
 
 sliding_dovetail_female_cutter(
     joint,
-    slide = 16
+    slide_len_mm = 16
 );
 ```
 
-`sliding_dovetail_female_slide()` continues to return only the mating channel
-length. Use `sliding_dovetail_female_total_length()` when host geometry must
+`sliding_dovetail_female_slide_len_mm()` continues to return only the mating channel
+length. Use `sliding_dovetail_female_total_len_mm()` when host geometry must
 include both channel and entry slot.
 
 ## Locking
@@ -89,15 +89,15 @@ Locking is configured on the same top-level interface object:
 
 ```scad
 joint = sliding_dovetail_create(
-    locking = true,
-    lock_cut_back_clearance = true,
-    lock_release_access = true
+    is_locking_enabled = true,
+    lock_has_back_clearance = true,
+    lock_has_release_access = true
 );
 ```
 
 The library creates the lower-level lock and spring configuration internally.
 
-`lock_entry_offset` measures the start of the female threshold ramp from the
+`lock_entry_offset_mm` measures the start of the female threshold ramp from the
 fixed -X entry side. Its default is 0 mm, so the ramp starts directly at the
 edge. In the assembled interface the male recess is derived from that same
 entry-side definition.
@@ -105,15 +105,15 @@ entry-side definition.
 The lock combines a recess in the male with a ramped threshold in the female
 channel roof. Two longitudinal relief cuts form the sides of the U-shaped
 tongue. When the spring starts at a physical female edge, that edge is already
-the open end of the U. If `lock_entry_offset > 0` or
-`entry_slot_length > 0`, the library also cuts the short transverse relief
+the open end of the U. If `lock_entry_offset_mm > 0` or
+`entry_slot_len_mm > 0`, the library also cuts the short transverse relief
 needed to free the tongue at its entry end.
 
-`lock_cut_back_clearance = true` cuts the flex cavity behind the tongue.
+`lock_has_back_clearance = true` cuts the flex cavity behind the tongue.
 With it disabled, the spring can keep a flat outer/rear face.
 
-For a thick host, `lock_spring_hinge_length > 0` enables a **two-sided**
-hinge relief. `lock_spring_hinge_thickness` is the total thickness of the
+For a thick host, `lock_spring_hinge_len_mm > 0` enables a **two-sided**
+hinge relief. `lock_spring_hinge_thickness_mm` is the total thickness of the
 short flex web that remains between the two opposing pockets.
 
 The complete locking-threshold region and the fixed root stay full-depth. From
@@ -125,13 +125,13 @@ the fixed root toward the locking lip, both faces use the same profile:
 4. a calculated return ramp;
 5. a full-depth flat land under the threshold/lip.
 
-`lock_spring_hinge_length` is split equally between the 45-degree chamfer run
+`lock_spring_hinge_len_mm` is split equally between the 45-degree chamfer run
 and the flat central-web land. The two pockets remove
-`(lock_spring_thickness - lock_spring_hinge_thickness) / 2` from each face,
+`(lock_spring_thickness_mm - lock_spring_hinge_thickness_mm) / 2` from each face,
 placing the remaining web around the middle of the tongue. The return-ramp angle
 is derived from the remaining spring length and is limited to 45 degrees.
 
-For a 4 mm tongue, `lock_spring_hinge_length = 2` gives the intended 1 x 1 mm
+For a 4 mm tongue, `lock_spring_hinge_len_mm = 2` gives the intended 1 x 1 mm
 45-degree chamfer followed by 1 mm flat land on each side. A centered web of
 about 1 mm would then leave about 1.5 mm relief depth per face. The verification
 model keeps the existing 3.3 mm tongue and 0.8 mm web so the same principle can
@@ -139,7 +139,7 @@ be inspected at the current library test dimensions. A hinge length of 0 keeps
 the previous geometry exactly.
 
 The threshold insertion ramp is independently tunable with
-`lock_ramp_length`. With `lock_release_access = true`, the recess continues
+`lock_ramp_len_mm`. With `lock_has_release_access = true`, the recess continues
 to the male -X edge with the same width as the recess itself. A small flat
 screwdriver can use that opening to lift the female tongue.
 
@@ -154,9 +154,9 @@ trapezoidal X/Z profile:
 
 ```scad
 joint = sliding_dovetail_create(
-    locking = true,
-    lock_release_access = true,
-    lock_release_depth = 0.6,
+    is_locking_enabled = true,
+    lock_has_release_access = true,
+    lock_release_depth_mm = 0.6,
     lock_release_shape = "trapezoid",
     lock_release_taper_angle_deg = 45
 );
@@ -171,7 +171,7 @@ narrows or replaces the functional baseline opening.
 `lock_release_taper_angle_deg` is measured in the native X/Z profile. At 45
 degrees each wedge grows by 1 mm in Z for every 1 mm of nominal release-zone run
 in X. The native-Y release depth remains constant. The wedge cutters overlap the baseline opening and extend slightly past the
-actual male outer face (including the male body's normal Boolean `extra`)
+actual male outer face (including the male body's normal Boolean `extra_mm`)
 so coplanar boundaries cannot leave a thin residual wall.
 
 
@@ -187,15 +187,15 @@ difference() {
 
     sliding_dovetail_male_relief_cutter(
         joint,
-        slide = 16,
-        relief_width = 12
+        slide_len_mm = 16,
+        relief_width_mm = 12
     );
 }
 
-sliding_dovetail_male_build(joint, slide = 16);
+sliding_dovetail_male_build(joint, slide_len_mm = 16);
 ```
 
-`relief_width` is the total consumer envelope across native Z that should be
+`relief_width_mm` is the total consumer envelope across native Z that should be
 trimmed. The cutter follows the same male profile, including
-`root_land_depth` and `extra`; product-specific body placement stays in the
+`root_land_depth_mm` and `extra_mm`; product-specific body placement stays in the
 consumer.

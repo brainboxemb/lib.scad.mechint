@@ -7,41 +7,41 @@ use <../../openscad/sliding-dovetail/sliding_dovetail.scad>
 
 joint =
     sliding_dovetail_create(
-        width = 12,
-        height = 2,
-        angle = 30,
-        root_land_depth = 0.5,
-        clearance = 0.20,
-        axial_clearance = 0.25
+        width_mm = 12,
+        height_mm = 2,
+        angle_deg = 30,
+        root_land_depth_mm = 0.5,
+        clearance_mm = 0.20,
+        axial_clearance_mm = 0.25
     );
 
-slide = 16;
+slide_len_mm = 16;
 consumer_width = 12;
 
 module trimmed_male_consumer() {
     union() {
         difference() {
             translate([
-                -slide / 2,
+                -slide_len_mm / 2,
                 -1.2,
                 -consumer_width / 2
             ])
                 cube([
-                    slide,
+                    slide_len_mm,
                     2.4,
                     consumer_width
                 ]);
 
             sliding_dovetail_male_relief_cutter(
                 joint,
-                slide = slide,
-                relief_width = consumer_width
+                slide_len_mm = slide_len_mm,
+                relief_width_mm = consumer_width
             );
         }
 
         sliding_dovetail_male_build(
             joint,
-            slide = slide
+            slide_len_mm = slide_len_mm
         );
     }
 }
