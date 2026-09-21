@@ -153,7 +153,7 @@ trapezoid_lock_joint =
         locking = true,
         lock_spring_thickness = 1.3,
         lock_spring_transverse_relief_shape = "trapezoid",
-        lock_spring_transverse_relief_angle = 45,
+        lock_spring_transverse_relief_top_length = 0.4,
         lock_cut_back_clearance = false
     );
 
@@ -164,8 +164,8 @@ assert(
 );
 assert(
     abs(
-        trapezoid_lock_joint.lock.spring.transverse_relief_angle
-            - 45
+        trapezoid_lock_joint.lock.spring.transverse_relief_top_length
+            - 0.4
     ) < 0.0001
 );
 

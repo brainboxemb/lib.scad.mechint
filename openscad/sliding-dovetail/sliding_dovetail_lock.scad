@@ -10,7 +10,7 @@ function _sliding_dovetail_lock_spring_create(
     thickness = 1.2,
     relief = 0.8,
     transverse_relief_shape = "rectangular",
-    transverse_relief_angle = 45,
+    transverse_relief_top_length = undef,
     hinge_length = 0,
     hinge_thickness = 0.8,
     cut_back_clearance = true,
@@ -28,9 +28,12 @@ function _sliding_dovetail_lock_spring_create(
         "sliding dovetail lock transverse relief shape must be rectangular or trapezoid"
     )
     assert(
-        transverse_relief_angle > 0
-            && transverse_relief_angle < 90,
-        "sliding dovetail lock transverse relief angle must be between 0 and 90 degrees"
+        is_undef(transverse_relief_top_length)
+            || (
+                transverse_relief_top_length > 0
+                && transverse_relief_top_length <= relief
+            ),
+        "sliding dovetail lock transverse relief top length must be > 0 and <= spring relief"
     )
     assert(hinge_length >= 0,
         "sliding dovetail lock spring hinge_length must be >= 0")
@@ -53,7 +56,10 @@ function _sliding_dovetail_lock_spring_create(
         thickness = thickness,
         relief = relief,
         transverse_relief_shape = transverse_relief_shape,
-        transverse_relief_angle = transverse_relief_angle,
+        transverse_relief_top_length =
+            is_undef(transverse_relief_top_length)
+                ? relief / 2
+                : transverse_relief_top_length,
         hinge_length = hinge_length,
         hinge_thickness = hinge_thickness,
         cut_back_clearance = cut_back_clearance,
@@ -75,7 +81,7 @@ function _sliding_dovetail_lock_create(
     spring_thickness = 1.2,
     spring_relief = 0.8,
     spring_transverse_relief_shape = "rectangular",
-    spring_transverse_relief_angle = 45,
+    spring_transverse_relief_top_length = undef,
     spring_hinge_length = 0,
     spring_hinge_thickness = 0.8,
     cut_back_clearance = true,
@@ -90,8 +96,8 @@ function _sliding_dovetail_lock_create(
             relief = spring_relief,
             transverse_relief_shape =
                 spring_transverse_relief_shape,
-            transverse_relief_angle =
-                spring_transverse_relief_angle,
+            transverse_relief_top_length =
+                spring_transverse_relief_top_length,
             hinge_length = spring_hinge_length,
             hinge_thickness = spring_hinge_thickness,
             cut_back_clearance = cut_back_clearance,
@@ -376,43 +382,55 @@ module _sliding_dovetail_lock_female_transverse_relief_cutter(
     extra = 0
 ) {
     spring = lock.spring;
-    x0 = spring_x0 - spring.relief;
-    x_length = spring.relief + extra;
     z_half = spring_width / 2 + spring.relief;
+    spring_side_x = spring_x0 + extra;
 
     if (spring.transverse_relief_shape == "rectangular") {
         translate([
-            x0,
+            spring_x0 - spring.relief,
             female_height,
             -z_half
         ])
             cube([
-                x_length,
+                spring.relief + extra,
                 side_cut_height,
                 2 * z_half
             ]);
     } else {
-        taper =
-            side_cut_height
-            * tan(spring.transverse_relief_angle);
-        outer_half = z_half - taper;
+        top_length =
+            spring.transverse_relief_top_length;
 
-        assert(
-            outer_half > 0,
-            "sliding dovetail lock trapezoid transverse relief closes before the outer face"
-        )
+        // Trapezoid is defined in native X/Z because native Z is the intended
+        // build direction in the HUB75 side-print orientation:
+        //
+        //   -Z : full legacy transverse-relief length
+        //   +Z : shorter configurable top length
+        //
+        // The cutter still passes through the complete Y depth, so the spring
+        // remains functionally separated exactly as before.
+        bottom_entry_x =
+            spring_x0 - spring.relief;
+        top_entry_x =
+            spring_x0 - top_length;
 
-        // linear_extrude is along local Z. Rotating +90 degrees around Y maps
-        // that extrusion to native +X. The symmetric local X coordinate maps
-        // to native Z, while local Y remains native Y.
-        translate([x0, 0, 0])
-            rotate([0, 90, 0])
-                linear_extrude(height = x_length)
+        // 2D [X,Z] profile extruded through native +Y.
+        translate([
+            0,
+            female_height,
+            0
+        ])
+            multmatrix([
+                [1, 0, 0, 0],
+                [0, 0, 1, 0],
+                [0, 1, 0, 0],
+                [0, 0, 0, 1]
+            ])
+                linear_extrude(height = side_cut_height)
                     polygon(points = [
-                        [-z_half, female_height],
-                        [ z_half, female_height],
-                        [ outer_half, female_height + side_cut_height],
-                        [-outer_half, female_height + side_cut_height]
+                        [bottom_entry_x, -z_half],
+                        [spring_side_x, -z_half],
+                        [spring_side_x,  z_half],
+                        [top_entry_x,    z_half]
                     ]);
     }
 }

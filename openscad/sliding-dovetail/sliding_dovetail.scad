@@ -32,7 +32,7 @@ use <sliding_dovetail_lock.scad>
 //   lock_spring_thickness = Material thickness of the flexible tongue.
 //   lock_spring_relief = Width of the U-shaped isolation cuts.
 //   lock_spring_transverse_relief_shape = Shape of the short transverse spring-opening cut: "rectangular" or "trapezoid".
-//   lock_spring_transverse_relief_angle = Trapezoid face angle in the native Y/Z profile, measured from Y; 45 gives a 1:1 slope.
+//   lock_spring_transverse_relief_top_length = Native-X length of the trapezoid at +Z; undef uses half spring_relief.
 //   lock_spring_hinge_length = Root-side chamfer + central-web envelope; 0 disables the relief.
 //   lock_spring_hinge_thickness = Total thickness of the centered flex web left between opposing relief pockets.
 //   lock_cut_back_clearance = Whether to cut a flex cavity behind the tongue.
@@ -61,7 +61,7 @@ function sliding_dovetail_create(
     lock_spring_thickness = 1.2,
     lock_spring_relief = 0.8,
     lock_spring_transverse_relief_shape = "rectangular",
-    lock_spring_transverse_relief_angle = 45,
+    lock_spring_transverse_relief_top_length = undef,
     lock_spring_hinge_length = 0,
     lock_spring_hinge_thickness = 0.8,
     lock_cut_back_clearance = true,
@@ -90,8 +90,8 @@ function sliding_dovetail_create(
             spring_relief = lock_spring_relief,
             spring_transverse_relief_shape =
                 lock_spring_transverse_relief_shape,
-            spring_transverse_relief_angle =
-                lock_spring_transverse_relief_angle,
+            spring_transverse_relief_top_length =
+                lock_spring_transverse_relief_top_length,
             spring_hinge_length = lock_spring_hinge_length,
             spring_hinge_thickness = lock_spring_hinge_thickness,
             cut_back_clearance = lock_cut_back_clearance,
