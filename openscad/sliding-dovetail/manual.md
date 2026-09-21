@@ -162,15 +162,15 @@ joint = sliding_dovetail_create(
 );
 ```
 
-The opening keeps its full width at the male -X/trailing edge and narrows
-symmetrically toward the lock recess. `lock_release_taper_angle_deg` is
-measured in the native X/Z profile; 45 degrees gives the same lateral inset per
-side as the X run of the release path.
+The lock-recess end keeps the complete rectangular functional release width.
+Toward the male -X/trailing edge the opening widens symmetrically on both sides.
+`lock_release_taper_angle_deg` is measured in the native X/Z profile; at 45
+degrees each side widens by 1 mm for every 1 mm of release-path run.
 
-The native-Y release depth remains constant across the complete opening. In the
-HUB75 design orientation native X maps to design Y and native Z maps to design
-X, so the opening becomes wider in design X toward the outer edge, equally on
-both sides.
+The native-Y release depth remains constant across the complete opening. The
+trapezoid therefore only adds printable clearance toward the outer edge and
+never makes the functional release opening narrower than the rectangular
+baseline.
 
 
 ## Male mating relief

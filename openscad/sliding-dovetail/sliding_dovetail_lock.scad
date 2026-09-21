@@ -322,6 +322,8 @@ module _sliding_dovetail_lock_male_release_cutter(
     _slot_length_mm =
         _inner_x_mm - _entry_x_mm;
 
+    // Functional baseline width. Trapezoid mode must never become narrower
+    // than this at the lock-recess end.
     _release_width_mm =
         lock.width + 2 * clearance;
 
@@ -338,27 +340,24 @@ module _sliding_dovetail_lock_male_release_cutter(
                     _release_width_mm
                 ]);
         } else {
-            _side_inset_mm =
+            _outer_extension_mm =
                 _slot_length_mm
                 * tan(lock.release_taper_angle_deg);
             _inner_half_width_mm =
-                _release_width_mm / 2
-                - _side_inset_mm;
+                _release_width_mm / 2;
+            _outer_half_width_mm =
+                _inner_half_width_mm
+                + _outer_extension_mm;
 
-            assert(
-                _inner_half_width_mm > 0,
-                "sliding dovetail lock trapezoid release closes before reaching the lock recess"
-            )
-
-            // Trapezoid in native X/Z, extruded through the unchanged native-Y
+            // Trapezoid in native X/Z, extruded through unchanged native-Y
             // release depth:
             //
-            //   native -X / trailing edge : full release width
-            //   native +X / lock recess   : narrower centered width
+            //   native +X / lock recess   : baseline functional width
+            //   native -X / trailing edge : wider by the configured angle
             //
-            // In the HUB75 design orientation native X maps to design Y and
-            // native Z maps to design X. The opening therefore becomes wider
-            // in design X toward the outer edge, symmetrically on both sides.
+            // In the HUB75 print orientation this produces the two symmetric
+            // printable wedges at the outer edge while preserving the complete
+            // baseline release opening at the lock recess.
             translate([
                 0,
                 male_height - lock.release_depth,
@@ -378,11 +377,11 @@ module _sliding_dovetail_lock_male_release_cutter(
                         polygon(points = [
                             [
                                 _entry_x_mm,
-                                -_release_width_mm / 2
+                                -_outer_half_width_mm
                             ],
                             [
                                 _entry_x_mm,
-                                _release_width_mm / 2
+                                _outer_half_width_mm
                             ],
                             [
                                 _inner_x_mm,
