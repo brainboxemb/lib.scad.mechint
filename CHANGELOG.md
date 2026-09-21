@@ -1,5 +1,17 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- Add optional symmetric printable wedges to the male lock-release opening.
+  `lock_release_shape="rectangular"` preserves the released cutter exactly;
+  `"trapezoid"` keeps that full rectangular cutter and removes two additional
+  X/Z wedges across the complete visible release zone toward the male trailing
+  edge according to `lock_release_taper_angle_deg`, while release depth stays
+  constant. The wedges overlap the baseline cutter slightly to avoid Boolean
+  sliver walls.
+
 ## v0.1.5
 
 ### Added

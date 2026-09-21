@@ -101,6 +101,29 @@ lock_joint =
 assert(sliding_dovetail_locking_enabled(lock_joint));
 assert(abs(lock_joint.lock.entry_offset) < 0.0001);
 assert(lock_joint.lock.release_access);
+assert(lock_joint.lock.release_shape == "rectangular");
+
+trapezoid_release_joint =
+    sliding_dovetail_create(
+        width = 12,
+        height = 2.5,
+        angle = 30,
+        root_land_depth = 0.5,
+        mouth_land_depth = 0.5,
+        locking = true,
+        lock_release_access = true,
+        lock_release_depth = 0.6,
+        lock_release_shape = "trapezoid",
+        lock_release_taper_angle_deg = 45
+    );
+
+assert(sliding_dovetail_locking_enabled(trapezoid_release_joint));
+assert(trapezoid_release_joint.lock.release_shape == "trapezoid");
+assert(
+    abs(trapezoid_release_joint.lock.release_taper_angle_deg - 45)
+        < 0.0001
+);
+
 
 host_clearance_joint =
     sliding_dovetail_create(
@@ -215,5 +238,11 @@ translate([204, 0, 0])
 translate([228, 0, 0])
     sliding_dovetail_female_cutter(
         hinge_lock_joint,
+        slide = 16
+    );
+
+translate([252, 0, 0])
+    sliding_dovetail_male_build(
+        trapezoid_release_joint,
         slide = 16
     );

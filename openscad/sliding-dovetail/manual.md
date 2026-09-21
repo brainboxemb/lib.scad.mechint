@@ -141,8 +141,38 @@ the previous geometry exactly.
 The threshold insertion ramp is independently tunable with
 `lock_ramp_length`. With `lock_release_access = true`, the recess continues
 to the male -X edge with the same width as the recess itself. A small flat
-screwdriver can use that straight opening to lift the female tongue.
-`lock_release_depth` controls its depth.
+screwdriver can use that opening to lift the female tongue.
+
+The released/default opening is rectangular:
+
+```scad
+lock_release_shape = "rectangular"
+```
+
+For the side-printed male part the opening can instead use a centered
+trapezoidal X/Z profile:
+
+```scad
+joint = sliding_dovetail_create(
+    locking = true,
+    lock_release_access = true,
+    lock_release_depth = 0.6,
+    lock_release_shape = "trapezoid",
+    lock_release_taper_angle_deg = 45
+);
+```
+
+The released rectangular access opening and lock recess are always cut in full.
+Trapezoid mode then removes two additional symmetric triangular wedges across
+the complete visible release zone, from the male -X/trailing edge through the
+far end of the recess. It therefore only removes extra material; it never
+narrows or replaces the functional baseline opening.
+
+`lock_release_taper_angle_deg` is measured in the native X/Z profile. At 45
+degrees each wedge grows by 1 mm in Z for every 1 mm of nominal release-zone run
+in X. The native-Y release depth remains constant. The wedge cutters overlap the baseline opening and extend slightly past the
+actual male outer face (including the male body's normal Boolean `extra`)
+so coplanar boundaries cannot leave a thin residual wall.
 
 
 ## Male mating relief

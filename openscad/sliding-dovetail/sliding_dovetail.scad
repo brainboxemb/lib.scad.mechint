@@ -35,8 +35,10 @@ use <sliding_dovetail_lock.scad>
 //   lock_spring_hinge_thickness = Total thickness of the centered flex web left between opposing relief pockets.
 //   lock_cut_back_clearance = Whether to cut a flex cavity behind the tongue.
 //   lock_back_clearance = Flex-cavity depth behind the tongue.
-//   lock_release_access = Whether to add a male screwdriver slot from the entry edge.
-//   lock_release_depth = Screwdriver slot depth into the male root surface.
+//   lock_release_access = Whether to add a male release opening from the entry edge.
+//   lock_release_depth = Release-opening depth into the male root surface.
+//   lock_release_shape = Male release-opening profile: "rectangular" or "trapezoid".
+//   lock_release_taper_angle_deg = Symmetric printable side-wall angle in the native X/Z profile; 45 gives 1 mm outward widening per side per 1 mm release-path run.
 function sliding_dovetail_create(
     width = 10,
     height = 3,
@@ -63,7 +65,9 @@ function sliding_dovetail_create(
     lock_cut_back_clearance = true,
     lock_back_clearance = 0.8,
     lock_release_access = true,
-    lock_release_depth = 0.6
+    lock_release_depth = 0.6,
+    lock_release_shape = "rectangular",
+    lock_release_taper_angle_deg = 45
 ) =
     let(
         sloped_depth =
@@ -89,7 +93,9 @@ function sliding_dovetail_create(
             cut_back_clearance = lock_cut_back_clearance,
             back_clearance = lock_back_clearance,
             release_access = lock_release_access,
-            release_depth = lock_release_depth
+            release_depth = lock_release_depth,
+            release_shape = lock_release_shape,
+            release_taper_angle_deg = lock_release_taper_angle_deg
         )
     )
     assert(width > 0,

@@ -26,6 +26,12 @@ handling belong to the pinned `tools/tool.git-project`.
 Repository-specific guidance in this file supplements those shared policies; it
 does not replace them.
 
+Shared SCAD naming conventions are owned by
+[brainboxemb.meta/domains/scad/coding-conventions.md](https://github.com/brainboxemb/brainboxemb.meta/blob/main/domains/scad/coding-conventions.md).
+Follow that page for `d_` / `c_` top-level controls, explicit unit suffixes,
+constants and leading-underscore private variables/functions/modules. Keep only
+mechanical-interface-specific naming/API guidance here.
+
 ## OpenSCAD API
 
 OpenSCAD is the primary implementation direction. Public interface state uses
@@ -40,9 +46,6 @@ sliding_dovetail_female_cutter(joint, slide = 16);
 Derived dimensions come from the object through public accessors. The public
 design language is aimed at FDM printing; prefer direct geometric parameters
 such as an angle in degrees over woodworking conventions.
-
-Private helpers use a leading underscore. Global constants use a component
-prefix when needed.
 
 ## Optional features
 

@@ -65,7 +65,9 @@ function _sliding_dovetail_lock_create(
     cut_back_clearance = true,
     back_clearance = 0.8,
     release_access = true,
-    release_depth = 0.6
+    release_depth = 0.6,
+    release_shape = "rectangular",
+    release_taper_angle_deg = 45
 ) =
     let(
         spring = _sliding_dovetail_lock_spring_create(
@@ -100,6 +102,16 @@ function _sliding_dovetail_lock_create(
         "sliding dovetail lock release_access must be boolean")
     assert(release_depth > 0,
         "sliding dovetail lock release_depth must be > 0")
+    assert(
+        release_shape == "rectangular"
+            || release_shape == "trapezoid",
+        "sliding dovetail lock release_shape must be rectangular or trapezoid"
+    )
+    assert(
+        release_taper_angle_deg > 0
+            && release_taper_angle_deg < 90,
+        "sliding dovetail lock release_taper_angle_deg must be between 0 and 90 degrees"
+    )
     object(
         enabled = enabled,
         entry_offset = entry_offset,
@@ -111,7 +123,9 @@ function _sliding_dovetail_lock_create(
         ramp_length = ramp_length,
         spring = spring,
         release_access = release_access,
-        release_depth = release_depth
+        release_depth = release_depth,
+        release_shape = release_shape,
+        release_taper_angle_deg = release_taper_angle_deg
     );
 
 // Private accessor: whether the lock geometry is enabled.
@@ -275,8 +289,116 @@ module _sliding_dovetail_lock_male_recess_cutter(
 }
 
 // Optional path from the male -X/trailing edge to the lock recess.
-// It uses the same Z width as the recess, so the release feature is one
-// continuous straight opening rather than a narrow slot widening into a pocket.
+//
+// Rectangular preserves the released geometry exactly.
+//
+// Trapezoid changes only the Y/Z opening profile and stays symmetric around
+// native Z=0:
+//
+//   Y = male root face       -> full release width
+//   Y = release-depth floor  -> narrower centered width
+//
+// Native X remains the straight path to the lock recess. In the HUB75 project
+// mapping this means the taper runs in project Y and is symmetric on both
+// project-X sides; project Z remains the straight release path.
+module _sliding_dovetail_lock_male_release_print_wedges(
+    lock,
+    slide,
+    axial_clearance,
+    male_height,
+    release_width,
+    extra = 0
+) {
+    // The printable wedge covers the complete visible release zone:
+    // male trailing edge -> far end of the lock recess.
+    //
+    // This is deliberately longer than the screwdriver access path alone.
+    _entry_x_mm =
+        -slide / 2;
+    _male_outer_x_mm =
+        _entry_x_mm - extra;
+    _release_end_x_mm =
+        _sliding_dovetail_lock_male_recess_end_x(
+            lock,
+            slide,
+            axial_clearance
+        );
+    _release_length_mm =
+        _release_end_x_mm - _entry_x_mm;
+
+    _half_width_mm =
+        release_width / 2;
+    _outer_extension_mm =
+        _release_length_mm
+        * tan(lock.release_taper_angle_deg);
+
+    // Boolean overlap only. It must not participate in the nominal taper
+    // calculation.
+    _overlap_mm =
+        max(extra, 0.01);
+
+    assert(
+        _release_length_mm > 0,
+        "sliding dovetail lock printable release length must be > 0"
+    )
+    assert(
+        _outer_extension_mm >= 0,
+        "sliding dovetail lock print wedge extension must be >= 0"
+    )
+
+    // The baseline rectangular release and recess cutters remain intact.
+    // Each triangle overlaps the baseline width and extends past the actual
+    // male outer X face (-slide/2-extra), avoiding a coplanar/sliver wall at
+    // the exposed end.
+    for (side = [-1, 1])
+        translate([
+            0,
+            male_height
+                - lock.release_depth
+                - _overlap_mm,
+            0
+        ])
+            multmatrix([
+                [1, 0, 0, 0],
+                [0, 0, 1, 0],
+                [0, 1, 0, 0],
+                [0, 0, 0, 1]
+            ])
+                linear_extrude(
+                    height =
+                        lock.release_depth
+                        + 2 * _overlap_mm
+                )
+                    polygon(points = [
+                        [
+                            _male_outer_x_mm
+                                - _overlap_mm,
+                            side * (
+                                _half_width_mm
+                                - _overlap_mm
+                            )
+                        ],
+                        [
+                            _male_outer_x_mm
+                                - _overlap_mm,
+                            side * (
+                                _half_width_mm
+                                + _outer_extension_mm
+                                + _overlap_mm
+                            )
+                        ],
+                        [
+                            _release_end_x_mm
+                                + _overlap_mm,
+                            side * (
+                                _half_width_mm
+                                - _overlap_mm
+                            )
+                        ]
+                    ]);
+}
+
+
 module _sliding_dovetail_lock_male_release_cutter(
     lock,
     slide,
@@ -285,31 +407,44 @@ module _sliding_dovetail_lock_male_release_cutter(
     clearance,
     extra = 0
 ) {
-    recess_x0 =
+    _recess_x0_mm =
         _sliding_dovetail_lock_male_recess_start_x(
             lock,
             slide,
             axial_clearance
         );
-    entry_x =
+    _entry_x_mm =
         -slide / 2 - extra;
-    slot_length =
-        recess_x0 - entry_x + extra;
+    _access_length_mm =
+        _recess_x0_mm - _entry_x_mm;
 
-    release_width =
+    // Functional baseline width. This rectangular access opening is always cut
+    // in full. The adjacent recess cutter completes the visible release zone.
+    _release_width_mm =
         lock.width + 2 * clearance;
 
-    if (lock.release_access && slot_length > 0)
+    if (lock.release_access && _access_length_mm > 0) {
         translate([
-            entry_x,
+            _entry_x_mm,
             male_height - lock.release_depth,
-            -release_width / 2
+            -_release_width_mm / 2
         ])
             cube([
-                slot_length,
+                _access_length_mm + extra,
                 lock.release_depth + extra,
-                release_width
+                _release_width_mm
             ]);
+
+        if (lock.release_shape == "trapezoid")
+            _sliding_dovetail_lock_male_release_print_wedges(
+                lock,
+                slide = slide,
+                axial_clearance = axial_clearance,
+                male_height = male_height,
+                release_width = _release_width_mm,
+                extra = extra
+            );
+    }
 }
 
 // Female keepout removed from the normal channel cutter. Subtracting this
