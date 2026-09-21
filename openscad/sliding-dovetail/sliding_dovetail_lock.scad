@@ -291,8 +291,7 @@ module _sliding_dovetail_lock_male_recess_cutter(
                 male_height_mm - obj.recess_depth_mm,
                 -recess_width_mm / 2
             ],
-            overlap_min = [false, false, false],
-            overlap_max = [true, true, false],
+            overlap = [fg_right(), fg_back()],
             overlap_mm = max(extra_mm, fg_overlap_mm())
         );
 
@@ -445,8 +444,11 @@ module _sliding_dovetail_lock_male_release_cutter(
                 male_height_mm - obj.release_depth_mm,
                 -_release_width_mm / 2
             ],
-            overlap_min = [true, false, false],
-            overlap_max = [true, true, false],
+            overlap = [
+                fg_left(),
+                fg_right(),
+                fg_back()
+            ],
             overlap_mm = _overlap_mm
         );
 
