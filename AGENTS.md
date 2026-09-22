@@ -87,7 +87,7 @@ Use `fg_xf_frame()` for orthogonal axis remapping and the axis-specific
 `multmatrix()` only for general affine transforms that Forge cannot express
 clearly.
 
-## Units and native coordinates
+## Units and design orientation
 
 Public dimensional parameters are millimetres.
 

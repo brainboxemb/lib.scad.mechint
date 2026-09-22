@@ -12,7 +12,7 @@ vpr: [72, 0, 35]
 This is a compact sliding interface for **FDM-printed parts**. It is not based
 on a woodworking dovetail standard.
 
-Native coordinates are:
+The stable **design orientation** is:
 
 ```text
 X = slide_len_mm direction
