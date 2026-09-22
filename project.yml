@@ -21,3 +21,10 @@ dependencies:
     url: https://github.com/brainboxemb/lib.scad.forge.git
     path: ext/lib.scad.forge
     ref: v0.2.1
+
+  - name: lib.scad.util
+    role: external
+    type: git-submodule
+    url: https://github.com/brainboxemb/lib.scad.util.git
+    path: ext/lib.scad.util
+    ref: v0.4.0

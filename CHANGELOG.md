@@ -7,8 +7,9 @@
 - Move generic modeling ownership from `lib.scad.util` to released
   `lib.scad.forge v0.2.1`. Core sliding-dovetail source now uses the Forge
   umbrella entrypoint, `fg_xf_*` transforms and callable overlap constants
-  such as `FG_LEFT()`. Mechanical geometry and public mechint API semantics
-  remain unchanged.
+  such as `FG_LEFT()` and `FG_OVERLAP_MM()`. `lib.scad.util v0.4.0` remains
+  only for section-inspection views. Mechanical geometry and public mechint API
+  semantics remain unchanged.
 
 
 ## v0.2.1

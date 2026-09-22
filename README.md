@@ -157,8 +157,10 @@ Core sliding-dovetail source uses the owner-local `lib.scad.forge` runtime
 dependency for generic transforms, tagged CSG and overlap-aware cutters.
 
 Forge does not own any dovetail dimensions, clearances, locking behavior or fit
-semantics; those remain part of `lib.scad.mechint`. Consumers normally use the
-mechint public API and do not need to call Forge directly.
+semantics; those remain part of `lib.scad.mechint`. `lib.scad.util` remains a
+separate development/verification dependency for section-inspection helpers.
+Consumers normally use the mechint public API and do not need to call either
+support library directly.
 
 ## Development
 
