@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+
+- Adopt released `tool.scad-project v0.15.6` with exact tool gitlink `8ea81a0c3483770bedda75ccf80fb72797097c0a` for Migration 009, keep the repository verification pin aligned, and leave mechanical geometry/public API unchanged.
+
 ## v0.2.3
 
 ### Changed
