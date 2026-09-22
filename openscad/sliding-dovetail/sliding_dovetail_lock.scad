@@ -5,8 +5,7 @@
 
 // Private spring/flex configuration. Normal consumers configure these values
 // through sliding_dovetail_create(); they do not need to construct this object.
-use <../../ext/lib.scad.util/openscad/forge.scad>
-use <../../ext/lib.scad.util/openscad/transform.scad>
+use <../../ext/lib.scad.forge/openscad/forge.scad>
 
 function _sliding_dovetail_lock_spring_create(
     len_mm = 7.0,
@@ -291,7 +290,7 @@ module _sliding_dovetail_lock_male_recess_cutter(
                 male_height_mm - obj.recess_depth_mm,
                 -recess_width_mm / 2
             ],
-            overlap = [fg_right(), fg_back()],
+            overlap = [FG_RIGHT(), FG_BACK()],
             overlap_mm = max(extra_mm, fg_overlap_mm())
         );
 
@@ -361,16 +360,16 @@ module _sliding_dovetail_lock_male_release_print_wedges(
     // male outer X face (-slide/2-extra), avoiding a coplanar/sliver wall at
     // the exposed end.
     for (side = [-1, 1])
-        xf_ymove(
+        fg_xf_ymove(
             male_height_mm
             - obj.release_depth_mm
             - _overlap_mm
         )
-            xf_frame(
+            fg_xf_frame(
                 x_axis = [1, 0, 0],
                 y_axis = [0, 0, 1]
             )
-                xf_zflip()
+                fg_xf_zflip()
                     linear_extrude(
                     height =
                         obj.release_depth_mm
@@ -445,9 +444,9 @@ module _sliding_dovetail_lock_male_release_cutter(
                 -_release_width_mm / 2
             ],
             overlap = [
-                fg_left(),
-                fg_right(),
-                fg_back()
+                FG_LEFT(),
+                FG_RIGHT(),
+                FG_BACK()
             ],
             overlap_mm = _overlap_mm
         );
@@ -482,7 +481,7 @@ module _sliding_dovetail_lock_female_threshold_keepout(
     x1_mm = x0_mm + obj.ramp_len_mm;
     x2_mm = x0_mm + obj.threshold_len_mm;
 
-    xf_zmove(-obj.width_mm / 2)
+    fg_xf_zmove(-obj.width_mm / 2)
         linear_extrude(height = obj.width_mm)
             polygon(points = [
                 [x0_mm, female_height_mm],
@@ -523,7 +522,7 @@ module _sliding_dovetail_lock_female_relief_cutter(
         + extra_mm;
 
     union() {
-        xf_move([
+        fg_xf_move([
             spring_x0_mm - extra_mm,
             female_height_mm,
             -spring_width_mm / 2 - spring.relief_mm
@@ -534,7 +533,7 @@ module _sliding_dovetail_lock_female_relief_cutter(
                 spring.relief_mm
             ]);
 
-        xf_move([
+        fg_xf_move([
             spring_x0_mm - extra_mm,
             female_height_mm,
             spring_width_mm / 2
@@ -549,7 +548,7 @@ module _sliding_dovetail_lock_female_relief_cutter(
             obj.entry_offset_mm > 0
             || entry_slot_len_mm > 0
         )
-            xf_move([
+            fg_xf_move([
                 spring_x0_mm - spring.relief_mm,
                 female_height_mm,
                 -spring_width_mm / 2 - spring.relief_mm
@@ -618,7 +617,7 @@ module _sliding_dovetail_lock_female_relief_cutter(
             )
 
             // Channel-side pocket.
-            xf_zmove(-spring_width_mm / 2)
+            fg_xf_zmove(-spring_width_mm / 2)
                 linear_extrude(height = spring_width_mm)
                     polygon(points = [
                         [threshold_land_x1_mm, female_height_mm],
@@ -640,7 +639,7 @@ module _sliding_dovetail_lock_female_relief_cutter(
 
             // Opposing outer-face pocket. This mirrors the same relief profile
             // so the remaining hinge_thickness is centered through the tongue.
-            xf_zmove(-spring_width_mm / 2)
+            fg_xf_zmove(-spring_width_mm / 2)
                 linear_extrude(height = spring_width_mm)
                     polygon(points = [
                         [threshold_land_x1_mm, outer_face_y_mm],
@@ -662,7 +661,7 @@ module _sliding_dovetail_lock_female_relief_cutter(
         }
 
         if (spring.has_back_clearance)
-            xf_move([
+            fg_xf_move([
                 spring_x0_mm - extra_mm,
                 female_height_mm + spring.thickness_mm,
                 -spring_width_mm / 2

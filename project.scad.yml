@@ -22,7 +22,7 @@ rendering:
     text: "© 2026 brainboxemb"
 
 externals:
-  - name: lib.scad.util
+  - name: lib.scad.forge
     required_file: openscad/forge.scad
 
 verification:
