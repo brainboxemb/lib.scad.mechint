@@ -3,8 +3,8 @@
 //   Compact FDM-oriented sliding dovetail mechanical interface.
 //////////////////////////////////////////////////////////////////////
 
-use <sliding_dovetail_lock.scad>
-use <../../ext/lib.scad.forge/openscad/forge.scad>
+use <sliding-dovetail/sliding_dovetail_lock.scad>
+use <../ext/lib.scad.forge/openscad/forge.scad>
 
 // Function: sliding_dovetail_create()
 // Synopsis: Creates one complete male/female sliding-dovetail interface.

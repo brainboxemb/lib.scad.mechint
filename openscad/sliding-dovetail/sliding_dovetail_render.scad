@@ -1,7 +1,7 @@
 // Render/design adapter for the public sliding-dovetail API.
 
 use <../sliding_dovetail.scad>
-use <../reference/sliding_dovetail_reference.scad>
+use <reference/sliding_dovetail_reference.scad>
 
 module sliding_dovetail_render(
     obj = sliding_dovetail_create(),

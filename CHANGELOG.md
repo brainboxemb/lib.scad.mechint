@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+
+- Promote the sliding-dovetail public API to `openscad/sliding_dovetail.scad` and make `openscad/sliding-dovetail/` the companion workspace for private helpers, design/reference material and renders. Update repository tests and examples to consume the top-level entrypoint.
+
 ## v0.2.2
 
 ### Changed

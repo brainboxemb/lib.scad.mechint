@@ -1,6 +1,6 @@
 // Shared centered two-sided hinge-relief verification geometry.
 
-use <../../../openscad/sliding-dovetail/sliding_dovetail.scad>
+use <../../../openscad/sliding_dovetail.scad>
 use <../../../openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad>
 
 function sliding_dovetail_hinge_fixture_reference() =

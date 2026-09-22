@@ -33,6 +33,10 @@ standard abbreviations, explicit unit suffixes, positive booleans, constants and
 leading-underscore private variables/functions/modules. Keep only
 mechanical-interface-specific naming/API guidance here.
 
+## Library layout
+
+Public reusable OpenSCAD API entrypoints live directly under `openscad/`, for example `openscad/sliding_dovetail.scad`. A same-purpose companion directory using kebab-case, for example `openscad/sliding-dovetail/`, owns private implementation helpers, design documentation, references, assemblies and render adapters. Consumer projects should import the top-level public entrypoint rather than files from the companion workspace.
+
 ## OpenSCAD API
 
 OpenSCAD is the primary implementation direction. Public interface state uses

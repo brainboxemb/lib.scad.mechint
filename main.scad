@@ -3,7 +3,7 @@
 // Open this file directly in OpenSCAD. The Customizer exposes the complete
 // public sliding_dovetail_create() interface plus focused reference views.
 
-use <openscad/sliding-dovetail/sliding_dovetail.scad>
+use <openscad/sliding_dovetail.scad>
 use <openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad>
 use <openscad/sliding-dovetail/assemblies/sliding_dovetail_test_assembly.scad>
 use <ext/lib.scad.util/openscad/inspection.scad>

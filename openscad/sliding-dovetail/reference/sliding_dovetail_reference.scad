@@ -10,7 +10,7 @@
 //   Y = profile depth
 //   Z = profile width
 
-use <../sliding_dovetail.scad>
+use <../../sliding_dovetail.scad>
 
 function sliding_dovetail_reference_create(
     obj = sliding_dovetail_create(),
