@@ -1,4 +1,4 @@
-use <../openscad/sliding-dovetail/sliding_dovetail.scad>
+use <../openscad/sliding_dovetail.scad>
 
 joint = sliding_dovetail_create();
 

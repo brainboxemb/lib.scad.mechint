@@ -1,5 +1,5 @@
 use <../../ext/lib.scad.util/openscad/inspection.scad>
-use <../../openscad/sliding-dovetail/sliding_dovetail.scad>
+use <../../openscad/sliding_dovetail.scad>
 use <../../openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad>
 
 joint =

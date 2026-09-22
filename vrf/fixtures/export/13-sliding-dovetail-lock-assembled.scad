@@ -1,4 +1,4 @@
-use <../../../openscad/sliding-dovetail/sliding_dovetail.scad>
+use <../../../openscad/sliding_dovetail.scad>
 use <../../../openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad>
 use <00-sliding-dovetail-fixture-orientation.scad>
 

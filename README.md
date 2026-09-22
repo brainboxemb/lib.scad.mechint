@@ -41,10 +41,12 @@ branches; generated PNGs are not stored on `main`.
 The first interface is a compact sliding dovetail aimed at **FDM-printed
 mechanical parts**.
 
+The public library entrypoint lives directly under `openscad/`; the matching `openscad/sliding-dovetail/` directory contains implementation support, reference geometry, design material and renders.
+
 The normal consumer API starts with one top-level interface object:
 
 ```scad
-use <openscad/sliding-dovetail/sliding_dovetail.scad>
+use <openscad/sliding_dovetail.scad>
 
 joint = sliding_dovetail_create(
     width_mm = 10,

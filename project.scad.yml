@@ -1,7 +1,7 @@
 paths:
   design_root: .
   build_root: bld
-  render_root: openscad/sliding-dovetail/sliding_dovetail/render
+  render_root: openscad/sliding-dovetail/render
 
 design:
   include_externals: false

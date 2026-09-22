@@ -2,7 +2,7 @@
 // The section must show straight lands at both ends of the angled flank.
 
 use <../../ext/lib.scad.util/openscad/inspection.scad>
-use <../../openscad/sliding-dovetail/sliding_dovetail.scad>
+use <../../openscad/sliding_dovetail.scad>
 
 joint =
     sliding_dovetail_create(

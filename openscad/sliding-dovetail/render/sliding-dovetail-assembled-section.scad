@@ -1,4 +1,4 @@
-use <../../../../ext/lib.scad.util/openscad/inspection.scad>
+use <../../../ext/lib.scad.util/openscad/inspection.scad>
 use <../sliding_dovetail_render.scad>
 
 $vpt = [8, 1.5, 0];
