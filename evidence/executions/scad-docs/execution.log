@@ -1,0 +1,28 @@
+SCAD producer execution
+=======================
+
+Capability: scad.docs
+Action: design-build
+Source revision: 6130e71a5af1c8976fa6752bbc2f75d9cff17f86
+Owner: brainboxemb/tool.scad-project
+Owner revision: 70fd4162731484a949dc390e942dde8b8d811f10
+tool.scad-project version: 0.15.2
+Status: success
+
+Domain evidence: ../../domain/last-design-build.json
+
+Decision report kind: design
+Build engine: scons
+Targets: 9
+Outcomes: BUILT=9, CACHE_RESTORED=0, CURRENT=0, ERROR=0
+
+Target decisions:
+- BUILT: .cache/scad-project/design-stage/project/openscad/sliding-dovetail/sliding_dovetail/design/img/01-male.png
+- BUILT: .cache/scad-project/design-stage/project/openscad/sliding-dovetail/sliding_dovetail/design/img/02-female.png
+- BUILT: .cache/scad-project/design-stage/project/openscad/sliding-dovetail/sliding_dovetail/design/img/03-approach.png
+- BUILT: .cache/scad-project/design-stage/project/openscad/sliding-dovetail/sliding_dovetail/design/img/04-assembled.png
+- BUILT: .cache/scad-project/design-stage/project/openscad/sliding-dovetail/sliding_dovetail/design/img/05-overview.png
+- BUILT: .cache/scad-project/design-stage/project/openscad/sliding-dovetail/sliding_dovetail/design/img/06-cutaway.png
+- BUILT: .cache/scad-project/design-stage/project/openscad/sliding-dovetail/sliding_dovetail/design/img/07-assembled-cutaway.png
+- BUILT: .cache/scad-project/design-stage/project/openscad/sliding-dovetail/sliding_dovetail/design/img/08-female.png
+- BUILT: .cache/scad-project/design-stage/project/openscad/sliding-dovetail/sliding_dovetail/design/img/09-assembled.png
