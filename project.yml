@@ -20,4 +20,4 @@ dependencies:
     type: git-submodule
     url: https://github.com/brainboxemb/lib.scad.forge.git
     path: ext/lib.scad.forge
-    ref: v0.2.0
+    ref: v0.2.1

@@ -291,7 +291,7 @@ module _sliding_dovetail_lock_male_recess_cutter(
                 -recess_width_mm / 2
             ],
             overlap = [FG_RIGHT(), FG_BACK()],
-            overlap_mm = max(extra_mm, fg_overlap_mm())
+            overlap_mm = max(extra_mm, FG_OVERLAP_MM())
         );
 
     fg_cutter_build(_recess_cutter);
@@ -344,7 +344,7 @@ module _sliding_dovetail_lock_male_release_print_wedges(
     // Boolean overlap only. It must not participate in the nominal taper
     // calculation.
     _overlap_mm =
-        max(extra_mm, fg_overlap_mm());
+        max(extra_mm, FG_OVERLAP_MM());
 
     assert(
         _release_length_mm > 0,
@@ -424,7 +424,7 @@ module _sliding_dovetail_lock_male_release_cutter(
     _access_len_mm =
         _recess_x0_mm - _entry_x_mm;
     _overlap_mm =
-        max(extra_mm, fg_overlap_mm());
+        max(extra_mm, FG_OVERLAP_MM());
 
     // Functional baseline width. This rectangular access opening is always cut
     // in full. The adjacent recess cutter completes the visible release zone.
