@@ -153,12 +153,14 @@ renders, so that STL is not published.
 
 ## Dependency boundary
 
-The core `sliding_dovetail.scad` source has no dependency on
-`lib.scad.util`.
+Core sliding-dovetail source uses the owner-local `lib.scad.forge` runtime
+dependency for generic transforms, tagged CSG and overlap-aware cutters.
 
-The repository uses `lib.scad.util` only in verification and interactive
-inspection views. Consumers therefore do not inherit utility geometry merely by
-using the dovetail source.
+Forge does not own any dovetail dimensions, clearances, locking behavior or fit
+semantics; those remain part of `lib.scad.mechint`. `lib.scad.util` remains a
+separate development/verification dependency for section-inspection helpers.
+Consumers normally use the mechint public API and do not need to call either
+support library directly.
 
 ## Development
 

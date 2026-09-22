@@ -4,6 +4,9 @@
 [submodule "tools/tool.scad-project"]
 	path = tools/tool.scad-project
 	url = https://github.com/brainboxemb/tool.scad-project.git
+[submodule "ext/lib.scad.forge"]
+	path = ext/lib.scad.forge
+	url = https://github.com/brainboxemb/lib.scad.forge.git
 [submodule "ext/lib.scad.util"]
 	path = ext/lib.scad.util
 	url = https://github.com/brainboxemb/lib.scad.util.git

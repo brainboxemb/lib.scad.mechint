@@ -4,6 +4,8 @@ set -euo pipefail
 EXPECTED_GIT_TOOL_SHA="9879da589101f41b2b0e634d196ddcc51e1a6102"
 EXPECTED_SCAD_TOOL_SHA="70fd4162731484a949dc390e942dde8b8d811f10"
 EXPECTED_SCAD_TOOL_REF="v0.15.2"
+EXPECTED_FORGE_SHA="12a62580f4d24a8ebd80b061dc2a8e368a838ace"
+EXPECTED_FORGE_REF="v0.2.1"
 EXPECTED_UTIL_SHA="604970732671b3889f072f5fc744ca872326e69c"
 EXPECTED_UTIL_REF="v0.4.0"
 
@@ -40,23 +42,29 @@ require_checkout() {
 require_nested_uninitialized() {
   local nested="$1"
   local status
-  status="$(git -C "$root/ext/lib.scad.util" submodule status -- "$nested" 2>/dev/null || true)"
+  status="$(git -C "$root/ext/lib.scad.forge" submodule status -- "$nested" 2>/dev/null || true)"
   if [[ -z "$status" || "${status:0:1}" != "-" ]]; then
-    echo "verification: ext/lib.scad.util/$nested must remain an uninitialized nested tooling gitlink; status='$status'" >&2
+    echo "verification: ext/lib.scad.forge/$nested must remain an uninitialized nested tooling gitlink; status='$status'" >&2
     exit 1
   fi
 }
 
 require_gitlink "tools/tool.git-project" "$EXPECTED_GIT_TOOL_SHA"
 require_gitlink "tools/tool.scad-project" "$EXPECTED_SCAD_TOOL_SHA"
+require_gitlink "ext/lib.scad.forge" "$EXPECTED_FORGE_SHA"
 require_gitlink "ext/lib.scad.util" "$EXPECTED_UTIL_SHA"
 
 require_checkout "tools/tool.git-project" "$EXPECTED_GIT_TOOL_SHA"
 require_checkout "tools/tool.scad-project" "$EXPECTED_SCAD_TOOL_SHA"
+require_checkout "ext/lib.scad.forge" "$EXPECTED_FORGE_SHA"
 require_checkout "ext/lib.scad.util" "$EXPECTED_UTIL_SHA"
 
 grep -Fq "ref: $EXPECTED_SCAD_TOOL_REF" "$root/project.yml" || {
   echo "verification: project.yml must retain tool.scad-project $EXPECTED_SCAD_TOOL_REF" >&2
+  exit 1
+}
+grep -Fq "ref: $EXPECTED_FORGE_REF" "$root/project.yml" || {
+  echo "verification: project.yml must retain lib.scad.forge $EXPECTED_FORGE_REF" >&2
   exit 1
 }
 grep -Fq "ref: $EXPECTED_UTIL_REF" "$root/project.yml" || {
