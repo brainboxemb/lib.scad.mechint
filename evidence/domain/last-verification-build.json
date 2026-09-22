@@ -1,0 +1,254 @@
+{
+  "backend_signature": "90b2bf091c2be8cf46e891906ed73fd6790c6026d1ce67cbfac69813b2dcb863",
+  "engine": "scons",
+  "kind": "verification",
+  "manifest_schema_version": 1,
+  "outcome_counts": {
+    "BUILT": 12,
+    "CACHE_RESTORED": 0,
+    "CURRENT": 0,
+    "ERROR": 0
+  },
+  "provenance": {
+    "cache": {
+      "exact_hit": null,
+      "matched_key": "",
+      "namespace": "scad-verification-v1",
+      "primary_key": "scad-verification-v1-Linux-1378084197-v0.6.1-70fd4162731484a949dc390e942dde8b8d811f10-c9ae6372cd094c734996e39cbf095b849a5124c6181021829f1a55690effbdb7"
+    },
+    "source_commit_sha": "a3ec45dda7a58376b35c1a121f41242797e55e6e",
+    "tool_commit_sha": "70fd4162731484a949dc390e942dde8b8d811f10",
+    "tool_version": "0.15.2",
+    "toolchain_image": "ghcr.io/brainboxemb/scad-toolchain-openscad:v0.6.1",
+    "toolchain_version": "v0.6.1",
+    "workflow_version": "v0.15.2"
+  },
+  "schema": "scad-project.build-decisions",
+  "schema_version": 1,
+  "target_count": 12,
+  "targets": [
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "vrf/out/png/01-sliding-dovetail-fit.png",
+      "sources": [
+        "vrf/openscad/01-sliding-dovetail-fit.scad",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad",
+        "openscad/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "ext/lib.scad.forge/openscad/forge.scad",
+        "ext/lib.scad.forge/openscad/transform.scad",
+        "ext/lib.scad.forge/openscad/csg.scad",
+        "ext/lib.scad.forge/openscad/cutter.scad"
+      ],
+      "target_spec_digest": "cdef6b6b31bd85c9917ff5a4bf3084ff20210f137340f07b0457f06ba4e9899d"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "vrf/out/png/02-sliding-dovetail-approach.png",
+      "sources": [
+        "vrf/openscad/02-sliding-dovetail-approach.scad",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad",
+        "openscad/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "ext/lib.scad.forge/openscad/forge.scad",
+        "ext/lib.scad.forge/openscad/transform.scad",
+        "ext/lib.scad.forge/openscad/csg.scad",
+        "ext/lib.scad.forge/openscad/cutter.scad"
+      ],
+      "target_spec_digest": "655adbf36e83bb05a344b69a15bc6b5234825d3f00f3709d1a8c9a1db1e891b5"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "vrf/out/png/03-sliding-dovetail-yz-section.png",
+      "sources": [
+        "vrf/openscad/03-sliding-dovetail-yz-section.scad",
+        "ext/lib.scad.util/openscad/inspection.scad",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad",
+        "openscad/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "ext/lib.scad.forge/openscad/forge.scad",
+        "ext/lib.scad.forge/openscad/transform.scad",
+        "ext/lib.scad.forge/openscad/csg.scad",
+        "ext/lib.scad.forge/openscad/cutter.scad"
+      ],
+      "target_spec_digest": "e4346d149d63d42f481e97d0b3434658bc9cc9f9d548957bd56e925f9e08bc5b"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "vrf/out/png/04-sliding-dovetail-entry-slot.png",
+      "sources": [
+        "vrf/openscad/04-sliding-dovetail-entry-slot.scad",
+        "openscad/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "ext/lib.scad.forge/openscad/forge.scad",
+        "ext/lib.scad.forge/openscad/transform.scad",
+        "ext/lib.scad.forge/openscad/csg.scad",
+        "ext/lib.scad.forge/openscad/cutter.scad",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"
+      ],
+      "target_spec_digest": "ca92037817c0a68b09628e135a436f8668ec91c2ad7e2dedc967541e4ab906d8"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "vrf/out/png/10-sliding-dovetail-lock-section.png",
+      "sources": [
+        "vrf/openscad/10-sliding-dovetail-lock-section.scad",
+        "ext/lib.scad.util/openscad/inspection.scad",
+        "openscad/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "ext/lib.scad.forge/openscad/forge.scad",
+        "ext/lib.scad.forge/openscad/transform.scad",
+        "ext/lib.scad.forge/openscad/csg.scad",
+        "ext/lib.scad.forge/openscad/cutter.scad",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"
+      ],
+      "target_spec_digest": "0bcc52340f0e58fbbb68feee3370413f92bff04686bb10bc7542d453b48af2bd"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "vrf/out/png/11-sliding-dovetail-lock-entry-slot-spring.png",
+      "sources": [
+        "vrf/openscad/11-sliding-dovetail-lock-entry-slot-spring.scad",
+        "ext/lib.scad.util/openscad/inspection.scad",
+        "openscad/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "ext/lib.scad.forge/openscad/forge.scad",
+        "ext/lib.scad.forge/openscad/transform.scad",
+        "ext/lib.scad.forge/openscad/csg.scad",
+        "ext/lib.scad.forge/openscad/cutter.scad",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"
+      ],
+      "target_spec_digest": "dcbe1adb92031d1db09ef4048d01c7d8ce04c99fdcc19e227da30b2b63fe7e13"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "vrf/out/png/12-sliding-dovetail-root-land-relief.png",
+      "sources": [
+        "vrf/openscad/12-sliding-dovetail-root-land-relief.scad",
+        "ext/lib.scad.util/openscad/inspection.scad",
+        "openscad/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "ext/lib.scad.forge/openscad/forge.scad",
+        "ext/lib.scad.forge/openscad/transform.scad",
+        "ext/lib.scad.forge/openscad/csg.scad",
+        "ext/lib.scad.forge/openscad/cutter.scad"
+      ],
+      "target_spec_digest": "adcd305bd838a4d29435e6a09d6fcf0a019cbd40d738ffb9858cb42d203be842"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "vrf/out/png/13-sliding-dovetail-mouth-root-land.png",
+      "sources": [
+        "vrf/openscad/13-sliding-dovetail-mouth-root-land.scad",
+        "ext/lib.scad.util/openscad/inspection.scad",
+        "openscad/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "ext/lib.scad.forge/openscad/forge.scad",
+        "ext/lib.scad.forge/openscad/transform.scad",
+        "ext/lib.scad.forge/openscad/csg.scad",
+        "ext/lib.scad.forge/openscad/cutter.scad"
+      ],
+      "target_spec_digest": "bc771bd17a5e15f673d88cd4ac73d9b4114b26dc687df86dcb1bccf0fbe4c4db"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "vrf/out/png/14-sliding-dovetail-lock-hinge-relief.png",
+      "sources": [
+        "vrf/openscad/14-sliding-dovetail-lock-hinge-relief.scad",
+        "ext/lib.scad.util/openscad/inspection.scad",
+        "openscad/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "ext/lib.scad.forge/openscad/forge.scad",
+        "ext/lib.scad.forge/openscad/transform.scad",
+        "ext/lib.scad.forge/openscad/csg.scad",
+        "ext/lib.scad.forge/openscad/cutter.scad",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"
+      ],
+      "target_spec_digest": "99640fb596f1ccee7ab55909b9475e82bd1c222bcafe42059c201c088201bdc6"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "vrf/out/png/15-sliding-dovetail-lock-hinge-overview.png",
+      "sources": [
+        "vrf/openscad/15-sliding-dovetail-lock-hinge-overview.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_render.scad",
+        "openscad/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "ext/lib.scad.forge/openscad/forge.scad",
+        "ext/lib.scad.forge/openscad/transform.scad",
+        "ext/lib.scad.forge/openscad/csg.scad",
+        "ext/lib.scad.forge/openscad/cutter.scad",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"
+      ],
+      "target_spec_digest": "f8f338a0dfefd60d431383ea218d2f873fc841e15792ad5994d1a60c38db05e6"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "vrf/out/png/16-sliding-dovetail-lock-hinge-cutaway.png",
+      "sources": [
+        "vrf/openscad/16-sliding-dovetail-lock-hinge-cutaway.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_render.scad",
+        "openscad/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "ext/lib.scad.forge/openscad/forge.scad",
+        "ext/lib.scad.forge/openscad/transform.scad",
+        "ext/lib.scad.forge/openscad/csg.scad",
+        "ext/lib.scad.forge/openscad/cutter.scad",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"
+      ],
+      "target_spec_digest": "8772cb87112e466621ead5a941a87b5de3a6cc21eecfe8a7c6cc4d76764d8d42"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "vrf/out/png/17-sliding-dovetail-lock-hinge-assembled-cutaway.png",
+      "sources": [
+        "vrf/openscad/17-sliding-dovetail-lock-hinge-assembled-cutaway.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_render.scad",
+        "openscad/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "ext/lib.scad.forge/openscad/forge.scad",
+        "ext/lib.scad.forge/openscad/transform.scad",
+        "ext/lib.scad.forge/openscad/csg.scad",
+        "ext/lib.scad.forge/openscad/cutter.scad",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"
+      ],
+      "target_spec_digest": "ce5263179300c7a9193652d3c04d6b00fcc8ba1a2143b9da7c3b78c46c006d56"
+    }
+  ]
+}
