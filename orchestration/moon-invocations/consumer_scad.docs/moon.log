@@ -1,0 +1,148 @@
+[ WARN 2026-09-23 18:10:42.702] moon_app::queries::changed_files  Detected a shallow checkout, unable to run Git commands to determine changed files. 
+[ WARN 18:10:42.702] moon_app::queries::changed_files  A full Git history is required for affected checks, falling back to an empty files list. 
+▮▮▮▮ consumer:scad.docs (60ad50b4)
+SCons design engine: 9 target(s), cache=/work/.cache/scad-project/scons
++ scons -Q -f /work/tools/tool.scad-project/src/scad_project/design_scons_driver.py SCAD_PROJECT_MANIFEST=/work/.cache/scad-project/state/design-manifest.json
+_action([".cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/01-male.png"], [".cache/scad-project/state/design-entrypoints/a2260e771abc7596.scad", "ext/lib.scad.forge/openscad/csg.scad", "ext/lib.scad.forge/openscad/cutter.scad", "ext/lib.scad.forge/openscad/forge.scad", "ext/lib.scad.forge/openscad/resolution.scad", "ext/lib.scad.forge/openscad/transform.scad", "openscad/sliding-dovetail/design/design.md", "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad", "openscad/sliding-dovetail/sliding_dovetail_lock.scad", "openscad/sliding-dovetail/sliding_dovetail_render.scad", "openscad/sliding_dovetail.scad"])
++ xvfb-run -a openscad --enable=object-function --render --camera=0.0,0.0,0.0,72.0,0.0,35.0,0.0 --autocenter --viewall --imgsize=640,480 -o /work/.cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/.01-male.unwatermarked.png /work/.cache/scad-project/state/design-entrypoints/a2260e771abc7596.scad
+Geometries in cache: 7
+Geometry cache size in bytes: 5376
+CGAL Polyhedrons in cache: 3
+CGAL cache size in bytes: 20000
+Total rendering time: 0:00:00.166
+   Top level object is a 3D object (manifold):
+   Status:     NoError
+   Genus:      0
+   Vertices:       32
+   Facets:         60
++ scad-image-watermark /work/.cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/.01-male.unwatermarked.png /work/.cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/01-male.png --text © 2026 brainboxemb
+SCons design built: .cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/01-male.png
+_action([".cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/02-female.png"], [".cache/scad-project/state/design-entrypoints/f87ee09ffa787567.scad", "ext/lib.scad.forge/openscad/csg.scad", "ext/lib.scad.forge/openscad/cutter.scad", "ext/lib.scad.forge/openscad/forge.scad", "ext/lib.scad.forge/openscad/resolution.scad", "ext/lib.scad.forge/openscad/transform.scad", "openscad/sliding-dovetail/design/design.md", "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad", "openscad/sliding-dovetail/sliding_dovetail_lock.scad", "openscad/sliding-dovetail/sliding_dovetail_render.scad", "openscad/sliding_dovetail.scad"])
++ xvfb-run -a openscad --enable=object-function --render --camera=0.0,0.0,0.0,72.0,0.0,35.0,0.0 --autocenter --viewall --imgsize=640,480 -o /work/.cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/.02-female.unwatermarked.png /work/.cache/scad-project/state/design-entrypoints/f87ee09ffa787567.scad
+Geometries in cache: 7
+Geometry cache size in bytes: 5376
+CGAL Polyhedrons in cache: 4
+CGAL cache size in bytes: 16000
+Total rendering time: 0:00:00.078
+   Top level object is a 3D object (manifold):
+   Status:     NoError
+   Genus:      0
+   Vertices:       16
+   Facets:         28
++ scad-image-watermark /work/.cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/.02-female.unwatermarked.png /work/.cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/02-female.png --text © 2026 brainboxemb
+SCons design built: .cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/02-female.png
+_action([".cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/03-approach.png"], [".cache/scad-project/state/design-entrypoints/b5b07cc562471f60.scad", "ext/lib.scad.forge/openscad/csg.scad", "ext/lib.scad.forge/openscad/cutter.scad", "ext/lib.scad.forge/openscad/forge.scad", "ext/lib.scad.forge/openscad/resolution.scad", "ext/lib.scad.forge/openscad/transform.scad", "openscad/sliding-dovetail/design/design.md", "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad", "openscad/sliding-dovetail/sliding_dovetail_lock.scad", "openscad/sliding-dovetail/sliding_dovetail_render.scad", "openscad/sliding_dovetail.scad"])
++ xvfb-run -a openscad --enable=object-function --render --camera=0.0,0.0,0.0,72.0,0.0,35.0,0.0 --autocenter --viewall --imgsize=640,480 -o /work/.cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/.03-approach.unwatermarked.png /work/.cache/scad-project/state/design-entrypoints/b5b07cc562471f60.scad
+Geometries in cache: 14
+Geometry cache size in bytes: 10752
+CGAL Polyhedrons in cache: 9
+CGAL cache size in bytes: 56000
+Total rendering time: 0:00:00.080
+   Top level object is a 3D object (manifold):
+   Status:     NoError
+   Genus:      -1
+   Vertices:       48
+   Facets:         88
++ scad-image-watermark /work/.cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/.03-approach.unwatermarked.png /work/.cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/03-approach.png --text © 2026 brainboxemb
+SCons design built: .cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/03-approach.png
+_action([".cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/04-assembled.png"], [".cache/scad-project/state/design-entrypoints/8cb74f288b8c2ab4.scad", "ext/lib.scad.forge/openscad/csg.scad", "ext/lib.scad.forge/openscad/cutter.scad", "ext/lib.scad.forge/openscad/forge.scad", "ext/lib.scad.forge/openscad/resolution.scad", "ext/lib.scad.forge/openscad/transform.scad", "openscad/sliding-dovetail/design/design.md", "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad", "openscad/sliding-dovetail/sliding_dovetail_lock.scad", "openscad/sliding-dovetail/sliding_dovetail_render.scad", "openscad/sliding_dovetail.scad"])
++ xvfb-run -a openscad --enable=object-function --render --camera=0.0,0.0,0.0,72.0,0.0,35.0,0.0 --autocenter --viewall --imgsize=640,480 -o /work/.cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/.04-assembled.unwatermarked.png /work/.cache/scad-project/state/design-entrypoints/8cb74f288b8c2ab4.scad
+Geometries in cache: 14
+Geometry cache size in bytes: 10752
+CGAL Polyhedrons in cache: 9
+CGAL cache size in bytes: 56000
+Total rendering time: 0:00:00.080
+   Top level object is a 3D object (manifold):
+   Status:     NoError
+   Genus:      1
+   Vertices:       48
+   Facets:         96
++ scad-image-watermark /work/.cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/.04-assembled.unwatermarked.png /work/.cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/04-assembled.png --text © 2026 brainboxemb
+SCons design built: .cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/04-assembled.png
+_action([".cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/05-overview.png"], [".cache/scad-project/state/design-entrypoints/d3bf61d1dbd36421.scad", "ext/lib.scad.forge/openscad/csg.scad", "ext/lib.scad.forge/openscad/cutter.scad", "ext/lib.scad.forge/openscad/forge.scad", "ext/lib.scad.forge/openscad/resolution.scad", "ext/lib.scad.forge/openscad/transform.scad", "openscad/sliding-dovetail/design/design.md", "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad", "openscad/sliding-dovetail/sliding_dovetail_lock.scad", "openscad/sliding-dovetail/sliding_dovetail_render.scad", "openscad/sliding_dovetail.scad"])
++ xvfb-run -a openscad --enable=object-function --render --camera=0.0,0.0,0.0,72.0,0.0,35.0,0.0 --autocenter --viewall --imgsize=640,480 -o /work/.cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/.05-overview.unwatermarked.png /work/.cache/scad-project/state/design-entrypoints/d3bf61d1dbd36421.scad
+Geometries in cache: 23
+Geometry cache size in bytes: 19624
+CGAL Polyhedrons in cache: 8
+CGAL cache size in bytes: 149000
+Total rendering time: 0:00:00.083
+   Top level object is a 3D object (manifold):
+   Status:     NoError
+   Genus:      1
+   Vertices:      103
+   Facets:        206
++ scad-image-watermark /work/.cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/.05-overview.unwatermarked.png /work/.cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/05-overview.png --text © 2026 brainboxemb
+SCons design built: .cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/05-overview.png
+_action([".cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/06-cutaway.png"], [".cache/scad-project/state/design-entrypoints/4cba073363b49a77.scad", "ext/lib.scad.forge/openscad/csg.scad", "ext/lib.scad.forge/openscad/cutter.scad", "ext/lib.scad.forge/openscad/forge.scad", "ext/lib.scad.forge/openscad/resolution.scad", "ext/lib.scad.forge/openscad/transform.scad", "openscad/sliding-dovetail/design/design.md", "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad", "openscad/sliding-dovetail/sliding_dovetail_lock.scad", "openscad/sliding-dovetail/sliding_dovetail_render.scad", "openscad/sliding_dovetail.scad"])
++ xvfb-run -a openscad --enable=object-function --render --camera=0.0,0.0,0.0,72.0,0.0,35.0,0.0 --autocenter --viewall --imgsize=640,480 -o /work/.cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/.06-cutaway.unwatermarked.png /work/.cache/scad-project/state/design-entrypoints/4cba073363b49a77.scad
+Geometries in cache: 25
+Geometry cache size in bytes: 21336
+CGAL Polyhedrons in cache: 9
+CGAL cache size in bytes: 160250
+Total rendering time: 0:00:00.079
+   Top level object is a 3D object (manifold):
+   Status:     NoError
+   Genus:      0
+   Vertices:       74
+   Facets:        144
++ scad-image-watermark /work/.cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/.06-cutaway.unwatermarked.png /work/.cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/06-cutaway.png --text © 2026 brainboxemb
+SCons design built: .cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/06-cutaway.png
+_action([".cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/07-assembled-cutaway.png"], [".cache/scad-project/state/design-entrypoints/2f6cb669120c12fd.scad", "ext/lib.scad.forge/openscad/csg.scad", "ext/lib.scad.forge/openscad/cutter.scad", "ext/lib.scad.forge/openscad/forge.scad", "ext/lib.scad.forge/openscad/resolution.scad", "ext/lib.scad.forge/openscad/transform.scad", "openscad/sliding-dovetail/design/design.md", "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad", "openscad/sliding-dovetail/sliding_dovetail_lock.scad", "openscad/sliding-dovetail/sliding_dovetail_render.scad", "openscad/sliding_dovetail.scad"])
++ xvfb-run -a openscad --enable=object-function --render --camera=0.0,0.0,0.0,72.0,0.0,35.0,0.0 --autocenter --viewall --imgsize=640,480 -o /work/.cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/.07-assembled-cutaway.unwatermarked.png /work/.cache/scad-project/state/design-entrypoints/2f6cb669120c12fd.scad
+Geometries in cache: 43
+Geometry cache size in bytes: 36872
+CGAL Polyhedrons in cache: 18
+CGAL cache size in bytes: 268750
+Total rendering time: 0:00:00.082
+   Top level object is a 3D object (manifold):
+   Status:     NoError
+   Genus:      0
+   Vertices:      118
+   Facets:        232
++ scad-image-watermark /work/.cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/.07-assembled-cutaway.unwatermarked.png /work/.cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/07-assembled-cutaway.png --text © 2026 brainboxemb
+SCons design built: .cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/07-assembled-cutaway.png
+_action([".cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/08-female.png"], [".cache/scad-project/state/design-entrypoints/6c5cc861dc232b3d.scad", "ext/lib.scad.forge/openscad/csg.scad", "ext/lib.scad.forge/openscad/cutter.scad", "ext/lib.scad.forge/openscad/forge.scad", "ext/lib.scad.forge/openscad/resolution.scad", "ext/lib.scad.forge/openscad/transform.scad", "openscad/sliding-dovetail/design/design.md", "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad", "openscad/sliding-dovetail/sliding_dovetail_lock.scad", "openscad/sliding-dovetail/sliding_dovetail_render.scad", "openscad/sliding_dovetail.scad"])
++ xvfb-run -a openscad --enable=object-function --render --camera=0.0,0.0,0.0,72.0,0.0,35.0,0.0 --autocenter --viewall --imgsize=640,480 -o /work/.cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/.08-female.unwatermarked.png /work/.cache/scad-project/state/design-entrypoints/6c5cc861dc232b3d.scad
+Geometries in cache: 15
+Geometry cache size in bytes: 11608
+CGAL Polyhedrons in cache: 7
+CGAL cache size in bytes: 61750
+Total rendering time: 0:00:00.078
+   Top level object is a 3D object (manifold):
+   Status:     NoError
+   Genus:      0
+   Vertices:       44
+   Facets:         84
++ scad-image-watermark /work/.cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/.08-female.unwatermarked.png /work/.cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/08-female.png --text © 2026 brainboxemb
+SCons design built: .cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/08-female.png
+_action([".cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/09-assembled.png"], [".cache/scad-project/state/design-entrypoints/aef4d1e8242cbc09.scad", "ext/lib.scad.forge/openscad/csg.scad", "ext/lib.scad.forge/openscad/cutter.scad", "ext/lib.scad.forge/openscad/forge.scad", "ext/lib.scad.forge/openscad/resolution.scad", "ext/lib.scad.forge/openscad/transform.scad", "openscad/sliding-dovetail/design/design.md", "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad", "openscad/sliding-dovetail/sliding_dovetail_lock.scad", "openscad/sliding-dovetail/sliding_dovetail_render.scad", "openscad/sliding_dovetail.scad"])
++ xvfb-run -a openscad --enable=object-function --render --camera=0.0,0.0,0.0,72.0,0.0,35.0,0.0 --autocenter --viewall --imgsize=640,480 -o /work/.cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/.09-assembled.unwatermarked.png /work/.cache/scad-project/state/design-entrypoints/aef4d1e8242cbc09.scad
+Geometries in cache: 31
+Geometry cache size in bytes: 23832
+CGAL Polyhedrons in cache: 15
+CGAL cache size in bytes: 141750
+Total rendering time: 0:00:00.079
+   Top level object is a 3D object (manifold):
+   Status:     NoError
+   Genus:      1
+   Vertices:       90
+   Facets:        180
++ scad-image-watermark /work/.cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/.09-assembled.unwatermarked.png /work/.cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/09-assembled.png --text © 2026 brainboxemb
+SCons design built: .cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/09-assembled.png
+SCons design summary: targets=9 built=9 cache-restored=0 current=0 error=0
+  built: .cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/01-male.png
+  built: .cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/02-female.png
+  built: .cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/03-approach.png
+  built: .cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/04-assembled.png
+  built: .cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/05-overview.png
+  built: .cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/06-cutaway.png
+  built: .cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/07-assembled-cutaway.png
+  built: .cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/08-female.png
+  built: .cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/09-assembled.png
+Generated design documentation: bld/design
+design build: OK
+▮▮▮▮ consumer:scad.docs (3s 76ms, 60ad50b4)
+
+Tasks: 1 completed
+ Time: 3s 120ms
+

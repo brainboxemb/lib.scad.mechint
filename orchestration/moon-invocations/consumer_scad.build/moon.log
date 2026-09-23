@@ -1,0 +1,140 @@
+[ WARN 2026-09-23 18:10:47.065] moon_app::queries::changed_files  Detected a shallow checkout, unable to run Git commands to determine changed files. 
+[ WARN 18:10:47.065] moon_app::queries::changed_files  A full Git history is required for affected checks, falling back to an empty files list. 
+▮▮▮▮ consumer:scad.build (824ee04a)
+SCons build engine: 8 target(s), cache=/work/.cache/scad-project/scons
++ scons -Q -f /work/tools/tool.scad-project/src/scad_project/scons_driver.py SCAD_PROJECT_MANIFEST=/work/.cache/scad-project/state/build-manifest.json
+_action(["bld/png/sliding-dovetail-assembled-section.png"], ["openscad/sliding-dovetail/render/sliding-dovetail-assembled-section.scad", "ext/lib.scad.util/openscad/inspection.scad", "openscad/sliding-dovetail/sliding_dovetail_render.scad", "openscad/sliding_dovetail.scad", "openscad/sliding-dovetail/sliding_dovetail_lock.scad", "ext/lib.scad.forge/openscad/forge.scad", "ext/lib.scad.forge/openscad/resolution.scad", "ext/lib.scad.forge/openscad/transform.scad", "ext/lib.scad.forge/openscad/csg.scad", "ext/lib.scad.forge/openscad/cutter.scad", "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"])
++ xvfb-run -a openscad --enable=object-function --render --autocenter --viewall --imgsize=480,360 -o /work/bld/png/.sliding-dovetail-assembled-section.unwatermarked.png /work/openscad/sliding-dovetail/render/sliding-dovetail-assembled-section.scad
+WARNING: Viewall and autocenter disabled in favor of $vp*
+Geometries in cache: 16
+Geometry cache size in bytes: 12464
+CGAL Polyhedrons in cache: 10
+CGAL cache size in bytes: 63000
+Total rendering time: 0:00:00.070
+   Top level object is a 3D object (manifold):
+   Status:     NoError
+   Genus:      1
+   Vertices:       28
+   Facets:         56
++ scad-image-watermark /work/bld/png/.sliding-dovetail-assembled-section.unwatermarked.png /work/bld/png/sliding-dovetail-assembled-section.png --text © 2026 brainboxemb
+SCons built: bld/png/sliding-dovetail-assembled-section.png
+_action(["bld/png/sliding-dovetail-assembled.png"], ["openscad/sliding-dovetail/render/sliding-dovetail-assembled.scad", "openscad/sliding-dovetail/sliding_dovetail_render.scad", "openscad/sliding_dovetail.scad", "openscad/sliding-dovetail/sliding_dovetail_lock.scad", "ext/lib.scad.forge/openscad/forge.scad", "ext/lib.scad.forge/openscad/resolution.scad", "ext/lib.scad.forge/openscad/transform.scad", "ext/lib.scad.forge/openscad/csg.scad", "ext/lib.scad.forge/openscad/cutter.scad", "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"])
++ xvfb-run -a openscad --enable=object-function --render --autocenter --viewall --imgsize=480,360 -o /work/bld/png/.sliding-dovetail-assembled.unwatermarked.png /work/openscad/sliding-dovetail/render/sliding-dovetail-assembled.scad
+WARNING: Viewall and autocenter disabled in favor of $vp*
+Geometries in cache: 14
+Geometry cache size in bytes: 10752
+CGAL Polyhedrons in cache: 9
+CGAL cache size in bytes: 56000
+Total rendering time: 0:00:00.074
+   Top level object is a 3D object (manifold):
+   Status:     NoError
+   Genus:      1
+   Vertices:       48
+   Facets:         96
++ scad-image-watermark /work/bld/png/.sliding-dovetail-assembled.unwatermarked.png /work/bld/png/sliding-dovetail-assembled.png --text © 2026 brainboxemb
+SCons built: bld/png/sliding-dovetail-assembled.png
+_action(["bld/png/sliding-dovetail-female.png"], ["openscad/sliding-dovetail/render/sliding-dovetail-female.scad", "openscad/sliding-dovetail/sliding_dovetail_render.scad", "openscad/sliding_dovetail.scad", "openscad/sliding-dovetail/sliding_dovetail_lock.scad", "ext/lib.scad.forge/openscad/forge.scad", "ext/lib.scad.forge/openscad/resolution.scad", "ext/lib.scad.forge/openscad/transform.scad", "ext/lib.scad.forge/openscad/csg.scad", "ext/lib.scad.forge/openscad/cutter.scad", "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"])
++ xvfb-run -a openscad --enable=object-function --render --autocenter --viewall --imgsize=480,360 -o /work/bld/png/.sliding-dovetail-female.unwatermarked.png /work/openscad/sliding-dovetail/render/sliding-dovetail-female.scad
+WARNING: Viewall and autocenter disabled in favor of $vp*
+Geometries in cache: 7
+Geometry cache size in bytes: 5376
+CGAL Polyhedrons in cache: 4
+CGAL cache size in bytes: 16000
+Total rendering time: 0:00:00.078
+   Top level object is a 3D object (manifold):
+   Status:     NoError
+   Genus:      0
+   Vertices:       16
+   Facets:         28
++ scad-image-watermark /work/bld/png/.sliding-dovetail-female.unwatermarked.png /work/bld/png/sliding-dovetail-female.png --text © 2026 brainboxemb
+SCons built: bld/png/sliding-dovetail-female.png
+_action(["bld/png/sliding-dovetail-lock-assembled.png"], ["openscad/sliding-dovetail/render/sliding-dovetail-lock-assembled.scad", "openscad/sliding-dovetail/sliding_dovetail_render.scad", "openscad/sliding_dovetail.scad", "openscad/sliding-dovetail/sliding_dovetail_lock.scad", "ext/lib.scad.forge/openscad/forge.scad", "ext/lib.scad.forge/openscad/resolution.scad", "ext/lib.scad.forge/openscad/transform.scad", "ext/lib.scad.forge/openscad/csg.scad", "ext/lib.scad.forge/openscad/cutter.scad", "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"])
++ xvfb-run -a openscad --enable=object-function --render --autocenter --viewall --imgsize=480,360 -o /work/bld/png/.sliding-dovetail-lock-assembled.unwatermarked.png /work/openscad/sliding-dovetail/render/sliding-dovetail-lock-assembled.scad
+WARNING: Viewall and autocenter disabled in favor of $vp*
+Geometries in cache: 31
+Geometry cache size in bytes: 23832
+CGAL Polyhedrons in cache: 15
+CGAL cache size in bytes: 141750
+Total rendering time: 0:00:00.070
+   Top level object is a 3D object (manifold):
+   Status:     NoError
+   Genus:      1
+   Vertices:       90
+   Facets:        180
++ scad-image-watermark /work/bld/png/.sliding-dovetail-lock-assembled.unwatermarked.png /work/bld/png/sliding-dovetail-lock-assembled.png --text © 2026 brainboxemb
+SCons built: bld/png/sliding-dovetail-lock-assembled.png
+_action(["bld/png/sliding-dovetail-lock-female.png"], ["openscad/sliding-dovetail/render/sliding-dovetail-lock-female.scad", "openscad/sliding-dovetail/sliding_dovetail_render.scad", "openscad/sliding_dovetail.scad", "openscad/sliding-dovetail/sliding_dovetail_lock.scad", "ext/lib.scad.forge/openscad/forge.scad", "ext/lib.scad.forge/openscad/resolution.scad", "ext/lib.scad.forge/openscad/transform.scad", "ext/lib.scad.forge/openscad/csg.scad", "ext/lib.scad.forge/openscad/cutter.scad", "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"])
++ xvfb-run -a openscad --enable=object-function --render --autocenter --viewall --imgsize=480,360 -o /work/bld/png/.sliding-dovetail-lock-female.unwatermarked.png /work/openscad/sliding-dovetail/render/sliding-dovetail-lock-female.scad
+WARNING: Viewall and autocenter disabled in favor of $vp*
+Geometries in cache: 15
+Geometry cache size in bytes: 11608
+CGAL Polyhedrons in cache: 7
+CGAL cache size in bytes: 61750
+Total rendering time: 0:00:00.069
+   Top level object is a 3D object (manifold):
+   Status:     NoError
+   Genus:      0
+   Vertices:       44
+   Facets:         84
++ scad-image-watermark /work/bld/png/.sliding-dovetail-lock-female.unwatermarked.png /work/bld/png/sliding-dovetail-lock-female.png --text © 2026 brainboxemb
+SCons built: bld/png/sliding-dovetail-lock-female.png
+_action(["bld/png/sliding-dovetail-lock-male.png"], ["openscad/sliding-dovetail/render/sliding-dovetail-lock-male.scad", "openscad/sliding-dovetail/sliding_dovetail_render.scad", "openscad/sliding_dovetail.scad", "openscad/sliding-dovetail/sliding_dovetail_lock.scad", "ext/lib.scad.forge/openscad/forge.scad", "ext/lib.scad.forge/openscad/resolution.scad", "ext/lib.scad.forge/openscad/transform.scad", "ext/lib.scad.forge/openscad/csg.scad", "ext/lib.scad.forge/openscad/cutter.scad", "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"])
++ xvfb-run -a openscad --enable=object-function --render --autocenter --viewall --imgsize=480,360 -o /work/bld/png/.sliding-dovetail-lock-male.unwatermarked.png /work/openscad/sliding-dovetail/render/sliding-dovetail-lock-male.scad
+WARNING: Viewall and autocenter disabled in favor of $vp*
+Geometries in cache: 16
+Geometry cache size in bytes: 12224
+CGAL Polyhedrons in cache: 6
+CGAL cache size in bytes: 46000
+Total rendering time: 0:00:00.070
+   Top level object is a 3D object (manifold):
+   Status:     NoError
+   Genus:      0
+   Vertices:       46
+   Facets:         88
++ scad-image-watermark /work/bld/png/.sliding-dovetail-lock-male.unwatermarked.png /work/bld/png/sliding-dovetail-lock-male.png --text © 2026 brainboxemb
+SCons built: bld/png/sliding-dovetail-lock-male.png
+_action(["bld/png/sliding-dovetail-male.png"], ["openscad/sliding-dovetail/render/sliding-dovetail-male.scad", "openscad/sliding-dovetail/sliding_dovetail_render.scad", "openscad/sliding_dovetail.scad", "openscad/sliding-dovetail/sliding_dovetail_lock.scad", "ext/lib.scad.forge/openscad/forge.scad", "ext/lib.scad.forge/openscad/resolution.scad", "ext/lib.scad.forge/openscad/transform.scad", "ext/lib.scad.forge/openscad/csg.scad", "ext/lib.scad.forge/openscad/cutter.scad", "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"])
++ xvfb-run -a openscad --enable=object-function --render --autocenter --viewall --imgsize=480,360 -o /work/bld/png/.sliding-dovetail-male.unwatermarked.png /work/openscad/sliding-dovetail/render/sliding-dovetail-male.scad
+WARNING: Viewall and autocenter disabled in favor of $vp*
+Geometries in cache: 7
+Geometry cache size in bytes: 5376
+CGAL Polyhedrons in cache: 3
+CGAL cache size in bytes: 20000
+Total rendering time: 0:00:00.070
+   Top level object is a 3D object (manifold):
+   Status:     NoError
+   Genus:      0
+   Vertices:       32
+   Facets:         60
++ scad-image-watermark /work/bld/png/.sliding-dovetail-male.unwatermarked.png /work/bld/png/sliding-dovetail-male.png --text © 2026 brainboxemb
+SCons built: bld/png/sliding-dovetail-male.png
+_action(["bld/png/sliding-dovetail-pair.png"], ["openscad/sliding-dovetail/render/sliding-dovetail-pair.scad", "openscad/sliding-dovetail/sliding_dovetail_render.scad", "openscad/sliding_dovetail.scad", "openscad/sliding-dovetail/sliding_dovetail_lock.scad", "ext/lib.scad.forge/openscad/forge.scad", "ext/lib.scad.forge/openscad/resolution.scad", "ext/lib.scad.forge/openscad/transform.scad", "ext/lib.scad.forge/openscad/csg.scad", "ext/lib.scad.forge/openscad/cutter.scad", "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"])
++ xvfb-run -a openscad --enable=object-function --render --autocenter --viewall --imgsize=480,360 -o /work/bld/png/.sliding-dovetail-pair.unwatermarked.png /work/openscad/sliding-dovetail/render/sliding-dovetail-pair.scad
+WARNING: Viewall and autocenter disabled in favor of $vp*
+Geometries in cache: 14
+Geometry cache size in bytes: 10752
+CGAL Polyhedrons in cache: 9
+CGAL cache size in bytes: 56000
+Total rendering time: 0:00:00.071
+   Top level object is a 3D object (manifold):
+   Status:     NoError
+   Genus:      -1
+   Vertices:       48
+   Facets:         88
++ scad-image-watermark /work/bld/png/.sliding-dovetail-pair.unwatermarked.png /work/bld/png/sliding-dovetail-pair.png --text © 2026 brainboxemb
+SCons built: bld/png/sliding-dovetail-pair.png
+SCons summary: targets=8 built=8 cache-restored=0 current=0 error=0
+  built: bld/png/sliding-dovetail-assembled-section.png
+  built: bld/png/sliding-dovetail-assembled.png
+  built: bld/png/sliding-dovetail-female.png
+  built: bld/png/sliding-dovetail-lock-assembled.png
+  built: bld/png/sliding-dovetail-lock-female.png
+  built: bld/png/sliding-dovetail-lock-male.png
+  built: bld/png/sliding-dovetail-male.png
+  built: bld/png/sliding-dovetail-pair.png
+build: OK
+▮▮▮▮ consumer:scad.build (2s 570ms, 824ee04a)
+
+Tasks: 1 completed
+ Time: 2s 624ms
+

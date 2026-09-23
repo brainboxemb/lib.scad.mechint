@@ -1,0 +1,16 @@
+{
+  "base_revision": "1a2d70830db63897db89a6c132d10a48d5b9bf0b",
+  "event_name": "push",
+  "publication_family": "verification",
+  "repository": "brainboxemb/lib.scad.mechint",
+  "run_attempt": "1",
+  "run_id": "35900507034",
+  "schema": "brainboxemb.scad-orchestration-run-context",
+  "schema_version": 1,
+  "snapshot_preparation": {
+    "duration_ms": 5,
+    "finished_at": "2026-09-23T18:10:59.924Z",
+    "started_at": "2026-09-23T18:10:59.918Z"
+  },
+  "source_revision": "67585b75938018ad6bda13e0b2dc953465fd81c6"
+}
