@@ -4,6 +4,36 @@ Reusable mechanical interfaces for OpenSCAD: mating geometry, controlled
 clearance and optional retention/release features. Product-specific placement
 and load-path decisions remain with consumers.
 
+## Preview
+
+<table>
+  <tr>
+    <th align="center">Dovetail pair</th>
+    <th align="center">Integral lock section</th>
+    <th align="center">Centered hinge relief</th>
+  </tr>
+  <tr>
+    <td align="center">
+      <a href="../../blob/prod/bld/png/sliding-dovetail-pair.png">
+        <img src="../../raw/prod/bld/png/sliding-dovetail-pair.png" alt="Sliding dovetail male and female pair" width="100%">
+      </a>
+    </td>
+    <td align="center">
+      <a href="../../blob/prod/vrf/png/10-sliding-dovetail-lock-section.png">
+        <img src="../../raw/prod/vrf/png/10-sliding-dovetail-lock-section.png" alt="Sliding dovetail integral lock section" width="100%">
+      </a>
+    </td>
+    <td align="center">
+      <a href="../../blob/prod/vrf/png/16-sliding-dovetail-lock-hinge-cutaway.png">
+        <img src="../../raw/prod/vrf/png/16-sliding-dovetail-lock-hinge-cutaway.png" alt="Centered spring hinge relief cutaway" width="100%">
+      </a>
+    </td>
+  </tr>
+</table>
+
+These images are generated from the current `prod/bld` and `prod/vrf`
+branches; generated PNGs are not stored on `main`.
+
 ## Start here
 
 - [Plan](doc/00-plan.md)
