@@ -36,10 +36,12 @@ branches; generated PNGs are not stored on `main`.
 
 ## Start here
 
-- [Plan](doc/00-plan.md)
-- [Specification](doc/10-specification.md)
-- [Design](doc/20-design.md)
-- [Verification](doc/30-verification.md)
+- [Documentation index](doc/README.md)
+- [Plan](doc/10-00-plan.md)
+- [Manuals](doc/20-00-manuals.md)
+- [Specification](doc/30-00-specification.md)
+- [Design](doc/40-00-design.md)
+- [Verification](doc/50-00-verification.md)
 - [Sliding-dovetail design](openscad/sliding-dovetail/design/design.md)
 - [Sliding-dovetail manual](openscad/sliding-dovetail/manual.md)
 - [Latest Build](../../tree/prod/bld)
