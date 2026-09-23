@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## v0.2.4
+
 ### Changed
 
 - Adopt the Migration-011 accepted owner baselines: tool.git-project v0.2.14, tool.scad-project v0.15.11, lib.scad.forge v0.3.1 and lib.scad.util v0.4.1; refresh managed launchers/workflows and exact dependency verification without changing mechanical geometry or public API semantics.
