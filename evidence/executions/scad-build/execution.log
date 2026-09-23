@@ -1,0 +1,32 @@
+SCAD producer execution
+=======================
+
+Capability: scad.build
+Action: build
+Source revision: 67585b75938018ad6bda13e0b2dc953465fd81c6
+Owner: brainboxemb/tool.scad-project
+Owner revision: 8d167ad17dbfa798d68f46d871aaeed2e2e09857
+tool.scad-project version: 0.15.11
+Status: success
+Producer started (UTC): 2026-09-23T18:10:47Z
+Producer finished (UTC): 2026-09-23T18:10:49Z
+Producer duration: 2533 ms
+
+Domain evidence:
+- ../../domain/last-build.json
+- ../../domain/dependency-provenance.json
+
+Decision report kind: build
+Build engine: scons
+Targets: 8
+Outcomes: BUILT=8, CACHE_RESTORED=0, CURRENT=0, ERROR=0
+
+Target decisions:
+- BUILT: bld/png/sliding-dovetail-assembled-section.png
+- BUILT: bld/png/sliding-dovetail-assembled.png
+- BUILT: bld/png/sliding-dovetail-female.png
+- BUILT: bld/png/sliding-dovetail-lock-assembled.png
+- BUILT: bld/png/sliding-dovetail-lock-female.png
+- BUILT: bld/png/sliding-dovetail-lock-male.png
+- BUILT: bld/png/sliding-dovetail-male.png
+- BUILT: bld/png/sliding-dovetail-pair.png

@@ -1,0 +1,29 @@
+Publication context : production
+Publication kind    : build
+Publication branch  : prod/bld
+
+Source
+------
+Repository          : brainboxemb/lib.scad.mechint
+Ref type            : branch
+Ref                 : main
+Commit              : 67585b75938018ad6bda13e0b2dc953465fd81c6
+Triggered by        : brainboxemb
+Workflow run        : https://github.com/brainboxemb/lib.scad.mechint/actions/runs/35900507034
+
+Tooling
+-------
+SCAD toolchain image: ghcr.io/brainboxemb/scad-toolchain-openscad:v0.6.1
+SCAD toolchain ver. : v0.6.1
+tool.scad-project   : v0.15.11
+
+Git submodules
+--------------
+ext/lib.scad.forge : 100693541e056e312605c88a2f145ee1cbb829a4
+ext/lib.scad.forge/tools/tool.git-project : d1ed47c7d85524cfcb2a8f7e1ea81ba106ae9c60
+ext/lib.scad.forge/tools/tool.scad-project : 8d167ad17dbfa798d68f46d871aaeed2e2e09857
+ext/lib.scad.util : af04b44c2fb1d779a87797da4290deca92c7594d
+ext/lib.scad.util/tools/tool.git-project : d1ed47c7d85524cfcb2a8f7e1ea81ba106ae9c60
+ext/lib.scad.util/tools/tool.scad-project : 8d167ad17dbfa798d68f46d871aaeed2e2e09857
+tools/tool.git-project : d1ed47c7d85524cfcb2a8f7e1ea81ba106ae9c60
+tools/tool.scad-project : 8d167ad17dbfa798d68f46d871aaeed2e2e09857

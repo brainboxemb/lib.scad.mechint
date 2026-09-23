@@ -1,0 +1,322 @@
+[ WARN 2026-09-23 18:10:49.827] moon_app::queries::changed_files  Detected a shallow checkout, unable to run Git commands to determine changed files. 
+[ WARN 18:10:49.827] moon_app::queries::changed_files  A full Git history is required for affected checks, falling back to an empty files list. 
+[ WARN 18:10:49.916] moon_task_hasher::task_hasher  Attempted to hash input update-repo.ps1 but it does not exist, skipping 
+[ WARN 18:10:49.916] moon_task_hasher::task_hasher  Attempted to hash input update-repo.sh but it does not exist, skipping 
+[ WARN 18:10:49.917] moon_task_hasher::task_hasher  Attempted to hash input doc/30-verification.md but it does not exist, skipping 
+▮▮▮▮ consumer:scad.verify (478cbb90)
++ openscad-docsgen -m -T /work/openscad/sliding_dovetail.scad
+Parsing...
+  /work/openscad/sliding_dovetail.scad
+No log requests to process
+Verification SCons engine: 12 target(s), cache=/work/.cache/scad-project/verification-scons
++ scons -Q -f /work/tools/tool.scad-project/src/scad_project/scons_driver.py SCAD_PROJECT_MANIFEST=/work/.cache/scad-project/verification-state/verification-manifest.json
+_action(["vrf/out/png/01-sliding-dovetail-fit.png"], ["vrf/openscad/01-sliding-dovetail-fit.scad", "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad", "openscad/sliding_dovetail.scad", "openscad/sliding-dovetail/sliding_dovetail_lock.scad", "ext/lib.scad.forge/openscad/forge.scad", "ext/lib.scad.forge/openscad/resolution.scad", "ext/lib.scad.forge/openscad/transform.scad", "ext/lib.scad.forge/openscad/csg.scad", "ext/lib.scad.forge/openscad/cutter.scad"])
++ xvfb-run -a openscad --enable=object-function --render --autocenter --viewall --imgsize=640,480 -o /work/vrf/out/png/.01-sliding-dovetail-fit.unwatermarked.png /work/vrf/openscad/01-sliding-dovetail-fit.scad
+WARNING: Viewall and autocenter disabled in favor of $vp*
+Geometries in cache: 14
+Geometry cache size in bytes: 10752
+CGAL Polyhedrons in cache: 9
+CGAL cache size in bytes: 56000
+Total rendering time: 0:00:00.079
+   Top level object is a 3D object (manifold):
+   Status:     NoError
+   Genus:      1
+   Vertices:       48
+   Facets:         96
++ scad-image-watermark /work/vrf/out/png/.01-sliding-dovetail-fit.unwatermarked.png /work/vrf/out/png/01-sliding-dovetail-fit.png --text © 2026 brainboxemb
+SCons built: vrf/out/png/01-sliding-dovetail-fit.png
+_action(["vrf/out/png/02-sliding-dovetail-approach.png"], ["vrf/openscad/02-sliding-dovetail-approach.scad", "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad", "openscad/sliding_dovetail.scad", "openscad/sliding-dovetail/sliding_dovetail_lock.scad", "ext/lib.scad.forge/openscad/forge.scad", "ext/lib.scad.forge/openscad/resolution.scad", "ext/lib.scad.forge/openscad/transform.scad", "ext/lib.scad.forge/openscad/csg.scad", "ext/lib.scad.forge/openscad/cutter.scad"])
++ xvfb-run -a openscad --enable=object-function --render --autocenter --viewall --imgsize=640,480 -o /work/vrf/out/png/.02-sliding-dovetail-approach.unwatermarked.png /work/vrf/openscad/02-sliding-dovetail-approach.scad
+WARNING: Viewall and autocenter disabled in favor of $vp*
+Geometries in cache: 14
+Geometry cache size in bytes: 10752
+CGAL Polyhedrons in cache: 9
+CGAL cache size in bytes: 56000
+Total rendering time: 0:00:00.078
+   Top level object is a 3D object (manifold):
+   Status:     NoError
+   Genus:      -1
+   Vertices:       48
+   Facets:         88
++ scad-image-watermark /work/vrf/out/png/.02-sliding-dovetail-approach.unwatermarked.png /work/vrf/out/png/02-sliding-dovetail-approach.png --text © 2026 brainboxemb
+SCons built: vrf/out/png/02-sliding-dovetail-approach.png
+_action(["vrf/out/png/03-sliding-dovetail-yz-section.png"], ["vrf/openscad/03-sliding-dovetail-yz-section.scad", "ext/lib.scad.util/openscad/inspection.scad", "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad", "openscad/sliding_dovetail.scad", "openscad/sliding-dovetail/sliding_dovetail_lock.scad", "ext/lib.scad.forge/openscad/forge.scad", "ext/lib.scad.forge/openscad/resolution.scad", "ext/lib.scad.forge/openscad/transform.scad", "ext/lib.scad.forge/openscad/csg.scad", "ext/lib.scad.forge/openscad/cutter.scad"])
++ xvfb-run -a openscad --enable=object-function --render --autocenter --viewall --imgsize=800,600 -o /work/vrf/out/png/.03-sliding-dovetail-yz-section.unwatermarked.png /work/vrf/openscad/03-sliding-dovetail-yz-section.scad
+WARNING: Viewall and autocenter disabled in favor of $vp*
+Geometries in cache: 16
+Geometry cache size in bytes: 12464
+CGAL Polyhedrons in cache: 10
+CGAL cache size in bytes: 63000
+Total rendering time: 0:00:00.089
+   Top level object is a 3D object (manifold):
+   Status:     NoError
+   Genus:      1
+   Vertices:       28
+   Facets:         56
++ scad-image-watermark /work/vrf/out/png/.03-sliding-dovetail-yz-section.unwatermarked.png /work/vrf/out/png/03-sliding-dovetail-yz-section.png --text © 2026 brainboxemb
+SCons built: vrf/out/png/03-sliding-dovetail-yz-section.png
+_action(["vrf/out/png/04-sliding-dovetail-entry-slot.png"], ["vrf/openscad/04-sliding-dovetail-entry-slot.scad", "openscad/sliding_dovetail.scad", "openscad/sliding-dovetail/sliding_dovetail_lock.scad", "ext/lib.scad.forge/openscad/forge.scad", "ext/lib.scad.forge/openscad/resolution.scad", "ext/lib.scad.forge/openscad/transform.scad", "ext/lib.scad.forge/openscad/csg.scad", "ext/lib.scad.forge/openscad/cutter.scad", "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"])
++ xvfb-run -a openscad --enable=object-function --render --autocenter --viewall --imgsize=800,600 -o /work/vrf/out/png/.04-sliding-dovetail-entry-slot.unwatermarked.png /work/vrf/openscad/04-sliding-dovetail-entry-slot.scad
+WARNING: Viewall and autocenter disabled in favor of $vp*
+Geometries in cache: 16
+Geometry cache size in bytes: 12464
+CGAL Polyhedrons in cache: 9
+CGAL cache size in bytes: 67000
+Total rendering time: 0:00:00.094
+   Top level object is a 3D object (manifold):
+   Status:     NoError
+   Genus:      1
+   Vertices:       56
+   Facets:        112
++ scad-image-watermark /work/vrf/out/png/.04-sliding-dovetail-entry-slot.unwatermarked.png /work/vrf/out/png/04-sliding-dovetail-entry-slot.png --text © 2026 brainboxemb
+SCons built: vrf/out/png/04-sliding-dovetail-entry-slot.png
+_action(["vrf/out/png/10-sliding-dovetail-lock-section.png"], ["vrf/openscad/10-sliding-dovetail-lock-section.scad", "ext/lib.scad.util/openscad/inspection.scad", "openscad/sliding_dovetail.scad", "openscad/sliding-dovetail/sliding_dovetail_lock.scad", "ext/lib.scad.forge/openscad/forge.scad", "ext/lib.scad.forge/openscad/resolution.scad", "ext/lib.scad.forge/openscad/transform.scad", "ext/lib.scad.forge/openscad/csg.scad", "ext/lib.scad.forge/openscad/cutter.scad", "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"])
++ xvfb-run -a openscad --enable=object-function --render --autocenter --viewall --imgsize=800,600 -o /work/vrf/out/png/.10-sliding-dovetail-lock-section.unwatermarked.png /work/vrf/openscad/10-sliding-dovetail-lock-section.scad
+WARNING: Viewall and autocenter disabled in favor of $vp*
+Geometries in cache: 33
+Geometry cache size in bytes: 25544
+CGAL Polyhedrons in cache: 16
+CGAL cache size in bytes: 153750
+Total rendering time: 0:00:00.091
+   Top level object is a 3D object (manifold):
+   Status:     NoError
+   Genus:      -1
+   Vertices:       48
+   Facets:         88
++ scad-image-watermark /work/vrf/out/png/.10-sliding-dovetail-lock-section.unwatermarked.png /work/vrf/out/png/10-sliding-dovetail-lock-section.png --text © 2026 brainboxemb
+SCons built: vrf/out/png/10-sliding-dovetail-lock-section.png
+_action(["vrf/out/png/11-sliding-dovetail-lock-entry-slot-spring.png"], ["vrf/openscad/11-sliding-dovetail-lock-entry-slot-spring.scad", "ext/lib.scad.util/openscad/inspection.scad", "openscad/sliding_dovetail.scad", "openscad/sliding-dovetail/sliding_dovetail_lock.scad", "ext/lib.scad.forge/openscad/forge.scad", "ext/lib.scad.forge/openscad/resolution.scad", "ext/lib.scad.forge/openscad/transform.scad", "ext/lib.scad.forge/openscad/csg.scad", "ext/lib.scad.forge/openscad/cutter.scad", "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"])
++ xvfb-run -a openscad --enable=object-function --render --autocenter --viewall --imgsize=800,600 -o /work/vrf/out/png/.11-sliding-dovetail-lock-entry-slot-spring.unwatermarked.png /work/vrf/openscad/11-sliding-dovetail-lock-entry-slot-spring.scad
+WARNING: Viewall and autocenter disabled in favor of $vp*
+Geometries in cache: 21
+Geometry cache size in bytes: 16744
+CGAL Polyhedrons in cache: 7
+CGAL cache size in bytes: 83500
+Total rendering time: 0:00:00.095
+   Top level object is a 3D object (manifold):
+   Status:     NoError
+   Genus:      1
+   Vertices:       28
+   Facets:         56
++ scad-image-watermark /work/vrf/out/png/.11-sliding-dovetail-lock-entry-slot-spring.unwatermarked.png /work/vrf/out/png/11-sliding-dovetail-lock-entry-slot-spring.png --text © 2026 brainboxemb
+SCons built: vrf/out/png/11-sliding-dovetail-lock-entry-slot-spring.png
+_action(["vrf/out/png/12-sliding-dovetail-root-land-relief.png"], ["vrf/openscad/12-sliding-dovetail-root-land-relief.scad", "ext/lib.scad.util/openscad/inspection.scad", "openscad/sliding_dovetail.scad", "openscad/sliding-dovetail/sliding_dovetail_lock.scad", "ext/lib.scad.forge/openscad/forge.scad", "ext/lib.scad.forge/openscad/resolution.scad", "ext/lib.scad.forge/openscad/transform.scad", "ext/lib.scad.forge/openscad/csg.scad", "ext/lib.scad.forge/openscad/cutter.scad"])
++ xvfb-run -a openscad --enable=object-function --render --autocenter --viewall --imgsize=800,600 -o /work/vrf/out/png/.12-sliding-dovetail-root-land-relief.unwatermarked.png /work/vrf/openscad/12-sliding-dovetail-root-land-relief.scad
+WARNING: Viewall and autocenter disabled in favor of $vp*
+Geometries in cache: 12
+Geometry cache size in bytes: 9600
+CGAL Polyhedrons in cache: 6
+CGAL cache size in bytes: 41000
+Total rendering time: 0:00:00.090
+   Top level object is a 3D object (manifold):
+   Status:     NoError
+   Genus:      0
+   Vertices:       28
+   Facets:         52
++ scad-image-watermark /work/vrf/out/png/.12-sliding-dovetail-root-land-relief.unwatermarked.png /work/vrf/out/png/12-sliding-dovetail-root-land-relief.png --text © 2026 brainboxemb
+SCons built: vrf/out/png/12-sliding-dovetail-root-land-relief.png
+_action(["vrf/out/png/13-sliding-dovetail-mouth-root-land.png"], ["vrf/openscad/13-sliding-dovetail-mouth-root-land.scad", "ext/lib.scad.util/openscad/inspection.scad", "openscad/sliding_dovetail.scad", "openscad/sliding-dovetail/sliding_dovetail_lock.scad", "ext/lib.scad.forge/openscad/forge.scad", "ext/lib.scad.forge/openscad/resolution.scad", "ext/lib.scad.forge/openscad/transform.scad", "ext/lib.scad.forge/openscad/csg.scad", "ext/lib.scad.forge/openscad/cutter.scad"])
++ xvfb-run -a openscad --enable=object-function --render --autocenter --viewall --imgsize=800,600 -o /work/vrf/out/png/.13-sliding-dovetail-mouth-root-land.unwatermarked.png /work/vrf/openscad/13-sliding-dovetail-mouth-root-land.scad
+WARNING: Viewall and autocenter disabled in favor of $vp*
+Geometries in cache: 14
+Geometry cache size in bytes: 13952
+CGAL Polyhedrons in cache: 7
+CGAL cache size in bytes: 60000
+Total rendering time: 0:00:00.088
+   Top level object is a 3D object (manifold):
+   Status:     NoError
+   Genus:      0
+   Vertices:       48
+   Facets:         92
++ scad-image-watermark /work/vrf/out/png/.13-sliding-dovetail-mouth-root-land.unwatermarked.png /work/vrf/out/png/13-sliding-dovetail-mouth-root-land.png --text © 2026 brainboxemb
+SCons built: vrf/out/png/13-sliding-dovetail-mouth-root-land.png
+_action(["vrf/out/png/14-sliding-dovetail-lock-hinge-relief.png"], ["vrf/openscad/14-sliding-dovetail-lock-hinge-relief.scad", "ext/lib.scad.util/openscad/inspection.scad", "openscad/sliding_dovetail.scad", "openscad/sliding-dovetail/sliding_dovetail_lock.scad", "ext/lib.scad.forge/openscad/forge.scad", "ext/lib.scad.forge/openscad/resolution.scad", "ext/lib.scad.forge/openscad/transform.scad", "ext/lib.scad.forge/openscad/csg.scad", "ext/lib.scad.forge/openscad/cutter.scad", "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"])
++ xvfb-run -a openscad --enable=object-function --render --autocenter --viewall --imgsize=800,600 -o /work/vrf/out/png/.14-sliding-dovetail-lock-hinge-relief.unwatermarked.png /work/vrf/openscad/14-sliding-dovetail-lock-hinge-relief.scad
+WARNING: Viewall and autocenter disabled in favor of $vp*
+Geometries in cache: 25
+Geometry cache size in bytes: 21336
+CGAL Polyhedrons in cache: 8
+CGAL cache size in bytes: 134750
+Total rendering time: 0:00:00.088
+   Top level object is a 3D object (manifold):
+   Status:     NoError
+   Genus:      -1
+   Vertices:       46
+   Facets:         84
++ scad-image-watermark /work/vrf/out/png/.14-sliding-dovetail-lock-hinge-relief.unwatermarked.png /work/vrf/out/png/14-sliding-dovetail-lock-hinge-relief.png --text © 2026 brainboxemb
+SCons built: vrf/out/png/14-sliding-dovetail-lock-hinge-relief.png
+_action(["vrf/out/png/15-sliding-dovetail-lock-hinge-overview.png"], ["vrf/openscad/15-sliding-dovetail-lock-hinge-overview.scad", "openscad/sliding-dovetail/sliding_dovetail_render.scad", "openscad/sliding_dovetail.scad", "openscad/sliding-dovetail/sliding_dovetail_lock.scad", "ext/lib.scad.forge/openscad/forge.scad", "ext/lib.scad.forge/openscad/resolution.scad", "ext/lib.scad.forge/openscad/transform.scad", "ext/lib.scad.forge/openscad/csg.scad", "ext/lib.scad.forge/openscad/cutter.scad", "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"])
++ xvfb-run -a openscad --enable=object-function --render --autocenter --viewall --imgsize=900,650 -o /work/vrf/out/png/.15-sliding-dovetail-lock-hinge-overview.unwatermarked.png /work/vrf/openscad/15-sliding-dovetail-lock-hinge-overview.scad
+WARNING: Viewall and autocenter disabled in favor of $vp*
+Geometries in cache: 23
+Geometry cache size in bytes: 19624
+CGAL Polyhedrons in cache: 8
+CGAL cache size in bytes: 149000
+Total rendering time: 0:00:00.097
+   Top level object is a 3D object (manifold):
+   Status:     NoError
+   Genus:      1
+   Vertices:      103
+   Facets:        206
++ scad-image-watermark /work/vrf/out/png/.15-sliding-dovetail-lock-hinge-overview.unwatermarked.png /work/vrf/out/png/15-sliding-dovetail-lock-hinge-overview.png --text © 2026 brainboxemb
+SCons built: vrf/out/png/15-sliding-dovetail-lock-hinge-overview.png
+_action(["vrf/out/png/16-sliding-dovetail-lock-hinge-cutaway.png"], ["vrf/openscad/16-sliding-dovetail-lock-hinge-cutaway.scad", "openscad/sliding-dovetail/sliding_dovetail_render.scad", "openscad/sliding_dovetail.scad", "openscad/sliding-dovetail/sliding_dovetail_lock.scad", "ext/lib.scad.forge/openscad/forge.scad", "ext/lib.scad.forge/openscad/resolution.scad", "ext/lib.scad.forge/openscad/transform.scad", "ext/lib.scad.forge/openscad/csg.scad", "ext/lib.scad.forge/openscad/cutter.scad", "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"])
++ xvfb-run -a openscad --enable=object-function --render --autocenter --viewall --imgsize=900,650 -o /work/vrf/out/png/.16-sliding-dovetail-lock-hinge-cutaway.unwatermarked.png /work/vrf/openscad/16-sliding-dovetail-lock-hinge-cutaway.scad
+WARNING: Viewall and autocenter disabled in favor of $vp*
+Geometries in cache: 25
+Geometry cache size in bytes: 21336
+CGAL Polyhedrons in cache: 9
+CGAL cache size in bytes: 160250
+Total rendering time: 0:00:00.095
+   Top level object is a 3D object (manifold):
+   Status:     NoError
+   Genus:      0
+   Vertices:       74
+   Facets:        144
++ scad-image-watermark /work/vrf/out/png/.16-sliding-dovetail-lock-hinge-cutaway.unwatermarked.png /work/vrf/out/png/16-sliding-dovetail-lock-hinge-cutaway.png --text © 2026 brainboxemb
+SCons built: vrf/out/png/16-sliding-dovetail-lock-hinge-cutaway.png
+_action(["vrf/out/png/17-sliding-dovetail-lock-hinge-assembled-cutaway.png"], ["vrf/openscad/17-sliding-dovetail-lock-hinge-assembled-cutaway.scad", "openscad/sliding-dovetail/sliding_dovetail_render.scad", "openscad/sliding_dovetail.scad", "openscad/sliding-dovetail/sliding_dovetail_lock.scad", "ext/lib.scad.forge/openscad/forge.scad", "ext/lib.scad.forge/openscad/resolution.scad", "ext/lib.scad.forge/openscad/transform.scad", "ext/lib.scad.forge/openscad/csg.scad", "ext/lib.scad.forge/openscad/cutter.scad", "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"])
++ xvfb-run -a openscad --enable=object-function --render --autocenter --viewall --imgsize=900,650 -o /work/vrf/out/png/.17-sliding-dovetail-lock-hinge-assembled-cutaway.unwatermarked.png /work/vrf/openscad/17-sliding-dovetail-lock-hinge-assembled-cutaway.scad
+WARNING: Viewall and autocenter disabled in favor of $vp*
+Geometries in cache: 43
+Geometry cache size in bytes: 36872
+CGAL Polyhedrons in cache: 18
+CGAL cache size in bytes: 268750
+Total rendering time: 0:00:00.103
+   Top level object is a 3D object (manifold):
+   Status:     NoError
+   Genus:      0
+   Vertices:      118
+   Facets:        232
++ scad-image-watermark /work/vrf/out/png/.17-sliding-dovetail-lock-hinge-assembled-cutaway.unwatermarked.png /work/vrf/out/png/17-sliding-dovetail-lock-hinge-assembled-cutaway.png --text © 2026 brainboxemb
+SCons built: vrf/out/png/17-sliding-dovetail-lock-hinge-assembled-cutaway.png
+Verification SCons summary: targets=12 built=12 cache-restored=0 current=0 error=0
+  built: vrf/out/png/01-sliding-dovetail-fit.png
+  built: vrf/out/png/02-sliding-dovetail-approach.png
+  built: vrf/out/png/03-sliding-dovetail-yz-section.png
+  built: vrf/out/png/04-sliding-dovetail-entry-slot.png
+  built: vrf/out/png/10-sliding-dovetail-lock-section.png
+  built: vrf/out/png/11-sliding-dovetail-lock-entry-slot-spring.png
+  built: vrf/out/png/12-sliding-dovetail-root-land-relief.png
+  built: vrf/out/png/13-sliding-dovetail-mouth-root-land.png
+  built: vrf/out/png/14-sliding-dovetail-lock-hinge-relief.png
+  built: vrf/out/png/15-sliding-dovetail-lock-hinge-overview.png
+  built: vrf/out/png/16-sliding-dovetail-lock-hinge-cutaway.png
+  built: vrf/out/png/17-sliding-dovetail-lock-hinge-assembled-cutaway.png
++ bash scripts/run-verification.sh
+Geometries in cache: 82
+Geometry cache size in bytes: 67584
+CGAL Polyhedrons in cache: 42
+CGAL cache size in bytes: 470250
+Total rendering time: 0:00:00.017
+   Top level object is a 3D object (manifold):
+   Status:     NoError
+   Genus:      -9
+   Vertices:      497
+   Facets:        954
+Geometries in cache: 7
+Geometry cache size in bytes: 5376
+CGAL Polyhedrons in cache: 4
+CGAL cache size in bytes: 28000
+Total rendering time: 0:00:00.003
+   Top level object is a 3D object (manifold):
+   Status:     NoError
+   Genus:      0
+   Vertices:       32
+   Facets:         60
+Geometries in cache: 7
+Geometry cache size in bytes: 5376
+CGAL Polyhedrons in cache: 5
+CGAL cache size in bytes: 20000
+Total rendering time: 0:00:00.003
+   Top level object is a 3D object (manifold):
+   Status:     NoError
+   Genus:      0
+   Vertices:       16
+   Facets:         28
+Geometries in cache: 16
+Geometry cache size in bytes: 12224
+CGAL Polyhedrons in cache: 7
+CGAL cache size in bytes: 57500
+Total rendering time: 0:00:00.004
+   Top level object is a 3D object (manifold):
+   Status:     NoError
+   Genus:      0
+   Vertices:       46
+   Facets:         88
+Geometries in cache: 15
+Geometry cache size in bytes: 11608
+CGAL Polyhedrons in cache: 8
+CGAL cache size in bytes: 72750
+Total rendering time: 0:00:00.005
+   Top level object is a 3D object (manifold):
+   Status:     NoError
+   Genus:      0
+   Vertices:       44
+   Facets:         84
+Geometries in cache: 17
+Geometry cache size in bytes: 13320
+CGAL Polyhedrons in cache: 9
+CGAL cache size in bytes: 77000
+Total rendering time: 0:00:00.006
+   Top level object is a 3D object (manifold):
+   Status:     NoError
+   Genus:      0
+   Vertices:       35
+   Facets:         66
+Geometries in cache: 31
+Geometry cache size in bytes: 23832
+CGAL Polyhedrons in cache: 17
+CGAL cache size in bytes: 186750
+Total rendering time: 0:00:00.008
+   Top level object is a 3D object (manifold):
+   Status:     NoError
+   Genus:      1
+   Vertices:       90
+   Facets:        180
+Geometries in cache: 33
+Geometry cache size in bytes: 25544
+CGAL Polyhedrons in cache: 18
+CGAL cache size in bytes: 192750
+Total rendering time: 0:00:00.008
+   Top level object is a 3D object (manifold):
+   Status:     NoError
+   Genus:      0
+   Vertices:       68
+   Facets:        132
+Geometries in cache: 23
+Geometry cache size in bytes: 19624
+CGAL Polyhedrons in cache: 9
+CGAL cache size in bytes: 174750
+Total rendering time: 0:00:00.007
+   Top level object is a 3D object (manifold):
+   Status:     NoError
+   Genus:      1
+   Vertices:      103
+   Facets:        206
+Geometries in cache: 25
+Geometry cache size in bytes: 21336
+CGAL Polyhedrons in cache: 10
+CGAL cache size in bytes: 178750
+Total rendering time: 0:00:00.007
+   Top level object is a 3D object (manifold):
+   Status:     NoError
+   Genus:      0
+   Vertices:       74
+   Facets:        144
+Geometries in cache: 41
+Geometry cache size in bytes: 35160
+CGAL Polyhedrons in cache: 17
+CGAL cache size in bytes: 311000
+Total rendering time: 0:00:00.011
+   Top level object is a 3D object (manifold):
+   Status:     NoError
+   Genus:      0
+   Vertices:      118
+   Facets:        232
+verify: OK
+▮▮▮▮ consumer:scad.verify (5s 768ms, 478cbb90)
+
+Tasks: 1 completed
+ Time: 5s 836ms
+
