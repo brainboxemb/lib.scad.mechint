@@ -1,0 +1,220 @@
+{
+  "backend_signature": "cb4e6f186ab245b2b8dc45004c507dd04e43b00c943f0f56faf1bb9d3b9f56e9",
+  "engine": "scons",
+  "kind": "design",
+  "manifest_schema_version": 1,
+  "outcome_counts": {
+    "BUILT": 9,
+    "CACHE_RESTORED": 0,
+    "CURRENT": 0,
+    "ERROR": 0
+  },
+  "provenance": {
+    "cache": {
+      "exact_hit": null,
+      "matched_key": "",
+      "namespace": "scad-selective-build-v2",
+      "primary_key": "scad-selective-build-v2-Linux-1378084197-v0.6.1-8d167ad17dbfa798d68f46d871aaeed2e2e09857-41dcb991665305cf74a1cb3936c81d108900fb5c1442faaa2464b0b6505032bc"
+    },
+    "source_commit_sha": "28a8ac1aa1097f7284fd806c91b4cab655566509",
+    "tool_commit_sha": "8d167ad17dbfa798d68f46d871aaeed2e2e09857",
+    "tool_version": "0.15.11",
+    "toolchain_image": "ghcr.io/brainboxemb/scad-toolchain-openscad:v0.6.1",
+    "toolchain_version": "v0.6.1",
+    "workflow_version": "v0.15.11"
+  },
+  "schema": "scad-project.build-decisions",
+  "schema_version": 1,
+  "target_count": 9,
+  "targets": [
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": ".cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/01-male.png",
+      "sources": [
+        ".cache/scad-project/state/design-entrypoints/a2260e771abc7596.scad",
+        "ext/lib.scad.forge/openscad/csg.scad",
+        "ext/lib.scad.forge/openscad/cutter.scad",
+        "ext/lib.scad.forge/openscad/forge.scad",
+        "ext/lib.scad.forge/openscad/resolution.scad",
+        "ext/lib.scad.forge/openscad/transform.scad",
+        "openscad/sliding-dovetail/design/design.md",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_render.scad",
+        "openscad/sliding_dovetail.scad"
+      ],
+      "target_spec_digest": "d08bdde40cd31a306b4262aa1b08a2a7b23fabe0ed5f4c1128acdcf62e86222e"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": ".cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/02-female.png",
+      "sources": [
+        ".cache/scad-project/state/design-entrypoints/f87ee09ffa787567.scad",
+        "ext/lib.scad.forge/openscad/csg.scad",
+        "ext/lib.scad.forge/openscad/cutter.scad",
+        "ext/lib.scad.forge/openscad/forge.scad",
+        "ext/lib.scad.forge/openscad/resolution.scad",
+        "ext/lib.scad.forge/openscad/transform.scad",
+        "openscad/sliding-dovetail/design/design.md",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_render.scad",
+        "openscad/sliding_dovetail.scad"
+      ],
+      "target_spec_digest": "73b4e2006d056bda62df7e1ed44e1ee3beb19e98062aec6cc19ab01059d0e297"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": ".cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/03-approach.png",
+      "sources": [
+        ".cache/scad-project/state/design-entrypoints/b5b07cc562471f60.scad",
+        "ext/lib.scad.forge/openscad/csg.scad",
+        "ext/lib.scad.forge/openscad/cutter.scad",
+        "ext/lib.scad.forge/openscad/forge.scad",
+        "ext/lib.scad.forge/openscad/resolution.scad",
+        "ext/lib.scad.forge/openscad/transform.scad",
+        "openscad/sliding-dovetail/design/design.md",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_render.scad",
+        "openscad/sliding_dovetail.scad"
+      ],
+      "target_spec_digest": "330e6aa0cdfe20a2986f0be5c2054dfe8e5d01d7ba346fc5d62d768913ba394d"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": ".cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/04-assembled.png",
+      "sources": [
+        ".cache/scad-project/state/design-entrypoints/8cb74f288b8c2ab4.scad",
+        "ext/lib.scad.forge/openscad/csg.scad",
+        "ext/lib.scad.forge/openscad/cutter.scad",
+        "ext/lib.scad.forge/openscad/forge.scad",
+        "ext/lib.scad.forge/openscad/resolution.scad",
+        "ext/lib.scad.forge/openscad/transform.scad",
+        "openscad/sliding-dovetail/design/design.md",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_render.scad",
+        "openscad/sliding_dovetail.scad"
+      ],
+      "target_spec_digest": "4cb9ab40d61e9a3ecb2e396892426617099ad86351898a61b6e0613e73ae599d"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": ".cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/05-overview.png",
+      "sources": [
+        ".cache/scad-project/state/design-entrypoints/d3bf61d1dbd36421.scad",
+        "ext/lib.scad.forge/openscad/csg.scad",
+        "ext/lib.scad.forge/openscad/cutter.scad",
+        "ext/lib.scad.forge/openscad/forge.scad",
+        "ext/lib.scad.forge/openscad/resolution.scad",
+        "ext/lib.scad.forge/openscad/transform.scad",
+        "openscad/sliding-dovetail/design/design.md",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_render.scad",
+        "openscad/sliding_dovetail.scad"
+      ],
+      "target_spec_digest": "8bebd24a795e23bcd9492b7c78a083d581eb1e75a7483c9b581c8db0ca442ffc"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": ".cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/06-cutaway.png",
+      "sources": [
+        ".cache/scad-project/state/design-entrypoints/4cba073363b49a77.scad",
+        "ext/lib.scad.forge/openscad/csg.scad",
+        "ext/lib.scad.forge/openscad/cutter.scad",
+        "ext/lib.scad.forge/openscad/forge.scad",
+        "ext/lib.scad.forge/openscad/resolution.scad",
+        "ext/lib.scad.forge/openscad/transform.scad",
+        "openscad/sliding-dovetail/design/design.md",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_render.scad",
+        "openscad/sliding_dovetail.scad"
+      ],
+      "target_spec_digest": "1570ec65b416b95cc5e0b73ccf0b88de1b12b5005c63cd1aab78e93ae6495ef3"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": ".cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/07-assembled-cutaway.png",
+      "sources": [
+        ".cache/scad-project/state/design-entrypoints/2f6cb669120c12fd.scad",
+        "ext/lib.scad.forge/openscad/csg.scad",
+        "ext/lib.scad.forge/openscad/cutter.scad",
+        "ext/lib.scad.forge/openscad/forge.scad",
+        "ext/lib.scad.forge/openscad/resolution.scad",
+        "ext/lib.scad.forge/openscad/transform.scad",
+        "openscad/sliding-dovetail/design/design.md",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_render.scad",
+        "openscad/sliding_dovetail.scad"
+      ],
+      "target_spec_digest": "0e7aba957828f6aa23140cd8615b9633ae1837b7492b2092eac124037d6e7ffb"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": ".cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/08-female.png",
+      "sources": [
+        ".cache/scad-project/state/design-entrypoints/6c5cc861dc232b3d.scad",
+        "ext/lib.scad.forge/openscad/csg.scad",
+        "ext/lib.scad.forge/openscad/cutter.scad",
+        "ext/lib.scad.forge/openscad/forge.scad",
+        "ext/lib.scad.forge/openscad/resolution.scad",
+        "ext/lib.scad.forge/openscad/transform.scad",
+        "openscad/sliding-dovetail/design/design.md",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_render.scad",
+        "openscad/sliding_dovetail.scad"
+      ],
+      "target_spec_digest": "9b009ab5bdebf62acf553fdde038ff9c2f80ee9f937b7eb8f6b110a83b3bc844"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": ".cache/scad-project/design-stage/project/openscad/sliding-dovetail/design/img/09-assembled.png",
+      "sources": [
+        ".cache/scad-project/state/design-entrypoints/aef4d1e8242cbc09.scad",
+        "ext/lib.scad.forge/openscad/csg.scad",
+        "ext/lib.scad.forge/openscad/cutter.scad",
+        "ext/lib.scad.forge/openscad/forge.scad",
+        "ext/lib.scad.forge/openscad/resolution.scad",
+        "ext/lib.scad.forge/openscad/transform.scad",
+        "openscad/sliding-dovetail/design/design.md",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_render.scad",
+        "openscad/sliding_dovetail.scad"
+      ],
+      "target_spec_digest": "eb7dd9b2488f3fa8ac0a96ec729ef5478ca4cef2e7dacc7251336ac7357e4ea1"
+    }
+  ]
+}

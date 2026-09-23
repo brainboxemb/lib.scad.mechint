@@ -1,0 +1,192 @@
+{
+  "backend_signature": "90b2bf091c2be8cf46e891906ed73fd6790c6026d1ce67cbfac69813b2dcb863",
+  "engine": "scons",
+  "kind": "build",
+  "manifest_schema_version": 1,
+  "outcome_counts": {
+    "BUILT": 8,
+    "CACHE_RESTORED": 0,
+    "CURRENT": 0,
+    "ERROR": 0
+  },
+  "provenance": {
+    "cache": {
+      "exact_hit": null,
+      "matched_key": "",
+      "namespace": "scad-selective-build-v2",
+      "primary_key": "scad-selective-build-v2-Linux-1378084197-v0.6.1-8d167ad17dbfa798d68f46d871aaeed2e2e09857-41dcb991665305cf74a1cb3936c81d108900fb5c1442faaa2464b0b6505032bc"
+    },
+    "source_commit_sha": "28a8ac1aa1097f7284fd806c91b4cab655566509",
+    "tool_commit_sha": "8d167ad17dbfa798d68f46d871aaeed2e2e09857",
+    "tool_version": "0.15.11",
+    "toolchain_image": "ghcr.io/brainboxemb/scad-toolchain-openscad:v0.6.1",
+    "toolchain_version": "v0.6.1",
+    "workflow_version": "v0.15.11"
+  },
+  "schema": "scad-project.build-decisions",
+  "schema_version": 1,
+  "target_count": 8,
+  "targets": [
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "bld/png/sliding-dovetail-assembled-section.png",
+      "sources": [
+        "openscad/sliding-dovetail/render/sliding-dovetail-assembled-section.scad",
+        "ext/lib.scad.util/openscad/inspection.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_render.scad",
+        "openscad/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "ext/lib.scad.forge/openscad/forge.scad",
+        "ext/lib.scad.forge/openscad/resolution.scad",
+        "ext/lib.scad.forge/openscad/transform.scad",
+        "ext/lib.scad.forge/openscad/csg.scad",
+        "ext/lib.scad.forge/openscad/cutter.scad",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"
+      ],
+      "target_spec_digest": "6c55ed2369fc7653736a8e7c5285bbffa59c2c0d132535258f93d92dafeeab94"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "bld/png/sliding-dovetail-assembled.png",
+      "sources": [
+        "openscad/sliding-dovetail/render/sliding-dovetail-assembled.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_render.scad",
+        "openscad/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "ext/lib.scad.forge/openscad/forge.scad",
+        "ext/lib.scad.forge/openscad/resolution.scad",
+        "ext/lib.scad.forge/openscad/transform.scad",
+        "ext/lib.scad.forge/openscad/csg.scad",
+        "ext/lib.scad.forge/openscad/cutter.scad",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"
+      ],
+      "target_spec_digest": "82cc3c3f76a92b7a502a6a2aac37bb90539b12b1668df1b941ac464273613459"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "bld/png/sliding-dovetail-female.png",
+      "sources": [
+        "openscad/sliding-dovetail/render/sliding-dovetail-female.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_render.scad",
+        "openscad/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "ext/lib.scad.forge/openscad/forge.scad",
+        "ext/lib.scad.forge/openscad/resolution.scad",
+        "ext/lib.scad.forge/openscad/transform.scad",
+        "ext/lib.scad.forge/openscad/csg.scad",
+        "ext/lib.scad.forge/openscad/cutter.scad",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"
+      ],
+      "target_spec_digest": "17c6662291535c8bf3c1adc9198e710eba8000c4aaf74bf3343a0d53850bf992"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "bld/png/sliding-dovetail-lock-assembled.png",
+      "sources": [
+        "openscad/sliding-dovetail/render/sliding-dovetail-lock-assembled.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_render.scad",
+        "openscad/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "ext/lib.scad.forge/openscad/forge.scad",
+        "ext/lib.scad.forge/openscad/resolution.scad",
+        "ext/lib.scad.forge/openscad/transform.scad",
+        "ext/lib.scad.forge/openscad/csg.scad",
+        "ext/lib.scad.forge/openscad/cutter.scad",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"
+      ],
+      "target_spec_digest": "6e969ea02b8aa7921c0973150b0d7ed3f59403280ce5fdb4e7f3d33dde5013fc"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "bld/png/sliding-dovetail-lock-female.png",
+      "sources": [
+        "openscad/sliding-dovetail/render/sliding-dovetail-lock-female.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_render.scad",
+        "openscad/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "ext/lib.scad.forge/openscad/forge.scad",
+        "ext/lib.scad.forge/openscad/resolution.scad",
+        "ext/lib.scad.forge/openscad/transform.scad",
+        "ext/lib.scad.forge/openscad/csg.scad",
+        "ext/lib.scad.forge/openscad/cutter.scad",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"
+      ],
+      "target_spec_digest": "1bf2dacca48a94bc2f98729a5da05e213cbde3b759854946dd8354aa64dc745f"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "bld/png/sliding-dovetail-lock-male.png",
+      "sources": [
+        "openscad/sliding-dovetail/render/sliding-dovetail-lock-male.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_render.scad",
+        "openscad/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "ext/lib.scad.forge/openscad/forge.scad",
+        "ext/lib.scad.forge/openscad/resolution.scad",
+        "ext/lib.scad.forge/openscad/transform.scad",
+        "ext/lib.scad.forge/openscad/csg.scad",
+        "ext/lib.scad.forge/openscad/cutter.scad",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"
+      ],
+      "target_spec_digest": "66dd5b8c3125a3b994656e0f35b8d9df01da9c7db068e0c3d75480983ae343d1"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "bld/png/sliding-dovetail-male.png",
+      "sources": [
+        "openscad/sliding-dovetail/render/sliding-dovetail-male.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_render.scad",
+        "openscad/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "ext/lib.scad.forge/openscad/forge.scad",
+        "ext/lib.scad.forge/openscad/resolution.scad",
+        "ext/lib.scad.forge/openscad/transform.scad",
+        "ext/lib.scad.forge/openscad/csg.scad",
+        "ext/lib.scad.forge/openscad/cutter.scad",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"
+      ],
+      "target_spec_digest": "acbc09f57c66c3519f3bd755ea1384f2cd864b290f3b182f1eee5170ad88e9ed"
+    },
+    {
+      "action_executed": true,
+      "existed_before": false,
+      "exists_after": true,
+      "outcome": "BUILT",
+      "output": "bld/png/sliding-dovetail-pair.png",
+      "sources": [
+        "openscad/sliding-dovetail/render/sliding-dovetail-pair.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_render.scad",
+        "openscad/sliding_dovetail.scad",
+        "openscad/sliding-dovetail/sliding_dovetail_lock.scad",
+        "ext/lib.scad.forge/openscad/forge.scad",
+        "ext/lib.scad.forge/openscad/resolution.scad",
+        "ext/lib.scad.forge/openscad/transform.scad",
+        "ext/lib.scad.forge/openscad/csg.scad",
+        "ext/lib.scad.forge/openscad/cutter.scad",
+        "openscad/sliding-dovetail/reference/sliding_dovetail_reference.scad"
+      ],
+      "target_spec_digest": "11e9efd3898e2276cb2c0d9c5b20715c95e6cc285642536dc9ef485b8b8794a8"
+    }
+  ]
+}
