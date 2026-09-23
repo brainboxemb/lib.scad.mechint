@@ -1,3 +1,5 @@
+Repository-level strategy/status: [../doc/30-verification.md](../doc/30-verification.md).
+
 # Sliding dovetail verification
 
 Verification isolates the mechanical interface from any consuming product.
