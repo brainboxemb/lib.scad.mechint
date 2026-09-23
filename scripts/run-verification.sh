@@ -77,6 +77,7 @@ require_nested_uninitialized "tools/tool.scad-project"
 
 rm -rf "$out/fixtures"
 mkdir -p "$out/fixtures"
+cp "$root/doc/30-verification.md" "$out/30-verification.md"
 
 run_openscad_checked() {
   local log
@@ -137,6 +138,8 @@ render_stl   "$out/fixtures/17-sliding-dovetail-lock-hinge-assembled-cutaway.stl
 
 cat > "$out/README.md" <<'EOF'
 # Verification
+
+Repository-level strategy/status: [30-verification.md](30-verification.md).
 
 The public object API was compiled and rendered with OpenSCAD object functions
 enabled.

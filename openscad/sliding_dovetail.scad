@@ -3,6 +3,10 @@
 //   Compact FDM-oriented sliding dovetail mechanical interface.
 //////////////////////////////////////////////////////////////////////
 
+// - Design: sliding-dovetail/design/design.md
+// - Design review: sliding-dovetail/sliding_dovetail_render.scad
+// - Usage/reference: sliding-dovetail/manual.md
+//
 // Design orientation:
 //   X = slide / insertion direction
 //   Y = profile depth, mouth at Y=0 and root toward +Y
