@@ -4,6 +4,9 @@
 
 ### Changed
 
+- Adopt the Migration-011 accepted owner baselines: tool.git-project v0.2.14, tool.scad-project v0.15.11, lib.scad.forge v0.3.1 and lib.scad.util v0.4.1; refresh managed launchers/workflows and exact dependency verification without changing mechanical geometry or public API semantics.
+- Align the repository documentation with the shared numbered plan/manual/specification/design/verification families while retaining the detailed sliding-dovetail design/manual beside source.
+
 - Align repository documentation and agent guidance with Migration 010: add numbered plan/specification/design/verification authorities, stop inheriting pinned tool AGENTS as consumer policy, publish verification strategy with generated evidence, and add docsgen-safe design/manual breadcrumbs to the public API without changing mechanical geometry or API semantics.
 
 - Advance Migration 009 to released `tool.scad-project v0.15.7` with exact tool gitlink `bfaac9f6916c09bc6525abddf64c87238fe59103`, retain production-run serialization, restore the qualified read-only `update-repo status` contract, keep repository verification aligned, and leave mechanical geometry/public API unchanged.

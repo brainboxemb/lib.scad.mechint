@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-EXPECTED_GIT_TOOL_SHA="9879da589101f41b2b0e634d196ddcc51e1a6102"
-EXPECTED_SCAD_TOOL_SHA="bfaac9f6916c09bc6525abddf64c87238fe59103"
-EXPECTED_SCAD_TOOL_REF="v0.15.7"
-EXPECTED_FORGE_SHA="12a62580f4d24a8ebd80b061dc2a8e368a838ace"
-EXPECTED_FORGE_REF="v0.2.1"
-EXPECTED_UTIL_SHA="604970732671b3889f072f5fc744ca872326e69c"
-EXPECTED_UTIL_REF="v0.4.0"
+EXPECTED_GIT_TOOL_SHA="d1ed47c7d85524cfcb2a8f7e1ea81ba106ae9c60"
+EXPECTED_SCAD_TOOL_SHA="8d167ad17dbfa798d68f46d871aaeed2e2e09857"
+EXPECTED_SCAD_TOOL_REF="v0.15.11"
+EXPECTED_FORGE_SHA="100693541e056e312605c88a2f145ee1cbb829a4"
+EXPECTED_FORGE_REF="v0.3.1"
+EXPECTED_UTIL_SHA="af04b44c2fb1d779a87797da4290deca92c7594d"
+EXPECTED_UTIL_REF="v0.4.1"
 
 root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 out="$root/vrf/out"
@@ -77,7 +77,7 @@ require_nested_uninitialized "tools/tool.scad-project"
 
 rm -rf "$out/fixtures"
 mkdir -p "$out/fixtures"
-cp "$root/doc/30-verification.md" "$out/30-verification.md"
+cp "$root/doc/50-00-verification.md" "$out/50-00-verification.md"
 
 run_openscad_checked() {
   local log
@@ -139,7 +139,7 @@ render_stl   "$out/fixtures/17-sliding-dovetail-lock-hinge-assembled-cutaway.stl
 cat > "$out/README.md" <<'EOF'
 # Verification
 
-Repository-level strategy/status: [30-verification.md](30-verification.md).
+Repository-level strategy/status: [50-00-verification.md](50-00-verification.md).
 
 The public object API was compiled and rendered with OpenSCAD object functions
 enabled.
